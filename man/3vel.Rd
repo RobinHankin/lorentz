@@ -1,0 +1,43 @@
+\name{3vel}
+\alias{3vel}
+\alias{as.3vel}
+\alias{is.3vel}
+\alias{length.3vel}
+\alias{names.3vel}
+\alias{names<-.3vel}
+\alias{threevel}
+\title{Three velocities}
+\description{
+Various R idiom to create and test for three-velocities, \code{3vel} objects.
+}
+\usage{
+`3vel`(n)
+threevel(n)
+as.3vel(x)
+is.3vel(x)
+\method{length}{3vel}(x)
+\method{names}{3vel}(x)
+\method{names}{3vel}(x) <- value
+}
+\arguments{
+  \item{n}{In function \code{3vel()}, number of three velocities to
+    create}
+  \item{x,value}{Vectors of three-velocities}
+}
+\note{
+  Function \code{threevel()} is a convenience wrapper for \code{3vel()}.
+  }
+\author{Robin K. S. Hankin}
+\examples{
+
+x <- as.3vel(1:3/4)
+u <- as.3vel(matrix(runif(30)/10,ncol=3))
+
+names(u) <- letters[1:10]
+
+x+u
+u+x  # not equal
+
+
+
+}
