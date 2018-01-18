@@ -52,20 +52,20 @@
   return(as.3vel(out))
 }
 
-`massage3` <- function(A,B){
-  lA <- length(A)
-  lB <- length(B)
-  if( (lA >= lB) & (!is.null(names(A)))){
-    names.out <- names(A)
+`massage3` <- function(u,v){
+  lu <- length(u)
+  lv <- length(v)
+  if( (lu >= lv) & (!is.null(names(u)))){
+    names.out <- names(u)
   } else {
-    names.out <- names(B)
+    names.out <- names(v)
   }
 
-  jj <- rbind(seq(length.out=lA),seq(length.out=lB))
+  jj <- rbind(seq(length.out=lu),seq(length.out=lv))
   if(length(names.out) != ncol(jj)){names.out <- NULL}
   return(list(
-      u1 = (unclass(A))[jj[1,],,drop=FALSE],
-      u2 = (unclass(B))[jj[2,],,drop=FALSE],
+      u = (unclass(u))[jj[1,],,drop=FALSE],
+      v = (unclass(v))[jj[2,],,drop=FALSE],
       names=names.out))
 }
 

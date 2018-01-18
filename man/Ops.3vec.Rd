@@ -10,13 +10,13 @@
 \description{Arithmetic operations for three-velocities}
 \usage{
 \method{Ops}{3vel}(e1, e2)
-massage3(A, B)
+massage3(u,v)
 neg3(u)
 prod3(u,v=u)
 add3(u,v)
 }
 \arguments{
-  \item{e1,e2,u,v,A,B}{Objects of class \dQuote{\code{3vel}},
+  \item{e1,e2,u,v}{Objects of class \dQuote{\code{3vel}},
     three-velocities}
 }
 
