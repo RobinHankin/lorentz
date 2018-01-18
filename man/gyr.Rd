@@ -20,7 +20,8 @@ gyrfun(u,v)
 }
 \details{
 
-  Function  \code{gyr(u,v,x)} returns the three-vector \eqn{gyr[u,v]x}.
+  Function  \code{gyr(u,v,x)} returns the three-vector
+  \eqn{\mathrm{gyr}[u,v]x}{gyr[u,v]x}.
 
   Function \code{gyrfun(u,v)} returns a function that returns a
   three-vector; see examples.
