@@ -2,12 +2,12 @@
   x <- unclass(x)
   if(length(x)==1){
     if(x==0){
-      x <- c(0,0,0)
+      x <- rbind(c(0,0,0))
     } else {
       stop("not defined")
     }
   }
-  x <- rbind(x)  # in case x is a vector
+  if(is.vector(x)){x <- t(x)}
   if(all(rowSums(x^2)<1)){
       class(x) <- '3vel'   # this is the only place where the class is set
       return(x)
