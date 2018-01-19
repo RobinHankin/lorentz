@@ -142,18 +142,38 @@ Consider the following R session:
 library(gyrogroup)
 u <- as.3vel(c(-0.7,+0.2,-0.3))
 v <- as.3vel(c(+0.3,+0.3,+0.4))
-w <- as.3vel(c(+0.4,-0.3,+0.5))
 x <- as.3vel(c(-0.2,-0.3,+0.5))
-y <- as.3vel(c(-0.1,-0.8,-0.1))
-
 u
-v
-w
-x
-y
 @ 
 
-Here we have three-vectors \code{u},  and \code{v}.
+Here we have three-vectors \code{u}, \code{v} and \code{x}. 
+We can see that \code{u} and \code{v} do not commute:
+
+<<try>>=
+u+v
+v+u
+@ 
+
+and also verify Equation ASDF:
+<<>>=
+u+v
+gyr(u,v,v+u)
+@ 
+
+We may also use the subtraction idiom:
+
+<<subid>>=
+(u+v) - gyr(u,v,v+u)
+@ 
+
+showing agreement to within numerical error.
+
+It is also possible to use the functional idiom:
+
+<<funcid>>=
+f <- gyrfun(u,v)
+(u+v)-f(v+u)    # should be zero
+@ 
 
 
 \section{Conclusions}
