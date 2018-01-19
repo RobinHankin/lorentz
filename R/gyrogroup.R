@@ -9,10 +9,10 @@
   }
   x <- rbind(x)  # in case x is a vector
   if(all(rowSums(x^2)<1)){
-    class(x) <- '3vel'
-    return(x)
+      class(x) <- '3vel'   # this is the only place where the class is set
+      return(x)
   } else {
-    stop("speed > 1")
+      stop("speed > 1")
   }
 }
 
