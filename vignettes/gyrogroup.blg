@@ -1,0 +1,47 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: gyrogroup.aux
+The style file: jss.bst
+Database file #1: gyrogroup.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+You've used 1 entry,
+            3140 wiz_defined-function locations,
+            633 strings with 5275 characters,
+and the built_in function-call counts, 659 in all, are:
+= -- 49
+> -- 10
+< -- 1
++ -- 4
+- -- 3
+* -- 44
+:= -- 95
+add.period$ -- 4
+call.type$ -- 1
+change.case$ -- 5
+chr.to.int$ -- 1
+cite$ -- 1
+duplicate$ -- 58
+empty$ -- 63
+format.name$ -- 4
+if$ -- 129
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 11
+newline$ -- 16
+num.names$ -- 4
+pop$ -- 22
+preamble$ -- 1
+purify$ -- 5
+quote$ -- 0
+skip$ -- 19
+stack$ -- 0
+substring$ -- 48
+swap$ -- 22
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 9
+warning$ -- 0
+while$ -- 5
+width$ -- 0
+write$ -- 23

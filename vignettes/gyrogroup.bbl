@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{Ungar(2006)}]{ungar2006}
+Ungar AA (2006).
+\newblock \enquote{Thomas precession: a kinematic effect of the algebra of
+  {Einstein}'s velocity addition law. {Comments} on `{Deriving} relativistic
+  momentum and energy : {I}{I}. {Three}-dimensional case'.}
+\newblock \emph{European Journal of Physics}, \textbf{27}, L17--L20.
+
+\end{thebibliography}

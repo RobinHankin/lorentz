@@ -1,0 +1,164 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+\documentclass[nojss]{jss}
+\usepackage{dsfont}
+\usepackage{bbm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{yfonts}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% just as usual
+\author{Robin K. S. Hankin\\Auckland University of Technology}
+\title{Noncommutative and nonassociative three velocity in special relativity: introducing the \pkg{gyrogroup} package}
+
+
+%\VignetteIndexEntry{The gyrogroup package}
+
+%% for pretty printing and a nice hypersummary also set:
+\Plainauthor{Robin K. S. Hankin}
+\Plaintitle{The gyrogroup package}
+\Shorttitle{The gyrogroup package}
+
+%% an abstract and keywords
+\Abstract{
+
+Here I present the \pkg{gyrogroup} package for generalized
+Bradley-Terry models and give examples from two competetive
+situations: single scull rowing, and the competitive cooking game show
+MasterChef Australia.  A number of natural statistical hypotheses may
+be tested straightforwardly using the software.
+}
+
+
+\Keywords{Dirichlet distribution, hyperdirichlet distribution,
+  combinatorics, \proglang{R}, multinomial distribution, constrained
+optimization, Bradley-Terry}
+\Plainkeywords{Dirichlet distribution, hyperdirichlet distribution,
+  combinatorics, R, multinomial distribution, constrained
+optimization, Bradley-Terry}
+  
+  
+  
+%% publication information
+%% NOTE: This needs to filled out ONLY IF THE PAPER WAS ACCEPTED.
+%% If it was not (yet) accepted, leave them commented.
+%% \Volume{13}
+%% \Issue{9}
+%% \Month{September}
+%% \Year{2004}
+%% \Submitdate{2004-09-29}
+%% \Acceptdate{2004-09-29}
+
+%% The address of (at least) one author should be given
+%% in the following format:
+\Address{
+  Robin K. S. Hankin\\
+  Auckland University of Technology\\
+  E-mail: \email{hankin.robin@gmail.com}
+}
+%% It is also possible to add a telephone and fax number
+%% before the e-mail in the following format:
+%% Telephone: +43/1/31336-5053
+%% Fax: +43/1/31336-734
+
+%% for those who use Sweave please include the following line (with % symbols):
+%% need no \usepackage{Sweave.sty}
+
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\bu}{\mathbf u}
+\newcommand{\bv}{\mathbf v}
+\newcommand{\bw}{\mathbf w}
+\newcommand{\bx}{\mathbf x}
+\newcommand{\by}{\mathbf y}
+
+\DeclareMathOperator{\gyr}{gyr}
+
+
+\begin{document}
+\section{Introduction}
+
+
+
+\section{Introduction}
+
+``The nonassociativity of Einstein's velocity addition is not widely
+known''~\citep{ungar2006}.
+
+In this short vignette I will introduce the \pkg{gyrogroup} package which gives
+functionality for manipulating three-velocities in the context of their being a gyrogroup.
+
+\section{The package in use}
+
+\cite{ungar2006} shows that the velocity addition law is
+
+\begin{equation}
+\bu\oplus\bv=
+\frac{1}{1+\bu\cdot\bv}
+\left\{
+\bu + \frac{\bv}{\gamma_\bu} + \frac{\gamma_\bu
+\left(\bu\cdot\bv\right)\bu}{1+\gamma_\bu}
+\right\}
+\end{equation}
+   
+where~$\gamma_\bu=\left(1-\bu\cdot\bu\right)^{-1/2}$ and we are
+assuming~$c=1$.  Ungar shows that, in general,
+$\bu\oplus\bv\neq\bv\oplus\bu$
+and~$(\bu\oplus\bv)\oplus\bw\neq\bu\oplus(\bv\oplus\bw)$.  He also
+defines the binary operator~$\ominus$
+as~$\bu\ominus\bv=\bu\oplus\left(-\bv\right)$ (and implicitly
+defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$).
+
+If we have
+
+\begin{equation}
+\gyr\left[\bu,\bv\right]\bx=-\left(\bu\oplus\bv\right)\oplus\left(\bu\oplus\left(\bv\oplus\bx\right)\right)
+\end{equation}
+
+Then Ungar shows that 
+
+\begin{eqnarray}
+\gyr\left[\bu,\bv\right]\bx\cdot\gyr\left[\bu,\bv\right]x &=& \bx\cdot\by\\
+\gyr\left[\bu,\bv\right]\left(\bx\oplus\by\right) &=& \gyr\left[\bu,\bv\right]\bx\oplus\gyr\left[\bu,\bv\right]\by\\
+\left(\gyr\left[\bu,\bv\right]\right)^{-1} &=& \left(\gyr\left[\bv,\bu\right]\right)\\
+\bu\oplus\bv &=& \gyr\left[\bu,\bv\right]\left(\bv\oplus\bu\right)\\
+\bu\oplus\left(\bv\oplus\bw\right) &=&\left(\bu\oplus\bv\right)\oplus\gyr\left[\bu,\bv\right]\bw\\
+\left(\bu\oplus\bv\right)\oplus\bw &=&\bu\oplus\left(\bv\oplus\gyr\left[\bv,\bu\right]\bw\right)
+\end{eqnarray}
+
+Consider the following R session:
+
+\begin{Schunk}
+\begin{Sinput}
+> library(gyrogroup)
+> u <- as.3vel(c(-0.7,+0.2,-0.3))
+> v <- as.3vel(c(+0.3,+0.3,+0.4))
+> w <- as.3vel(c(+0.4,-0.3,+0.5))
+\end{Sinput}
+\end{Schunk}
+
+Here we have three-vectors \code{u},  and \code{v}.
+
+
+\section{Conclusions}
+
+Several generalization of Bradley-Terry strengths are appropriate to
+describe competitive situations in which order statistics are
+sufficient.
+
+The package is used to calculate maximum likelihood estimates for
+generalized Bradley-Terry strengths in two competitive situations:
+Olympic rowing, and \emph{MasterChef Australia}.  The estimates for
+the competitors' strengths are plausible; and several meaningful
+statistical hypotheses are assessed quantitatively.
+
+\bibliography{gyrogroup}
+\end{document}
+ 
