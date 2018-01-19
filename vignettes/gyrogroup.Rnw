@@ -1,3 +1,4 @@
+
 % -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
 \documentclass[nojss]{jss}
 \usepackage{dsfont}
@@ -36,13 +37,19 @@ be tested straightforwardly using the software.
 }
 
 
-\Keywords{Dirichlet distribution, hyperdirichlet distribution,
-  combinatorics, \proglang{R}, multinomial distribution, constrained
-optimization, Bradley-Terry}
-\Plainkeywords{Dirichlet distribution, hyperdirichlet distribution,
-  combinatorics, R, multinomial distribution, constrained
-optimization, Bradley-Terry}
-  
+\Keywords{gyrogroup, gyromorphism, gyrocommutative, gyroassociative,
+  Thomas precession, Thomas gyration, Lorentz law, Lorentz velocity
+  addition, special relativity, relativistic physics, Einstein
+  velocity addition, Einstein velocity addition law, addition law,
+  parallelogra law, three-velocity, three-vector, nonassociative,
+  noncommutative, \proglang{R}}
+
+\Plainkeywords{gyrogroup, gyromorphism, gyrocommutative, gyroassociative,
+  Thomas precession, Thomas gyration, Lorentz law, Lorentz velocity
+  addition, special relativity, relativistic physics, Einstein
+  velocity addition, Einstein velocity addition law, addition law,
+  parallelogra law, three-velocity, three-vector, nonassociative,
+  noncommutative, R}  
   
   
 %% publication information
