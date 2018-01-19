@@ -79,7 +79,7 @@ optimization, Bradley-Terry}
 \newcommand{\bx}{\mathbf x}
 \newcommand{\by}{\mathbf y}
 
-\DeclareMathOperator{\gyr}{gyr}
+\newcommand{\gyr}[2]{\operatorname{gyr}\left[{\mathbf #1},{\mathbf #2}\right]}
 
 \SweaveOpts{}
 \begin{document}
@@ -122,18 +122,18 @@ defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$).
 If we have
 
 \begin{equation}
-\gyr\left[\bu,\bv\right]\bx=-\left(\bu\oplus\bv\right)\oplus\left(\bu\oplus\left(\bv\oplus\bx\right)\right)
+\gyr{u}{v}\bx=-\left(\bu\oplus\bv\right)\oplus\left(\bu\oplus\left(\bv\oplus\bx\right)\right)
 \end{equation}
 
 Then Ungar shows that 
 
 \begin{eqnarray}
-\gyr\left[\bu,\bv\right]\bx\cdot\gyr\left[\bu,\bv\right]x &=& \bx\cdot\by\\
-\gyr\left[\bu,\bv\right]\left(\bx\oplus\by\right) &=& \gyr\left[\bu,\bv\right]\bx\oplus\gyr\left[\bu,\bv\right]\by\\
-\left(\gyr\left[\bu,\bv\right]\right)^{-1} &=& \left(\gyr\left[\bv,\bu\right]\right)\\
-\bu\oplus\bv &=& \gyr\left[\bu,\bv\right]\left(\bv\oplus\bu\right)\\
-\bu\oplus\left(\bv\oplus\bw\right) &=&\left(\bu\oplus\bv\right)\oplus\gyr\left[\bu,\bv\right]\bw\\
-\left(\bu\oplus\bv\right)\oplus\bw &=&\bu\oplus\left(\bv\oplus\gyr\left[\bv,\bu\right]\bw\right)
+\gyr{u}{v}\bx\cdot\gyr{u}{v}\by &=& \bx\cdot\by\\
+\gyr{u}{v}\left(\bx\oplus\by\right) &=& \gyr{u}{v}\bx\oplus\gyr{u}{v}\by\\
+\left(\gyr{u}{v}\right)^{-1} &=& \left(\gyr{v}{u}\right)\\
+\bu\oplus\bv &=& \gyr{u}{v}\left(\bv\oplus\bu\right)\\
+\bu\oplus\left(\bv\oplus\bw\right) &=&\left(\bu\oplus\bv\right)\oplus\gyr{u}{v}\bw\\
+\left(\bu\oplus\bv\right)\oplus\bw &=&\bu\oplus\left(\bv\oplus\gyr{v}{u}\bw\right)
 \end{eqnarray}
 
 Consider the following R session:
@@ -143,6 +143,14 @@ library(gyrogroup)
 u <- as.3vel(c(-0.7,+0.2,-0.3))
 v <- as.3vel(c(+0.3,+0.3,+0.4))
 w <- as.3vel(c(+0.4,-0.3,+0.5))
+x <- as.3vel(c(-0.2,-0.3,+0.5))
+y <- as.3vel(c(-0.1,-0.8,-0.1))
+
+u
+v
+w
+x
+y
 @ 
 
 Here we have three-vectors \code{u},  and \code{v}.
