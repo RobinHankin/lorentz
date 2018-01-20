@@ -5,12 +5,13 @@
 Generates random three-velocities, optionally specifiying a magnitude
 }
 \usage{
-r3vel(n, r = NA)
+r3vel(n, r = NA, SOL = getOption("c"))
 }
 \arguments{
   \item{n}{Number of three-velocities to generate}
   \item{r}{Absolute value of the three-velocities, with default
     \code{NA} meaning to sample uniformly from the unit ball}
+  \item{SOL}{Speed of light, defaulting to 1}
 }
 \details{
 It is not entirely trivial to sample \emph{uniformly} from the unit ball

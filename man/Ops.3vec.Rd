@@ -13,11 +13,12 @@
 massage3(u,v)
 neg3(u)
 prod3(u,v=u)
-add3(u,v)
+add3(u,v,SOL = getOption("c"))
 }
 \arguments{
   \item{e1,e2,u,v}{Objects of class \dQuote{\code{3vel}},
     three-velocities}
+  \item{SOL}{Speed of light, defaulting to 1}
 }
 
 \details{
