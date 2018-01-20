@@ -1,4 +1,5 @@
-`as.3vel` <- function(x){
+`as.3vel` <- function(x,SOL=getOption("c")){
+  if(is.null(SOL)){SOL <- 1}        
   x <- unclass(x)
   if(length(x)==1){
     if(x==0){
@@ -8,11 +9,11 @@
     }
   }
   if(is.vector(x)){x <- t(x)}
-  if(all(rowSums(x^2)<1)){
+  if(all(rowSums(x^2)<SOL^2)){
       class(x) <- '3vel'   # this is the only place where the class is set
       return(x)
   } else {
-      stop("speed > 1")
+      stop("speed > c")
   }
 }
 
@@ -39,13 +40,14 @@
   return(x)
 }
 
-`r3vel` <- function(n,r=NA){
+`r3vel` <- function(n,r=NA,SOL=getOption("c")){
+  if(is.null(SOL)){SOL <- 1}        
   z <- runif(n,-1,1)
   phi <- runif(n,0,2*pi)
   u <- sqrt(1-z^2)
   out <- cbind(u*sin(phi),u*cos(phi),z)  # Cartesian coords on unit sphere
   if(is.na(r)){
-    out <- out*runif(n)^(1/3)
+    out <- out*runif(n)^(1/3)*SOL
   }  else {
     out <- out*r
   }
@@ -69,12 +71,13 @@
       names=names.out))
 }
 
-`add3` <- function(u,v){  # eq 2
+`add3` <- function(u,v,SOL=getOption("c")){  # eq 2
+  if(is.null(SOL)){SOL <- 1}        
   jj <- massage3(u,v)
   u <- jj[[1]]
   v <- jj[[2]]
-  gu <- 1/sqrt(1-rowSums(u*u))
-  uv <- rowSums(u*v)
+  gu <- 1/sqrt(1-rowSums(u^2)/SOL^2)
+  uv <- rowSums(u*v)/SOL^2  # u.v/c^2
   out <- u + sweep(v,1,gu,"/") + sweep(u,1,uv*gu/(1+gu),"*")
   out <- sweep(out,1,1+uv,"/")
   rownames(out) <- jj$names
