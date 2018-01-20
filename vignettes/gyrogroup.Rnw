@@ -135,12 +135,12 @@ If we have
 Then Ungar shows that 
 
 \begin{eqnarray}
+\bu\oplus\bv &=& \gyr{u}{v}\left(\bv\oplus\bu\right)\label{noncom}\\
 \gyr{u}{v}\bx\cdot\gyr{u}{v}\by &=& \bx\cdot\by\\
 \gyr{u}{v}\left(\bx\oplus\by\right) &=& \gyr{u}{v}\bx\oplus\gyr{u}{v}\by\\
 \left(\gyr{u}{v}\right)^{-1} &=& \left(\gyr{v}{u}\right)\\
-\bu\oplus\bv &=& \gyr{u}{v}\left(\bv\oplus\bu\right)\\
-\bu\oplus\left(\bv\oplus\bw\right) &=&\left(\bu\oplus\bv\right)\oplus\gyr{u}{v}\bw\\
-\left(\bu\oplus\bv\right)\oplus\bw &=&\bu\oplus\left(\bv\oplus\gyr{v}{u}\bw\right)
+\bu\oplus\left(\bv\oplus\bw\right) &=&\left(\bu\oplus\bv\right)\oplus\gyr{u}{v}\bw\label{nonass1}\\
+\left(\bu\oplus\bv\right)\oplus\bw &=&\bu\oplus\left(\bv\oplus\gyr{v}{u}\bw\right)\label{nonass2}
 \end{eqnarray}
 
 Consider the following R session:
@@ -149,37 +149,70 @@ Consider the following R session:
 library(gyrogroup)
 u <- as.3vel(c(-0.7,+0.2,-0.3))
 v <- as.3vel(c(+0.3,+0.3,+0.4))
-x <- as.3vel(c(-0.2,-0.3,+0.5))
+w <- as.3vel(c(+0.1,+0.3,+0.8))
+x <- as.3vel(c(-0.2,-0.1,-0.9))
 u
 @ 
 
-Here we have three-vectors \code{u}, \code{v} and \code{x}. 
-We can see that \code{u} and \code{v} do not commute:
+Here we have three-vectors \code{u} etc.  We can see that \code{u} and
+\code{v} do not commute:
 
 <<try>>=
 u+v
 v+u
 @ 
 
-and also verify Equation ASDF:
+(the results differ).  We can use equation~\ref{noncom}
 <<>>=
-u+v
-gyr(u,v,v+u)
+(u+v)-gyr(u,v,v+u)
 @ 
 
-We may also use the subtraction idiom:
-
-<<subid>>=
-(u+v) - gyr(u,v,v+u)
-@ 
-
-showing agreement to within numerical error.
-
-It is also possible to use the functional idiom:
+showing agreement to within numerical error.  It is also possible to
+use the functional idiom:
 
 <<funcid>>=
 f <- gyrfun(u,v)
 (u+v)-f(v+u)    # should be zero
+@ 
+
+Function \code{gyrfun()} is vectorized, which means that it plays
+nicely with (R) vectors.  Consider
+
+<<vec9>>=
+u9 <- r3vel(9)
+u9
+@ 
+
+Then we can create a vectorized gyrofunction:
+
+<<vecfun>>=
+f <- gyrfun(u9,v)
+f(x)
+@ 
+
+
+Note that the package vectorization is transparent when using syntatic sugar:
+
+<<u9+x>>=
+u9+x
+@ 
+
+(here, the addition operates using R's standard recycling rules).
+
+\subsection{Associativity}
+
+
+Three velocity addition is not associative:
+
+<<nonass>>=
+(u+v)+w
+u+(v+w)
+@ 
+
+But we can use equations~\ref{nonass1} and~\ref{nonass2}:
+
+<<nonass>>=
+((u+v)+w) - (u+(v+gyr(v,u,w)))
 @ 
 
 
