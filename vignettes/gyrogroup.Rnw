@@ -211,10 +211,10 @@ u+(v+w)
 
 But we can use equations~\ref{nonass1} and~\ref{nonass2}:
 
-<<nonass>>=
+<<nonass1>>=
+(u+(v+w)) - ((u+v)+gyr(u,v,w))
 ((u+v)+w) - (u+(v+gyr(v,u,w)))
 @ 
-
 
 \section{Conclusions}
 
