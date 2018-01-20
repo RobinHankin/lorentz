@@ -216,17 +216,76 @@ But we can use equations~\ref{nonass1} and~\ref{nonass2}:
 ((u+v)+w) - (u+(v+gyr(v,u,w)))
 @ 
 
-\section{Conclusions}
+\clearpage
+\section{Visualization}
 
-Several generalization of Bradley-Terry strengths are appropriate to
-describe competitive situations in which order statistics are
-sufficient.
+Consider the following three-velocities:
 
-The package is used to calculate maximum likelihood estimates for
-generalized Bradley-Terry strengths in two competitive situations:
-Olympic rowing, and \emph{MasterChef Australia}.  The estimates for
-the competitors' strengths are plausible; and several meaningful
-statistical hypotheses are assessed quantitatively.
+<<viss>>=
+u <- as.3vel(c(0, 0.8, 0))
+v <- r3vel(500,0.9)
+w <- as.3vel(c(0.7, 0, -0.7))
+@ 
+
+Object~$\bv$ is 500 randomly chosen three velocities with a magnitude
+of~0.9 (Figure~\ref{v}).  We can see the noncommutativity of three
+velocity addition in figures~\ref{uvvu} and~\ref{uvredblack}, and the
+nonassociativity in figures~\ref{assocplotter1}
+and~\ref{assocplotter2}.
+
+\begin{figure}[htbp]
+  \begin{center}
+<<uplotter, fig=TRUE>>=
+pairs(v,asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
+@
+\caption{Three dimensional plot of 500 random three
+  velocities \label{v} with magnitude 0.9}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+<<uvvuplotter, fig=TRUE>>=
+pairs((u+v)-(v+u),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
+@
+\caption{Three \label{uvvu} dimensional plot of $\left(\bu+\bv\right)-\left(\bv+\bu\right)$}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+<<uvredblackplotter, fig=TRUE>>=
+jj <- rbind(u+v,v+u)
+pairs(jj,asp=1,xlim=c(-1,1),cex=0.5,ylim=c(-1,1),col=c(rep("black",500),rep("red",500)))
+@
+\caption{Three \label{uvredblack} dimensional plot of $\left(\bu+\bv\right)$ in black and~$\left(\bv+\bu\right)$ in red}
+  \end{center}
+\end{figure}
+
+
+
+\begin{figure}[htbp]
+  \begin{center}
+<<assocplotter1, fig=TRUE>>=
+pairs( (u+(v+w))-((u+v)+w),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
+@
+\caption{Three \label{assocplotter1} dimensional plot of
+  $\left(\bu+\left(\bv+\bw\right)\right)-\left(\left(\bu+\bv\right)+\bw\right)$}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+<<assocredblackplotter, fig=TRUE>>=
+jj <- rbind(u+(v+w),(u+v)+w)
+pairs(jj,asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1),col=c(rep("black",500),rep("red",500)))
+@
+\caption{Three \label{assocplotter2} dimensional plot
+  of~$\bu+\left(\bv+\bw\right)$ in black and~$\left(\bu+\bv\right)+\bw$
+  in red}
+  \end{center}
+\end{figure}
+
 
 \bibliography{gyrogroup}
 \end{document}
