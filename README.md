@@ -24,13 +24,13 @@ To install the current development version use devtools:
 
 ### Creation of three velocities:
 
-  `u <- as.3vel(c(0.2,0.4,0.1))`   # single three-velocity
-  `v <- r3vel(4,0.9)`              # 4 random three-velocities with speed 0.6
-  `w <- as.3vel(c(-0.5,0.1,0.3))`  # single three-velocity
+  ```u <- as.3vel(c(0.2,0.4,0.1))```   # single three-velocity
+  ```v <- r3vel(4,0.9)```              # 4 random three-velocities with speed 0.6
+  ```w <- as.3vel(c(-0.5,0.1,0.3))```  # single three-velocity
 
 Then we can see that velocity addition is not commutative:
 
-`
+```
 R> u+v
               x          y           z
 [1,]  0.4727763 -0.6658390 -0.03265162
@@ -49,13 +49,13 @@ R> (u+v)-(v+u)
 [2,]  0.2287210 0.4937333 0.10337471
 [3,] -0.0410193 0.2173606 0.15599707
 [4,]  0.2937451 0.4996093 0.10767540
-R>`
+R>```
 
 
 
 Commutativity is replaced with gyrocommutatitivity:
 
-`
+```
 R> (u+v) - gyr(u,v,v+u)
                  x             y             z
 [1,]  0.000000e+00  5.122634e-16  6.670097e-18
@@ -68,33 +68,33 @@ R> (v+u) - gyr(v,u,u+v)
 [2,]  4.208348e-16 -1.107460e-17 -6.644760e-16
 [3,] -2.108355e-16 -1.505968e-16  3.614324e-16
 [4,]  1.558252e-15  1.929264e-15 -1.224341e-15
-R>` 
+R>``` 
 
 (that is, zero to numerical accuracy)
 
 ### Nonassociativity
 
  
-`
+```
 R> (u+(v+w)) - ((u+v)+gyr(u,v,w))
 x
 y
 z
 [1,] 6.916191e-16 -1.383238e-15 -6.916191e-16
-> ((u+v)+w) - (u+(v+gyr(v,u,w)))`
+> ((u+v)+w) - (u+(v+gyr(v,u,w)))```
 R> ((u+v)+w) - (u+(v+w))
                  x           y            z
 [1,]  0.0006813334  0.11430397  0.041607715
 [2,] -0.0173238864 -0.03804107  0.009219861
 [3,] -0.0502024995 -0.12966668 -0.039637713
 [4,] -0.1385891474 -0.16729878 -0.017400840
-R>` 
+R>``` 
 
 (that is, significant departure from associativity).
 
 Associativity is replaced with gyroassociativity:
 
-`
+```
 R> (u+(v+w)) - ((u+v)+gyr(u,v,w))
                  x             y            z
 [1,] -1.274920e-15 -3.399786e-15 0.000000e+00
@@ -108,7 +108,7 @@ R> ((u+v)+w) - (u+(v+gyr(v,u,w)))
 [3,] -2.072438e-16 -8.289750e-16  0.000000e+00
 [4,]  9.646629e-16  2.572434e-15 -1.929326e-15
 R> 
-`
+```
 
 (zero to numerical accuracy).
 
