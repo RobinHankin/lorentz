@@ -45,7 +45,7 @@
   z <- runif(n,-1,1)
   phi <- runif(n,0,2*pi)
   u <- sqrt(1-z^2)
-  out <- cbind(u*sin(phi),u*cos(phi),z)  # Cartesian coords on unit sphere
+  out <- cbind(x=u*sin(phi),y=u*cos(phi),z=z)  # Cartesian coords on unit sphere
   if(is.na(r)){
     out <- out*runif(n)^(1/3)*SOL
   }  else {
