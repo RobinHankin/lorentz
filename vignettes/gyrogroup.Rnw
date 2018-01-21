@@ -352,11 +352,11 @@ g <- gyrfun(v,u)
 f(g(x)) - g(f(x))
 @ 
 
-
-And it is possible to use pipes together with the functional notation:
+(zero to numerical precision).  It is possible to use pipes together
+with the functional notation:
 
 <<>>=
-x %<>% f  %>% add(y)  # x <- f(x)+y
+x %<>% f %>% add(y)      # x <- f(x)+y
 @ 
 
 \bibliography{gyrogroup}
