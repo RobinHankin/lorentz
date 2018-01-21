@@ -12,7 +12,6 @@ gyrogroup, and the calculation of Thomas precession.  Natural R idiom
 may be used to manipulate vectors of three-velocities, although one
 must be careful with brackets.
 
-
 # Installation
 
 To install the current development version use devtools:
@@ -24,11 +23,13 @@ To install the current development version use devtools:
 
 ### Creation of three velocities:
 
-```R> u <- as.3vel(c(0.2,0.4,0.1))```   # single three-velocity
-  
-```R> v <- r3vel(4,0.9)```              # 4 random three-velocities with speed 0.6
+```
+R> u <- as.3vel(c(0.2,0.4,0.1))   # single three-velocity
+R> v <- r3vel(4,0.9)              # 4 random three-velocities with speed 0.6
+R> w <- as.3vel(c(-0.5,0.1,0.3))  # single three-velocity
+```
 
-```R> w <- as.3vel(c(-0.5,0.1,0.3))```  # single three-velocity
+The three-velocity addition law is given by Ungar.
 
 Then we can see that velocity addition is not commutative:
 
@@ -111,6 +112,12 @@ R>
 
 (zero to numerical accuracy).
 
+
+# References
+
+The most concise reference is
+
+*  A. A. Ungar 2006. _Thomas precession: a kinematic effect of the algebra of Einstein's velocity addition law.  Comments on "Deriving relativistic momentum and energy: II,  Three-dimensional case_.  European Journal of Physics, 27:L17-L20
 
 
 # Further information
