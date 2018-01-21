@@ -1,5 +1,6 @@
 \name{Ops.3vel}
 \alias{Ops.3vel}
+\alias{Ops.gyr}
 \alias{Ops}
 \alias{massage3}
 \alias{neg3}
