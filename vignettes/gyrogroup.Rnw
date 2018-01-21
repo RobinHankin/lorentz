@@ -136,9 +136,9 @@ Then Ungar shows that
 
 \begin{eqnarray}
 \bu\oplus\bv &=& \gyr{u}{v}\left(\bv\oplus\bu\right)\label{noncom}\\
-\gyr{u}{v}\bx\cdot\gyr{u}{v}\by &=& \bx\cdot\by\\
+\gyr{u}{v}\bx\cdot\gyr{u}{v}\by &=& \bx\cdot\by\label{doteq}\\
 \gyr{u}{v}\left(\bx\oplus\by\right) &=& \gyr{u}{v}\bx\oplus\gyr{u}{v}\by\\
-\left(\gyr{u}{v}\right)^{-1} &=& \left(\gyr{v}{u}\right)\\
+\left(\gyr{u}{v}\right)^{-1} &=& \left(\gyr{v}{u}\right)\label{gyrinv}\\
 \bu\oplus\left(\bv\oplus\bw\right) &=&\left(\bu\oplus\bv\right)\oplus\gyr{u}{v}\bw\label{nonass1}\\
 \left(\bu\oplus\bv\right)\oplus\bw &=&\bu\oplus\left(\bv\oplus\gyr{v}{u}\bw\right)\label{nonass2}
 \end{eqnarray}
@@ -314,6 +314,49 @@ and
 
 <<>>=
 rbind(u %>% add(v %>% add(w))  ,  u+(v+w))
+@ 
+
+
+\newpage
+\section{Functional notation}
+
+
+It is possible to replace calls like \code{gyr(u,v,x)} with functional notation which can make for arguably more natural R idiom.  If we have 
+
+<<funcnot>>=
+u <- as.3vel(c(0, 0.8, 0))
+v <- r3vel(5,0.9)
+x <- as.3vel(c(0.7, 0, -0.7))
+y <- as.3vel(c(0.1, 0.3, -0.6))
+@ 
+
+Then we can define \code{f()} which is the map~$\bx\longrightarrow\gyr{u}{v}\bx$.
+
+
+<<>>=
+f <- gyrfun(u,v)
+f(w)
+@ 
+
+Then numerical verification of equation~\ref{doteq} and~\ref{gyrinv} is straightforward:e
+
+<<>>=
+prod3(f(x),f(y)) - prod3(x,y)
+@ 
+
+and
+
+<<>>=
+f <- gyrfun(u,v)
+g <- gyrfun(v,u)
+f(g(x)) - g(f(x))
+@ 
+
+
+And it is possible to use pipes together with the functional notation:
+
+<<>>=
+x %<>% f  %>% add(y)  # x <- f(x)+y
 @ 
 
 \bibliography{gyrogroup}
