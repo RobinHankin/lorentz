@@ -24,9 +24,11 @@ To install the current development version use devtools:
 
 ### Creation of three velocities:
 
-  ```u <- as.3vel(c(0.2,0.4,0.1))```   # single three-velocity
-  ```v <- r3vel(4,0.9)```              # 4 random three-velocities with speed 0.6
-  ```w <- as.3vel(c(-0.5,0.1,0.3))```  # single three-velocity
+```R> u <- as.3vel(c(0.2,0.4,0.1))```   # single three-velocity
+  
+```R> v <- r3vel(4,0.9)```              # 4 random three-velocities with speed 0.6
+
+```R> w <- as.3vel(c(-0.5,0.1,0.3))```  # single three-velocity
 
 Then we can see that velocity addition is not commutative:
 
