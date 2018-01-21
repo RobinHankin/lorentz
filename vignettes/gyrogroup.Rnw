@@ -300,21 +300,20 @@ Then pipe notation operates as expected:
 
 
 <<>>=
-(u %>% add(v)) - (u+v)
+rbind(u %>% add(v)  ,  u+v)
 @ 
 
 Demonstrating associativity is a little harder:
 
 <<>>=
-(u %>% add(v) %>% add(w)) - ((u+v)+w)
+rbind(u %>% add(v) %>% add(w)  ,  (u+v)+w)
 @ 
 
 
 and 
 
 <<>>=
- (u %>% add(v %>% add(w))) - ( u+(v+w))
-
+rbind(u %>% add(v %>% add(w))  ,  u+(v+w))
 @ 
 
 \bibliography{gyrogroup}
