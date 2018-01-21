@@ -338,7 +338,7 @@ f <- gyrfun(u,v)
 f(w)
 @ 
 
-Then numerical verification of equation~\ref{doteq} and~\ref{gyrinv} is straightforward:e
+Then numerical verification of equation~\ref{doteq} and~\ref{gyrinv} is straightforward:
 
 <<>>=
 prod3(f(x),f(y)) - prod3(x,y)
