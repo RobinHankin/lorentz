@@ -3,6 +3,8 @@
 .RData
 .Ruserdata
 
+README.md~
+
 # Example code in package build process
 *-Ex.R
 
@@ -23,6 +25,7 @@ vignettes/*.bbl
 vignettes/*.aux
 vignettes/*.log
 vignettes/*.out
+vignettes/*.R
 
 vignettes/jss.bst
 vignettes/jss.cls
@@ -31,6 +34,7 @@ vignettes/jss.drv
 vignettes/jss.dtx
 vignettes/jss.ins
 
+vignettes/gyrogroup.Rnw~
 
 
 # knitr and R markdown default cache directories
