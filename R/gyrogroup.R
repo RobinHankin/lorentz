@@ -146,11 +146,31 @@
       stop("Unary operator '", .Generic, "' is not implemented for 3vel objects")
     }
   }
-  if (!is.element(.Generic, c("+", "-",  "==", "!=")))
+  if (!is.element(.Generic, c("+", "-",  "==", "!=", "*","/")))
     stop("operator '", .Generic, "' is not implemented for 3vel objects")
-  if(!(lclass & rclass)){
-    stop("not defined")
+  
+  if (.Generic == "*"){
+    if(lclass & !rclass){
+      return(dot3(e1,e2))
+    }  else if (!lclass & rclass){
+      return(dot3(e2,e1))
+    } else {
+      stop(" '*' requires a three-vector and a scalar")
+    }
   }
+
+  if (.Generic == "/"){
+    if(lclass & !rclass){
+      return(dot3(e1,1/e2))
+    }  else if (!lclass & rclass){
+      return(dot3(e2,1/e1))
+    } else {
+      stop(" '*' requires a three-vector and a scalar")
+    }
+  }
+
+  stopifnot(lclass & rclass)
+    
   if (.Generic == "+") { 
     return(add3(e1, e2)) 
   } else if (.Generic == "-") { 

@@ -6,6 +6,7 @@
 \alias{neg3}
 \alias{prod3}
 \alias{add3}
+\alias{dot3}
 \alias{equal3}
 \title{Arithmetic Ops Group Methods for 3vel objects}
 \description{Arithmetic operations for three-velocities}
@@ -15,6 +16,7 @@ massage3(u,v)
 neg3(u)
 prod3(u,v=u)
 add3(u,v,SOL = getOption("c"))
+dot3(v,r,SOL=getOption("c"))
 }
 \arguments{
   \item{e1,e2,u,v}{Objects of class \dQuote{\code{3vel}},
@@ -27,9 +29,33 @@ add3(u,v,SOL = getOption("c"))
   operators \dQuote{\code{+}}, \dQuote{\code{-}} and \dQuote{\code{*}}
   to the appropriate specialist function.
 
-  The most interesting operator is \dQuote{\code{+}}, which is passed to
-  \code{add3()}.
+  The most interesting operators are \dQuote{\code{+}} and
+  \dQuote{\code{*}}, which are passed to \code{add3()} and \code{dot3()}
+  respectively.  These are defined, following Ungar, as:
 
+
+  \deqn{
+    \mathbf{u}+\mathbf{v} = \frac{1}{1+\mathbf{u}\cdot\mathbf{b}/c^2}
+    \left\{
+    \mathbf{u} +
+    \frac{1}{\gamma_\mathbf{u}}\mathbf{v} +
+    \frac{1}{c^2}\frac{\gamma_\mathbf{u}}{1+\gamma_\mathbf{u}}
+    \left(\mathbf{u}\cdot\mathbf{v}\right)\mathbf{u}
+    \right\}
+  }{
+    see PDF
+  }
+
+  and
+
+  \deqn{
+    c\tanh\left(
+    r\tanh^{-1}\frac{\left|\left|\mathbf{v}\right|\right|}{c}
+    \right)\frac{\mathbf{v}}{\left|\left|\mathbf{v}\right|\right|}
+  }{
+    see PDF
+  } 
+  
   The package is designed so that natural R idiom may be used for three
   velocity addition, see the examples section.
 }
