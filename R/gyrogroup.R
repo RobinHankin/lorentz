@@ -86,6 +86,29 @@
 
 `neg3` <- function(u){as.3vel(-unclass(u))}
 
+`dot3` <- function(v,r,SOL=getOption("c"),type=getOption("type")){
+    if(is.null(SOL)){SOL <- 1}        
+    if(is.null(type)){type <- "E"}
+    
+    vc <- sqrt(prod3(v))/SOL
+    op <- (1+vc)^r
+    om <- (1-vc)^r
+    out1 <-
+        switch(type,
+               E = as.3vel(sweep(unclass(v),1,(op+om)/(op-om)/vc,"*")),
+               M = as.3vel(sweep(unclass(v),1,(op+om)/(op-om)/vc,"*")),
+               W = as.3vel(sweep(unclass(v),1,
+               ((sqrt(op) + vc)^r - (sqrt(op) - vc)^r)/vc/2,"*"))
+               )
+    out2 <-
+        switch(type,
+               E = as.3vel(sweep(unclass(v),1,tanh(r*atanh(vc))/vc,"*")),
+               M = as.3vel(sweep(unclass(v),1,tanh(r*atanh(vc))/vc,"*")),
+               W = as.3vel(sweep(unclass(v),1,sinh(r*asinh(vc))/vc,"*")),
+               )
+    return(list(out1,out2))
+}
+
 `prod3` <- function(u,v=u){
   jj <- massage3(u,v)
   out <- rowSums(jj[[1]]*jj[[2]])
