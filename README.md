@@ -123,7 +123,7 @@ The most concise reference is
 # Further information
 For more detail, see the package vignette
 
-    vignette("magrittr")
+    vignette("gyrogroup")
  
  
 
