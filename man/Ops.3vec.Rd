@@ -50,12 +50,16 @@ dot3(v,r,SOL=getOption("c"))
   and
 
   \deqn{
+    r\odot\mathbf{v} =
     c\tanh\left(
     r\tanh^{-1}\frac{\left|\left|\mathbf{v}\right|\right|}{c}
     \right)\frac{\mathbf{v}}{\left|\left|\mathbf{v}\right|\right|}
   }{
     see PDF
   } 
+
+  where \eqn{\mathbf{u}}{u} and \eqn{\mathbf{v}}{v} are three-vectors
+  and \eqn{r} a scalar.
   
   The package is designed so that natural R idiom may be used for three
   velocity addition, see the examples section.
