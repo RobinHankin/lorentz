@@ -21,6 +21,7 @@ dot3(v,r,SOL=getOption("c"))
 \arguments{
   \item{e1,e2,u,v}{Objects of class \dQuote{\code{3vel}},
     three-velocities}
+  \item{r}{Scalar value for circle-dot multiplication}
   \item{SOL}{Speed of light, defaulting to 1}
 }
 
