@@ -67,6 +67,12 @@ require("gyrogroup")
     return(TRUE)
 }
 
+`manysbitneva` <- function(x,y,z){
+    test(x+(y+(x+z))  ,   (x+(y+x))+z)   # left Bol property
+    test((x+y)+(x+y)  ,   x+(y+(y+x)))   # left Bruck property
+    return(TRUE)
+}
+
 manytests(n = 10, x = as.3vel(c(0.4,0.1,-0.5)), y = as.3vel(c(0.1,0.2,-0.7)))
 manytests(n=10, x=r3vel(10),    y=r3vel(10))
 manytests(n=10, x=r3vel(10,0.9),y=r3vel(10,0.9))
@@ -81,3 +87,4 @@ manycopytests(r3vel(10,0.9),-5)
 
 
    
+manysbitneva(r3vel(10),r3vel(10),r3vel(10))
