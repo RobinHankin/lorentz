@@ -36,6 +36,7 @@ vignettes/jss.ins
 
 vignettes/gyrogroup.Rnw~
 
+tests/aaa.R~
 
 # knitr and R markdown default cache directories
 /*_cache/
