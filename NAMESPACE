@@ -2,3 +2,9 @@ exportPattern("^[[:alpha:]]+")
 
 importFrom("stats", "runif")
 import("magrittr")
+
+S3method("Ops"    , "3vel")
+S3method("length" , "3vel")
+S3method("names"  , "3vel")
+S3method("names<-", "3vel")
+S3method("print"  , "3vel")
