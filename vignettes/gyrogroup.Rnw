@@ -90,8 +90,6 @@ be tested straightforwardly using the software.
 
 \SweaveOpts{}
 \begin{document}
-\section{Introduction}
-
 
 <<echo=FALSE,print=FALSE>>=
 ignore <- require(magrittr,quietly=TRUE)
@@ -236,7 +234,7 @@ and~\ref{assocplotter2}.
 \begin{figure}[htbp]
   \begin{center}
 <<uplotter, fig=TRUE>>=
-pairs(v,asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
+pairs(unclass(v),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
 @
 \caption{Three dimensional plot of 500 random three
   velocities \label{v} with magnitude 0.9}
@@ -246,7 +244,7 @@ pairs(v,asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
 \begin{figure}[htbp]
   \begin{center}
 <<uvvuplotter, fig=TRUE>>=
-pairs((u+v)-(v+u),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
+pairs(unclass((u+v)-(v+u)),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
 @
 \caption{Three \label{uvvu} dimensional plot of $\left(\bu+\bv\right)-\left(\bv+\bu\right)$}
   \end{center}
@@ -256,7 +254,7 @@ pairs((u+v)-(v+u),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
   \begin{center}
 <<uvredblackplotter, fig=TRUE>>=
 jj <- rbind(u+v,v+u)
-pairs(jj,asp=1,xlim=c(-1,1),cex=0.5,ylim=c(-1,1),col=c(rep("black",500),rep("red",500)))
+pairs(unclass(jj),asp=1,xlim=c(-1,1),cex=0.5,ylim=c(-1,1),col=c(rep("black",500),rep("red",500)))
 @
 \caption{Three \label{uvredblack} dimensional plot of $\left(\bu+\bv\right)$ in black and~$\left(\bv+\bu\right)$ in red}
   \end{center}
@@ -267,7 +265,7 @@ pairs(jj,asp=1,xlim=c(-1,1),cex=0.5,ylim=c(-1,1),col=c(rep("black",500),rep("red
 \begin{figure}[htbp]
   \begin{center}
 <<assocplotter1, fig=TRUE>>=
-pairs( (u+(v+w))-((u+v)+w),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
+pairs( unclass((u+(v+w))-((u+v)+w)),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
 @
 \caption{Three \label{assocplotter1} dimensional plot of
   $\left(\bu+\left(\bv+\bw\right)\right)-\left(\left(\bu+\bv\right)+\bw\right)$}
@@ -278,7 +276,7 @@ pairs( (u+(v+w))-((u+v)+w),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
   \begin{center}
 <<assocredblackplotter, fig=TRUE>>=
 jj <- rbind(u+(v+w),(u+v)+w)
-pairs(jj,asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1),col=c(rep("black",500),rep("red",500)))
+pairs(unclass(jj),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1),col=c(rep("black",500),rep("red",500)))
 @
 \caption{Three \label{assocplotter2} dimensional plot
   of~$\bu+\left(\bv+\bw\right)$ in black and~$\left(\bu+\bv\right)+\bw$

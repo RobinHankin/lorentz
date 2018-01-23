@@ -7,19 +7,25 @@
 \alias{Thomas rotation}
 \alias{precession}
 \alias{gyrfun}
+\alias{gam}
 \title{Thomas rotation}
 \description{
 Thomas rotation for Lorenz addition of three velocities}
 \usage{
+gam(u, SOL=getOption("c"))
 gyr(u, v, x)
 gyr.a(u, v, x)
 gyrfun(u,v)
 }
 \arguments{
   \item{u,v,x}{Three-velocities, objects of class \code{3vel}}
+  \item{SOL}{Speed of light, defaulting to 1}
 }
 \details{
 
+  Function \code{gam(u)} returns the Lorentz factor
+  \deqn{\frac{1}{\sqrt{1-\mathbf{u}\cdot\mathbf{u}/c^2}}}{see PDF}
+    
   Function  \code{gyr(u,v,x)} returns the three-vector
   \eqn{\mathrm{gyr}[u,v]x}{gyr[u,v]x}.
 

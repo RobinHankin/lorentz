@@ -71,12 +71,17 @@
       names=names.out))
 }
 
+`gam` <- function(u,SOL=getOption("c")){
+  if(is.null(SOL)){SOL <- 1}
+  1/sqrt(1-rowSums(unclass(u)^2)/SOL^2)
+  }
+
 `add3` <- function(u,v,SOL=getOption("c")){  # eq 2
   if(is.null(SOL)){SOL <- 1}        
   jj <- massage3(u,v)
   u <- jj[[1]]
   v <- jj[[2]]
-  gu <- 1/sqrt(1-rowSums(u^2)/SOL^2)
+  gu <- gam(u)
   uv <- rowSums(u*v)/SOL^2  # u.v/c^2
   out <- u + sweep(v,1,gu,"/") + sweep(u,1,uv*gu/(1+gu),"*")
   out <- sweep(out,1,1+uv,"/")

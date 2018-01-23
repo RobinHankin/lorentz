@@ -27,10 +27,7 @@ a <- r3vel(10000)
 b <- r3vel(1000,0.8)
 u <- as.3vel(c(0,0,0.9))
 
-pairs(a,asp=1)
-pairs(b,asp=1)
-
-pairs(u+a,asp=1)
-pairs(a+u,asp=1)
+pairs(unclass(u+a),asp=1)
+pairs(unclass(a+u),asp=1)
 
 }
