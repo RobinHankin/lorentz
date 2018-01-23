@@ -11,28 +11,28 @@ require("gyrogroup")
         error <- abs(x-y)^2
     }
     stopifnot(all(error<TOL))
-  return(TRUE)
+    return(TRUE)
 }
 
 `manytests` <- function(n=10,x,y){ # equation numbers refer to Ungar 2006
 
-  u <- r3vel(n)
-  v <- r3vel(n)
-  w <- r3vel(n)
-  
-  f <- gyrfun(u,v)
-  g <- gyrfun(v,u)
-
-  test(-u+(u+v)  ,  v)                  # eqn 3
-  test(prod3(f(x),f(y))  ,  prod3(x,y)) # eqn 7
-  test(f(x+y)  , f(x)+f(y))             # eqn 8
-  test(f(g(x))  ,   x)                  # eqn 9
-  test(g(f(x)) ,  x)                    # eqn 9
-  test(u+v  ,  f(v+u))                  # eqn 10
-  test(u+(v+w)  ,  (u+v)+f(w))          # eqn 11
-  test((u+v)+w  ,  u+(v+g(w)))          # eqn 11
-
-  return(TRUE)  # dummy return value
+    u <- r3vel(n)
+    v <- r3vel(n)
+    w <- r3vel(n)
+    
+    f <- gyrfun(u,v)
+    g <- gyrfun(v,u)
+    
+    test(-u+(u+v)  ,  v)                  # eqn 3
+    test(prod3(f(x),f(y))  ,  prod3(x,y)) # eqn 7
+    test(f(x+y)  , f(x)+f(y))             # eqn 8
+    test(f(g(x))  ,   x)                  # eqn 9
+    test(g(f(x)) ,  x)                    # eqn 9
+    test(u+v  ,  f(v+u))                  # eqn 10
+    test(u+(v+w)  ,  (u+v)+f(w))          # eqn 11
+    test((u+v)+w  ,  u+(v+g(w)))          # eqn 11
+    
+    return(TRUE)  # dummy return value
 }
 
 `manydottests` <- function(r1,r2,v){  # equation numbers refer to Ungar 1997
@@ -45,14 +45,14 @@ require("gyrogroup")
 `many123dottests` <- function(v){
     test(( 1)*v  ,   v)   
     test((-1)*v  ,  -v)    # nontrivial!
-
+    
     test(( 2)*v  ,   v+v)    
     test((-2)*v  ,  -v-v)    
     
     test(( 3)*v  ,   v+v+v)    
     test((-3)*v  ,  -v-v-v)    
 }
-    
+
 `copies` <- function(v,n){  # v a 3-vector, n an integer
     if(n<0){return(Recall(-v,-n))}  # tested in many123dottests()
     x <- threevel(length(v))
@@ -75,9 +75,9 @@ manydottests( 3, 2, r3vel(100,0.9))
 manydottests( 1.3, 1.4, r3vel(10))
 
 many123dottests(r3vel(10))
-  
+
 manycopytests(r3vel(10,0.9),5)  # "0.9" avoids numerical roundoff problems
 manycopytests(r3vel(10,0.9),-5)
 
-           
+
    
