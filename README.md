@@ -1,4 +1,4 @@
-gyrogroup  -- noncommutative and nonassociative three-velocity addition in special relativity
+gyrogroup: noncommutative and nonassociative Lorentz velocity addition in special relativity; Thomas precession
 ====================================
 
 # Introduction
