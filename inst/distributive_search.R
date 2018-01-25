@@ -1,3 +1,14 @@
+## This is a systematic attempt to find a distributive law for
+## three-velocities: r*(u+v) = <some function of u,v,r>.
+
+## I have tried to enumerate the various combinations; signs are
+## permuted in every_sign() and all3() and all3brack().  Just execute
+## the script and if one of the many combinations (82945, as of
+## 26/1/2018) represents the RHS of a putative distributive law, the
+## result will be zero.  I have not found one yet.
+
+
+
 library(gyrogroup)
 library(partitions)
 
@@ -36,8 +47,7 @@ r <- 1.5
   jj <- as.matrix(expand.grid(jj,jj,jj))
   out <- u
   for(i in seq_len(nrow(jj))){
-    print(i)
-    print(length(out))
+    cat(paste(i,"/ 27\n",sep=" "))
     out <- c(out,f(jj[i,1],jj[i,2],jj[i,3]))
   }
   return(out)
