@@ -23,6 +23,8 @@
 
 `is.3vel` <- function(x){inherits(x,"3vel")}
 
+`c.3vel` <- function(...){ as.3vel(do.call("rbind",list(...))) }
+
 `print.3vel` <- function(x, ...){
   x <- unclass(x)
   if(is.null(colnames(x)) & ncol(x)==3){
