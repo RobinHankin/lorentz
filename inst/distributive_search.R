@@ -5,7 +5,8 @@
 ## permuted in every_sign() and all3() and all3brack().  Just execute
 ## the script and if one of the many combinations (196609, as of
 ## 26/1/2018) represents the RHS of a putative distributive law, the
-## result will be zero.  I have not found one yet.
+## corresponding element of variable 'badness', defined at the end of
+## this script, will be zero.  I have not found one yet.
 
 
 
