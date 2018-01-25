@@ -24,21 +24,72 @@ r <- 1.5
         every_sign(r*u,r*v, r1*u     ,r2*v  , v+u,r3),
         every_sign(r*u,r*v, r1*v     ,r2*u  , u+v,r3),
         every_sign(r*u,r*v, r1*v     ,r2*u  , v+u,r3),
+
+        every_sign(r*u,r*v, r1*u     ,r2*v  , u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v  , v-u,r3),
+        every_sign(r*u,r*v, r1*v     ,r2*u  , u-v,r3),
+        every_sign(r*u,r*v, r1*v     ,r2*u  , v-u,r3),
         
         every_sign(r*u,r*v, r1*u     ,r2*v+u, u+v,r3),
         every_sign(r*u,r*v, r1*u     ,r2*v+u, v+u,r3),
         every_sign(r*u,r*v, r1*u     ,r2*u+v, u+v,r3),
         every_sign(r*u,r*v, r1*u     ,r2*u+v, v+u,r3),
+
+        every_sign(r*u,r*v, r1*u     ,r2*v-u, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v-u, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u-v, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u-v, v+u,r3),
+
+        every_sign(r*u,r*v, r1*u     ,r2*v+u, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v+u, v-u,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u+v, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u+v, v-u,r3),
+        
+        every_sign(r*u,r*v, r1*u     ,r2*v-u, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v-u, v-u,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u-v, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u-v, v-u,r3),
+
         
         every_sign(r*u,r*v, r1*u     ,v+r2*u, u+v,r3),
         every_sign(r*u,r*v, r1*u     ,v+r2*u, v+u,r3),
         every_sign(r*u,r*v, r1*u     ,u+r2*v, u+v,r3),
         every_sign(r*u,r*v, r1*u     ,u+r2*v, v+u,r3),
         
+        every_sign(r*u,r*v, r1*u     ,v+r2*u, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,v+r2*u, v-u,r3),
+        every_sign(r*u,r*v, r1*u     ,u+r2*v, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,u+r2*v, v-u,r3),
+        
+        every_sign(r*u,r*v, r1*u     ,v-r2*u, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,v-r2*u, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,u-r2*v, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,u-r2*v, v+u,r3),
+        
+        every_sign(r*u,r*v, r1*u     ,v-r2*u, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,v-r2*u, v-u,r3),
+        every_sign(r*u,r*v, r1*u     ,u-r2*v, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,u-r2*v, v-u,r3),
+        
         every_sign(r*u,r*v, r1*u+r2*v,v     , u+v,r3),
         every_sign(r*u,r*v, r1*u+r2*v,v     , v+u,r3),
         every_sign(r*u,r*v, r1*v+r2*u,u     , u+v,r3),
-        every_sign(r*u,r*v, r1*v+r2*u,u     , v+u,r3)
+        every_sign(r*u,r*v, r1*v+r2*u,u     , v+u,r3),
+        
+        every_sign(r*u,r*v, r1*u+r2*v,v     , u-v,r3),
+        every_sign(r*u,r*v, r1*u+r2*v,v     , v-u,r3),
+        every_sign(r*u,r*v, r1*v+r2*u,u     , u-v,r3),
+        every_sign(r*u,r*v, r1*v+r2*u,u     , v-u,r3),
+        
+        every_sign(r*u,r*v, r1*u-r2*v,v     , u+v,r3),
+        every_sign(r*u,r*v, r1*u-r2*v,v     , v+u,r3),
+        every_sign(r*u,r*v, r1*v-r2*u,u     , u+v,r3),
+        every_sign(r*u,r*v, r1*v-r2*u,u     , v+u,r3),
+        
+        every_sign(r*u,r*v, r1*u-r2*v,v     , u-v,r3),
+        every_sign(r*u,r*v, r1*u-r2*v,v     , v-u,r3),
+        every_sign(r*u,r*v, r1*v-r2*u,u     , u-v,r3),
+        every_sign(r*u,r*v, r1*v-r2*u,u     , v-u,r3)
 
     )
   }
