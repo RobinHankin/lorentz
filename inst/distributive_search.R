@@ -6,93 +6,64 @@ v <- r3vel(1,0.5)
 w <- r3vel(1,0.6)
 r <- 1.5
 
-every_sign <- function(a1,a2,a3,a4,a5){
+`possible` <- function(u,v,r){
+  f <- function(r1,r2,r3){
+    c(
+        every_sign(r*u,r*v, r1*u,r2*v, u+v,r3),
+        every_sign(r*u,r*v, r1*u,r2*v, v+u,r3),
+        every_sign(r*u,r*v, r1*v,r2*u, u+v,r3),
+        every_sign(r*u,r*v, r1*v,r2*u, v+u,r3),
+        
+        every_sign(r*u,r*v, r1*u,r2*v+u, u+v,r3),
+        every_sign(r*u,r*v, r1*u,r2*v+u, v+u,r3),
+        every_sign(r*u,r*v, r1*u,r2*u+v, u+v,r3),
+        every_sign(r*u,r*v, r1*u,r2*u+v, v+u,r3),
+        
+        every_sign(r*u,r*v, r1*u,v+r2*u, u+v,r3),
+        every_sign(r*u,r*v, r1*u,v+r2*u, v+u,r3),
+        every_sign(r*u,r*v, r1*u,u+r2*v, u+v,r3),
+        every_sign(r*u,r*v, r1*u,u+r2*v, v+u,r3),
+        
+        every_sign(r*u,r*v, r1*u+r2*v,v, u+v,r3),
+        every_sign(r*u,r*v, r1*u+r2*v,v, v+u,r3),
+        every_sign(r*u,r*v, r1*v+r2*u,u, u+v,r3),
+        every_sign(r*u,r*v, r1*v+r2*u,u, v+u,r3)
+
+    )
+  }
+
+  jj <- c(r,1,1/r)
+  jj <- as.matrix(expand.grid(jj,jj,jj))
+  out <- u
+  for(i in seq_len(nrow(jj))){
+    print(i)
+    print(length(out))
+    out <- c(out,f(jj[i,1],jj[i,2],jj[i,3]))
+  }
+  return(out)
+}
+
+`every_sign` <- function(a1,a2,a3,a4,a5,r){
   c(
-      all3(c(a1 , a2 , +gyr(+a3,+a4,+a5))),
-      all3(c(a1 , a2 , +gyr(+a3,+a4,-a5))),
-      all3(c(a1 , a2 , +gyr(+a3,-a4,+a5))),
-      all3(c(a1 , a2 , +gyr(+a3,-a4,-a5))),
-      all3(c(a1 , a2 , +gyr(-a3,+a4,+a5))),
-      all3(c(a1 , a2 , +gyr(-a3,+a4,-a5))),
-      all3(c(a1 , a2 , +gyr(-a3,-a4,+a5))),
-      all3(c(a1 , a2 , +gyr(-a3,-a4,-a5))),
-      all3(c(a1 , a2 , -gyr(+a3,+a4,+a5))),
-      all3(c(a1 , a2 , -gyr(+a3,+a4,-a5))),
-      all3(c(a1 , a2 , -gyr(+a3,-a4,+a5))),
-      all3(c(a1 , a2 , -gyr(+a3,-a4,-a5))),
-      all3(c(a1 , a2 , -gyr(-a3,+a4,+a5))),
-      all3(c(a1 , a2 , -gyr(-a3,+a4,-a5))),
-      all3(c(a1 , a2 , -gyr(-a3,-a4,+a5))),
-      all3(c(a1 , a2 , -gyr(-a3,-a4,-a5)))
+      all3(c(a1 , a2 , +r*gyr(+a3,+a4,+a5))),
+      all3(c(a1 , a2 , +r*gyr(+a3,+a4,-a5))),
+      all3(c(a1 , a2 , +r*gyr(+a3,-a4,+a5))),
+      all3(c(a1 , a2 , +r*gyr(+a3,-a4,-a5))),
+      all3(c(a1 , a2 , +r*gyr(-a3,+a4,+a5))),
+      all3(c(a1 , a2 , +r*gyr(-a3,+a4,-a5))),
+      all3(c(a1 , a2 , +r*gyr(-a3,-a4,+a5))),
+      all3(c(a1 , a2 , +r*gyr(-a3,-a4,-a5))),
+      all3(c(a1 , a2 , -r*gyr(+a3,+a4,+a5))),
+      all3(c(a1 , a2 , -r*gyr(+a3,+a4,-a5))),
+      all3(c(a1 , a2 , -r*gyr(+a3,-a4,+a5))),
+      all3(c(a1 , a2 , -r*gyr(+a3,-a4,-a5))),
+      all3(c(a1 , a2 , -r*gyr(-a3,+a4,+a5))),
+      all3(c(a1 , a2 , -r*gyr(-a3,+a4,-a5))),
+      all3(c(a1 , a2 , -r*gyr(-a3,-a4,+a5))),
+      all3(c(a1 , a2 , -r*gyr(-a3,-a4,-a5)))
   )
 }
 
-possible <- function(u,v,r){
-  out <-
-    c(
-        every_sign(r*u,r*v, u,v, u+v),
-        every_sign(r*u,r*v, u,v, v+u),
-        every_sign(r*u,r*v, v,u, u+v),
-        every_sign(r*u,r*v, v,u, v+u),
-
-        every_sign(r*u,r*v, u,v+u, u+v),
-        every_sign(r*u,r*v, u,v+u, v+u),
-        every_sign(r*u,r*v, u,u+v, u+v),
-        every_sign(r*u,r*v, u,u+v, v+u),
-
-        every_sign(r*u,r*v, u+v,v, u+v),
-        every_sign(r*u,r*v, u+v,v, v+u),
-        every_sign(r*u,r*v, v+u,u, u+v),
-        every_sign(r*u,r*v, v+u,u, v+u),
-
-        every_sign(r*u,r*v, u+v,v+u, u+v),
-        every_sign(r*u,r*v, u+v,v+u, v+u),
-        every_sign(r*u,r*v, v+u,u+v, u+v),
-        every_sign(r*u,r*v, v+u,u+v, v+u),
-
-
-        all3(c(r*u , r*v , r*gyr(+u,+v,u+v)))     ,
-        all3(c(r*u , r*v , r*gyr(+u,+v,v+u)))     ,
-        all3(c(r*u , r*v , r*gyr(+u,-v,u+v)))     ,
-        all3(c(r*u , r*v , r*gyr(+u,-v,v+u)))     ,
-        all3(c(r*u , r*v , r*gyr(-u,+v,u+v)))     ,
-        all3(c(r*u , r*v , r*gyr(-u,+v,v+u)))     ,
-        all3(c(r*u , r*v , r*gyr(-u,-v,u+v)))     ,
-        all3(c(r*u , r*v , r*gyr(-u,-v,v+u)))     ,
-
-        all3(c(r*u , r*v , r*gyr(+v,+u,u+v)))     ,
-        all3(c(r*u , r*v , r*gyr(+v,+u,v+u)))     ,
-        all3(c(r*u , r*v , r*gyr(+v,-u,u+v)))     ,
-        all3(c(r*u , r*v , r*gyr(+v,-u,v+u)))     ,
-        all3(c(r*u , r*v , r*gyr(-v,+u,u+v)))     ,
-        all3(c(r*u , r*v , r*gyr(-v,+u,v+u)))     ,
-        all3(c(r*u , r*v , r*gyr(-v,-u,u+v)))     ,
-        all3(c(r*u , r*v , r*gyr(-v,-u,v+u)))     ,
-
-        all3(c(r*u , r*v , -r*gyr(+u,+v,u+v)))     ,
-        all3(c(r*u , r*v , -r*gyr(+u,+v,v+u)))     ,
-        all3(c(r*u , r*v , -r*gyr(+u,-v,u+v)))     ,
-        all3(c(r*u , r*v , -r*gyr(+u,-v,v+u)))     ,
-        all3(c(r*u , r*v , -r*gyr(-u,+v,u+v)))     ,
-        all3(c(r*u , r*v , -r*gyr(-u,+v,v+u)))     ,
-        all3(c(r*u , r*v , -r*gyr(-u,-v,u+v)))     ,
-        all3(c(r*u , r*v , -r*gyr(-u,-v,v+u)))     ,
-
-        all3(c(r*u , r*v , -r*gyr(+v,+u,u+v)))     ,
-        all3(c(r*u , r*v , -r*gyr(+v,+u,v+u)))     ,
-        all3(c(r*u , r*v , -r*gyr(+v,-u,u+v)))     ,
-        all3(c(r*u , r*v , -r*gyr(+v,-u,v+u)))     ,
-        all3(c(r*u , r*v , -r*gyr(-v,+u,u+v)))     ,
-        all3(c(r*u , r*v , -r*gyr(-v,+u,v+u)))     ,
-        all3(c(r*u , r*v , -r*gyr(-v,-u,u+v)))     ,
-        all3(c(r*u , r*v , -r*gyr(-v,-u,v+u)))     
-
-
-    )
-
-  return(out)
-
-}
 
 `all3brack` <- function(x){  # x = c(x[1],x[2],x[3])
   c(
@@ -132,4 +103,5 @@ possible <- function(u,v,r){
 }
 
 
-plot(1/prod3(r*(u+v) - possible(u,v,r)))
+badness <- prod3(r*(u+v) - possible(u,v,r))  # badness == 0 for perfect law
+print(min(badness))
