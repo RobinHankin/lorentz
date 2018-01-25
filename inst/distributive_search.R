@@ -3,7 +3,7 @@
 
 ## I have tried to enumerate the various combinations; signs are
 ## permuted in every_sign() and all3() and all3brack().  Just execute
-## the script and if one of the many combinations (82945, as of
+## the script and if one of the many combinations (196609, as of
 ## 26/1/2018) represents the RHS of a putative distributive law, the
 ## result will be zero.  I have not found one yet.
 
@@ -20,34 +20,34 @@ r <- 1.5
 `possible` <- function(u,v,r){
   f <- function(r1,r2,r3){
     c(
-        every_sign(r*u,r*v, r1*u,r2*v, u+v,r3),
-        every_sign(r*u,r*v, r1*u,r2*v, v+u,r3),
-        every_sign(r*u,r*v, r1*v,r2*u, u+v,r3),
-        every_sign(r*u,r*v, r1*v,r2*u, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v  , u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v  , v+u,r3),
+        every_sign(r*u,r*v, r1*v     ,r2*u  , u+v,r3),
+        every_sign(r*u,r*v, r1*v     ,r2*u  , v+u,r3),
         
-        every_sign(r*u,r*v, r1*u,r2*v+u, u+v,r3),
-        every_sign(r*u,r*v, r1*u,r2*v+u, v+u,r3),
-        every_sign(r*u,r*v, r1*u,r2*u+v, u+v,r3),
-        every_sign(r*u,r*v, r1*u,r2*u+v, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v+u, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v+u, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u+v, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u+v, v+u,r3),
         
-        every_sign(r*u,r*v, r1*u,v+r2*u, u+v,r3),
-        every_sign(r*u,r*v, r1*u,v+r2*u, v+u,r3),
-        every_sign(r*u,r*v, r1*u,u+r2*v, u+v,r3),
-        every_sign(r*u,r*v, r1*u,u+r2*v, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,v+r2*u, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,v+r2*u, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,u+r2*v, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,u+r2*v, v+u,r3),
         
-        every_sign(r*u,r*v, r1*u+r2*v,v, u+v,r3),
-        every_sign(r*u,r*v, r1*u+r2*v,v, v+u,r3),
-        every_sign(r*u,r*v, r1*v+r2*u,u, u+v,r3),
-        every_sign(r*u,r*v, r1*v+r2*u,u, v+u,r3)
+        every_sign(r*u,r*v, r1*u+r2*v,v     , u+v,r3),
+        every_sign(r*u,r*v, r1*u+r2*v,v     , v+u,r3),
+        every_sign(r*u,r*v, r1*v+r2*u,u     , u+v,r3),
+        every_sign(r*u,r*v, r1*v+r2*u,u     , v+u,r3)
 
     )
   }
 
-  jj <- c(r,1,1/r)
+  jj <- c(r,1,1/r,0)
   jj <- as.matrix(expand.grid(jj,jj,jj))
   out <- u
   for(i in seq_len(nrow(jj))){
-    cat(paste(i,"/ 27\n",sep=" "))
+    cat(paste(i," / ",nrow(jj),"\n",sep=""))
     out <- c(out,f(jj[i,1],jj[i,2],jj[i,3]))
   }
   return(out)
