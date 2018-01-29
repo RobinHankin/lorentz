@@ -73,17 +73,43 @@
       names=names.out))
 }
 
-`gam` <- function(u,SOL=getOption("c")){
+
+`gam` <- function(u, SOL=getOption("c")){
+  UseMethod("gam",u)
+}
+
+`gam.3vel` <- function(u,SOL=getOption("c")){
   if(is.null(SOL)){SOL <- 1}
   1/sqrt(1-rowSums(unclass(u)^2)/SOL^2)
-  }
+}
+
+`gam.default` <- function(u,SOL=getOption("c")){
+  if(is.null(SOL)){SOL <- 1}
+  1/sqrt(1-u^2/SOL^2)
+}
+
+
+`gamm1` <- function(u,SOL=getOption("c")){
+  UseMethod("gamm1",u)
+}
+
+`gamm1.3vel` <- function(u,SOL=getOption("c")){
+  if(is.null(SOL)){SOL <- 1}
+  jj <- (1-rowSums(unclass(u)^2)/SOL^2)/2
+  return(expm1(jj)/exp(jj))
+}
+`gamm1.default` <- function(u,SOL=getOption("c")){
+  if(is.null(SOL)){SOL <- 1}
+  jj <- (1-u^2/SOL^2)/2
+  return(expm1(jj)/exp(jj))
+}
 
 `add3` <- function(u,v,SOL=getOption("c")){  # eq 2
   if(is.null(SOL)){SOL <- 1}        
   jj <- massage3(u,v)
   u <- jj[[1]]
   v <- jj[[2]]
-  gu <- gam(u)
+  gu <- gam.3vel(u)
   uv <- rowSums(u*v)/SOL^2  # u.v/c^2
   out <- u + sweep(v,1,gu,"/") + sweep(u,1,uv*gu/(1+gu),"*")
   out <- sweep(out,1,1+uv,"/")
