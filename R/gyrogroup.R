@@ -76,6 +76,7 @@
       names=names.out))
 }
 
+`speed` <- function(u){sqrt(rowSums(unclass(u)^2))}
 
 `gam` <- function(u){
   UseMethod("gam",u)
@@ -84,7 +85,7 @@
 `gam.3vel` <- function(u){
   jj <- getOption("c")
   if(is.null(jj)){SOL <- 1} else {SOL <- jj}
-  1/sqrt(1-rowSums(unclass(u)^2)/SOL^2)  # avoids taking unnecessary sqrt()
+  1/sqrt(1-rowSums(unclass(u)^2)/SOL^2)  #inline code avoids taking unnecessary sqrt()
 }
 
 `gam.default` <- function(u){
