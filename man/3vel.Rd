@@ -13,7 +13,7 @@ Various R idiom to create and test for three-velocities, \code{3vel} objects.
 \usage{
 `3vel`(n)
 threevel(n)
-as.3vel(x, SOL = getOption("c"))
+as.3vel(x)
 is.3vel(x)
 \method{length}{3vel}(x)
 \method{names}{3vel}(x)
@@ -23,7 +23,6 @@ is.3vel(x)
   \item{n}{In function \code{3vel()}, number of three velocities to
     create}
   \item{x,value}{Vectors of three-velocities}
-  \item{SOL}{Speed of light, defaulting to 1}
 }
 \note{
   Function \code{threevel()} is a convenience wrapper for \code{3vel()}.

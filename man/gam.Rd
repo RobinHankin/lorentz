@@ -9,20 +9,17 @@
 \description{
 Lorentz gamma correction term in special relativity}
 \usage{
-gam(u,SOL = getOption("c"))
-gamm1(u,SOL = getOption("c"))
-\method{gam}{3vel}(u,SOL = getOption("c"))
-\method{gamm1}{3vel}(u,SOL = getOption("c"))
+gam(u)
+gamm1(u)
+\method{gam}{3vel}(u)
+\method{gamm1}{3vel}(u)
 }
 \arguments{
   \item{u}{Speed, either a vector of speeds or a vector of threevelocities}
-  \item{SOL}{Speed of light, defaulting to 1}
 }
-
 \details{
   Function \code{gam(u)} returns the Lorentz factor
   \deqn{\frac{1}{\sqrt{1-\mathbf{u}\cdot\mathbf{u}/c^2}}}{see PDF}
-
 
   Function \code{gamm1(u)} returns the Lorentz factor minus 1, useful
   for slow speeds when larger accuracy is needed (much like
@@ -31,11 +28,19 @@ gamm1(u,SOL = getOption("c"))
 \author{Robin K. S. Hankin}
 \examples{
 
-gam(0.8)
-
-gam(0.0004)
-gamm1(0.0004)
-
+gam(seq(from=0,by=0.1,len=10))
 gam(r3vel(6,0.7))
+
+gam(0.000001)-1
+gamm1(0.000001)   # algebraically identical but much more accurate
+
+
+
+options("c" = 299792458)
+
+gamm1(343)  # speed of sound in SI
+
+options("c" = NULL)   # return to default c=1
+
 
 }

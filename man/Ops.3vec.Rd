@@ -15,14 +15,13 @@
 massage3(u,v)
 neg3(u)
 prod3(u,v=u)
-add3(u,v,SOL = getOption("c"))
-dot3(v,r,SOL=getOption("c"))
+add3(u,v)
+dot3(v,r)
 }
 \arguments{
   \item{e1,e2,u,v}{Objects of class \dQuote{\code{3vel}},
     three-velocities}
   \item{r}{Scalar value for circle-dot multiplication}
-  \item{SOL}{Speed of light, defaulting to 1}
 }
 
 \details{

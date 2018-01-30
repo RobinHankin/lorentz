@@ -1,5 +1,6 @@
-`as.3vel` <- function(x,SOL=getOption("c")){
-  if(is.null(SOL)){SOL <- 1}        
+`as.3vel` <- function(x){
+  jj <- getOption("c")
+  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
   x <- unclass(x)
   if(length(x)==1){
     if(x==0){
@@ -41,9 +42,11 @@
   rownames(x) <- value
   return(x)
 }
+  
+`r3vel` <- function(n,r=NA){
+  jj <- getOption("c")
+  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
 
-`r3vel` <- function(n,r=NA,SOL=getOption("c")){
-  if(is.null(SOL)){SOL <- 1}        
   z <- runif(n,-1,1)
   phi <- runif(n,0,2*pi)
   u <- sqrt(1-z^2)
@@ -74,38 +77,45 @@
 }
 
 
-`gam` <- function(u, SOL=getOption("c")){
+`gam` <- function(u){
   UseMethod("gam",u)
 }
 
-`gam.3vel` <- function(u,SOL=getOption("c")){
-  if(is.null(SOL)){SOL <- 1}
-  1/sqrt(1-rowSums(unclass(u)^2)/SOL^2)
+`gam.3vel` <- function(u){
+  jj <- getOption("c")
+  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
+  1/sqrt(1-rowSums(unclass(u)^2)/SOL^2)  # avoids taking unnecessary sqrt()
 }
 
-`gam.default` <- function(u,SOL=getOption("c")){
-  if(is.null(SOL)){SOL <- 1}
+`gam.default` <- function(u){
+  jj <- getOption("c")
+  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
   1/sqrt(1-u^2/SOL^2)
 }
 
-
-`gamm1` <- function(u,SOL=getOption("c")){
+`gamm1` <- function(u){   # gamm1() named in analogy to expm1()
   UseMethod("gamm1",u)
 }
 
-`gamm1.3vel` <- function(u,SOL=getOption("c")){
-  if(is.null(SOL)){SOL <- 1}
-  jj <- (1-rowSums(unclass(u)^2)/SOL^2)/2
-  return(expm1(jj)/exp(jj))
+`gamm1.3vel` <- function(u){
+  jj <- getOption("c")
+  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
+  jj <- log1p(-rowSums(unclass(u)^2/SOL^2))/2
+  return(-expm1(jj)/exp(jj))
 }
-`gamm1.default` <- function(u,SOL=getOption("c")){
-  if(is.null(SOL)){SOL <- 1}
-  jj <- (1-u^2/SOL^2)/2
-  return(expm1(jj)/exp(jj))
+  
+`gamm1.default` <- function(u){
+  jj <- getOption("c")
+  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
+
+  jj <- log1p(-u^2/SOL^2)/2
+  return(-expm1(jj)/exp(jj))
 }
 
-`add3` <- function(u,v,SOL=getOption("c")){  # eq 2
-  if(is.null(SOL)){SOL <- 1}        
+`add3` <- function(u,v){  # eq 2
+  jj <- getOption("c")
+  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
+  
   jj <- massage3(u,v)
   u <- jj[[1]]
   v <- jj[[2]]
@@ -119,8 +129,10 @@
 
 `neg3` <- function(u){as.3vel(-unclass(u))}
 
-`dot3` <- function(v,r,SOL=getOption("c")){
-    if(is.null(SOL)){SOL <- 1}
+`dot3` <- function(v,r){
+    jj <- getOption("c")
+    if(is.null(jj)){SOL <- 1} else {SOL <- jj}
+
     jj <- cbind(seq_along(v),seq_along(r))
     v <- v[jj[,1]]
     r <- r[jj[,2]]

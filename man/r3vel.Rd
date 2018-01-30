@@ -5,13 +5,12 @@
 Generates random three-velocities, optionally specifiying a magnitude
 }
 \usage{
-r3vel(n, r = NA, SOL = getOption("c"))
+r3vel(n, r = NA)
 }
 \arguments{
   \item{n}{Number of three-velocities to generate}
   \item{r}{Absolute value of the three-velocities, with default
     \code{NA} meaning to sample uniformly from the unit ball}
-  \item{SOL}{Speed of light, defaulting to 1}
 }
 \details{
 It is not entirely trivial to sample \emph{uniformly} from the unit ball
@@ -29,5 +28,12 @@ u <- as.3vel(c(0,0,0.9))
 
 pairs(unclass(u+a),asp=1)
 pairs(unclass(a+u),asp=1)
+
+options("c" = 299792458)
+r3vel(100,343)  # speed of sound in SI
+options("c" = NULL)   # return to default c=1
+
+
+
 
 }
