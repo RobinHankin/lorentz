@@ -13,8 +13,6 @@
 }
 
 `as.3vel` <- function(x){
-  jj <- getOption("c")
-  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
   x <- unclass(x)
   if(length(x)==1){
     if(x==0){
@@ -24,7 +22,7 @@
     }
   }
   if(is.vector(x)){x <- t(x)}
-  if(all(rowSums(x^2)<SOL^2)){
+  if(all(rowSums(x^2)<sol()^2)){
       class(x) <- '3vel'   # this is the only place where the class is set
       return(x)
   } else {
@@ -58,15 +56,12 @@
 }
   
 `r3vel` <- function(n,r=NA){
-  jj <- getOption("c")
-  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
-
   z <- runif(n,-1,1)
   phi <- runif(n,0,2*pi)
   u <- sqrt(1-z^2)
   out <- cbind(x=u*sin(phi),y=u*cos(phi),z=z)  # Cartesian coords on unit sphere
   if(is.na(r)){
-    out <- out*runif(n)^(1/3)*SOL
+    out <- out*runif(n)^(1/3)*sol()
   }  else {
     out <- out*r
   }
@@ -97,15 +92,11 @@
 }
 
 `gam.3vel` <- function(u){
-  jj <- getOption("c")
-  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
-  1/sqrt(1-rowSums(unclass(u)^2)/SOL^2)  #inline code avoids taking unnecessary sqrt()
+  1/sqrt(1-rowSums(unclass(u)^2)/sol()^2)  #inline code avoids taking unnecessary sqrt()
 }
 
 `gam.default` <- function(u){
-  jj <- getOption("c")
-  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
-  1/sqrt(1-u^2/SOL^2)
+  1/sqrt(1-u^2/sol()^2)
 }
 
 `gamm1` <- function(u){   # gamm1() named in analogy to expm1()
@@ -113,29 +104,21 @@
 }
 
 `gamm1.3vel` <- function(u){
-  jj <- getOption("c")
-  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
-  jj <- log1p(-rowSums(unclass(u)^2/SOL^2))/2
+  jj <- log1p(-rowSums(unclass(u)^2/sol()^2))/2
   return(-expm1(jj)/exp(jj))
 }
   
 `gamm1.default` <- function(u){
-  jj <- getOption("c")
-  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
-
-  jj <- log1p(-u^2/SOL^2)/2
+  jj <- log1p(-u^2/sol()^2)/2
   return(-expm1(jj)/exp(jj))
 }
 
 `add3` <- function(u,v){  # eq 2
-  jj <- getOption("c")
-  if(is.null(jj)){SOL <- 1} else {SOL <- jj}
-  
   jj <- massage3(u,v)
   u <- jj[[1]]
   v <- jj[[2]]
   gu <- gam.3vel(u)
-  uv <- rowSums(u*v)/SOL^2  # u.v/c^2
+  uv <- rowSums(u*v)/sol()^2  # u.v/c^2
   out <- u + sweep(v,1,gu,"/") + sweep(u,1,uv*gu/(1+gu),"*")
   out <- sweep(out,1,1+uv,"/")
   rownames(out) <- jj$names
@@ -145,14 +128,11 @@
 `neg3` <- function(u){as.3vel(-unclass(u))}
 
 `dot3` <- function(v,r){
-    jj <- getOption("c")
-    if(is.null(jj)){SOL <- 1} else {SOL <- jj}
-
     jj <- cbind(seq_along(v),seq_along(r))
     v <- v[jj[,1]]
     r <- r[jj[,2]]
   
-    vc <- sqrt(prod3(v))/SOL
+    vc <- sqrt(prod3(v))/sol()
     as.3vel(sweep(unclass(v),1,tanh(r*atanh(vc))/vc,"*"))
 }
 
