@@ -26,8 +26,8 @@ gyrfun(u, v)
   Function \code{gyrfun(u,v)} returns a function that returns a
   three-vector; see examples.
 
-  The Speed of light is not used directly by these functions; set it
-  with \code{options()}.
+  The Speed of light (1 by default) is not used directly by these
+  functions; set it with \code{sol()}.
 
   
 }
@@ -88,4 +88,12 @@ g(f(x)) - x              # zero, by eqn 9
 
 rbind(x+(y+(x+z))  ,   (x+(y+x))+z)   # left Bol property
 rbind((x+y)+(x+y)  ,   x+(y+(y+x)))   # left Bruck property
+
+
+sol(299792458)   # speed of light in SI
+as.3vel(c(1000,3000,1000)) + as.3vel(c(1000,3000,1000))
+## should be close to Galilean result
+
+sol(1)   # revert to default c=1
+
 }
