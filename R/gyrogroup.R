@@ -1,3 +1,17 @@
+`sol` <- function(c){
+  if(missing(c)){  # return SOL
+    jj <- getOption("c")
+    if(!is.null(jj)){
+      return(jj)
+    } else {
+      return(1)
+    }
+  } else { # set SOL
+    options("c" = c)
+    return(c)
+  }
+}
+
 `as.3vel` <- function(x){
   jj <- getOption("c")
   if(is.null(jj)){SOL <- 1} else {SOL <- jj}
@@ -244,3 +258,4 @@
 `gyrfun` <- function(u,v){
   return(function(x){gyr(u,v,x)})
 }
+
