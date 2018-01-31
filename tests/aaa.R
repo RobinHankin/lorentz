@@ -4,7 +4,7 @@
 
 require("gyrogroup")
 
-`test` <- function(x,y, TOL= 1e-10){
+`test` <- function(x,y, TOL= 1e-9){
     if(is.3vel(x)){
         error <- prod3(x-y)
     } else {
