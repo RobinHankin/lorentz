@@ -233,14 +233,14 @@
 ## Equation numbers refer to Ungar 2006
 
 
-gyr <- function(u,v,x){  # eq 6
+`gyr` <- function(u,v,x){  # eq 6
   add3(neg3(add3(u,v)),add3(u,add3(v,x)))
 }
 
-gyr.a <- function(u,v,x){  # eq 6
+`gyr.a` <- function(u,v,x){  # eq 6
   -(u+v) + (u+(v+x))
 }
 
-gyrfun <- function(u,v){
+`gyrfun` <- function(u,v){
   return(function(x){gyr(u,v,x)})
 }
