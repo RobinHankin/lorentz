@@ -12,6 +12,10 @@
   }
 }
 
+`eta` <- function(){
+  diag(c(-sol()^2,1,1,1))
+}
+
 `as.3vel` <- function(x){
   x <- unclass(x)
   if(length(x)==1){
@@ -22,6 +26,9 @@
     }
   }
   if(is.vector(x)){x <- t(x)}
+  if(ncol(x) == 4){   # assumed to be a 4-velocity
+    x <- to3(x)  
+  }
   if(all(rowSums(x^2)<sol()^2)){
       class(x) <- '3vel'   # this is the only place where the class is set
       return(x)
@@ -239,25 +246,36 @@
   return(function(x){gyr(u,v,x)})
 }
 
-`to4` <- function(u){  # takes a 3vel, returns a 4vel
-  if(is.vector(u)){u <- t(u)}
+`as.4vel` <- function(u){  # takes a 3vel, returns a 4vel
   if(is.3vel(u)){
     out <- cbind(t=1,u)*gam(u)
-    colnames(out) <- c("t","x","y","z")
+  } else if(ncol(u)==4) { # assumes a 4-vector
+    if(is.consistent.4vel(u)){
+      out <- u
+    } else {
+      stop("inconsistent 4velocity")
+    }
+  } else if(is.vector(u)){
+    return(Recall(t(u)))
+  } else {
+    stop("not recognised")
   }
+  colnames(out) <- c("t","x","y","z")
   return(out)
 }
 
 `to3` <- function(U){  # takes a 4velocity, returns a 3vel
   if(is.consistent.4vel(U)){
-    return(as.3vel(U[,-1]/U[,1]))
+    return(U[,-1]/U[,1])
   } else {
     stop("not consistent 4 velocity")
   }
 }
 
+`inner4` <- function(U){
+  quad.tdiag(eta(),U)
+}
+
 `is.consistent.4vel` <- function(U,TOL=1e-10){
-  g <- U[,1]
-  error <- gam(as.3vel(U[,-1]/g))-g
-  return(all(abs(error)<TOL))
+  all((inner4(U) + sol()^2)/sol()^2 < TOL)
 }

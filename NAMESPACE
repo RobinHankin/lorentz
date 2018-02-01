@@ -1,6 +1,8 @@
 exportPattern("^[[:alpha:]]+")
 
 importFrom("stats", "runif")
+importFrom("emulator","quad.tdiag")
+
 import("magrittr")
 
 S3method("Ops"    , "3vel")

@@ -2,22 +2,24 @@
 \alias{4vel}
 \alias{as.4vel}
 \alias{is.consistent.4vel}
-\alias{to3}
-\alias{to4}
 \alias{fourvelocity}
 \alias{four-velocity}
 \alias{4velocity}
 \alias{4-velocity}
 \alias{as.4vel}
 \alias{is.4vel}
+\alias{to3}
+\alias{inner4}
+\alias{inner product}
 \title{Four velocities}
 \description{
 Various R idiom to create and test for four-velocities.
 }
 \usage{
-to3(U)
-to4(u)
+as.4vel(u)
 is.consistent.4vel(U,TOL=1e-10)
+inner4(U)
+to3(U)
 }
 \arguments{
   \item{u}{A three-velocity}
@@ -25,9 +27,13 @@ is.consistent.4vel(U,TOL=1e-10)
   \item{TOL}{Small positive value used for tolerance}
 }
 \note{
-  Function \code{to3()} takes a four-velocity and returns a
-  three-velocity; function \code{to4()} takes a three-velocity and
-  returns a four-velocity.
+  Function \code{as.4vel()} takes a three-velocity and returns a
+  four-velocity.
+
+  Function \code{inner4()} returns \eqn{U^iU_i=\eta_{ij}U^iU^j}{U^i.U_i}
+
+  Function \code{to3()} is a low-level helper function used when
+  \code{as.3vel()} is given a four-velocity.
   
   There is no class \dQuote{\code{4vel}}; the emphasis is on
   three-velocities.
@@ -36,9 +42,13 @@ is.consistent.4vel(U,TOL=1e-10)
 \examples{
 
 a <- r3vel(10)
-to4(a)
+as.4vel(a)     # a four-velocity
 
-to3(to4(a)) - a   # should be small
+as.3vel(as.4vel(a))-a   # should be small
+
+inner4(as.4vel(a))   # should be -1
+
+stopifnot(is.consistent.4vel(as.4vel(a)))
 
 
 }
