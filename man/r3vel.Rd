@@ -29,10 +29,9 @@ u <- as.3vel(c(0,0,0.9))
 pairs(unclass(u+a),asp=1)
 pairs(unclass(a+u),asp=1)
 
-options("c" = 299792458)
+sol(299792458)
 r3vel(100,343)  # speed of sound in SI
-options("c" = NULL)   # return to default c=1
-
+sol(1)   # return to default c=1
 
 
 

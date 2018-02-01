@@ -46,9 +46,9 @@ gam(x)
 gam(speed(x))  # not recommended: slow and inaccurate
 
 
-options("c" = 299792458)
+sol(299792458)
 gamm1(343)  # speed of sound in SI
-options("c" = NULL)   # return to default c=1
+sol(1)
 
 
 }
