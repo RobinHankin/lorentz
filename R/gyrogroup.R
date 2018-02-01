@@ -12,7 +12,6 @@
   }
 }
 
-
 `as.3vel` <- function(x){
   x <- unclass(x)
   if(length(x)==1){
@@ -240,11 +239,24 @@
   return(function(x){gyr(u,v,x)})
 }
 
-`as.4vel` <- function(u){
-  cbind(t=1,u)*gam(u)
+`to4` <- function(u){  # takes a 3vel, returns a 4vel
+  if(is.vector(u)){u <- t(u)}
+  if(is.3vel(u)){
+    out <- cbind(t=1,u)*gam(u)
+    colnames(out) <- c("t","x","y","z")
+  }
+  return(out)
 }
 
-`is.4vel` <- function(U,TOL=1e-10){
+`to3` <- function(U){  # takes a 4velocity, returns a 3vel
+  if(is.consistent.4vel(U)){
+    return(as.3vel(U[,-1]/U[,1]))
+  } else {
+    stop("not consistent 4 velocity")
+  }
+}
+
+`is.consistent.4vel` <- function(U,TOL=1e-10){
   g <- U[,1]
   error <- gam(as.3vel(U[,-1]/g))-g
   return(all(abs(error)<TOL))
