@@ -12,6 +12,7 @@
   }
 }
 
+
 `as.3vel` <- function(x){
   x <- unclass(x)
   if(length(x)==1){
@@ -239,3 +240,12 @@
   return(function(x){gyr(u,v,x)})
 }
 
+`as.4vel` <- function(u){
+  cbind(t=1,u)*gam(u)
+}
+
+`is.4vel` <- function(U,TOL=1e-10){
+  g <- U[,1]
+  error <- gam(as.3vel(U[,-1]/g))-g
+  return(all(abs(error)<TOL))
+}
