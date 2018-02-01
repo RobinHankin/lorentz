@@ -6,6 +6,10 @@
 \alias{names.3vel}
 \alias{names<-.3vel}
 \alias{threevel}
+\alias{3velocity}
+\alias{3-velocity}
+\alias{threevelocity}
+\alias{three-velocity}
 \title{Three velocities}
 \description{
 Various R idiom to create and test for three-velocities, \code{3vel} objects.

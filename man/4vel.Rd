@@ -4,6 +4,12 @@
 \alias{is.consistent.4vel}
 \alias{to3}
 \alias{to4}
+\alias{fourvelocity}
+\alias{four-velocity}
+\alias{4velocity}
+\alias{4-velocity}
+\alias{as.4vel}
+\alias{is.4vel}
 \title{Four velocities}
 \description{
 Various R idiom to create and test for four-velocities.
