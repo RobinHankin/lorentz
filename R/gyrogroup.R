@@ -30,7 +30,7 @@
     x <- to3(x)  
   }
   if(all(rowSums(x^2)<sol()^2)){
-      class(x) <- c('matrix','3vel')   # this is the only place where the class is set
+      class(x) <- '3vel'   # this is the only place where the class is set
       return(x)
   } else {
       stop("speed > c")
@@ -76,8 +76,8 @@
 }
 
 `massage3` <- function(u,v){
-  lu <- nrow(u)
-  lv <- nrow(v)
+  lu <- length(u)
+  lv <- length(v)
   if( (lu >= lv) & (!is.null(names(u)))){
     names.out <- names(u)
   } else {
@@ -87,8 +87,8 @@
   jj <- rbind(seq(length.out=lu),seq(length.out=lv))
   if(length(names.out) != ncol(jj)){names.out <- NULL}
   return(list(
-      u = u[jj[1,],,drop=FALSE],
-      v = v[jj[2,],,drop=FALSE],
+      u = (unclass(u))[jj[1,],,drop=FALSE],
+      v = (unclass(v))[jj[2,],,drop=FALSE],
       names=names.out))
 }
 
@@ -136,8 +136,8 @@
 
 `dot3` <- function(v,r){
     jj <- cbind(seq_along(v),seq_along(r))
-    v <- v[jj[,1],]
-    r <- r[jj[,2] ]
+    v <- v[jj[,1]]
+    r <- r[jj[,2]]
   
     vc <- sqrt(prod3(v))/sol()
     as.3vel(sweep(unclass(v),1,tanh(r*atanh(vc))/vc,"*"))
@@ -150,6 +150,27 @@
   return(out)
 }
 
+`[.3vel` <- function(x,...){
+  out <- unclass(x)
+  out <- out[...,,drop=FALSE]
+  as.3vel(out)
+}
+
+`[<-.3vel` <- function(x,index,value){
+  out <- unclass(x)
+  if(length(unclass(value))==1){
+    if(value==0){
+      out[index,] <- 0
+      return(as.3vel(out))
+    } else {
+      stop("value not defined")
+    }
+  }
+  out <- t(out)
+  out[,index] <- t(unclass(as.3vel(value)))
+  return(as.3vel(t(out)))
+}
+  
 `equal3` <- function(u,v){
   jj <- massage3(u,v)
   u <- jj[[1]]
