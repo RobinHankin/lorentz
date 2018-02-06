@@ -150,25 +150,38 @@
   return(out)
 }
 
-`[.3vel` <- function(x,...){
-  out <- unclass(x)
-  out <- out[...,,drop=FALSE]
-  as.3vel(out)
+`[.3vel` <- function(x,i,j,...){
+    x <- unclass(x)
+    if(missing(i) & missing(j)){  # x[]
+        out <- as.3vel(x)
+    } else if(missing(i) & !missing(j)){ # x[,j]
+        out <- x[,j,drop=FALSE]
+    } else if(!missing(i) & missing(j)){  # x[i,]
+        out <- as.3vel(x[i,,drop=FALSE])
+    } else if(!missing(i) & !missing(j)){  # x[i,j]
+        out <- x[i,j,drop=FALSE]
+    } else {
+        stop("this cannot happen")
+    }
+    return(out)
 }
 
-`[<-.3vel` <- function(x,index,value){
-  out <- unclass(x)
-  if(length(unclass(value))==1){
-    if(value==0){
-      out[index,] <- 0
-      return(as.3vel(out))
+`[<-.3vel` <- function(x,i,j,value){
+    x <- unclass(x)
+    if(missing(i) & missing(j)){  # x[]
+        x[] <- value
+    } else if(missing(i) & !missing(j)){ # x[,j]
+        x[,j] <- value
+    } else if(!missing(i) & missing(j)){  # x[i,] == x[i]
+        jj <- t(x)
+        jj[,i] <- t(value)
+        x <- t(jj)
+    } else if(!missing(i) & !missing(j)){  # x[i,j]
+        x[i,j] <- value
     } else {
-      stop("value not defined")
+        stop("this cannot happen")
     }
-  }
-  out <- t(out)
-  out[,index] <- t(unclass(as.3vel(value)))
-  return(as.3vel(t(out)))
+    return(as.3vel(x))
 }
   
 `equal3` <- function(u,v){

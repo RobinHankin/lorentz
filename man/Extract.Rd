@@ -14,8 +14,9 @@
 These methods (should) work as expected: a three-vector is a
 three-column matrix with rows corresponding to three-velocities.
 
-The replacement method uses the special value \dQuote{0} which is
-coerced to \eqn{\mathbf{0}}{0}.
+The salient use-case is \code{u[1:5] <- u[1]} in which the elements of
+\code{u} three velocities.
+
 }
 \examples{
 
@@ -23,5 +24,10 @@ coerced to \eqn{\mathbf{0}}{0}.
 u <- r3vel(10)
 u[1:4]
 u[5:6] <- 0
+
+u[7:8] <- u[1]
+
+u[,1] <- 0.1
+
 
 }
