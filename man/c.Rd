@@ -11,17 +11,19 @@ Combines its arguments recursively to form a vector of three velocities
   \item{\dots}{Vectors of three-velocities}
 }
 \details{
-
   Returns a vector of three-velocities.  Names are inherited from the
   behaviour of \code{cbind()}, not \code{c()}.
 }
 \note{
+
   This function is used extensively in
   \code{inst/distributive_search.R}.
-}
 
+  For \dQuote{c} as in celerity or speed of light, see \code{sol()}.
+}
   
 \author{Robin K. S. Hankin}
+\seealso{\code{sol}}
 \examples{
 
 c(r3vel(3),r3vel(6,0.99))
