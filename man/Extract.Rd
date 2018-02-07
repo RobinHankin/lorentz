@@ -11,15 +11,22 @@
   \item{value}{replacement value}
 }
 \details{
-These methods (should) work as expected: a three-vector is a
-three-column matrix with rows corresponding to three-velocities.
+These methods (should) work as expected: an object of class
+\code{3vel} is a three-column matrix with rows corresponding to
+three-velocities; a single argument is interpreted as a row number.
+Salient use-cases are \code{u[1:5] <- u[1]} and \code{u[1] <- 0}.
 
-The salient use-case is \code{u[1:5] <- u[1]} in which the elements of
-\code{u} three velocities.
+To extract a single component, pass a second index: \code{u[,1]}
+returns the x- component of the three-velocity.
+
+Currently, \code{u[]} returns \code{u} but I am not sure this is
+desirable.  Maybe it should return \code{unclass(u)} or perhaps
+\code{c(unclass(u))}.
+
+Use idiom \code{u[] <- x} to replace entries of \code{u} elementwise.
 
 }
 \examples{
-
 
 u <- r3vel(10)
 u[1:4]
@@ -28,6 +35,5 @@ u[5:6] <- 0
 u[7:8] <- u[1]
 
 u[,1] <- 0.1
-
 
 }
