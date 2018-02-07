@@ -58,7 +58,9 @@ dot3(v,r)
   } 
 
   where \eqn{\mathbf{u}}{u} and \eqn{\mathbf{v}}{v} are three-vectors
-  and \eqn{r} a scalar.
+  and \eqn{r} a scalar.  Function \code{dot3()} has special dispensation
+  for zero velocity and does not treat \code{NA} entries entirely
+  consistently.
   
   The package is designed so that natural R idiom may be used for three
   velocity addition, see the examples section.

@@ -140,7 +140,9 @@
     r <- r[jj[,2]]
   
     vc <- sqrt(prod3(v))/sol()
-    as.3vel(sweep(unclass(v),1,tanh(r*atanh(vc))/vc,"*"))
+    out <- sweep(unclass(v),1,tanh(r*atanh(vc))/vc,"*")
+    out[vc==0,] <- 0
+    return(as.3vel(out))
 }
 
 `prod3` <- function(u,v=u){
