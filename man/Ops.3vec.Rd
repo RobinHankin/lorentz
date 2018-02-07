@@ -98,8 +98,8 @@ g(f(x)) - x
 
 
 (u+v) - f(v+u)                     # zero by eqn 10
-(u+(v+w)) - ((u+v)+f(w))                            # zero by eqn 11
-((u+v)+w) - (u+(v+g(w)))                            # zero by eqn 11
+(u+(v+w)) - ((u+v)+f(w))           # zero by eqn 11
+((u+v)+w) - (u+(v+g(w)))           # zero by eqn 11
 
 
 ## NB, R idiom is unambiguous but always always ALWAYS use brackets.
