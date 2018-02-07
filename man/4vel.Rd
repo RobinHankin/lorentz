@@ -34,6 +34,10 @@ to3(U)
 
   Function \code{to3()} is a low-level helper function used when
   \code{as.3vel()} is given a four-velocity.
+
+  Function \code{is.consistent.4vel()} checks for a vector of
+  four-velocities being consistent in the sense that
+  \eqn{U^iU_i=-1}{U.U=-1}.
   
   There is no class \dQuote{\code{4vel}}; the emphasis is on
   three-velocities.
