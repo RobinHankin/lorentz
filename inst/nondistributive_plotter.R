@@ -76,12 +76,15 @@ library("gyrogroup")
   points(sin(theta),cos(theta),type='l',lty=2,col='green')
 
 }
+
+
+# plot commands start
+
 pdf(file="comm_fail1.pdf")
   comm_fail1(
     u =  as.3vel(c(0.4,0,0)),
     v = as.3vel(c(0.4,-0.2,0)) + as.3vel(c(-0.4,0.6,0)) * seq(from=0,to=3,len=28)
 )
-
 
 pdf(file="comm_fail2.pdf")
 comm_fail2(
