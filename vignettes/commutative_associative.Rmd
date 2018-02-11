@@ -31,14 +31,12 @@ comm_fail2( u = as.3vel(c(0.4,0,0)), v =
 ```
 
 ```{r fc3, fig.cap='Failure of associativity.  Consider the bold arrows.  These show two paths corresponding to u+(v+w) in black, and (u+v)+w in blue.  As the speed of the blue velocities increases, the mismatch becomes larger and larger'}
-jj <- as.3vel(c(0.4,-0.2,0))
-kk <- as.3vel(c(-0.4,0.3,0))
-u <- as.3vel(c(0.5,0,0))
-v <- jj + kk*seq(from=0,to=3,len=28)
-w <- as.3vel(c(0.8,-0.4,0))
-ass_fail(u=u, v=v, w=w, bold=23)
-
-
+jj <- as.3vel(c(0.2,0.1,0))
+kk <- as.3vel(c(.3,0.5,0))
+u <- as.3vel(c(0.4,0,0))
+v <- jj + kk*seq(from=0,to=2,len=18)
+w <- as.3vel(c(-0.9,0.2,0))
+ass_fail(u=u, v=v, w=w, bold=4)
 ```
 
 
