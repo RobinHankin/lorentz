@@ -1,0 +1,27 @@
+---
+title: "A visual illustration of noncommutative and nonassociative velocity addition in special relativity"
+author: "Robin Hankin"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Nonassociative noncommutative velocity addition}
+output: knitr:::html_vignette
+---
+
+This short vignette shows how the *gyrogroup* package may be used to
+produce visual devices to show noncommutative and nonassociative
+velocity addition in special relativity.
+
+```{r,echo=FALSE}
+library("gyrogroup")
+```
+
+
+```{r graphics, fig.cap='Failure of commutativity---specifically, the  failure of the parallelogram law.  Consider the bold paralellogram,  which shows four legs of a parallelogramular (that is, not  rectangular) path .  If the parallelogram law for velocities were  exact (as it is for the classical case), then the path would be  closed.  In the diagram, the first, third, and fourth legs (respectively, purple, red, and blue) are a single three-velocity, while the second leg (black) is a linear *sequence* of three-velocities.  As the speed of the third leg increases, the parallelogram law becomes more and more inaccurate, as indicated by the position of the blue circle which shows the three-velocity of the resultant; classically, all blue circles would be at the origin'}
+comm_fail1( u = as.3vel(c(0.4,0,0)), v =
+  as.3vel(c(0.4,-0.2,0)) + as.3vel(c(-0.4,0.6,0)) *
+  seq(from=0,to=3,len=28) )
+
+```
+
+## References
