@@ -11,3 +11,4 @@ License: GPL-3
 URL: https://github.com/RobinHankin/gyrogroup.git
 Encoding: UTF-8
 LazyData: true
+VignetteBuilder: knitr
