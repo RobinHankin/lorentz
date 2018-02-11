@@ -39,8 +39,13 @@ vignettes/gyrogroup.Rnw~
 
 tests/*.R~
 man/*.Rd~
+
 inst/*.pdf
 inst/*.Rout
+inst/*.bat
+inst/*.R~
+inst/*.S
+inst/*.S~
 
 # knitr and R markdown default cache directories
 /*_cache/
