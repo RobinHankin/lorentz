@@ -5,7 +5,7 @@
 \alias{ass_fail}
 \alias{ass_fail}
 \title{
-Functions show failure of commutativity and associativty using visual plots
+Failure of commutativity and associativty using visual plots
 }
 \description{
 Relativistic addition of three-velocities is neither commutative nor
@@ -32,22 +32,12 @@ These functions are called for their side-effect of plotting a diagram.
 Robin K. S. Hankin
 }
 \examples{
-
-jj <- as.3vel(c(0.4,-0.2,0))
-kk <- as.3vel(c(-0.4,0.6,0))
-kk1 <- as.3vel(c(-0.4,0.3,0))
-
-u <- as.3vel(c(0.5,0,0))
-v <- jj + kk*seq(from=0,to=3,len=28)
+u <- as.3vel(c(0.4,0,0))
+v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
 w <- as.3vel(c(0.8,-0.4,0))
 
 comm_fail1(u=u, v=v)
 comm_fail2(u=u, v=v)
-
-ass_fail(
-    u=u, 
-    v = jj + kk1 * seq(from=0,to=3,len=28),
-    w = w, bold=23
-    )
+  ass_fail(u=u, v=v, w=w, bold=10)
 
 }
