@@ -12,8 +12,8 @@ Relativistic addition of three-velocities is neither commutative nor
 associative, and the functions documented here show this visually.
 }
 \usage{
-comm_fail1(u, v, w, bold)
-comm_fail2(u, v, w, bold)
+comm_fail1(u, v)
+comm_fail2(u, v)
 ass_fail(u, v, w, bold)
 }
 \arguments{
