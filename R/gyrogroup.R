@@ -372,3 +372,7 @@
 
 }
 
+`seq.3vel` <- function(from, to, len,...){
+  tee <- seq(from=0,to=1,length.out=len)
+  return(from + tee*(-from+to))
+}
