@@ -4,6 +4,7 @@ Title: Gyrogroups in Relativistic Physics
 Version: 0.1.0
 Author: Robin K. S. Hankin
 Depends: magrittr
+Suggests: knitr
 Imports: emulator
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 Description:   The dynamics of three velocities in special relativity is not straightforward: the parallelogram addition law does not apply because velocity addtion is neither commutative nor associative; there is no group structure.  But velocity addition is an algebraic strucure known as a gyrogroup and this package furnishes some functionality to work with gyrogroups.
