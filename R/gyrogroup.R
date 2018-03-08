@@ -93,6 +93,8 @@
 }
 
 `speed` <- function(u){sqrt(rowSums(unclass(u)^2))}
+`speedsquared` <- function(u){rowSums(unclass(u)^2)}
+
 
 `gam` <- function(u){
   UseMethod("gam",u)

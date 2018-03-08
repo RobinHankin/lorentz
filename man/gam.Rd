@@ -1,5 +1,6 @@
 \name{gam}
 \alias{speed}
+\alias{speedsquared}
 \alias{gam}
 \alias{gam.3vel}
 \alias{gam.default}
@@ -11,6 +12,7 @@
 Lorentz gamma correction term in special relativity}
 \usage{
 speed(u)
+speedsquared(u)
 gam(u)
 gamm1(u)
 \method{gam}{3vel}(u)
@@ -28,6 +30,10 @@ gamm1(u)
   Function \code{gamm1(u)} returns the Lorentz factor minus 1, useful
   for slow speeds when larger accuracy is needed (much like
   \code{expm1()}).
+
+  Function \code{speedsquared(u)} returns the square of the speed of a
+  \code{3vel} object.  Use this when you don't want to avoid taking a
+  needless square root.
 }
 \author{Robin K. S. Hankin}
 \examples{
