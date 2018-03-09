@@ -378,3 +378,23 @@
   tee <- seq(from=0,to=1,length.out=len)
   return(from + tee*(-from+to))
 }
+
+`Lorentz` <- function(v){  
+
+  stopifnot(is.3vel(v))
+  stopifnot(length(v)==1)
+            
+  jj <- drop(as.4vel(-v))
+
+  out <-
+    rbind(
+        gam(v)*c(1,-v/sol()^2),
+        cbind(    
+            drop(-v*gam(v)),
+            diag(3) + gamm1(v)*crossprod(v)/speedsquared(v)
+        )
+    )
+  
+
+  return (out)
+}
