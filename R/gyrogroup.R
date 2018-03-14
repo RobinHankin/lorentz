@@ -347,7 +347,7 @@
   .seg(v,start=0*v,col='blue',bold=bold)
   .seg(v+u,start=v,col='black',bold=bold)
 
-  .seg(u+v,start=v+u,col='red',code=0)
+  .seg(u+v,start=v+u,col='red',code=0,bold=bold)
 
   legend("topright",lty=c(1,1,1,2),col=c("black","blue","red","green"),legend=c("u","v","mismatch","c=1"))
   
@@ -365,7 +365,7 @@
   .seg(u+v,start=v*0,col='blue',bold=bold)
   .seg((u+v)+w,start=u+v,col='blue',bold=bold)
   
-  .seg(u+(v+w),start=(u+v)+w,col='red',code=0)
+  .seg(u+(v+w),start=(u+v)+w,col='red',bold=bold)
   legend("topright",lty=c(1,1,1,2),col=c("black","blue","red","green"),legend=c("u+(v+w)","(u+v)+w","mismatch","c=1"))
 
   points(0,0,pch=16,cex=3)
