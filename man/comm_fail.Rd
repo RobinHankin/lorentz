@@ -12,8 +12,8 @@ Relativistic addition of three-velocities is neither commutative nor
 associative, and the functions documented here show this visually.
 }
 \usage{
-comm_fail1(u, v)
-comm_fail2(u, v)
+comm_fail1(u, v, bold=5, r=1)
+comm_fail2(u, v, bold=5, r=1)
 ass_fail(u, v, w, bold)
 }
 \arguments{
@@ -22,7 +22,8 @@ ass_fail(u, v, w, bold)
     the examples}
   \item{bold}{Integer specifying which vector element to be drawn in
     bold}
-}
+  \item{r}{Radius of dotted green circle, defaulting to 1 (corresponding
+    to \eqn{c=1}).  Use \code{NA} to suppress plotting of circle.}
 \value{
 These functions are called for their side-effect of plotting a diagram.
 }
@@ -32,6 +33,7 @@ These functions are called for their side-effect of plotting a diagram.
 Robin K. S. Hankin
 }
 \examples{
+
 u <- as.3vel(c(0.4,0,0))
 v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
 w <- as.3vel(c(0.8,-0.4,0))
