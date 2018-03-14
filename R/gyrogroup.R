@@ -359,7 +359,7 @@
 
 `ass_fail` <- function(u,v,w,bold=5,r=1){
   plot(c(0,0),c(-0.1,1),xlim=c(0,1),ylim=c(-0.3,1),type='n',asp=1,pty='m',xlab='',ylab='',axes=FALSE,main='Failure of associative property')
-  .seg(u,start=v*0,bold=bold,col='black',bold=bold)
+  .seg(u,start=v*0,col='black',bold=bold)
   .seg(u+(v+w),start=v*0+u,col='black',bold=bold)
 
   .seg(u+v,start=v*0,col='blue',bold=bold)
