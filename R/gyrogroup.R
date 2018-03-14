@@ -357,7 +357,7 @@
   points(r*sin(theta),r*cos(theta),type='l',lty=2,col='green')
 }
 
-`ass_fail` <- function(u,v,w,bold,bold=5,r=1){
+`ass_fail` <- function(u,v,w,bold=5,r=1){
   plot(c(0,0),c(-0.1,1),xlim=c(0,1),ylim=c(-0.3,1),type='n',asp=1,pty='m',xlab='',ylab='',axes=FALSE,main='Failure of associative property')
   .seg(u,start=v*0,bold=bold,col='black',bold=bold)
   .seg(u+(v+w),start=v*0+u,bold=bold,col='black',bold=bold)
