@@ -383,18 +383,19 @@
 
   stopifnot(is.3vel(v))
   stopifnot(length(v)==1)
-            
+
   jj <- drop(as.4vel(-v))
+  gv <- gam(v)
+  gm1 <- gamm1(v)
+  v <- unclass(v)    # otherwise v*gam(v) does not give desired result
 
   out <-
     rbind(
-        gam(v)*c(1,-v/sol()^2),
+        gv*c(1,-v/sol()),
         cbind(    
-            drop(-v*gam(v)),
-            diag(3) + gamm1(v)*crossprod(v)/speedsquared(v)
+            drop(-v*gv)/sol(),
+            diag(3) + gm1*crossprod(v)/speedsquared(v)
         )
     )
-  
-
   return (out)
 }
