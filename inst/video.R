@@ -1,4 +1,4 @@
-# plotting functions called right at the end of this file
+## This creates a sequence of pdf diagrams suitable for creating a movie
 
 library("gyrogroup")
 
