@@ -360,12 +360,12 @@
 `ass_fail` <- function(u,v,w,bold=5,r=1){
   plot(c(0,0),c(-0.1,1),xlim=c(0,1),ylim=c(-0.3,1),type='n',asp=1,pty='m',xlab='',ylab='',axes=FALSE,main='Failure of associative property')
   .seg(u,start=v*0,bold=bold,col='black',bold=bold)
-  .seg(u+(v+w),start=v*0+u,bold=bold,col='black',bold=bold)
+  .seg(u+(v+w),start=v*0+u,col='black',bold=bold)
 
-  .seg(u+v,start=v*0,bold=bold,col='blue',bold=bold)
-  .seg((u+v)+w,start=u+v,bold=bold,col='blue',bold=bold)
+  .seg(u+v,start=v*0,col='blue',bold=bold)
+  .seg((u+v)+w,start=u+v,col='blue',bold=bold)
   
-  .seg(u+(v+w),start=(u+v)+w,bold=bold,col='red',code=0)
+  .seg(u+(v+w),start=(u+v)+w,col='red',code=0)
   legend("topright",lty=c(1,1,1,2),col=c("black","blue","red","green"),legend=c("u+(v+w)","(u+v)+w","mismatch","c=1"))
 
   points(0,0,pch=16,cex=3)
