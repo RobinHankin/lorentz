@@ -14,7 +14,7 @@ associative, and the functions documented here show this visually.
 \usage{
 comm_fail1(u, v, bold=5, r=1)
 comm_fail2(u, v, bold=5, r=1)
-ass_fail(u, v, w, bold)
+ass_fail(u, v, w, bold=5,r=1)
 }
 \arguments{
   \item{u,v,w}{Three velocities.  Arguments \code{u} and \code{w} are

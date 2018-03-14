@@ -357,13 +357,13 @@
   points(r*sin(theta),r*cos(theta),type='l',lty=2,col='green')
 }
 
-`ass_fail` <- function(u,v,w,bold,r=1){
+`ass_fail` <- function(u,v,w,bold,bold=5,r=1){
   plot(c(0,0),c(-0.1,1),xlim=c(0,1),ylim=c(-0.3,1),type='n',asp=1,pty='m',xlab='',ylab='',axes=FALSE,main='Failure of associative property')
-  .seg(u,start=v*0,bold=bold,col='black')
-  .seg(u+(v+w),start=v*0+u,bold=bold,col='black')
+  .seg(u,start=v*0,bold=bold,col='black',bold=bold)
+  .seg(u+(v+w),start=v*0+u,bold=bold,col='black',bold=bold)
 
-  .seg(u+v,start=v*0,bold=bold,col='blue')
-  .seg((u+v)+w,start=u+v,bold=bold,col='blue')
+  .seg(u+v,start=v*0,bold=bold,col='blue',bold=bold)
+  .seg((u+v)+w,start=u+v,bold=bold,col='blue',bold=bold)
   
   .seg(u+(v+w),start=(u+v)+w,bold=bold,col='red',code=0)
   legend("topright",lty=c(1,1,1,2),col=c("black","blue","red","green"),legend=c("u+(v+w)","(u+v)+w","mismatch","c=1"))
@@ -371,7 +371,6 @@
   points(0,0,pch=16,cex=3)
   theta <- seq(from=0,to=2*pi,len=100)
   points(r*sin(theta),r*cos(theta),type='l',lty=2,col='green')
-
 }
 
 `seq.3vel` <- function(from, to, len,...){
