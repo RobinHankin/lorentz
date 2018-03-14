@@ -24,6 +24,7 @@ ass_fail(u, v, w, bold)
     bold}
   \item{r}{Radius of dotted green circle, defaulting to 1 (corresponding
     to \eqn{c=1}).  Use \code{NA} to suppress plotting of circle.}
+  }
 \value{
 These functions are called for their side-effect of plotting a diagram.
 }
