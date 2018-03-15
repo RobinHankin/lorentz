@@ -1,5 +1,6 @@
 \name{Lorentz}
 \alias{Lorentz}
+\alias{lorentz}
 \title{Lorentz transforms}
 \description{
 Returns the Lorentz boost matrix as a function of three-velocity.
@@ -36,8 +37,5 @@ Lorentz(v+u)  # also not the same!
 Lu %*% Lv %*% Lw  # associative, no brackets needed
 Lorentz(u+(v+w))  # not the same!
 Lorentz((u+v)+w)  # also not the same!
-
-
-
 
 }
