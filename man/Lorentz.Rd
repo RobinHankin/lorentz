@@ -30,11 +30,11 @@ Lw <- Lorentz(w)
 
 Lorentz(u) - solve(Lorentz(-u))  # should be zero
 
-Lu %*% Lv
+Lu \%*\% Lv
 Lorentz(u+v)  # not the same!
 Lorentz(v+u)  # also not the same!
 
-Lu %*% Lv %*% Lw  # associative, no brackets needed
+Lu \%*\% Lv \%*\% Lw  # associative, no brackets needed
 Lorentz(u+(v+w))  # not the same!
 Lorentz((u+v)+w)  # also not the same!
 
