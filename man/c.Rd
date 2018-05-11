@@ -23,7 +23,7 @@ Combines its arguments recursively to form a vector of three velocities
 }
   
 \author{Robin K. S. Hankin}
-\seealso{\code{sol}}
+\seealso{\code{\link{sol}}}
 \examples{
 
 c(r3vel(3),r3vel(6,0.99))
