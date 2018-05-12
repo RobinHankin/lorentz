@@ -8,6 +8,10 @@
 \alias{add3}
 \alias{dot3}
 \alias{equal3}
+\alias{gyro}
+\alias{gyrogroup}
+\alias{gyrogroup.package}
+\alias{gyrogroup-package}
 \title{Arithmetic Ops Group Methods for 3vel objects}
 \description{Arithmetic operations for three-velocities}
 \usage{
