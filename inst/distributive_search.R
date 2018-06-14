@@ -19,7 +19,7 @@ library(partitions)
 
 u <- r3vel(1,0.4)
 v <- r3vel(1,0.5)
-r <- 1.5
+r <- 2
 
 `possible` <- function(u,v,r){ 
  # In function possible(), u,v are threevelocities and r is a real
@@ -29,7 +29,9 @@ r <- 1.5
 
   f <- function(r1,r2,r3){  
     ##  In function f(), r1,r2,r3 are real numbers; function f() has
-    ##  4*14 = 56 lines, so returns 56*192=10752 threevelocities
+    ##  4*14 = 56 lines, so returns 56*192=10752 threevelocities.
+
+    ## NB: Inside f(), r,u,v come from possible()'s scope
     c(
         every_sign(r*u,r*v, r1*u     ,r2*v  , u+v,r3),
         every_sign(r*u,r*v, r1*u     ,r2*v  , v+u,r3),
@@ -139,7 +141,6 @@ r <- 1.5
       all3(c(a1 , a2 , -r*gyr(-a3,-a4,-a5)))
   )
 }
-
 
 `all3brack` <- function(x){  # If [abc] = c(x[1],x[2],x[3]), function
                              # all3brack() returns a+(b+c) and (a+b)+c
