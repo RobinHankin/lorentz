@@ -3,11 +3,15 @@
 
 ## I have tried to enumerate the various combinations; signs are
 ## permuted in every_sign() and all3() and all3brack().  Just execute
-## the script and if one of the many combinations (196609, as of
+## the script and if one of the many combinations (688128, as of
 ## 26/1/2018) represents the RHS of a putative distributive law, the
 ## corresponding element of variable 'badness', defined at the end of
 ## this script, will be zero.  I have not found one yet.
 
+## In this script, function possible() defines a large number of
+## possible combinations of u and v.  These are calculated at the end
+## of the script and the results compared with the exact value.  If
+## there is an exact expression, this will have zero badness.
 
 
 library(gyrogroup)
@@ -17,8 +21,15 @@ u <- r3vel(1,0.4)
 v <- r3vel(1,0.5)
 r <- 1.5
 
-`possible` <- function(u,v,r){
-  f <- function(r1,r2,r3){
+`possible` <- function(u,v,r){ 
+ # In function possible(), u,v are threevelocities and r is a real
+ # number.  Function possible() returns a vector of 64*10752=688128
+ # threevelocities [the '64' is from combinations of r, 1/r as in jj
+ # below; the 10752 is from function f(), defined inside possible()]
+
+  f <- function(r1,r2,r3){  
+    ##  In function f(), r1,r2,r3 are real numbers; function f() has
+    ##  4*14 = 56 lines, so returns 56*192=10752 threevelocities
     c(
         every_sign(r*u,r*v, r1*u     ,r2*v  , u+v,r3),
         every_sign(r*u,r*v, r1*u     ,r2*v  , v+u,r3),
@@ -96,15 +107,19 @@ r <- 1.5
 
   jj <- c(r,1,1/r,0)
   jj <- as.matrix(expand.grid(jj,jj,jj))
+  ## jj has 4^3=64 rows
   out <- u
   for(i in seq_len(nrow(jj))){
     cat(paste(i," / ",nrow(jj),"\n",sep=""))
     out <- c(out,f(jj[i,1],jj[i,2],jj[i,3]))
-  }
-  return(out)
+  } 
+  return(out)  # out has 64*18432=1179648 elements
 }
 
 `every_sign` <- function(a1,a2,a3,a4,a5,r){
+ # Function every_sign() has 16 lines; given 5 threevelocities and a
+ # scalar, function every_sign() returns a vector of 16*12=192
+ # threevelocities [the 12 is from all3()]
   c(
       all3(c(a1 , a2 , +r*gyr(+a3,+a4,+a5))),
       all3(c(a1 , a2 , +r*gyr(+a3,+a4,-a5))),
@@ -126,7 +141,8 @@ r <- 1.5
 }
 
 
-`all3brack` <- function(x){  # x = c(x[1],x[2],x[3])
+`all3brack` <- function(x){  # If [abc] = c(x[1],x[2],x[3]), function
+                             # all3brack() returns a+(b+c) and (a+b)+c
   c(
       x[1]+(x[2]+x[3])   ,
       (x[1]+x[2])+x[3]
@@ -134,6 +150,8 @@ r <- 1.5
 }
 
 `all4brack` <- function(x){
+  ## Returns the 5 different ways to bracket 4 objects.  Function
+  ## all4vbrack() not currentluy used in this script.
   c(
   (x[1]+x[2])+(x[3]+x[4])   ,
   ((x[1]+x[2])+x[3])+x[4]   ,
@@ -143,7 +161,9 @@ r <- 1.5
   )
 }
 
-`all4` <- function(x){   # every possible way of combining 4 threevelocities
+`all4` <- function(x){  
+ ## Every possible way of combining 4 threevelocities.  Function
+ ## all4() is not currently used in this script
   stopifnot(length(x)==4)
   out <- threevel(0)
   jj <- perms(4)
@@ -153,7 +173,11 @@ r <- 1.5
   return(out)
 }
 
-`all3` <- function(x){   # every possible way of combining 3 threevelocities
+`all3` <- function(x){   # every possible way of combining 3
+                         # threevelocities.  Function; if x=c(a,b,c)
+                         # with a,b,c threevelocities then all3()
+                         # returns a vector of length 2*3!=12
+
   stopifnot(length(x)==3)
   out <- threevel(0)
   jj <- perms(3)
