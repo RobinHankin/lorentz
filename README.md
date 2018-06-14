@@ -55,7 +55,8 @@ R> (u+v)-(v+u)
 R>
 ```
 
-
+Observe that the difference between ```u+v``` and ```v+u``` is not
+"small" in any sense.
 
 Commutativity is replaced with gyrocommutatitivity:
 
@@ -79,6 +80,8 @@ R>
 
 ### Nonassociativity
 
+It would be reasonable to expect that ```u+(v+w)==(u+v)+w```.
+However, this is not the case:
  
 ```
 R> ((u+v)+w) - (u+(v+w))
