@@ -15,7 +15,6 @@ library(partitions)
 
 u <- r3vel(1,0.4)
 v <- r3vel(1,0.5)
-w <- r3vel(1,0.6)
 r <- 1.5
 
 `possible` <- function(u,v,r){
