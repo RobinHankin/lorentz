@@ -8,10 +8,6 @@
 \alias{add3}
 \alias{dot3}
 \alias{equal3}
-\alias{gyro}
-\alias{gyrogroup}
-\alias{gyrogroup.package}
-\alias{gyrogroup-package}
 \title{Arithmetic Ops Group Methods for 3vel objects}
 \description{Arithmetic operations for three-velocities}
 \usage{
@@ -108,11 +104,7 @@ g(f(x)) - x
 ((u+v)+w) - (u+(v+g(w)))           # zero by eqn 11
 
 
-## NB, R idiom is unambiguous but always always ALWAYS use brackets.
-
-## Stick to the forest-track, Bilbo!
-## Don't talk to the bus driver!
-## Beware the Ides of March!
+## NB, R idiom is unambiguous.  But always always ALWAYS use brackets.
 
 ## Ice report in lat 42.n to 41.25n Long 49w to long 50.30w saw much
 ## heavy pack ice and great number large icebergs also field
