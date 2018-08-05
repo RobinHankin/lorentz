@@ -1,17 +1,20 @@
 ## This is a systematic attempt to find a distributive law for
 ## three-velocities: r*(u+v) = <some function of u,v,r>.
 
-## I have tried to enumerate the various combinations; signs are
-## permuted in every_sign() and all3() and all3brack().  Just execute
-## the script and if one of the many combinations (688128, as of
-## 26/1/2018) represents the RHS of a putative distributive law, the
-## corresponding element of variable 'badness', defined at the end of
-## this script, will be zero.  I have not found one yet.
+## Here, u and v are threevelocities and r is a real number.
 
 ## In this script, function possible() defines a large number of
-## possible combinations of u and v.  These are calculated at the end
-## of the script and the results compared with the exact value.  If
-## there is an exact expression, this will have zero badness.
+## possible combinations of u, v, and r.  These are calculated at the
+## end of the script and the results compared with the exact value.
+## If there is an exact expression, this will have zero badness.
+
+## I have tried to enumerate the various combinations of u,v,r.  Signs
+## are permuted in every_sign() and all3() and all3brack().  Just
+## execute the script and if one of the many combinations (688128, as
+## of 26/1/2018) represents the RHS of a putative distributive law,
+## the corresponding element of variable 'badness', defined at the end
+## of this script, will be zero.  I have not found one yet.
+
 
 
 library(gyrogroup)
