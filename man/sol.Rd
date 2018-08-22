@@ -25,14 +25,17 @@ eta()
   Function \code{eta()} returns the Minkowski flat-space metric
 
   \deqn{\left(\begin{array}{cccc}
-    -1&0&0&0\\
-    0&1&0&0\\
-    0&0&1&0\\
-    0&0&0&1
+    -c^2& 0 & 0 & 0\\
+      0 & 1 & 0 & 0\\
+      0 & 0 & 1 & 0\\
+      0 & 0 & 0 & 1
     \end{array}
     \right)
   }{
     omitted}
+
+Note that the top-left element of \code{eta()} is \eqn{-c^2}, not
+\eqn{-1}.
   
 }
 \author{Robin K. S. Hankin}
