@@ -2,14 +2,10 @@
 \alias{gyr}
 \alias{gyr.a}
 \alias{gyrfun}
-\alias{thomas}
-\alias{Thomas}
-\alias{Thomas rotation}
-\alias{precession}
 \alias{gyrfun}
-\title{Thomas rotation}
+\title{Gyr function}
 \description{
-Thomas rotation for Lorenz addition of three velocities}
+Relativistic addition of three velocities}
 \usage{
 gyr(u, v, x)
 gyr.a(u, v, x)
