@@ -1,7 +1,7 @@
 Package: gyrogroup
 Type: Package
 Title: Gyrogroups in Relativistic Physics
-Version: 0.1.0
+Version: 1.0-0
 Author: Robin K. S. Hankin
 Depends: magrittr
 Suggests: knitr

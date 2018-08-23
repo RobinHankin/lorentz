@@ -1,0 +1,76 @@
+\name{boost}
+\alias{boost}
+\alias{rot}
+\alias{thomas}
+\alias{Thomas}
+\alias{Thomas rotation}
+\alias{wigner}
+\alias{Wigner}
+\alias{Wigner rotation}
+\alias{precession}
+\alias{boostfun}
+\title{Lorentz boosts and Thomas rotation}
+\description{Thomas rotation for Lorenz addition of three velocities}
+\usage{
+boost(u)
+rot(u,v,space=TRUE)
+}
+\arguments{
+  \item{u,v}{Three-velocities, coerced to  class \code{3vel}}
+  \item{space}{Boolean, with default \code{TRUE} meaning to return just
+    the spatial component of the rotation matrix and \code{FALSE}
+    meaning to return the full \eqn{4\times 4}{4x4} matrix transformation}
+}
+\details{
+
+  Arguments \code{U,V} are coerced to three-velocities.
+
+  Function \code{boost(U)} returns \eqn{4\times 4}{4x4} matrix giving
+  the Lorentz transform of an arbitrary three-velocity \code{U}.  This
+  is interesting because boosts can be combined with regular matrix
+  multiplication.  Boost matrix are symmetrical, but do not commute in
+  general.
+  
+  Composing two successive boosts not return a pure boost matrix.  It is
+  possible to decompose two successive pure boosts into a pure boost and
+  a rotation.  This rotation may be expressed in terms of an orthogonal
+  matrix, which is returned by function \code{rot()}.
+
+  Neither function is vectorized.
+}
+\references{
+  \itemize{
+    \item
+    Ungar 2006. \dQuote{Thomas precession: a kinematic
+      effect...}. \emph{European Journal of Physics}, 27:L17-L20,
+    \doi{doi:10.1088/0143-0807/27/3/L02}
+    \item
+    Sbitneva 2001. \dQuote{Nonassociative geomery of special relativity}.
+    \emph{International Journal of Theoretical Physics, volume 40, number 1,
+      pages 359--362}
+  \item Wikipedia contributors 2018.  \dQuote{Wigner rotation},
+  \emph{{Wikipedia}, The Free Encyclopedia}.
+  \url{https://en.wikipedia.org/w/index.php?title=Wigner_rotation&oldid=838661305}.  Online; accessed 23 August 2018
+}
+}
+\author{Robin K. S. Hankin}
+\note{
+Function \code{boost()} uses \code{crossprod()} for efficiency reasons
+but is algebraically equivalent to
+
+\code{boost(-U-V) \%*\% boost(U) \%*\% boost(V)}. 
+
+}
+
+\examples{
+
+u <- as.3vel(c(0.5,0,0))
+v <- as.3vel(c(0,0.5,0))
+
+u+v
+boost(u) \%*\% boost(v)   # not a pure boost!
+
+rot(u,v)
+rot(v,u)    # transpose (=inverse) of rot(u,v)
+
+}

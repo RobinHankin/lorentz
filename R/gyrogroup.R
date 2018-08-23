@@ -398,3 +398,27 @@
     )
   return (out)
 }
+
+`boost` <- function(u){  # v = (u,v,w)
+  u <- as.3vel(u)
+  g <- gam(u)  
+  u <- as.vector(u)
+  jj <- -g*u/sol()
+  
+  out <- rbind(c(g,jj), cbind(jj,diag(3) + g^2*outer(u,u)/(1+g)/sol()^2))
+  rownames(out) <- c("t","x","y","z")
+  colnames(out) <- c("t","x","y","z")
+  return(out)
+ }
+
+`rot` <- function(u,v,space=TRUE){
+  u <- as.3vel(u)
+  v <- as.3vel(v)
+  out <- tcrossprod(crossprod(boost(-u-v), boost(u)),boost(v))
+  if(space){
+    return(out[2:4,2:4])
+  } else {
+    return(out)
+  }
+}
+
