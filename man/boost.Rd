@@ -23,10 +23,10 @@ rot(u,v,space=TRUE)
 }
 \details{
 
-  Arguments \code{U,V} are coerced to three-velocities.
+  Arguments \code{u,v} are coerced to three-velocities.
 
-  Function \code{boost(U)} returns \eqn{4\times 4}{4x4} matrix giving
-  the Lorentz transform of an arbitrary three-velocity \code{U}.  This
+  Function \code{boost(u)} returns \eqn{4\times 4}{4x4} matrix giving
+  the Lorentz transform of an arbitrary three-velocity \code{u}.  This
   is interesting because boosts can be combined with regular matrix
   multiplication.  Boost matrix are symmetrical, but do not commute in
   general.
@@ -58,7 +58,7 @@ rot(u,v,space=TRUE)
 Function \code{boost()} uses \code{crossprod()} for efficiency reasons
 but is algebraically equivalent to
 
-\code{boost(-U-V) \%*\% boost(U) \%*\% boost(V)}. 
+\code{boost(-u-v) \%*\% boost(u) \%*\% boost(v)}. 
 
 }
 
@@ -68,7 +68,7 @@ u <- as.3vel(c(0.5,0,0))
 v <- as.3vel(c(0,0.5,0))
 
 u+v
-boost(u) \%*\% boost(v)   # not a pure boost!
+boost(u) \%*\% boost(v)   # not a pure boost (not symmetrical)
 
 rot(u,v)
 rot(v,u)    # transpose (=inverse) of rot(u,v)
