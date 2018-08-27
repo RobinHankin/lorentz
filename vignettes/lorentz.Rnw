@@ -15,20 +15,20 @@
 
 %% just as usual
 \author{Robin K. S. Hankin\\Auckland University of Technology}
-\title{Noncommutative and nonassociative three velocity in special relativity: introducing the \pkg{gyrogroup} package}
+\title{Noncommutative and nonassociative three velocity in special relativity: introducing the \pkg{lorentz} package}
 
 
-%\VignetteIndexEntry{The gyrogroup package}
+%\VignetteIndexEntry{The lorentz package}
 
 %% for pretty printing and a nice hypersummary also set:
 \Plainauthor{Robin K. S. Hankin}
-\Plaintitle{The gyrogroup package}
-\Shorttitle{The gyrogroup package}
+\Plaintitle{The lorentz package}
+\Shorttitle{The lorentz package}
 
 %% an abstract and keywords
 \Abstract{
 
-Here I present the \pkg{gyrogroup} package for generalized
+Here I present the \pkg{lorentz} package for generalized
 Bradley-Terry models and give examples from two competetive
 situations: single scull rowing, and the competitive cooking game show
 MasterChef Australia.  A number of natural statistical hypotheses may
@@ -99,7 +99,7 @@ ignore <- require(magrittr,quietly=TRUE)
 ``The nonassociativity of Einstein's velocity addition is not widely
 known''~\citep{ungar2006}.
 
-In this short vignette I will introduce the \pkg{gyrogroup} package which gives
+In this short vignette I will introduce the \pkg{lorentz} package which gives
 functionality for manipulating three-velocities in the context of their being a gyrogroup.
 
 \section{The package in use}
@@ -143,7 +143,7 @@ Then Ungar shows that
 Consider the following R session:
 
 <<kickoff>>=
-library(gyrogroup)
+library(lorentz)
 u <- as.3vel(c(-0.7,+0.2,-0.3))
 v <- as.3vel(c(+0.3,+0.3,+0.4))
 w <- as.3vel(c(+0.1,+0.3,+0.8))
@@ -286,7 +286,7 @@ pairs(unclass(jj),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1),col=c(rep("black",500)
 \newpage
 \section{The magrittr package: pipes}
 
-The gyrogroup package works nicely with magrittr.  If we define
+The lorentz package works nicely with magrittr.  If we define
 <<defuvw>>=
  u <- as.3vel(c(+0.5,0.1,-0.2))
  v <- as.3vel(c(+0.4,0.3,-0.2))
@@ -356,6 +356,6 @@ with the functional notation:
 x %<>% f %>% add(y)      # x <- f(x)+y
 @ 
 
-\bibliography{gyrogroup}
+\bibliography{lorentz}
 \end{document}
  

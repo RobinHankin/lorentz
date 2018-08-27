@@ -8,12 +8,12 @@ vignette: >
 output: knitr:::html_vignette
 ---
 
-This short vignette shows how the *gyrogroup* package may be used to
+This short vignette shows how the *lorentz* package may be used to
 produce visual devices to show noncommutative and nonassociative
 velocity addition in special relativity.
 
 ```{r,echo=FALSE}
-library("gyrogroup")
+library("lorentz")
 ```
 
 
