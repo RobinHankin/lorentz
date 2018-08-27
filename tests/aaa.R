@@ -2,7 +2,7 @@
 ## functions are defined first and used at the very end.
 
 
-require("gyrogroup")
+require("lorentz")
 
 `test` <- function(x,y, TOL= 1e-9){
     if(is.3vel(x)){
