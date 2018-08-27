@@ -1,24 +1,26 @@
-\name{gyrogroup-package}
-\alias{gyrogroup-package}
+\name{lorentz-package}
+\alias{lorentz-package}
+\alias{lorentz}
+\alias{Lorentz}
 \alias{gyrogroup}
 \docType{package}
 \title{
-\packageTitle{gyrogroup}
+\packageTitle{lorentz}
 }
 \description{
-\packageDescription{gyrogroup}
+\packageDescription{lorentz}
 }
 \details{
 
 The DESCRIPTION file:
-\packageDESCRIPTION{gyrogroup}
-\packageIndices{gyrogroup}
+\packageDESCRIPTION{lorentz}
+\packageIndices{lorentz}
 
 }
 \author{
-\packageAuthor{gyrogroup}
+\packageAuthor{lorentz}
 
-Maintainer: \packageMaintainer{gyrogroup}
+Maintainer: \packageMaintainer{lorentz}
 }
 \references{
 Ungar 2006. \dQuote{Thomas precession: a kinematic
