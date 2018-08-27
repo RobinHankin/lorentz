@@ -31,11 +31,11 @@ rot(u,v,space=TRUE)
   Function \code{boost(u)} returns \eqn{4\times 4}{4x4} matrix giving
   the Lorentz transform of an arbitrary three-velocity \code{u}.  This
   is interesting because boosts can be combined with regular matrix
-  multiplication.  Boost matrix are symmetrical, but do not commute in
+  multiplication.  Boost matrices are symmetrical, but do not commute in
   general.
   
-  Composing two successive boosts not return a pure boost matrix.  It is
-  possible to decompose two successive pure boosts into a pure boost and
+  Composing two successive boosts does not return a pure boost matrix.  It
+  is possible to decompose two successive pure boosts into a pure boost and
   a rotation.  This rotation may be expressed in terms of an orthogonal
   matrix, which is returned by function \code{rot()}.
   
