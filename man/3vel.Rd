@@ -12,7 +12,7 @@
 \alias{three-velocity}
 \title{Three velocities}
 \description{
-Various R idiom to create and test for three-velocities, \code{3vel} objects.
+Create and test for three-velocities, \code{3vel} objects.
 }
 \usage{
 `3vel`(n)

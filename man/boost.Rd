@@ -9,8 +9,8 @@
 \alias{Wigner rotation}
 \alias{precession}
 \alias{boostfun}
-\title{Lorentz boosts and Thomas rotation}
-\description{Thomas rotation for Lorenz addition of three velocities}
+\title{Lorentz transformations}
+\description{Lorenz transformations: boosts and rotations}
 \usage{
 boost(u)
 rot(u,v,space=TRUE)
@@ -27,10 +27,11 @@ rot(u,v,space=TRUE)
 }
 \details{
   Arguments \code{u,v} are coerced to three-velocities.
-  
+
+  A rotation-free Lorentz transformation is known as a \dfn{boost}.
   Function \code{boost(u)} returns \eqn{4\times 4}{4x4} matrix giving
-  the Lorentz transform of an arbitrary three-velocity \code{u}.  This
-  is interesting because boosts can be combined with regular matrix
+  the Lorentz transform of an arbitrary three-velocity \code{u}.  Note
+  that boosts can be successively applied with regular matrix
   multiplication.  Boost matrices are symmetrical, but do not commute in
   general.
   

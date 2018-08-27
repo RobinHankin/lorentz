@@ -13,7 +13,7 @@
 \alias{inner product}
 \title{Four velocities}
 \description{
-Various R idiom to create and test for four-velocities.
+Create and test for four-velocities.
 }
 \usage{
 as.4vel(u)
