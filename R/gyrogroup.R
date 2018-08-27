@@ -378,27 +378,6 @@
   return(from + tee*(-from+to))
 }
 
-`Lorentz` <- function(v){  
-
-  stopifnot(is.3vel(v))
-  stopifnot(length(v)==1)
-
-  jj <- drop(as.4vel(-v))
-  gv <- gam(v)
-  gm1 <- gamm1(v)
-  v <- unclass(v)    # otherwise v*gam(v) does not give desired result
-
-  out <-
-    rbind(
-        gv*c(1,-v/sol()),
-        cbind(    
-            drop(-v*gv)/sol(),
-            diag(3) + gm1*crossprod(v)/speedsquared(v)
-        )
-    )
-  return (out)
-}
-
 `boost` <- function(u){  # v = (u,v,w)
   u <- as.3vel(u)
   g <- gam(u)  
