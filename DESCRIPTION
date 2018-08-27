@@ -7,7 +7,7 @@ Depends: magrittr
 Suggests: knitr
 Imports: emulator
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
-Description:   The dynamics of three velocities in special relativity is not straightforward: the parallelogram addition law does not apply because velocity addtion is neither commutative nor associative.   This package furnishes some functionality to work with Lorentz transforms.
+Description:   The dynamics of three velocities in special relativity is not straightforward: the parallelogram addition law does not apply because velocity addition is neither commutative nor associative.   This package furnishes some functionality to work with Lorentz transforms.
 License: GPL-3
 URL: https://github.com/RobinHankin/lorentz.git
 Encoding: UTF-8
