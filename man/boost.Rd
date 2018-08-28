@@ -22,18 +22,18 @@ rot(u,v,space=TRUE)
     meaning to return the full \eqn{4\times 4}{4x4} matrix transformation}
 }
 \value{
-  Function \code{Lorentz()} returns a symmetric \eqn{4\times 4}{4*4}
-  matrix; function \code{rot()} returns an orthogonal matrix
+  Function \code{boost()} returns a symmetric \eqn{4\times 4}{4*4}
+  matrix; function \code{rot()} returns an orthogonal matrix.
 }
 \details{
   Arguments \code{u,v} are coerced to three-velocities.
 
-  A rotation-free Lorentz transformation is known as a \dfn{boost}.
-  Function \code{boost(u)} returns \eqn{4\times 4}{4x4} matrix giving
-  the Lorentz transform of an arbitrary three-velocity \code{u}.  Note
-  that boosts can be successively applied with regular matrix
-  multiplication.  Boost matrices are symmetrical, but do not commute in
-  general.
+  A rotation-free Lorentz transformation is known as a (pure)
+  \dfn{boost}.  Function \code{boost(u)} returns \eqn{4\times 4}{4x4}
+  matrix giving the Lorentz transform of an arbitrary three-velocity
+  \code{u}.  Note that boosts can be successively applied with regular
+  matrix multiplication.  Boost matrices are symmetrical, but do not
+  commute in general.
   
   Composing two successive boosts does not return a pure boost matrix.  It
   is possible to decompose two successive pure boosts into a pure boost and

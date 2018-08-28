@@ -22,7 +22,7 @@ gyrfun(u, v)
   Function \code{gyrfun(u,v)} returns a function that returns a
   three-vector; see examples.
 
-  The Speed of light (1 by default) is not used directly by these
+  The speed of light (1 by default) is not used directly by these
   functions; set it with \code{sol()}.
 
   
