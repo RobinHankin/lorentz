@@ -69,36 +69,30 @@ but is algebraically equivalent to
 \examples{
 boost(as.3vel(c(0.4,-0.2,0.1)))
 
-
-u <- as.3vel(c(0.3,0.4,0))
-v <- as.3vel(c(0.5,-0.3,0))
-w <- as.3vel(c(0.7,-0.1,0))
-
-Lu <- boost(u)
-Lv <- boost(v)
-Lw <- boost(w)
-
+u <- r3vel(1)
+v <- r3vel(1)
+w <- r3vel(1)
 
 boost(u) - solve(boost(-u))  # should be zero
 
-Lu \%*\% Lv
+
+boost(u) \%*\% boost(v)   # not a pure boost (not symmetrical)
 boost(u+v)  # not the same!
 boost(v+u)  # also not the same!
 
-Lu \%*\% Lv \%*\% Lw  # associative, no brackets needed
+u+v  # returns a three-velocity
+
+
+boost(u) \%*\% boost(v) \%*\% \boost(w)  # associative, no brackets needed
 boost(u+(v+w))  # not the same!
 boost((u+v)+w)  # also not the same!
 
-u <- as.3vel(c(0.5,0,0))
-v <- as.3vel(c(0,0.5,0))
-
-u+v
-boost(u) \%*\% boost(v)   # not a pure boost (not symmetrical)
 
 rot(u,v)
 rot(v,u)    # transpose (=inverse) of rot(u,v)
 
 
-
+rot(u,v,FALSE) \%*\% boost(v) \%*\% boost(u)
+boost(u+v)     # should be the same.
 
 }
