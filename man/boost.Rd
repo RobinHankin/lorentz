@@ -83,7 +83,7 @@ boost(v+u)  # also not the same!
 u+v  # returns a three-velocity
 
 
-boost(u) \%*\% boost(v) \%*\% \boost(w)  # associative, no brackets needed
+boost(u) \%*\% boost(v) \%*\% boost(w)  # associative, no brackets needed
 boost(u+(v+w))  # not the same!
 boost((u+v)+w)  # also not the same!
 
