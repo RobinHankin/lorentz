@@ -32,8 +32,7 @@ gamm1(u)
   \code{expm1()}).
 
   Function \code{speedsquared(u)} returns the square of the speed of a
-  \code{3vel} object.  Use this when you don't want to avoid taking a
-  needless square root.
+  \code{3vel} object.  Use this to avoid taking a needless square root.
 }
 \author{Robin K. S. Hankin}
 \examples{
