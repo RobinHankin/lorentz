@@ -26,7 +26,7 @@ to3(U)
   \item{U}{A four-velocity}
   \item{TOL}{Small positive value used for tolerance}
 }
-\note{
+\details{
   Function \code{as.4vel()} takes a three-velocity and returns a
   four-velocity.
 
@@ -40,9 +40,12 @@ to3(U)
   \eqn{U^iU_i=-1}{U.U=-1}.
   
   There is no class \dQuote{\code{4vel}}; the emphasis is on
-  three-velocities.
+  three-velocities.  Compare the functions documented here with
+  \code{boost()}, which returns a \eqn{4\times 4}{4*4} transformation
+  matrix (which also includes rotation information).
 }
 \author{Robin K. S. Hankin}
+\seealso{\code{\link{boost}}}
 \examples{
 
 a <- r3vel(10)

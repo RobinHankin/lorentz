@@ -325,52 +325,63 @@
 
 
 `comm_fail1` <- function(u,v,bold=5,r=1){
-  plot(NA,xlim=c(0,1),ylim=c(-0.2,1),type='n',asp=1,main="Failure of the parallelogram law",xlab='',ylab='',axes=FALSE)
-  .seg(u,start=0*u,col='purple',bold=bold)
-  .seg(u+v,start=u+v*0,col='black',bold=bold)
-  .seg((u+v)-u,start=u+v,col='red',bold=bold)
-  .seg(((u+v)-u)-v,start=(u+v)-u,col='blue',bold=bold)
-  points(((u+v)-u)-v,pch=16,col='blue')
-  legend("topright",lty=c(1,1,1,1,2),col=c("purple","black","red","blue","green"),
-         legend=c("leg 1","leg 2","leg 3","leg 4", "c=1"))
-  points(0,0,pch=16)
-
-  theta <- seq(from=0,to=2*pi,len=100)
-  points(r*sin(theta),cos(r*theta),type='l',lty=2,col='green')
+    plot(NA, xlim=c(0,1), ylim=c(-0.2,1),
+         type='n', asp=1,
+         xlab='', ylab='', axes=FALSE,
+         main="Failure of the parallelogram law")
+    .seg(u,start=0*u,col='purple',bold=bold)
+    .seg(u+v,start=u+v*0,col='black',bold=bold)
+    .seg((u+v)-u,start=u+v,col='red',bold=bold)
+    .seg(((u+v)-u)-v,start=(u+v)-u,col='blue',bold=bold)
+    points(((u+v)-u)-v,pch=16,col='blue')
+    legend("topright",lty=c(1,1,1,1,2),
+           col=c("purple","black","red","blue","green"),
+           legend=c("leg 1","leg 2","leg 3","leg 4", "c=1"))
+    points(0,0,pch=16)
+    
+    theta <- seq(from=0,to=2*pi,len=100)
+    points(r*sin(theta),cos(r*theta),type='l',lty=2,col='green')
 }
 
 `comm_fail2` <- function(u,v,bold=5,r=1){
-  plot(NA,xlim=c(-0.2,0.9),ylim=c(-0.2,1),type='n',asp=1,main="Failure of the parallelogram law",xlab='',ylab='',axes=FALSE)
-  .seg(u,start=0*u,col='black',bold=bold)
-  .seg(u+v,start=u+v*0,col='blue',bold=bold)
-
-  .seg(v,start=0*v,col='blue',bold=bold)
-  .seg(v+u,start=v,col='black',bold=bold)
-
-  .seg(u+v,start=v+u,col='red',code=0,bold=bold)
-
-  legend("topright",lty=c(1,1,1,2),col=c("black","blue","red","green"),legend=c("u","v","mismatch","c=1"))
-  
-  points(0,0,pch=16)
-
-  theta <- seq(from=0,to=2*pi,len=100)
-  points(r*sin(theta),r*cos(theta),type='l',lty=2,col='green')
+    plot(NA, xlim=c(-0.2,0.9), ylim=c(-0.2,1),
+         type='n',asp=1,
+         xlab='',ylab='',axes=FALSE,
+         main="Failure of the parallelogram law")
+    .seg(u,start=0*u,col='black',bold=bold)
+    .seg(u+v,start=u+v*0,col='blue',bold=bold)
+    
+    .seg(v,start=0*v,col='blue',bold=bold)
+    .seg(v+u,start=v,col='black',bold=bold)
+    
+    .seg(u+v,start=v+u,col='red',code=0,bold=bold)
+    
+    legend("topright",lty=c(1,1,1,2),
+           col=c("black","blue","red","green"),
+           legend=c("u","v","mismatch","c=1"))
+    
+    points(0,0,pch=16)
+    
+    theta <- seq(from=0,to=2*pi,len=100)
+    points(r*sin(theta),r*cos(theta),type='l',lty=2,col='green')
 }
 
 `ass_fail` <- function(u,v,w,bold=5,r=1){
-  plot(c(0,0),c(-0.1,1),xlim=c(0,1),ylim=c(-0.3,1),type='n',asp=1,pty='m',xlab='',ylab='',axes=FALSE,main='Failure of associative property')
-  .seg(u,start=v*0,col='black',bold=bold)
-  .seg(u+(v+w),start=v*0+u,col='black',bold=bold)
-
-  .seg(u+v,start=v*0,col='blue',bold=bold)
-  .seg((u+v)+w,start=u+v,col='blue',bold=bold)
-  
-  .seg(u+(v+w),start=(u+v)+w,col='red',bold=bold)
-  legend("topright",lty=c(1,1,1,2),col=c("black","blue","red","green"),legend=c("u+(v+w)","(u+v)+w","mismatch","c=1"))
-
-  points(0,0,pch=16,cex=3)
-  theta <- seq(from=0,to=2*pi,len=100)
-  points(r*sin(theta),r*cos(theta),type='l',lty=2,col='green')
+    plot(c(0,0),c(-0.1,1),xlim=c(0,1),ylim=c(-0.3,1),type='n',
+         asp=1,pty='m',xlab='',ylab='',
+         axes=FALSE,main='Failure of associative property')
+    .seg(u,start=v*0,col='black',bold=bold)
+    .seg(u+(v+w),start=v*0+u,col='black',bold=bold)
+    
+    .seg(u+v,start=v*0,col='blue',bold=bold)
+    .seg((u+v)+w,start=u+v,col='blue',bold=bold)
+    
+    .seg(u+(v+w),start=(u+v)+w,col='red',bold=bold)
+    legend("topright",lty=c(1,1,1,2),col=c("black","blue","red","green"),legend=c("u+(v+w)","(u+v)+w","mismatch","c=1"))
+    
+    points(0,0,pch=16,cex=3)
+    theta <- seq(from=0,to=2*pi,len=100)
+    points(r*sin(theta),r*cos(theta),type='l',lty=2,col='green')
 }
 
 `seq.3vel` <- function(from, to, len,...){

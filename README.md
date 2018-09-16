@@ -1,4 +1,4 @@
-gyrogroup: noncommutative and nonassociative Lorentz velocity addition in special relativity; Thomas precession
+The lorentz R package: noncommutative and nonassociative Lorentz velocity addition in special relativity
 ====================================
 
 # Introduction
@@ -6,9 +6,9 @@ gyrogroup: noncommutative and nonassociative Lorentz velocity addition in specia
 ``The nonassociativity of Einstein's velocity addition is not widely
 known''-- Ungar 2006.
 
-The `gyrogroup` package furnishes some R-centric functionality for
+The `lorentz` package furnishes some R-centric functionality for
 manipulating three-velocities in the context of their being a
-gyrogroup, and the calculation of Thomas precession.  Natural R idiom
+gyrogroup, and the calculation of Wigner rotation.  Natural R idiom
 may be used to manipulate vectors of three-velocities, although one
 must be careful with brackets.
 
@@ -16,7 +16,7 @@ must be careful with brackets.
 
 To install the current development version use devtools:
 
-    devtools::install_github("RobinHankin/gyrogroup")
+    devtools::install_github("RobinHankin/lorentz")
 
 
 # Features
@@ -126,7 +126,7 @@ The most concise reference is
 # Further information
 For more detail, see the package vignette
 
-    vignette("gyrogroup")
+    vignette("lorentz")
  
  
 
