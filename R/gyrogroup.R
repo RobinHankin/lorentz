@@ -224,12 +224,10 @@
   }
 
   if (.Generic == "/"){
-    if(lclass & !rclass){
+    if(lclass & !rclass){  # e.g. u/2
       return(dot3(e1,1/e2))
-    }  else if (!lclass & rclass){
-      return(dot3(e2,1/e1))
     } else {
-      stop(" '*' requires a three-vector and a scalar")
+      stop(" '/' requires a three-vector and a scalar")
     }
   }
 
