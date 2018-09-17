@@ -27,29 +27,24 @@
 
 %% an abstract and keywords
 \Abstract{
-
-Here I present the \pkg{lorentz} package for generalized
-Bradley-Terry models and give examples from two competetive
-situations: single scull rowing, and the competitive cooking game show
-MasterChef Australia.  A number of natural statistical hypotheses may
-be tested straightforwardly using the software.
-}
+Here I present the \pkg{lorentz} package for working with the Lorentz
+group for relativistic physics.  The package includes functionality
+for relativistic velocity addition, which is noncommutative and
+nonassociative.}
 
 
-\Keywords{gyrogroup, gyromorphism, gyrocommutative, gyroassociative,
-  Thomas precession, Thomas gyration, Lorentz law, Lorentz velocity
-  addition, special relativity, relativistic physics, Einstein
-  velocity addition, Einstein velocity addition law, addition law,
-  parallelogra law, three-velocity, three-vector, nonassociative,
-  noncommutative, \proglang{R}}
+\Keywords{Lorentz transform, Lorentz group, Lorentz law, Lorentz
+  velocity addition, special relativity, relativistic physics,
+  Einstein velocity addition, Wigner rotation, gyrogroup,
+  gyromorphism, gyrocommutative, gyroassociative, four velocity,
+  three-velocity, nonassociative, noncommutative}
 
-\Plainkeywords{gyrogroup, gyromorphism, gyrocommutative, gyroassociative,
-  Thomas precession, Thomas gyration, Lorentz law, Lorentz velocity
-  addition, special relativity, relativistic physics, Einstein
-  velocity addition, Einstein velocity addition law, addition law,
-  parallelogra law, three-velocity, three-vector, nonassociative,
-  noncommutative, R}  
-  
+\Plainkeywords{Lorentz transform, Lorentz group, Lorentz law, Lorentz
+  velocity addition, special relativity, relativistic physics,
+  Einstein velocity addition, Wigner rotation, gyrogroup,
+  gyromorphism, gyrocommutative, gyroassociative, four velocity,
+  three-velocity, nonassociative, noncommutative}
+
   
 %% publication information
 %% NOTE: This needs to filled out ONLY IF THE PAPER WAS ACCEPTED.
