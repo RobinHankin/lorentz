@@ -50,7 +50,7 @@ rot(u,v,space=TRUE)
       effect...}. \emph{European Journal of Physics}, 27:L17-L20,
     \doi{doi:10.1088/0143-0807/27/3/L02}
     \item
-    Sbitneva 2001. \dQuote{Nonassociative geomery of special relativity}.
+    Sbitneva 2001. \dQuote{Nonassociative geometry of special relativity}.
     \emph{International Journal of Theoretical Physics, volume 40, number 1,
       pages 359--362}
   \item Wikipedia contributors 2018.  \dQuote{Wigner rotation},
