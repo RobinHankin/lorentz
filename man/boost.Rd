@@ -28,17 +28,21 @@ rot(u,v,space=TRUE)
 \details{
   Arguments \code{u,v} are coerced to three-velocities.
 
-  A rotation-free Lorentz transformation is known as a (pure)
-  \dfn{boost}.  Function \code{boost(u)} returns a \eqn{4\times 4}{4x4}
+  A rotation-free Lorentz transformation is known as a \dfn{boost}
+  (sometimes a \dfn{pure boost}), and when expressed in matrix form is
+  symmetric.  Function \code{boost(u)} returns a \eqn{4\times 4}{4x4}
   matrix giving the Lorentz transform of an arbitrary three-velocity
-  \code{u}.  Note that boosts can be successively applied with regular
-  matrix multiplication.  Boost matrices are symmetrical, but do not
-  commute in general.
-  
-  Composing two successive pure boosts does not return a pure boost
-  matrix.  It is possible to decompose two successive pure boosts into a
-  pure boost and a rotation.  This rotation may be expressed in terms of
-  an orthogonal matrix, which is returned by function \code{rot()}.
+  \code{u}.  Pure boost matrices are symmetrical, but do not commute in
+  general.
+
+  Boosts can be successively applied with regular matrix multiplication.
+  However, composing two successive pure boosts does not return a pure
+  boost matrix: the product is not symmetric in general.  The resulting
+  matrix represents a \dfn{Lorentz transform}.
+
+  It is possible to decompose a Lorentz transform into a pure boost and
+  a rotation.  This rotation may be expressed in terms of an orthogonal
+  matrix, which is returned by function \code{rot()}.
   
   Neither function is vectorized.
 
@@ -47,7 +51,7 @@ rot(u,v,space=TRUE)
   \itemize{
     \item
     Ungar 2006. \dQuote{Thomas precession: a kinematic
-      effect...}. \emph{European Journal of Physics}, 27:L17-L20,
+      effect\ldots}. \emph{European Journal of Physics}, 27:L17-L20,
     \doi{doi:10.1088/0143-0807/27/3/L02}
     \item
     Sbitneva 2001. \dQuote{Nonassociative geometry of special relativity}.
