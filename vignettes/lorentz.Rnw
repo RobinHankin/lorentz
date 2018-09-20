@@ -91,11 +91,42 @@ ignore <- require(magrittr,quietly=TRUE)
 
 \section{Introduction}
 
+In special relativity, the Lorentz transformations supercede their
+classical equivalent, the Galilean transforms.  Lorentz transforms are
+typically expressed in terms of $4\times 4$ matrices that take one set
+of coordinates to another set which is moving at constant velocity
+with respect to the first. 
+
+The \pkg{lorentz} package provides functionality for dealing with
+Lorentz transformations.  It deals with Lorentz boosts, converts
+between three-velocities and four-velocities, and provides
+computational support for the gyrogroup structure of three-velocities
+under successive addition.
+
+
+\section{Lorentz transforms}
+
+Consider the following three-velocity:
+
+<<>>=
+u <- as.3vel(c(0.3,-0.4,0.8))
+u
+@ 
+
+
+The corresponding coordinate transformation is given by \code{boost()}:
+
+<<>>=
+boost(u)
+@ 
+
+
 ``The nonassociativity of Einstein's velocity addition is not widely
 known''~\citep{ungar2006}.
 
-In this short vignette I will introduce the \pkg{lorentz} package which gives
-functionality for manipulating three-velocities in the context of their being a gyrogroup.
+In this short vignette I will introduce the \pkg{lorentz} package
+which gives functionality for manipulating three-velocities in the
+context of their being a gyrogroup.
 
 \section{The package in use}
 
