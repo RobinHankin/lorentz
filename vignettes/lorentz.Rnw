@@ -86,7 +86,7 @@ nonassociative.}
 \begin{document}
 
 <<echo=FALSE,print=FALSE>>=
-ignore <- require(magrittr,quietly=TRUE)
+library(lorentz)
 @ 
 
 \section{Introduction}
@@ -113,12 +113,34 @@ u <- as.3vel(c(0.3,-0.4,0.8))
 u
 @ 
 
+This may be expressed in terms of a four-velocity:
+
+
+<<>>=
+as.4vel(u)
+@ 
 
 The corresponding coordinate transformation is given by \code{boost()}:
 
 <<>>=
 boost(u)
 @ 
+
+And then an arbitrary four-vector may be expressed in the boosted coordinates:
+
+<<>>=
+boost(u) %*% c(4,5,-2,3)
+@ 
+
+
+To compose two Lorentz transforms we can use ordinary matrix
+multiplication:
+
+<<>>=
+boost(u) %*% boost(as.3vel(c(0.2,0.9,0.1)))
+@ 
+
+
 
 
 ``The nonassociativity of Einstein's velocity addition is not widely
