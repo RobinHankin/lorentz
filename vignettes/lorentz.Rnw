@@ -115,7 +115,6 @@ u
 
 This may be expressed in terms of a four-velocity:
 
-
 <<>>=
 as.4vel(u)
 @ 
@@ -137,20 +136,42 @@ To compose two Lorentz transforms we can use ordinary matrix
 multiplication:
 
 <<>>=
-boost(u) %*% boost(as.3vel(c(0.2,0.9,0.1)))
+L <- boost(u) %*% boost(v)
+L
 @ 
 
 
+But observe that the resulting transform is not a pure boost, as the
+matrix is not symmetrical.  We may decompose the matrix into a pure
+translation composed with an orthogonal matrix, which represents a
+coordinate rotation:
+             
+<<>>=
+U <- orthog(L)
+P <- pureboost(L)
+@              
 
 
-``The nonassociativity of Einstein's velocity addition is not widely
-known''~\citep{ungar2006}.
+In the above, $U$ should be orthogonal and $L$ symmetric:
 
-In this short vignette I will introduce the \pkg{lorentz} package
-which gives functionality for manipulating three-velocities in the
-context of their being a gyrogroup.
+<<>>=
+crossprod(U) - diag(4)
+P - t(P)
+@ 
+               
+(that is, zero to numerical precision).
+                                                 
 
-\section{The package in use}
+\section{Three velocities}
+
+
+The \pkg{lorentz} package includes functionality to compose
+three-velocities.  Three velocities do not form a group under
+composition as the velocity addition law is not associative.  As
+\cite{ungar2006} points out: ``The nonassociativity of Einstein's
+velocity addition is not widely known''.
+
+\subsection{The package in use}
 
 \cite{ungar2006} shows that the velocity addition law is
 
