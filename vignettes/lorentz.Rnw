@@ -170,11 +170,8 @@ The \pkg{lorentz} package includes functionality to compose
 three-velocities.  Three velocities do not form a group under
 composition as the velocity addition law is not associative.  As
 \cite{ungar2006} points out: ``The nonassociativity of Einstein's
-velocity addition is not widely known''.
-
-\subsection{The package in use}
-
-\cite{ungar2006} shows that the velocity addition law is
+velocity addition is not widely known''.  \citeauthor{ungar2006} shows
+that the velocity addition law is
 
 \begin{equation}
 \bu\oplus\bv=
@@ -190,10 +187,9 @@ assuming~$c=1$.  Ungar shows that, in general,
 $\bu\oplus\bv\neq\bv\oplus\bu$
 and~$(\bu\oplus\bv)\oplus\bw\neq\bu\oplus(\bv\oplus\bw)$.  He also
 defines the binary operator~$\ominus$
-as~$\bu\ominus\bv=\bu\oplus\left(-\bv\right)$ (and implicitly
-defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$).
-
-If we have
+as~$\bu\ominus\bv=\bu\oplus\left(-\bv\right)$, and implicitly
+defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$).  If
+we have
 
 \begin{equation}
 \gyr{u}{v}\bx=-\left(\bu\oplus\bv\right)\oplus\left(\bu\oplus\left(\bv\oplus\bx\right)\right)
@@ -298,14 +294,24 @@ Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
 is a vector of three velocities.  We can see the noncommutativity of
 three velocity addition in figures~\ref{comfail1} and~\ref{comfail2},
 and the nonassociativity in figures~\ref{assfail}.
-and~\ref{assocplotter2}.
 
 \begin{figure}[htbp]
   \begin{center}
 <<comfail1_fig, fig=TRUE>>=
 comm_fail1(u=u, v=v)
 @
-\caption{Commutative failure\ref{comfail1} in relativity}
+\caption{Failure\label{comfail1} of the commutative law in spacial
+  relativity.  The arrows show successive velocity boosts of $+\bu$
+  (purple), $+\bv$ (black), $-\bu$ (red), and~$-\bv$ (blue) for
+  $\bu,\bv$ as defined above.  Velocity $\bu$ is constant, while $\bv$
+  takes a sequence of values.  If velocity addition is commutative,
+  the four boosts form a closed quadrilateral; the thick arrows show a
+  case where the boosts almost close and the boosts nearly form a
+  parallelogram.  The blue dots show the final velocity after four
+  successive boosts; the distance of the blue dot from the origin
+  measures the combined velocity, equal to zero in the classical limit
+  of low speeds.  The discrepancy becomes larger and larger for the
+  faster elements of the sequence $\bu$}
   \end{center}
 \end{figure}
 
@@ -314,7 +320,7 @@ comm_fail1(u=u, v=v)
 <<comfail2_fig, fig=TRUE>>=
 comm_fail2(u=u, v=v)
 @
-\caption{Commutative failure\ref{comfail2} in relativity}
+\caption{Commutative failure\label{comfail2} in relativity}
   \end{center}
 \end{figure}
 
@@ -323,7 +329,7 @@ comm_fail2(u=u, v=v)
 <<assfail_fig, fig=TRUE>>=
 ass_fail(u=u, v=v, w=w, bold=10)
 @
-\caption{Associative law failure\ref{assfail} in relativity}
+\caption{Associative law failure\label{assfail} in relativity}
   \end{center}
 \end{figure}
 
@@ -340,22 +346,27 @@ The lorentz package works nicely with magrittr.  If we define
 
 Then pipe notation operates as expected:
 
-
 <<>>=
-rbind(u %>% add(v)  ,  u+v)
+jj1 <- u %>% add(v)
+jj2 <- u+v
+speed(jj1-jj2)
 @ 
 
 Demonstrating associativity is a little harder:
 
 <<>>=
-rbind(u %>% add(v) %>% add(w)  ,  (u+v)+w)
+jj1 <- u %>% add(v) %>% add(w)
+jj2 <- (u+v)+w
+speed(jj1-jj2)
 @ 
 
 
 and 
 
 <<>>=
-rbind(u %>% add(v %>% add(w))  ,  u+(v+w))
+jj1 <- u %>% add(v %>% add(w))
+jj2 <- u+(v+w)
+speed(jj1-jj2)
 @ 
 
 
