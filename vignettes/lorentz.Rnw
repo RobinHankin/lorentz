@@ -136,6 +136,7 @@ To compose two Lorentz transforms we can use ordinary matrix
 multiplication:
 
 <<>>=
+v <- as.3vel(c(0.4,0.2,-0.1))
 L <- boost(u) %*% boost(v)
 L
 @ 
@@ -288,69 +289,44 @@ But we can use equations~\ref{nonass1} and~\ref{nonass2}:
 Consider the following three-velocities:
 
 <<viss>>=
-u <- as.3vel(c(0, 0.8, 0))
-v <- r3vel(500,0.9)
-w <- as.3vel(c(0.7, 0, -0.7))
+u <- as.3vel(c(0.4,0,0))
+v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
+w <- as.3vel(c(0.8,-0.4,0))
 @ 
 
-Object~$\bv$ is 500 randomly chosen three velocities with a magnitude
-of~0.9 (Figure~\ref{v}).  We can see the noncommutativity of three
-velocity addition in figures~\ref{uvvu} and~\ref{uvredblack}, and the
-nonassociativity in figures~\ref{assocplotter1}
+Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
+is a vector of three velocities.  We can see the noncommutativity of
+three velocity addition in figures~\ref{comfail1} and~\ref{comfail2},
+and the nonassociativity in figures~\ref{assfail}.
 and~\ref{assocplotter2}.
 
 \begin{figure}[htbp]
   \begin{center}
-<<uplotter, fig=TRUE>>=
-pairs(unclass(v),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
+<<comfail1_fig, fig=TRUE>>=
+comm_fail1(u=u, v=v)
 @
-\caption{Three dimensional plot of 500 random three
-  velocities \label{v} with magnitude 0.9}
+\caption{Commutative failure\ref{comfail1} in relativity}
   \end{center}
 \end{figure}
 
 \begin{figure}[htbp]
   \begin{center}
-<<uvvuplotter, fig=TRUE>>=
-pairs(unclass((u+v)-(v+u)),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
+<<comfail2_fig, fig=TRUE>>=
+comm_fail2(u=u, v=v)
 @
-\caption{Three \label{uvvu} dimensional plot of $\left(\bu+\bv\right)-\left(\bv+\bu\right)$}
+\caption{Commutative failure\ref{comfail2} in relativity}
   \end{center}
 \end{figure}
 
 \begin{figure}[htbp]
   \begin{center}
-<<uvredblackplotter, fig=TRUE>>=
-jj <- rbind(u+v,v+u)
-pairs(unclass(jj),asp=1,xlim=c(-1,1),cex=0.5,ylim=c(-1,1),col=c(rep("black",500),rep("red",500)))
+<<assfail_fig, fig=TRUE>>=
+ass_fail(u=u, v=v, w=w, bold=10)
 @
-\caption{Three \label{uvredblack} dimensional plot of $\left(\bu+\bv\right)$ in black and~$\left(\bv+\bu\right)$ in red}
+\caption{Associative law failure\ref{assfail} in relativity}
   \end{center}
 \end{figure}
 
-
-
-\begin{figure}[htbp]
-  \begin{center}
-<<assocplotter1, fig=TRUE>>=
-pairs( unclass((u+(v+w))-((u+v)+w)),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1))
-@
-\caption{Three \label{assocplotter1} dimensional plot of
-  $\left(\bu+\left(\bv+\bw\right)\right)-\left(\left(\bu+\bv\right)+\bw\right)$}
-  \end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-  \begin{center}
-<<assocredblackplotter, fig=TRUE>>=
-jj <- rbind(u+(v+w),(u+v)+w)
-pairs(unclass(jj),asp=1,cex=0.5,xlim=c(-1,1),ylim=c(-1,1),col=c(rep("black",500),rep("red",500)))
-@
-\caption{Three \label{assocplotter2} dimensional plot
-  of~$\bu+\left(\bv+\bw\right)$ in black and~$\left(\bu+\bv\right)+\bw$
-  in red}
-  \end{center}
-\end{figure}
 
 \newpage
 \section{The magrittr package: pipes}
