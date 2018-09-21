@@ -9,14 +9,17 @@
 \alias{Wigner rotation}
 \alias{precession}
 \alias{boostfun}
+\alias{decompose}
 \title{Lorentz transformations}
 \description{Lorenz transformations: boosts and rotations}
 \usage{
 boost(u)
 rot(u,v,space=TRUE)
+decompose(L)
 }
 \arguments{
   \item{u,v}{Three-velocities, coerced to  class \code{3vel}}
+  \item{L}{Lorentz transform expressed as a $\eqn{4\times 4}{4x4} matrix}
   \item{space}{Boolean, with default \code{TRUE} meaning to return just
     the spatial component of the rotation matrix and \code{FALSE}
     meaning to return the full \eqn{4\times 4}{4x4} matrix transformation}
@@ -98,5 +101,20 @@ rot(v,u)    # transpose (=inverse) of rot(u,v)
 
 rot(u,v,FALSE) \%*\% boost(v) \%*\% boost(u)
 boost(u+v)     # should be the same.
+
+
+## Define a random-ish Lorentz transform
+L <- boost(r3vel(1)) \%*\% boost(r3vel(1)) \%*\% boost(r3vel(1))
+
+## Decompose it:
+jj <- decompose(L)   # A = UP
+
+U <- jj$U
+P <- jj$P
+
+print(L - U \%*\% P)              # should be small
+print(crossprod(U))               # should be diag(4)
+print(P)                          # should be orthogonal
+print(is.consistent.4vel(P[,1]))  # should be TRUE
 
 }

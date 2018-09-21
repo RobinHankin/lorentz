@@ -410,3 +410,9 @@
   }
 }
 
+`decompose` <- function(L){
+  jj <- eigen(crossprod(L))
+  P <- emulator::quad.tform(sqrt(diag(jj$values)),jj$vectors)
+  return(list(P=P, U=tcrossprod(L, solve(P))))
+}
+
