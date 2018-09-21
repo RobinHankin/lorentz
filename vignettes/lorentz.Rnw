@@ -300,7 +300,7 @@ and the nonassociativity in figures~\ref{assfail}.
 <<comfail1_fig, fig=TRUE>>=
 comm_fail1(u=u, v=v)
 @
-\caption{Failure\label{comfail1} of the commutative law in spacial
+\caption{Failure\label{comfail1} of the commutative law in special
   relativity.  The arrows show successive velocity boosts of $+\bu$
   (purple), $+\bv$ (black), $-\bu$ (red), and~$-\bv$ (blue) for
   $\bu,\bv$ as defined above.  Velocity $\bu$ is constant, while $\bv$
@@ -320,7 +320,14 @@ comm_fail1(u=u, v=v)
 <<comfail2_fig, fig=TRUE>>=
 comm_fail2(u=u, v=v)
 @
-\caption{Commutative failure\label{comfail2} in relativity}
+
+\caption{Another view of the failure of the commutative
+  law\label{comfail2} in special relativity.  The black arrows show
+  velocity boosts of $\bu$ and the blue arrows show velocity boosts of
+  $\bv$, with $\bu,\bv$ as defined above.  If velocity addition is
+  commutative, then $\bu+\bv=\bv+\bu$ and the two paths end at the
+  same point: the parallelogram is closed.  The red arrows show the
+  difference between $\bu+\bv$ and $\bv+\bu$}
   \end{center}
 \end{figure}
 
