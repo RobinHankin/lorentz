@@ -410,9 +410,10 @@
   }
 }
 
-`decompose` <- function(L){
+
+`pureboost` <- function(L){
   jj <- eigen(crossprod(L))
-  P <- emulator::quad.tform(sqrt(diag(jj$values)),jj$vectors)
-  return(list(P=P, U=tcrossprod(L, solve(P))))
+  emulator::quad.tform(sqrt(diag(jj$values)),jj$vectors)
 }
 
+`orthog` <- function(L){ tcrossprod(L,solve(pureboost(L))) } 

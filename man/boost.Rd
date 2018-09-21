@@ -10,12 +10,15 @@
 \alias{precession}
 \alias{boostfun}
 \alias{decompose}
+\alias{pureboost}
+\alias{orthog}
 \title{Lorentz transformations}
 \description{Lorenz transformations: boosts and rotations}
 \usage{
 boost(u)
 rot(u,v,space=TRUE)
-decompose(L)
+pureboost(L)
+orthog(L)
 }
 \arguments{
   \item{u,v}{Three-velocities, coerced to  class \code{3vel}}
@@ -82,7 +85,6 @@ w <- r3vel(1)
 
 boost(u) - solve(boost(-u))  # should be zero
 
-
 boost(u) \%*\% boost(v)   # not a pure boost (not symmetrical)
 boost(u+v)  # not the same!
 boost(v+u)  # also not the same!
@@ -103,18 +105,19 @@ rot(u,v,FALSE) \%*\% boost(v) \%*\% boost(u)
 boost(u+v)     # should be the same.
 
 
+orthog(boost(u) \%*\% boost(v)) - rot(u,v,FALSE)  # should be small
+
+
 ## Define a random-ish Lorentz transform
 L <- boost(r3vel(1)) \%*\% boost(r3vel(1)) \%*\% boost(r3vel(1))
 
 ## Decompose it:
-jj <- decompose(L)   # A = UP
+U <- orthog(L)
+P <- pureboost(L)
 
-U <- jj$U
-P <- jj$P
-
-print(L - U \%*\% P)              # should be small
-print(crossprod(U))               # should be diag(4)
-print(P)                          # should be orthogonal
-print(is.consistent.4vel(P[,1]))  # should be TRUE
+L - U \%*\% P              # should be small (L = UP)
+crossprod(U)               # should be identity (U is orthogonal)
+P - t(P)                   # should be small (P is symmetric)
+is.consistent.4vel(P[,1])  # should be TRUE 
 
 }
