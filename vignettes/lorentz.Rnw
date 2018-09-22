@@ -300,18 +300,19 @@ and the nonassociativity in figures~\ref{assfail}.
 <<comfail1_fig, fig=TRUE>>=
 comm_fail1(u=u, v=v)
 @
-\caption{Failure\label{comfail1} of the commutative law in special
-  relativity.  The arrows show successive velocity boosts of $+\bu$
-  (purple), $+\bv$ (black), $-\bu$ (red), and~$-\bv$ (blue) for
-  $\bu,\bv$ as defined above.  Velocity $\bu$ is constant, while $\bv$
-  takes a sequence of values.  If velocity addition is commutative,
-  the four boosts form a closed quadrilateral; the thick arrows show a
-  case where the boosts almost close and the boosts nearly form a
-  parallelogram.  The blue dots show the final velocity after four
-  successive boosts; the distance of the blue dot from the origin
-  measures the combined velocity, equal to zero in the classical limit
-  of low speeds.  The discrepancy becomes larger and larger for the
-  faster elements of the sequence $\bu$}
+\caption{Failure\label{comfail1} of the commutative law for velocity
+  composition in special relativity.  The arrows show successive
+  velocity boosts of $+\bu$ (purple), $+\bv$ (black), $-\bu$ (red),
+  and~$-\bv$ (blue) for $\bu,\bv$ as defined above.  Velocity $\bu$ is
+  constant, while $\bv$ takes a sequence of values.  If velocity
+  addition is commutative, the four boosts form a closed
+  quadrilateral; the thick arrows show a case where the boosts almost
+  close and the boosts nearly form a parallelogram.  The blue dots
+  show the final velocity after four successive boosts; the distance
+  of the blue dot from the origin measures the combined velocity,
+  equal to zero in the classical limit of low speeds.  The discrepancy
+  becomes larger and larger for the faster elements of the sequence
+  $\bv$}
   \end{center}
 \end{figure}
 
@@ -324,7 +325,8 @@ comm_fail2(u=u, v=v)
 \caption{Another view of the failure of the commutative
   law\label{comfail2} in special relativity.  The black arrows show
   velocity boosts of $\bu$ and the blue arrows show velocity boosts of
-  $\bv$, with $\bu,\bv$ as defined above.  If velocity addition is
+  $\bv$, with $\bu,\bv$ as defined above; $\bu$ is constant while
+  $\bv$ takes a sequence of values.  If velocity addition is
   commutative, then $\bu+\bv=\bv+\bu$ and the two paths end at the
   same point: the parallelogram is closed.  The red arrows show the
   difference between $\bu+\bv$ and $\bv+\bu$}
@@ -336,7 +338,13 @@ comm_fail2(u=u, v=v)
 <<assfail_fig, fig=TRUE>>=
 ass_fail(u=u, v=v, w=w, bold=10)
 @
-\caption{Associative law failure\label{assfail} in relativity}
+\caption{Failure of the associative law \label{assfail} for velocity
+  composition in special relativity.  The arrows show successive
+  boosts of $\bu$ followed by $\bv+\bw$ (black lines), and $\bu+\bv$
+  followed by $\bw$ (blue lines), for $\bu$, $\bv$, $\bw$ as defined
+  above; $\bu$ and $\bw$ are constant while $\bv$ takes a sequence of
+  values. The mismatch between $\bu+\left(\bv+\bw\right)$ and
+  $\left(\bu+\bv\right)+\bw$ is shown in red}
   \end{center}
 \end{figure}
 
