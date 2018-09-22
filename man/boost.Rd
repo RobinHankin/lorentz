@@ -22,7 +22,7 @@ orthog(L)
 }
 \arguments{
   \item{u,v}{Three-velocities, coerced to  class \code{3vel}}
-  \item{L}{Lorentz transform expressed as a $\eqn{4\times 4}{4x4} matrix}
+  \item{L}{Lorentz transform expressed as a \eqn{4\times 4}{4x4} matrix}
   \item{space}{Boolean, with default \code{TRUE} meaning to return just
     the spatial component of the rotation matrix and \code{FALSE}
     meaning to return the full \eqn{4\times 4}{4x4} matrix transformation}
