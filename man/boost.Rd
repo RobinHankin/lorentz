@@ -12,17 +12,20 @@
 \alias{decompose}
 \alias{pureboost}
 \alias{orthog}
+\alias{is.consistent.boost}
 \title{Lorentz transformations}
 \description{Lorenz transformations: boosts and rotations}
 \usage{
 boost(u)
 rot(u,v,space=TRUE)
+is.consistent.boost(L,TOL=1e-10)
 pureboost(L)
 orthog(L)
 }
 \arguments{
   \item{u,v}{Three-velocities, coerced to  class \code{3vel}}
   \item{L}{Lorentz transform expressed as a \eqn{4\times 4}{4x4} matrix}
+  \item{TOL}{Numerical tolerance}
   \item{space}{Boolean, with default \code{TRUE} meaning to return just
     the spatial component of the rotation matrix and \code{FALSE}
     meaning to return the full \eqn{4\times 4}{4x4} matrix transformation}
@@ -106,11 +109,16 @@ boost(u+v)     # should be the same.
 
 
 orthog(boost(u) \%*\% boost(v)) - rot(u,v,FALSE)  # should be small
+pureboost(boost(v) \%*\% boost(u)) - boost(u+v)   # should be small
+
 
 
 ## Define a random-ish Lorentz transform
 L <- boost(r3vel(1)) \%*\% boost(r3vel(1)) \%*\% boost(r3vel(1))
 
+## check it:
+
+is.consistent.boost(L)     # should be TRUE
 ## Decompose it:
 U <- orthog(L)
 P <- pureboost(L)
@@ -119,5 +127,7 @@ L - U \%*\% P              # should be small (L = UP)
 crossprod(U)               # should be identity (U is orthogonal)
 P - t(P)                   # should be small (P is symmetric)
 is.consistent.4vel(P[,1])  # should be TRUE 
+
+
 
 }

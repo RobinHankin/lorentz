@@ -295,6 +295,9 @@
   all((inner4(U) + sol()^2)/sol()^2 < TOL)
 }
 
+`is.consistent.boost` <- function(L,TOL=1e-10){
+    all(abs(quad.form(eta(),L)-eta()) < TOL)
+}
 
 `.seg` <- function(u,start=as.3vel(0), bold=5, ...){
   start <- start[,1:2]
@@ -393,9 +396,10 @@
   u <- as.vector(u)
   jj <- -g*u
   
-  out <- rbind(c(g,jj), cbind(jj,diag(3) + g^2*outer(u,u)/(1+g)/sol()^2))
+  out <- rbind(c(g,jj), cbind(jj,diag(3) + g^2*outer(u,u)/(1+g)))
   rownames(out) <- c("t","x","y","z")
   colnames(out) <- c("t","x","y","z")
+  
   return(out)
  }
 
