@@ -296,7 +296,7 @@
 }
 
 `is.consistent.boost` <- function(L,TOL=1e-10){
-    all(abs(quad.form(eta(),L)-eta()) < TOL)
+    all(abs(emulator::quad.form(eta(),L)-eta()) < TOL)
 }
 
 `.seg` <- function(u,start=as.3vel(0), bold=5, ...){
