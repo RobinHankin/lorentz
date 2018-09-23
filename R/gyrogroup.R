@@ -391,7 +391,7 @@
   u <- as.3vel(u)
   g <- gam(u)  
   u <- as.vector(u)
-  jj <- -g*u/sol()
+  jj <- -g*u
   
   out <- rbind(c(g,jj), cbind(jj,diag(3) + g^2*outer(u,u)/(1+g)/sol()^2))
   rownames(out) <- c("t","x","y","z")
