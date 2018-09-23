@@ -367,7 +367,7 @@ jj2 <- u+v
 speed(jj1-jj2)
 @ 
 
-Demonstrating associativity is a little harder:
+The pipe operator is left associative:
 
 <<>>=
 jj1 <- u %>% add(v) %>% add(w)
@@ -376,7 +376,8 @@ speed(jj1-jj2)
 @ 
 
 
-and 
+If we want right associative addition, the pipe operator needs
+brackets:
 
 <<>>=
 jj1 <- u %>% add(v %>% add(w))
@@ -389,7 +390,8 @@ speed(jj1-jj2)
 \section{Functional notation}
 
 
-It is possible to replace calls like \code{gyr(u,v,x)} with functional notation which can make for arguably more natural R idiom.  If we have 
+It is possible to replace calls like \code{gyr(u,v,x)} with functional
+notation which can make for arguably more natural R idiom.  If we have
 
 <<funcnot>>=
 u <- as.3vel(c(0, 0.8, 0))
@@ -398,15 +400,16 @@ x <- as.3vel(c(0.7, 0, -0.7))
 y <- as.3vel(c(0.1, 0.3, -0.6))
 @ 
 
-Then we can define \code{f()} which is the map~$\bx\longrightarrow\gyr{u}{v}\bx$.
-
+Then we can define \code{f()} which is the
+map~$\bx\longrightarrow\gyr{u}{v}\bx$:
 
 <<>>=
 f <- gyrfun(u,v)
 f(w)
 @ 
 
-Then numerical verification of equation~\ref{doteq} and~\ref{gyrinv} is straightforward:
+Then numerical verification of equation~\ref{doteq} and~\ref{gyrinv}
+is straightforward:
 
 <<>>=
 prod3(f(x),f(y)) - prod3(x,y)
@@ -425,6 +428,7 @@ with the functional notation:
 
 <<>>=
 x %<>% f %>% add(y)      # x <- f(x)+y
+x
 @ 
 
 \bibliography{lorentz}
