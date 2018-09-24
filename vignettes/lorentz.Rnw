@@ -113,7 +113,8 @@ u <- as.3vel(c(0.3,-0.4,0.8))
 u
 @ 
 
-This may be expressed in terms of a four-velocity:
+(note that the package uses units in which $c=1$).  Velocity $u$ may
+be expressed as a four-velocity:
 
 <<>>=
 as.4vel(u)
@@ -131,9 +132,9 @@ And then an arbitrary four-vector may be expressed in the boosted coordinates:
 boost(u) %*% c(4,5,-2,3)
 @ 
 
-
-To compose two Lorentz transforms we can use ordinary matrix
-multiplication:
+Note that coordinate transformation is effected by standard matrix
+multiplication.  Composition of two Lorentz transforms is also
+ordinary matrix multiplication:
 
 <<>>=
 v <- as.3vel(c(0.4,0.2,-0.1))
@@ -161,7 +162,6 @@ P - t(P)
 @ 
                
 (that is, zero to numerical precision).
-                                                 
 
 \section{Three velocities}
 
@@ -430,6 +430,73 @@ with the functional notation:
 x %<>% f %>% add(y)      # x <- f(x)+y
 x
 @ 
+
+
+\section{SI units}
+
+The preceding material used units in which $c=1$.  Here I show how the
+package deals with units such as SI in which $c=299792458\neq 1$.  For
+obvious reasons we cannot have a function called \code{c()} so the
+package gets and sets the package with \code{sol()}:
+
+                                                  
+<<>>=
+sol(299792458)
+sol()
+@ 
+
+
+(an empty argument queries the speed of light).  We can now consider
+speeds which are fast by terrestrial standards but involve only a
+small relativistic correction to the Galilean result:
+                                                
+                                                
+<<>>=
+u <- as.3vel(c(100,200,300))
+u
+@ 
+
+The gamma correction term is negligible as far as the default print
+method is concerned:
+                    
+<<>>=
+gam(u)
+@ 
+
+But we can display more accurately by subtracting one:
+                                                    
+                                                    
+                                                    
+<<>>=
+gam(u)-1
+@                                                     
+
+
+or, more accurately by using the \code{gamm1()} function:
+                                                  
+<<>>=
+gamm1(u)
+@                                                   
+
+The Lorentz boost is again calculated by the \code{boost()} function
+              
+<<>>=
+boost(u)
+@ 
+
+
+note how the transformation is essentially the Galilean result.
+
+<<>>=
+v <- as.3vel(c(400,-200,300))
+boost(u) %*% boost(v)
+boost(v) %*% boost(u)
+@ 
+
+
+
+                                                                                
+
 
 \bibliography{lorentz}
 \end{document}
