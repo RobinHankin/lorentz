@@ -295,7 +295,7 @@
   all((inner4(U) + sol()^2)/sol()^2 < TOL)
 }
 
-`is.consistent.boost` <- function(L,TOL=1e-10,give=FALSE){
+`is.consistent.boost` <- function(L, give=FALSE, TOL=1e-10){
   out <- quad.form(eta(),L) # should be eta()
   if(give){
     return(out)
