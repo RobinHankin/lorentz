@@ -291,8 +291,13 @@
   quad.tdiag(eta(),U)
 }
 
-`is.consistent.4vel` <- function(U,TOL=1e-10){
-  all((inner4(U) + sol()^2)/sol()^2 < TOL)
+`is.consistent.4vel` <- function(U,give=FALSE, TOL=1e-10){
+    out <- (inner4(U) + sol()^2)/sol()^2
+    if(give){
+        return(out)
+    } else {
+        return(out<TOL)
+    }
 }
 
 `is.consistent.boost` <- function(L, give=FALSE, TOL=1e-10){

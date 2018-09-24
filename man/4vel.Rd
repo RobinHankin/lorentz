@@ -17,13 +17,17 @@ Create and test for four-velocities.
 }
 \usage{
 as.4vel(u)
-is.consistent.4vel(U,TOL=1e-10)
+is.consistent.4vel(U, give=FALSE, TOL=1e-10)
 inner4(U)
 to3(U)
 }
 \arguments{
   \item{u}{A three-velocity}
   \item{U}{A four-velocity}
+  \item{give}{In function \code{is.consistent.4vel()}, Boolean with
+    \code{TRUE} meaning to return \eqn{U\cdot U+c^2}{U.U+c^2}, which is
+    zero for a four-velocity, and default \code{FALSE} meaning to return
+    whether the four-velocity is consistent to numerical precision}
   \item{TOL}{Small positive value used for tolerance}
 }
 \details{
