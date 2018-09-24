@@ -295,8 +295,13 @@
   all((inner4(U) + sol()^2)/sol()^2 < TOL)
 }
 
-`is.consistent.boost` <- function(L,TOL=1e-10){
-    all(abs(emulator::quad.form(eta(),L)-eta()) < TOL)
+`is.consistent.boost` <- function(L,TOL=1e-10,give=FALSE){
+  out <- emulator::quad.form(eta(),L) # should be eta()
+  if(give){
+    return(out)
+  } else {
+    return(all(abs(out-eta())<TOL))
+  }
 }
 
 `.seg` <- function(u,start=as.3vel(0), bold=5, ...){
@@ -393,13 +398,15 @@
 `boost` <- function(u){  # v = (u,v,w)
   u <- as.3vel(u)
   g <- gam(u)  
-  u <- as.vector(u)
+  u <- as.vector(u)/sol()  # convert to c=1 units (NB previous line needs sol())
   jj <- -g*u
   
   out <- rbind(c(g,jj), cbind(jj,diag(3) + g^2*outer(u,u)/(1+g)))
   rownames(out) <- c("t","x","y","z")
   colnames(out) <- c("t","x","y","z")
-  
+
+  ## convert units back to SI or whatever:
+  out <- emulator::quad.3form(out,diag(c(1/sol(),1,1,1)),diag(c(sol(),1,1,1)))
   return(out)
  }
 

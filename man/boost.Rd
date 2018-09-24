@@ -18,7 +18,7 @@
 \usage{
 boost(u)
 rot(u,v,space=TRUE)
-is.consistent.boost(L,TOL=1e-10)
+is.consistent.boost(L, give=FALSE, TOL=1e-10)
 pureboost(L)
 orthog(L)
 }
@@ -26,6 +26,10 @@ orthog(L)
   \item{u,v}{Three-velocities, coerced to  class \code{3vel}}
   \item{L}{Lorentz transform expressed as a \eqn{4\times 4}{4x4} matrix}
   \item{TOL}{Numerical tolerance}
+  \item{give}{Boolean with \code{TRUE} meaning to return the transformed
+    metric tensor (which should be the flat-space \code{eta()}; qv) and
+    default \code{FALSE} meaning to return whether the matrix is a
+    consistent boost or not}
   \item{space}{Boolean, with default \code{TRUE} meaning to return just
     the spatial component of the rotation matrix and \code{FALSE}
     meaning to return the full \eqn{4\times 4}{4x4} matrix transformation}
