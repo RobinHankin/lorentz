@@ -41,15 +41,14 @@ Note that the top-left element of \code{eta()} is \eqn{-c^2}, not
 \author{Robin K. S. Hankin}
 \examples{
 
-sol()
+sol()                          # returns current speed of light
+sol(299792458)                 # use SI units
+sol()                          # speed of light now SI value
 
-r3vel(5)
-
-sol(299792458)
-r3vel(5)
-eta()
-
-sol(1)
-
+eta()                          # note [t,t] term
+u <- as.3vel(c(100,200,300))   # fast terrestrial speed, but not relativistic
+boost(u)                       # boost matrix practically Galilean
+is.consistent.boost(boost(u))  # should be TRUE
+sol(1)                         # revert to relativisitic units
 
 }
