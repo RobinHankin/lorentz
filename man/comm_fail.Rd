@@ -28,7 +28,7 @@ ass_fail(u, v, w, bold=5,r=1)
 \value{
 These functions are called for their side-effect of plotting a diagram.
 }
-\note{The vignette \code{commutative_associative} gives more details and
+\note{The vignette \code{lorentz} gives more details and
   interpretation of the diagrams}
 \author{
 Robin K. S. Hankin
