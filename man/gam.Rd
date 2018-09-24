@@ -40,20 +40,23 @@ gamm1(u)
 gam(seq(from=0,by=0.1,len=10))
 gam(r3vel(6,0.7))
 
-gam(0.000001)-1
-gamm1(0.000001)   # algebraically identical but much more accurate
-
 
 x <- as.3vel(c(0.1,0.4,0.5))
 speed(x)
 
-gam(x)
-gam(speed(x))  # not recommended: slow and inaccurate
+gam(speed(x))  # works, but slow and inaccurate
+gam(x)         # recommended: avoids needless coercion
 
 
 sol(299792458)
-gamm1(343)  # speed of sound in SI
-sol(1)
+sound <- 343 # speed of sound in SI
+gam(sound)
+gam(sound)-1  
+gamm1(sound)   # gamm1() gives much higher precision
 
+snail <- as.3vel(c(0.00275,0,0)) # even the world's fastest snail...
+gamm1(snail)                     # ...has only a small relativistic correction
+
+sol(1)
 
 }
