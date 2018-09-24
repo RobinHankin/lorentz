@@ -456,23 +456,22 @@ u <- as.3vel(c(100,200,300))
 u
 @ 
 
-The gamma correction term is negligible as far as the default print
-method is concerned:
+The gamma correction term $\gamma$ is only very slightly larger
+than~$1$ and indeed R's default print method suppresses the
+difference:
                     
 <<>>=
 gam(u)
 @ 
 
-But we can display more accurately by subtracting one:
-                                                    
-                                                    
-                                                    
+However, we can display more significant figures by subtracting one:
+
 <<>>=
 gam(u)-1
 @                                                     
 
-
-or, more accurately by using the \code{gamm1()} function:
+or alternatively we can use the \code{gamm1()} function which
+calculates $\gamma-1$ more accurately for speeds $\ll c$:
                                                   
 <<>>=
 gamm1(u)
@@ -492,11 +491,6 @@ v <- as.3vel(c(400,-200,300))
 boost(u) %*% boost(v)
 boost(v) %*% boost(u)
 @ 
-
-
-
-                                                                                
-
 
 \bibliography{lorentz}
 \end{document}
