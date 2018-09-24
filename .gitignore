@@ -36,6 +36,10 @@ vignettes/jss.ins
 
 vignettes/gyrogroup.Rnw~
 
+vignettes/JSSstyle.zip
+vignettes/README.txt
+vignettes/jsslogo.jpg
+vignettes/lorentz.blg
 
 tests/*.R~
 man/*.Rd~
