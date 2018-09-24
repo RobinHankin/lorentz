@@ -59,7 +59,7 @@ as.3vel(as.4vel(a))-a   # should be small
 
 inner4(as.4vel(a))   # should be -1
 
-stopifnot(is.consistent.4vel(as.4vel(a)))
+stopifnot(all(is.consistent.4vel(as.4vel(a))))
 
 
 }
