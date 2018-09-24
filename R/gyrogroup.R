@@ -296,7 +296,7 @@
 }
 
 `is.consistent.boost` <- function(L,TOL=1e-10,give=FALSE){
-  out <- emulator::quad.form(eta(),L) # should be eta()
+  out <- quad.form(eta(),L) # should be eta()
   if(give){
     return(out)
   } else {
@@ -406,7 +406,7 @@
   colnames(out) <- c("t","x","y","z")
 
   ## convert units back to SI or whatever:
-  out <- emulator::quad.3form(out,diag(c(1/sol(),1,1,1)),diag(c(sol(),1,1,1)))
+  out <- quad.3form(out,diag(c(1/sol(),1,1,1)),diag(c(sol(),1,1,1)))
   return(out)
  }
 
@@ -424,7 +424,7 @@
 
 `pureboost` <- function(L){
   jj <- eigen(crossprod(L))
-  emulator::quad.tform(sqrt(diag(jj$values)),jj$vectors)
+  quad.tform(sqrt(diag(jj$values)),jj$vectors)
 }
 
 `orthog` <- function(L){ tcrossprod(L,solve(pureboost(L))) } 
