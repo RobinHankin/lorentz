@@ -265,10 +265,10 @@
   if(is.3vel(u)){
     out <- cbind(t=1,u)*gam(u)
   } else if(ncol(u)==4) { # assumes a 4-vector
-    if(is.consistent.4vel(u)){
+    if(all(is.consistent.4vel(u))){
       out <- u
     } else {
-      stop("inconsistent 4velocity")
+      stop("inconsistent 4-velocity")
     }
   } else if(is.vector(u)){
     return(Recall(t(u)))
@@ -280,10 +280,10 @@
 }
 
 `to3` <- function(U){  # takes a 4velocity, returns a 3vel
-  if(is.consistent.4vel(U)){
+  if(all(is.consistent.4vel(U))){
     return(U[,-1]/U[,1])
   } else {
-    stop("not consistent 4 velocity")
+    stop("not consistent 4-velocity")
   }
 }
 
