@@ -466,11 +466,13 @@
   jj <- -g*u
   
   out <- rbind(c(g,jj), cbind(jj,diag(3) + g^2*outer(u,u)/(1+g)))
-  rownames(out) <- c("t","x","y","z")
-  colnames(out) <- c("t","x","y","z")
 
   ## convert units back to SI or whatever:
   out <- quad.3form(out,diag(c(1/sol(),1,1,1)),diag(c(sol(),1,1,1)))
+
+  rownames(out) <- c("t","x","y","z")
+  colnames(out) <- c("t","x","y","z")
+
   return(out)
  }
 
