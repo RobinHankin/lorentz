@@ -1,11 +1,14 @@
 \name{c.3vel}
 \alias{c.3vel}
-\title{Combine vectors of three-velocities into a single vector}
+\alias{c.4vel}
+\title{Combine vectors of three-velocities and four-velocities into a single vector}
 \description{
 Combines its arguments recursively to form a vector of three velocities
+or four velocities
 }
 \usage{
 \method{c}{3vel}(...)
+\method{c}{4vel}(...)
 }
 \arguments{
   \item{\dots}{Vectors of three-velocities}

@@ -20,30 +20,39 @@
   x <- unclass(x)
   if(length(x)==1){
     if(x==0){
-      x <- rbind(c(0,0,0))
+      x <- c(0,0,0)
     } else {
       stop("not defined")
     }
   }
+
   if(is.vector(x)){x <- t(x)}
   if(ncol(x) == 4){   # assumed to be a 4-velocity
-    x <- to3(x)  
-  }
-  if(all(rowSums(x^2)<sol()^2)){
-      class(x) <- '3vel'   # this is the only place where the class is set
-      return(x)
-  } else {
+    out <- to3(as.4vel(x))
+  } else if(ncol(x)==3){
+    if(all(rowSums(x^2)<sol()^2)){
+      out <- x
+    } else {
       stop("speed > c")
+    }
+  } else {
+    stop("should have 3 or 4 columns")
   }
+  class(out) <- c("3vel","vel") # this is the only place where the class is set
+  return(out)
 }
 
 `3vel` <- function(n){ as.3vel(matrix(0,n,3))  }
+`4vel` <- function(n){ as.4vel(matrix(0,n,3))  }
 
 `threevel` <- `3vel`
+`fourvel` <- `4vel`
 
 `is.3vel` <- function(x){inherits(x,"3vel")}
+`is.4vel` <- function(x){inherits(x,"4vel")}
 
 `c.3vel` <- function(...){ as.3vel(do.call("rbind",list(...))) }
+`c.4vel` <- function(...){ as.4vel(do.call("rbind",list(...))) }
 
 `print.3vel` <- function(x, ...){
   x <- unclass(x)
@@ -53,15 +62,22 @@
   return(invisible(print(x)))
 }
 
-`length.3vel` <- function(x){nrow(x)}
+`print.4vel` <- function(x, ...){
+  x <- unclass(x)
+  if(is.null(colnames(x)) & ncol(x)==3){
+    colnames(x) <- c("t","x","y","z")
+  }
+  return(invisible(print(x)))
+}
 
-`names.3vel` <- function(x){rownames(x)}
+`length.vel` <- function(x){nrow(x)}
+`names.vel` <- function(x){rownames(x)}
 
-`names<-.3vel` <- function(x,value){
+`names<-.vel` <- function(x,value){
   rownames(x) <- value
   return(x)
 }
-  
+
 `r3vel` <- function(n,r=NA){
   z <- runif(n,-1,1)
   phi <- runif(n,0,2*pi)
@@ -92,9 +108,13 @@
       names=names.out))
 }
 
-`speed` <- function(u){sqrt(rowSums(unclass(u)^2))}
-`speedsquared` <- function(u){rowSums(unclass(u)^2)}
 
+`speed` <- function(u){UseMethod("speed",u)}
+
+`speed.3vel` <- function(u){sqrt(rowSums(unclass(u)^2))}
+`speed.4vel` <- function(u){speed(as.3vel(u))}
+
+`speedsquared` <- function(u){rowSums(unclass(u)^2)}
 
 `gam` <- function(u){
   UseMethod("gam",u)
@@ -102,6 +122,10 @@
 
 `gam.3vel` <- function(u){
   1/sqrt(1-rowSums(unclass(u)^2)/sol()^2)  #inline code avoids taking unnecessary sqrt()
+}
+
+`gam.4vel` <- function(u){
+  u[,1]
 }
 
 `gam.default` <- function(u){
@@ -116,8 +140,12 @@
   jj <- log1p(-rowSums(unclass(u)^2/sol()^2))/2
   return(-expm1(jj)/exp(jj))
 }
-  
-`gamm1.default` <- function(u){
+
+`gamm1.4vel` <- function(u){ # should not be here
+  u[,1]-1
+}
+
+`gamm1.default` <- function(u){  # 'u' is a speed
   jj <- log1p(-u^2/sol()^2)/2
   return(-expm1(jj)/exp(jj))
 }
@@ -154,38 +182,51 @@
   return(out)
 }
 
-`[.3vel` <- function(x,i,j,...){
+`[.vel` <- function(x,i,j,...){
     x <- unclass(x)
-    if(missing(i) & missing(j)){  # x[]
-        out <- as.3vel(x)
-    } else if(missing(i) & !missing(j)){ # x[,j]
-        out <- x[,j,drop=FALSE]
-    } else if(!missing(i) & missing(j)){  # x[i,]
-        out <- as.3vel(x[i,,drop=FALSE])
+    if(missing(i) & !missing(j)){ # x[,j]
+      return(x[,j,drop=FALSE])
     } else if(!missing(i) & !missing(j)){  # x[i,j]
-        out <- x[i,j,drop=FALSE]
+      return(x[i,j,drop=FALSE])
+    } else if(missing(i) & missing(j)){  # x[]
+      return(x)  # NB unclassed
+    } else if(!missing(i) & missing(j)){  # meat of function: idiom x[i]; x[i,]
+      x <- x[i,,drop=FALSE]
+      if(ncol(x)==3){
+        return(as.3vel(x))
+      } else if(ncol(x)==4){
+        return(as.4vel(x))
+      } else {
+        stop("this should not happen")
+      }
     } else {
-        stop("this cannot happen")
+      stop("this cannot happen")
     }
-    return(out)
 }
 
-`[<-.3vel` <- function(x,i,j,value){
+`[<-.vel` <- function(x,i,j,value){
     x <- unclass(x)
     if(missing(i) & missing(j)){  # x[]
         x[] <- value
     } else if(missing(i) & !missing(j)){ # x[,j]
         x[,j] <- value
+    } else if(!missing(i) & !missing(j)){  # x[i,j]
+        x[i,j] <- value
     } else if(!missing(i) & missing(j)){  # x[i,] == x[i]
         jj <- t(x)
         jj[,i] <- t(value)
         x <- t(jj)
-    } else if(!missing(i) & !missing(j)){  # x[i,j]
-        x[i,j] <- value
+        if(ncol(x)==3){
+          x <- as.3vel(x)
+        } else if (ncol(x)==4){
+          x <- as.4vel(x)
+        } else {
+          stop("this should not happen")
+        }
     } else {
         stop("this cannot happen")
     }
-    return(as.3vel(x))
+    return(x)
 }
   
 `equal3` <- function(u,v){
@@ -262,26 +303,41 @@
 }
 
 `as.4vel` <- function(u){  # takes a 3vel, returns a 4vel
-  if(is.3vel(u)){
-    out <- cbind(t=1,u)*gam(u)
-  } else if(ncol(u)==4) { # assumes a 4-vector
-    if(all(is.consistent.4vel(u))){
-      out <- u
+  u <- unclass(u)
+  if(length(u)==1){
+    if(u==0){
+      u <- c(0,0,0)
     } else {
-      stop("inconsistent 4-velocity")
+      stop("not defined")
     }
-  } else if(is.vector(u)){
-    return(Recall(t(u)))
-  } else {
-    stop("not recognised")
   }
+
+  if(is.vector(u)){u <- t(u)}
+  
+  if(ncol(u)==3){
+    u <- as.3vel(u) # checks for speed>c
+    out <- cbind(t=1,u)*gam(u) # convert to a four-vector
+    } else if(ncol(u)==4) { # assumes a 4-vector
+      if(all(is.consistent.4vel(u))){
+        out <- u
+      } else {
+        stop("inconsistent 4-velocity")
+      }
+    } else if(is.vector(u)){
+      return(Recall(t(u)))
+    } else {
+      stop("not recognised")
+    }
+  
   colnames(out) <- c("t","x","y","z")
+  class(out) <- c("4vel","vel")  # this is the only place class 4vel is assigned
   return(out)
 }
 
 `to3` <- function(U){  # takes a 4velocity, returns a 3vel
+  stopifnot(is.4vel(U))
   if(all(is.consistent.4vel(U))){
-    return(U[,-1]/U[,1])
+    return(as.3vel(sweep(U[, -1, drop = FALSE],1,U[,1],"/")))
   } else {
     stop("not consistent 4-velocity")
   }
@@ -310,8 +366,9 @@
 }
 
 `.seg` <- function(u,start=as.3vel(0), bold=5, ...){
-  start <- start[,1:2]
-  u <- u[,1:2]   # now a two-column matrix
+  start <- unclass(start)[,1:2,drop=FALSE]
+  u <- unclass(u)
+  u <- u[,1:2,drop=FALSE]   # now a two-column matrix
   
   for(i in seq_len(nrow(u))){
     if(i==bold | nrow(u)==1){
@@ -400,6 +457,8 @@
   return(from + tee*(-from+to))
 }
 
+
+
 `boost` <- function(u){  # v = (u,v,w)
   u <- as.3vel(u)
   g <- gam(u)  
@@ -425,7 +484,6 @@
     return(out)
   }
 }
-
 
 `pureboost` <- function(L){
   jj <- eigen(crossprod(L))

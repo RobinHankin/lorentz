@@ -2,9 +2,10 @@
 \alias{3vel}
 \alias{as.3vel}
 \alias{is.3vel}
-\alias{length.3vel}
-\alias{names.3vel}
-\alias{names<-.3vel}
+\alias{length.vel}
+\alias{length.vel}
+\alias{names.vel}
+\alias{names<-.vel}
 \alias{threevel}
 \alias{3velocity}
 \alias{3-velocity}
@@ -19,9 +20,9 @@ Create and test for three-velocities, \code{3vel} objects.
 threevel(n)
 as.3vel(x)
 is.3vel(x)
-\method{length}{3vel}(x)
-\method{names}{3vel}(x)
-\method{names}{3vel}(x) <- value
+\method{length}{vel}(x)
+\method{names}{vel}(x)
+\method{names}{vel}(x) <- value
 }
 \arguments{
   \item{n}{In function \code{3vel()}, number of three velocities to
@@ -29,6 +30,10 @@ is.3vel(x)
   \item{x,value}{Vectors of three-velocities}
 }
 \note{
+
+  Class \code{vel} is a virtual class containing classes \code{3vel} and
+  \code{4vel}. 
+
   Function \code{threevel()} is a convenience wrapper for \code{3vel()}.
   }
 \author{Robin K. S. Hankin}
