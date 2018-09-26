@@ -30,9 +30,10 @@ pairs(unclass(u+a),asp=1)
 pairs(unclass(a+u),asp=1)
 
 sol(299792458)
-r3vel(100,343)  # speed of sound in SI
+sound <- 343      # speed of sound in SI
+r3vel(100,343)    # random 3-velocities with speed=343
+
+
 sol(1)   # return to default c=1
-
-
 
 }
