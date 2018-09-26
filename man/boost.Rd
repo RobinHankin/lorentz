@@ -53,12 +53,18 @@ orthog(L)
   boost matrix: the product is not symmetric in general.  The resulting
   matrix represents a \dfn{Lorentz transform}.
 
-  It is possible to decompose a Lorentz transform into a pure boost and
-  a rotation.  This rotation may be expressed in terms of an orthogonal
-  matrix, which is returned by function \code{rot()}.
+  It is possible to decompose a Lorentz transform \eqn{L} into a pure
+  boost and a spatial rotation.  Thus \eqn{L=OP} where \eqn{O} is an
+  orthogonal matrix and \eqn{P} a pure boost matrix; these are returned by
+  functions \code{orthog()} and \code{pureboost()} respectively.  If the 
+  speed of light is not equal to 1, the functions still work but can be
+  confusing.
   
-  Neither function is vectorized.
-
+  The composition of two pure Lorentz boosts is not necessarily pure.  If
+  we have two successive boosts corresponding to \eqn{u} and \eqn{v}, then
+  the composed boost may be decomposed into a pure boost of \code{boost(u+v)}
+  and a rotation of \code{rot(u,v)}.
+  
 }
 \references{
   \itemize{
