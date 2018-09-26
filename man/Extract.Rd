@@ -1,6 +1,10 @@
 \name{Extract.3vel}
+\alias{[.vel}
+\alias{[<-.vel}
 \alias{[.3vel}
 \alias{[<-.3vel}
+\alias{[.4vel}
+\alias{[<-.4vel}
 \title{Extract or replace parts of three-velocity}
 \description{
   Extract or replace subsets of three-velocities
