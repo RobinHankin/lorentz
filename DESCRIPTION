@@ -10,9 +10,9 @@ Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 Description: Addition of velocities in special relativity is not
  straightforward: the parallelogram addition law does not apply because
  velocity addition is neither commutative nor associative.  This
- package furnishes some functionality to work with Lorentz transforms
+ package furnishes functionality to work with Lorentz transforms
  and the gyrogroup structure of three-velocities.  For general
- relativity, see the schwarzschild package.
+ relativity, see the 'schwarzschild' package.
 License: GPL-3
 URL: https://github.com/RobinHankin/lorentz.git
 Encoding: UTF-8
