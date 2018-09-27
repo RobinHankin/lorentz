@@ -1,6 +1,6 @@
 Package: lorentz
 Type: Package
-Title: the Lorentz Transform in Relativistic Physics
+Title: The Lorentz Transform in Relativistic Physics
 Version: 1.0-0
 Author: Robin K. S. Hankin
 Depends: magrittr
