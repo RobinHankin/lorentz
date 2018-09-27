@@ -25,7 +25,6 @@ Maintainer: \packageMaintainer{lorentz}
 \references{
 Ungar 2006. \dQuote{Thomas precession: a kinematic
   effect...}. \emph{European Journal of Physics}, 27:L17-L20,
-\doi{doi:10.1088/0143-0807/27/3/L02}
 }
 \keyword{ package }
 \examples{

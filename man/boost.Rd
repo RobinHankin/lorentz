@@ -70,8 +70,7 @@ orthog(L)
   \itemize{
     \item
     Ungar 2006. \dQuote{Thomas precession: a kinematic
-      effect\ldots}. \emph{European Journal of Physics}, 27:L17-L20,
-    \doi{doi:10.1088/0143-0807/27/3/L02}
+      effect\ldots}. \emph{European Journal of Physics}, 27:L17-L20
     \item
     Sbitneva 2001. \dQuote{Nonassociative geometry of special relativity}.
     \emph{International Journal of Theoretical Physics, volume 40, number 1,
