@@ -343,8 +343,8 @@
   }
 }
 
-`inner4` <- function(U){
-  quad.tdiag(eta(),U)
+`inner4` <- function(U,V=U){
+  quad.3tdiag(eta(),U,V)
 }
 
 `is.consistent.4vel` <- function(U,give=FALSE, TOL=1e-10){

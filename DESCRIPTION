@@ -1,11 +1,11 @@
 Package: lorentz
 Type: Package
 Title: The Lorentz Transform in Relativistic Physics
-Version: 1.0-0
+Version: 1.0-1
 Author: Robin K. S. Hankin
 Depends: magrittr
 Suggests: knitr
-Imports: emulator
+Imports: emulator (>= 1.2-19)
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 Description: Addition of velocities in special relativity is not
  straightforward: the parallelogram addition law does not apply because

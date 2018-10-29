@@ -1,7 +1,7 @@
 exportPattern("^[[:alpha:]]+")
 
 importFrom("stats", "runif")
-importFrom("emulator","quad.tdiag","quad.tform", "quad.form","quad.3form")
+importFrom("emulator","quad.tdiag","quad.tform", "quad.form","quad.3form", "quad.3tdiag")
 importFrom("graphics", "arrows", "legend", "plot", "points")
 
 import("magrittr")

@@ -19,12 +19,12 @@ Create and test for four-velocities.
 \usage{
 as.4vel(u)
 is.consistent.4vel(U, give=FALSE, TOL=1e-10)
-inner4(U)
+inner4(U,V=U)
 to3(U)
 }
 \arguments{
-  \item{u}{A three-velocity}
-  \item{U}{A four-velocity}
+  \item{u}{A vector of three-velocities}
+  \item{U,V}{A vector of four-velocities}
   \item{give}{In function \code{is.consistent.4vel()}, Boolean with
     \code{TRUE} meaning to return \eqn{U\cdot U+c^2}{U.U+c^2}, which is
     zero for a four-velocity, and default \code{FALSE} meaning to return
@@ -64,5 +64,14 @@ inner4(as.4vel(a))   # should be -1
 
 stopifnot(all(is.consistent.4vel(as.4vel(a))))
 
+
+## check Lorentz invariance of dot product:
+U <- as.4vel(r3vel(10))
+V <- as.4vel(r3vel(10))
+B <- boost(as.3vel(1:3/10))
+frame1dotprod <- inner4(U \%*\% B, V \%*\% B)
+frame2dotprod <- inner4(U \%*\% B, V \%*\% B)
+
+max(abs(frame1dotprod-frame2dotprod))  # should be small
 
 }
