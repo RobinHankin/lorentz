@@ -135,7 +135,9 @@ P <- pureboost(L)
 L - U \%*\% P              # should be small (L = UP)
 crossprod(U)               # should be identity (U is orthogonal)
 P - t(P)                   # should be small (P is symmetric)
-is.consistent.4vel(P[,1])  # should be TRUE 
+
+## First row of P should be a consistent 4-velocity:
+is.consistent.4vel(as.4vel(P[,1]))
 
 
 
