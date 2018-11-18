@@ -150,6 +150,10 @@
   return(-expm1(jj)/exp(jj))
 }
 
+`gam_ur` <- function(d){  # d=1-speed, d<<1
+  d <- d/sol()
+  return(1/sqrt(2*d-d^2))
+}
 `add3` <- function(u,v){  # eq 2
   jj <- massage3(u,v)
   u <- jj[[1]]

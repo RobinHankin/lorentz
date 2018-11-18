@@ -11,6 +11,7 @@
 \alias{gamm1.3vel}
 \alias{gamm1.4vel}
 \alias{gamm1.default}
+\alias{gam_ur}
 \title{Gamma correction}
 \description{
 Lorentz gamma correction term in special relativity}
@@ -24,10 +25,13 @@ gamm1(u)
 \method{gam}{4vel}(u)
 \method{gamm1}{3vel}(u)
 \method{gamm1}{4vel}(u)
+gam_ur(d)
 }
 \arguments{
   \item{u}{Speed: either a vector of speeds or a vector of
     three-velocities or four-velocities}
+  \item{d}{In function \code{gam_ur()}, deficit of speed; speed of light
+      minus speed of object}
 }
 \details{
 
@@ -39,9 +43,17 @@ gamm1(u)
 
   Function \code{gamm1(u)} returns the Lorentz factor minus 1, useful
   for slow speeds when larger accuracy is needed (much like
-  \code{expm1()}).  Function \code{gamm1()} will take a 4-velocity, but
-  this is not recommended as accuracy is lost.
+  \code{expm1()}).  Function \code{gamm1()} is intended to work with
+  \code{3vel} objects or speeds.  The function will take a 4-velocity,
+  but this is not recommended as accuracy is lost (all it does is return
+  the time component of the 4-velocity minus 1).
 
+  Function \code{gam_ur()} is used for the ultrarelativistic case where
+  speeds are very close to the speed of light (the function is named for
+  \dQuote{gamma, ultrarelativistic}).
+    
+
+  
   Function \code{speedsquared(u)} returns the square of the speed of a
   \code{3vel} object.  Use this to avoid taking a needless square root.
 }
@@ -68,6 +80,14 @@ gamm1(sound)   # gamm1() gives much higher precision
 snail <- as.3vel(c(0.00275,0,0)) # even the world's fastest snail...
 gamm1(snail)                     # ...has only a small relativistic correction
 
+
+
+gam_ur(1) - gam(sol()-1)  ## see the extra accuracy of gam_ur()
+
+
+
 sol(1)
+gam_ur(4.9e-24)  # Oh-My-God particle
+
 
 }
