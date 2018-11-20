@@ -113,8 +113,9 @@ u <- as.3vel(c(0.3,-0.4,0.8))
 u
 @ 
 
-(note that the package uses units in which $c=1$).  Velocity $u$ may
-be expressed as a four-velocity:
+(note that the package uses units in which $c=1$ by default, although
+this can be changed).  Three-velocity $u$ may be expressed as a
+four-velocity:
 
 <<>>=
 as.4vel(u)
@@ -168,10 +169,8 @@ P - t(P)
 
 The \pkg{lorentz} package includes functionality to compose
 three-velocities.  Three velocities do not form a group under
-composition as the velocity addition law is not associative.  As
-\cite{ungar2006} points out: ``The nonassociativity of Einstein's
-velocity addition is not widely known''.  \citeauthor{ungar2006} shows
-that the velocity addition law is
+composition as the velocity addition law is not associative.
+\cite{ungar2006} shows that the velocity addition law is
 
 \begin{equation}
 \bu\oplus\bv=
@@ -350,9 +349,11 @@ ass_fail(u=u, v=v, w=w, bold=10)
 
 
 \newpage
-\section{The magrittr package: pipes}
+\section{The \pkg{magrittr} package: pipes}
 
-The lorentz package works nicely with magrittr.  If we define
+The \pkg{lorentz} package works nicely with \pkg{magrittr}.  If we
+define
+
 <<defuvw>>=
  u <- as.3vel(c(+0.5,0.1,-0.2))
  v <- as.3vel(c(+0.4,0.3,-0.2))
@@ -401,7 +402,7 @@ y <- as.3vel(c(0.1, 0.3, -0.6))
 @ 
 
 Then we can define \code{f()} which is the
-map~$\bx\longrightarrow\gyr{u}{v}\bx$:
+map~$\bx\mapsto\gyr{u}{v}\bx$:
 
 <<>>=
 f <- gyrfun(u,v)
@@ -437,7 +438,7 @@ x
 The preceding material used units in which $c=1$.  Here I show how the
 package deals with units such as SI in which $c=299792458\neq 1$.  For
 obvious reasons we cannot have a function called \code{c()} so the
-package gets and sets the package with \code{sol()}:
+package gets and sets the speed of light with function \code{sol()}:
 
                                                   
 <<>>=
