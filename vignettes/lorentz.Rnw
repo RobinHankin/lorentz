@@ -495,6 +495,12 @@ boost(v) %*% boost(u)
 
 \section*{Appendix A. Active and passive transforms}
 
+Passive transforms are the usual type of transforms taught and used in
+relativity.  I will talke about passive transforms first, then active
+transforms.
+
+\subsection*{Passive transforms}
+
 Consider the following canonical Lorentz transform in which we have
 only motion in the $x$-direction at speed $v$.  The motion is from
 left to right, and this means that $v>0$.  The physical interpretation
@@ -514,14 +520,15 @@ The Lorentz transform is:
 And the canonical example of that is:
 
 \begin{equation*}
-\twomat{\gamma}{\gamma v}{\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{\gamma v}
+\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{-\gamma v}
 \end{equation*}
 
 where the vectors are four velocities (recall that $\vvec{1}{0}$ is
 the four-velocity of an object at rest).  What this means is that {\bf
-  he} sees a four-vector $\vvec{1}{0}$, and {\bf I} see
-$\vvec{\gamma}{\gamma v}$.  So he sees the object at rest, and I see
-it as moving at speed $v$ to the right.
+  I} sees a four-vector $\vvec{1}{0}$, and {\bf he} sees
+$\vvec{\gamma}{-\gamma v}$.  So I see the object at rest, and he sees
+it as moving at speed $-v$ to the right (it moves to the left because
+he is moving to the right relative to me).
 
 Let's try it with light.  Recall that we describe a photon in terms of
 its four momentum, not four-velocity, which is undefined for a photon.
@@ -535,35 +542,45 @@ Specifically, we {\em define} the four-momentum of a photon to be
   \right)
   \end{equation*}
 
-So if we consider unit energy and keep $c=1$ we get $p=\vvec{1}{1}$ in
-our one-dimensional world and the Lorentz transform is then
+So if we consider unit energy and keep $c=1$ we get $p=\vvec{1}{1}$
+in our one-dimensional world (for a rightward-moving photon) and the
+Lorentz transform is then
 
 \begin{equation*}
-  \twomat{\gamma}{\gamma v}{\gamma v}{\gamma}\vvec{1}{1}=\vvec{\gamma+\gamma v}{\gamma+\gamma v}
+  \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{1}=\vvec{\gamma-\gamma v}{\gamma-\gamma v}
   \end{equation*}
 
-So he sees a photon with unit energy, and I see the photon with energy
-$\gamma(1+v)=\sqrt{\frac{1+v}{1-v}}>1$: the photon has more energy in
-my frame than his because of Doppler blue-shifting.
+So I see a photon with unit energy, and he sees the photon with energy
+$\gamma(1-v)=\sqrt{1-v}<1$: the photon has less energy in his frame
+than mine because of Doppler redshifting.
+
+It's worth doing the same analysis with a leftward-moving photon:
+
+\begin{equation*}
+  \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{-1}=\vvec{\gamma(1+v)}{-\gamma(1+v)}
+  \end{equation*}
+
+Here the photon has more energy for him than me because of blue
+shifting: he is moving to the right and bashes into a photon moving to
+the left.
 
 The above analysis uses {\em passive} transforms: There is a single
 physical reality, and we are just describing that one physical reality
 using two different coordinate systems.  One of the coordinate systems
 uses a set of axes that are {\em boosted} relative to the axes of the
-other.  Consider a four-vector that might be a four-velocity, a
-four-momentum, etc.  Then different observers will disagree about how
-to describe that four-velocity.  Thus one observer might write
-$\vvec{1}{0}$ and another would write $\vvec{\gamma}{\gamma v}$.  Such
-transforms are commonplace in classical world: If I stand on the North
-pole of Earth, then I might describe a locally vertical vector as
-$\left(\begin{array}{c}1\\0\\0\end{array}\right)$ but my friend on the
-  equator would describe the {\em same} vector as
-  $\left(\begin{array}{c}0\\1\\0\end{array}\right)$.  Noone is right
-    or wrong here, we are just using different coordinate systems.
+other. 
 
 This is why it makes sense to use notation of $x'$ and $x$ with a
 passive Lorentz transformation: the prime denotes coordinates that are
-defined with respect to the boosted coordinate system.
+defined with respect to the boosted coordinate system and we see
+things like
+
+\begin{equation*}
+\vvec{t'}{x'}=\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{t}{x}
+\end{equation*}  
+
+This is the first two elements of a displacement four-vector.  It is
+the same four-vector but viewed in two different reference frames.
 
 \subsection*{Active transforms}
 
@@ -572,16 +589,38 @@ just describing that one physical reality using two different
 coordinate systems.  Now we will consider active transforms: there are
 two physical realities, but one is boosted with respect to another.  
 
-Again, we have me at rest and my friend in a spaceship, but this time
-he observes a four-vector with certain components, and we are
-wondering what I would observe.  This is an {\em active} transform
-because, for example, he would see a four-velocity of $\vvec{1}{0}$,
-and I say to myself: ``My friend sees $\vvec{1}{0}$, and I know what
-that means.  He sees an object at rest.  What does that vector look
-like, to me?".  This is an {\em active} transform.  We can
-vector $\vvec{1}{0}$ and
+Suppose me and my friend are at rest with respect to one another, but
+my friend is in a spaceship and I am outside it, in free space, at
+rest.  He constructs a four-vector in his spaceship; for example, he
+could fire bullets out of a gun which is fixed in the spaceship, and
+he calculates their four-velocity.  We both agree on this
+four-velocity as our reference frames are identical: we have no
+relative velocity.
+
+Now his spaceship acquires a constant velocity, leaving me outside the
+spaceship, stationary.  My friend continues to fire bullets out of his
+gun and sees that their four-velocity, as viewed in his spaceship
+coordinates, is the same as when we were together.
+
+Now he wonders what the four-velocity of the bullets is in my
+reference frame.  This is an {\em active} transform: we have two
+distinct physical realities, one in the spaceship when it was at rest
+with respect to me, and one in the spaceship when moving.  Suppose,
+for example, he sees the bullets at rest in his spaceship; they have a
+four-velocity of $\vvec{1}{0}$, and I say to myself: ``My friend sees
+$\vvec{1}{0}$, and I know what that means.  He sees an object at rest.
+What are the bullets' four velocities in my reference frame?".  This
+is an {\em active} transform:  
+
+\begin{equation*}
+\twomat{\gamma}{\gamma v}{\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{\gamma v}
+\end{equation*}
 
 
+(we again suppose that the spaceship moves at speed $v>0$ from left to
+right).  So he sees a four velocity of $\vvec{1}{0}$ and I see
+$\vvec{\gamma}{\gamma v}$, that is, with a positive speed: the bullets
+move from left to right (with the spaceship).
 
 
 \bibliography{lorentz}
