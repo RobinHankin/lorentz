@@ -571,9 +571,9 @@ uses a set of axes that are {\em boosted} relative to the axes of the
 other. 
 
 This is why it makes sense to use notation of $x'$ and $x$ with a
-passive Lorentz transformation: the prime denotes coordinates that are
-defined with respect to the boosted coordinate system and we see
-things like
+passive Lorentz transformation: the prime denotes measurements made
+using coordinates that are defined with respect to the boosted system,
+and we see things like
 
 \begin{equation*}
 \vvec{t'}{x'}=\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{t}{x}
@@ -581,6 +581,17 @@ things like
 
 This is the first two elements of a displacement four-vector.  It is
 the same four-vector but viewed in two different reference frames.
+This is the default mode in the package:
+
+<<print=FALSE,results=hide>>=
+sol(1)
+@ 
+
+<<>>=
+boost(as.3vel(c(0.5,0,0)))
+@ 
+
+(note that element 1,2 is negative).
 
 \subsection*{Active transforms}
 
@@ -593,14 +604,14 @@ Suppose me and my friend are at rest with respect to one another, but
 my friend is in a spaceship and I am outside it, in free space, at
 rest.  He constructs a four-vector in his spaceship; for example, he
 could fire bullets out of a gun which is fixed in the spaceship, and
-he calculates their four-velocity.  We both agree on this
+then calculate their four-velocity.  We both agree on this
 four-velocity as our reference frames are identical: we have no
 relative velocity.
 
-Now his spaceship acquires a constant velocity, leaving me outside the
-spaceship, stationary.  My friend continues to fire bullets out of his
-gun and sees that their four-velocity, as viewed in his spaceship
-coordinates, is the same as when we were together.
+Now his spaceship acquires a constant velocity, leaving me stationary.
+My friend continues to fire bullets out of his gun and sees that their
+four-velocity, as viewed in his spaceship coordinates, is the same as
+when we were together.
 
 Now he wonders what the four-velocity of the bullets is in my
 reference frame.  This is an {\em active} transform: we have two
