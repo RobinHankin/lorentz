@@ -605,12 +605,16 @@ coordinates, is the same as when we were together.
 Now he wonders what the four-velocity of the bullets is in my
 reference frame.  This is an {\em active} transform: we have two
 distinct physical realities, one in the spaceship when it was at rest
-with respect to me, and one in the spaceship when moving.  Suppose,
-for example, he sees the bullets at rest in his spaceship; they have a
-four-velocity of $\vvec{1}{0}$, and I say to myself: ``My friend sees
-$\vvec{1}{0}$, and I know what that means.  He sees an object at rest.
-What are the bullets' four velocities in my reference frame?".  This
-is an {\em active} transform:  
+with respect to me, and one in the spaceship when moving.  And both
+these realities, by construction, look the same to my friend in the
+spaceship.
+
+Suppose, for example, he sees the bullets at rest in his spaceship;
+they have a four-velocity of $\vvec{1}{0}$, and my friend says to
+himself: ``I see bullets with a four velocity of $\vvec{1}{0}$, and I
+know what that means.  The bullets are at rest.  What are the bullets'
+four velocities in Robin's reference frame?".  This is an {\em active}
+transform:
 
 \begin{equation*}
 \twomat{\gamma}{\gamma v}{\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{\gamma v}
