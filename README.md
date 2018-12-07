@@ -14,10 +14,19 @@ must be careful with brackets.
 
 # Installation
 
-To install the current development version use devtools:
+To install the most recent stable version on CRAN, use ```install.packages()```
+at the R prompt:
 
-    devtools::install_github("RobinHankin/lorentz")
+```
+R> install.packages("lorentz")
+```
 
+
+To install the current development version use ```devtools```:
+
+```
+R> devtools::install_github("RobinHankin/lorentz")
+```
 
 # Features
 
