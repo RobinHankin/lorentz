@@ -496,7 +496,7 @@ boost(v) %*% boost(u)
 \section*{Appendix A. Active and passive transforms}
 
 Passive transforms are the usual type of transforms taught and used in
-relativity.  I will talke about passive transforms first, then active
+relativity.  I will discuss passive transforms first, then active
 transforms.
 
 \subsection*{Passive transforms}
@@ -524,11 +524,11 @@ And the canonical example of that is:
 \end{equation*}
 
 where the vectors are four velocities (recall that $\vvec{1}{0}$ is
-the four-velocity of an object at rest).  What this means is that {\bf
-  I} sees a four-vector $\vvec{1}{0}$, and {\bf he} sees
-$\vvec{\gamma}{-\gamma v}$.  So I see the object at rest, and he sees
-it as moving at speed $-v$ to the right (it moves to the left because
-he is moving to the right relative to me).
+the four-velocity of an object at rest).  What this means is that I
+see a four-vector $\vvec{1}{0}$, and he sees $\vvec{\gamma}{-\gamma
+  v}$.  So I see the object at rest, and he sees it as moving at speed
+$-v$, that is, to the left (it moves to the left because he is moving
+to the right relative to me).
 
 Let's try it with light.  Recall that we describe a photon in terms of
 its four momentum, not four-velocity, which is undefined for a photon.
@@ -591,7 +591,7 @@ sol(1)
 boost(as.3vel(c(0.5,0,0)))
 @ 
 
-(note that element 1,2 is negative).
+(note that element $[1,2]$ is negative).
 
 \subsection*{Active transforms}
 
