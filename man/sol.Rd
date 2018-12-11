@@ -8,10 +8,15 @@
 \description{Getting and setting the speed of light}
 \usage{
 sol(c)
-eta()
+eta(downstairs=TRUE)
 }
 \arguments{
-  \item{c}{Scalar, speed of light.  If missing, return the speed of light}
+  \item{c}{Scalar, speed of light.  If missing, return the speed of
+    light}
+  \item{downstairs}{Boolean, with default \code{TRUE} meaning to return
+    the covariant metric tensor \eqn{g_{ij}{g_ij}} with two downstairs
+      indices, and \code{FALSE} meaning to return the contraviariant
+      version \eqn{g^{ij}}{g^ij} with two upstairs indices}
 }
 \details{
 

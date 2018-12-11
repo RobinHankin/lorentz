@@ -12,8 +12,12 @@
   }
 }
 
-`eta` <- function(){
-  diag(c(-sol()^2,1,1,1))
+`eta` <- function(downstairs=TRUE){
+  if(downstairs){
+    return(diag(c(-sol()^2,1,1,1)))
+    } else {
+      return(diag(c(-1/sol()^2,1,1,1)))
+    }
 }
 
 `as.3vel` <- function(x){
