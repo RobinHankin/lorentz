@@ -6,6 +6,9 @@ importFrom("graphics", "arrows", "legend", "plot", "points")
 
 import("magrittr")
 
+importFrom("tensor","tensor")
+           
+
 S3method("Ops"    , "3vel")
 S3method("length" ,  "vel")
 S3method("names"  ,  "vel")
