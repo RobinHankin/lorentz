@@ -52,13 +52,30 @@ perfectfluid(10,1)
 
 u <- as.3vel(c(0.4,0.4,0.2))
 
-# Following should match; sign needed because active/passive difference:
-dust(1,u)
-transform_uu(dust(1),boost(-u))   
+## In the following, LHS is stationary dust and RHS is dust moving at
+## velocity 'u', but transformed to a frame also moving at velocity 'u':
+
+LHS <- dust(1)
+RHS <- transform_uu(dust(1,u),boost(u))
+max(abs(LHS-RHS))  # should be small
+
+
+## In the following, negative sign needed because active/passive
+## difference:
+
+LHS <- dust(1,u)
+RHS <- transform_uu(dust(1),boost(-u))
+max(abs(LHS-RHS))  # should be small
+
 
 
 sol(299792458)
 perfectfluid(1.225,101325) # air at STP
 
 
+LHS <- transform_uu(perfectfluid(1.225,101325),boost(as.3vel(c(1000,0,0))))
+RHS <- perfectfluid(1.225,101325) 
+LHS-RHS
+
+sol(1)
 }
