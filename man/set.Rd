@@ -5,6 +5,7 @@
 \alias{transform_uu}
 \alias{perfectfluid}
 \alias{dust}
+\alias{photongas}
 \alias{stress-energy}
 \alias{stress-energy-tensor}
 \alias{energy-momentum}
@@ -15,6 +16,7 @@
 \usage{
 perfectfluid(rho,p,u=0)
 dust(rho,u=0)
+photongas(rho,u=0)
 transform_dd(TT, B)
 transform_ud(TT, B)
 transform_uu(TT, B)
@@ -34,8 +36,9 @@ transform_uu(TT, B)
   energy condition) is performed: caveat emptor!
 
   Function \code{dust()} is a (trivial) function that returns the
-  stress-energy tensor for a zero-pressure perfect fluid, that is,
-  dust.  It is here for discoverability reasons.
+  stress-energy tensor for a zero-pressure perfect fluid, that is, dust.
+  Function \code{photongas()} returns the same for a photon gas.  They
+  are here for discoverability reasons.
 
   Functions \code{transform_dd()} et seq transform a second-rank tensor
   using the Lorentz transform.  The letters \dQuote{u} or \dQuote{d}
@@ -67,15 +70,23 @@ LHS <- dust(1,u)
 RHS <- transform_uu(dust(1),boost(-u))
 max(abs(LHS-RHS))  # should be small
 
+## Now test behaviour when  c!=1:
 
 
 sol(299792458)
 perfectfluid(1.225,101325) # air at STP
 
-
 LHS <- transform_uu(perfectfluid(1.225,101325),boost(as.3vel(c(1000,0,0))))
 RHS <- perfectfluid(1.225,101325) 
-LHS-RHS
+LHS-RHS  # should be small
 
+sol(10)
+u <- as.3vel(4:6)
+LHS <- photongas(1,u)
+RHS <- transform_uu(photongas(1),boost(-u))
+LHS-RHS # should be small
+
+
+## remember to re-set c:
 sol(1)
 }
