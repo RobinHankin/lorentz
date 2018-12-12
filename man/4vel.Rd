@@ -35,14 +35,23 @@ to3(U)
   Function \code{as.4vel()} takes a three-velocity and returns a
   four-velocity.
 
-  Function \code{inner4()} returns \eqn{U^iU_i=\eta_{ij}U^iU^j}{U^i.U_i}
+  Given a four-vector \eqn{V}, function \code{inner4()} returns the
+  Lorentz invariant \eqn{V^iV_i=\eta_{ij}V^iV^j}{V^i.V_i}.  This
+  quantity is unchanged under Lorentz transforms.  Note that function
+  \code{inner()} works for any four-vector, not just four-velocities.
+  It will work for (eg) a four-displacement, a four-momentum vector or a
+  four-frequency.  In electromagnetism, we could have a four-current or
+  a four-potential.  If \eqn{U} is a four-velocity, then
+  \eqn{U^iU_i=-1}; if \eqn{U} is a 4-displacement, then \eqn{U^iU_i} is
+  the squared interval.  If \eqn{P} is the four-momentum of a photon
+  then \eqn{P^iP_i=0}.
 
   Function \code{to3()} is a low-level helper function used when
   \code{as.3vel()} is given a four-velocity.
 
   Function \code{is.consistent.4vel()} checks for four-velocities being
   consistent in the sense that \eqn{U^iU_i=-1}{U.U=-1}.  Giving this
-  function a vector as in \code{is.consistent.4vel(1:5)} will give an
+  function a vector as in \code{is.consistent.4vel(1:5)} will return an
   error.
   
   There is a class \dQuote{\code{4vel}}; but the emphasis is on

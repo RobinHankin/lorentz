@@ -23,8 +23,12 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{lorentz}
 }
 \references{
-Ungar 2006. \dQuote{Thomas precession: a kinematic
-  effect...}. \emph{European Journal of Physics}, 27:L17-L20,
+  \itemize{
+\item Ungar 2006. \dQuote{Thomas precession: a kinematic
+  effect...}. \emph{European Journal of Physics}, 27:L17-L20.
+\item
+\url{https://www.youtube.com/watch?v=9Y9CxiukURw&index=68&list=PL9_n3Tqzq9iWtgD8POJFdnVUCZ_zw6OiB}
+}
 }
 \keyword{ package }
 \examples{
