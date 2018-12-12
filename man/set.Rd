@@ -26,7 +26,7 @@ transform_uu(TT, B)
   \item{TT}{A second-rank tensor with indices either
   downstairs-downstairs, downstairs-upstairs, or upstairs-upstairs}
 \item{B}{A boost matrix}
-\item{rho,p,u}{Density,pressure, and four-velocity of the dust}
+\item{rho,p,u}{Density, pressure, and four-velocity of the dust}
 }
 \details{
 
