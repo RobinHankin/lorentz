@@ -87,6 +87,14 @@ RHS <- transform_uu(photongas(1),boost(-u))
 LHS-RHS # should be small
 
 
+
+B1 <- boost(r3vel(1)) \%*\% boost(r3vel(1))
+B2 <- boost(r3vel(1)) \%*\% boost(r3vel(1))
+LHS <- transform_uu(transform_uu(dust(1),B1),B2)
+RHS <- transform_uu(dust(1),B2 \%*\% B1)   # note order
+LHS-RHS  # should be small
+
+
 ## remember to re-set c:
 sol(1)
 }
