@@ -95,6 +95,8 @@
   return(as.3vel(out))
 }
 
+r4vel <- function(...){as.4vel(r3vel(...))}
+
 `massage3` <- function(u,v){
   lu <- length(u)
   lv <- length(v)
