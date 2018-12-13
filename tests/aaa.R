@@ -1,5 +1,9 @@
-## some tests, mostly drawn from Ungar 1997 and Ungar 2006.  The
+## Some tests, mostly drawn from Ungar 1997 and Ungar 2006.  The
 ## functions are defined first and used at the very end.
+
+## See file aab.R for more conventional tests of behaviour of
+## four-vectors in special relativity, eg U.U=-c^2 for a
+## four-velocity.
 
 
 require("lorentz")
