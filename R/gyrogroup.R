@@ -356,11 +356,12 @@
 }
 
 `is.consistent.4vel` <- function(U,give=FALSE, TOL=1e-10){
+
     out <- (inner4(U) + sol()^2)/sol()^2
     if(give){
         return(out)
     } else {
-        return(out<TOL)
+        return(out<TOL*sol()^2)
     }
 }
 
@@ -369,7 +370,7 @@
   if(give){
     return(out)
   } else {
-    return(all(abs(out-eta())<TOL))
+    return(all(abs(out-eta())<TOL*sol()^2))
   }
 }
 
