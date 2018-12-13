@@ -493,6 +493,10 @@ boost(u) %*% boost(v)
 boost(v) %*% boost(u)
 @ 
 
+
+
+
+
 \section*{Appendix A. Active and passive transforms}
 
 Passive transforms are the usual type of transforms taught and used in
@@ -636,6 +640,92 @@ transform:
 right).  So he sees a four velocity of $\vvec{1}{0}$ and I see
 $\vvec{\gamma}{\gamma v}$, that is, with a positive speed: the bullets
 move from left to right (with the spaceship).
+
+
+\section{Vectorization}
+
+
+Here I discuss vectorized operations.  The issue is difficult because
+a vector of four-velocities is arranged so that each row is a
+four-velocity, and each column is a component.  To avoid confusion
+boost matrices and their transposes we will use $c=10$.
+
+
+<<>>=
+sol(10)
+options(digits=3)
+u <- runif(7,3,4)  # speed in the x-direction [c=10]
+U <- cbind(gam(u),gam(u)*u,0,0)
+(U <- as.4vel(U))
+@ 
+
+Now a boost, also in the x-direction:
+
+<<>>=
+(B <- boost(as.3vel(c(6,0,0))))  # 60% speed of light
+@ 
+
+Note the asymmetry of $B$, in this case reflecting the speed of light
+being 10 (but note that boost matrices are not always symmetrical,
+even if $c=1$).
+
+To effect a {\em passive} boost we need to multiply each row of $U$ by
+the boost matrix $B$:
+
+<<>>=
+U %*% t(B)
+@ 
+
+we can verify that the above is at least plausible:
+
+<<>>=
+is.consistent.4vel(U %*% t(B))
+@ 
+
+
+Note carefully that the following natural idiom is {\bf INCORRECT}:
+
+<<>>=
+U %*% B  # Young Frankstein: Do Not Use This Brain!
+@ 
+
+It is not clear to me that the idiom above has any meaning at all.
+Anyway, in this context we really ought to use \code{tcrossprod()}:
+
+<<>>=
+tcrossprod(U,B)
+@ 
+
+
+
+The above transforms were passive: we have some four-vectors and are
+now looking at those four-vectors from the perspective of my friend
+Baz, who is moving in the positive x direction at 60\% of the speed of
+light (remember that $c=10$).  See how the x-component of the
+transformed four-velocity is negative, because from Baz's perspective
+the four velocities are moving backwards.
+
+To effect an active transform we need to take the matrix inverse of $B$:
+
+<<>>=
+solve(B)
+@ 
+
+and then
+
+<<>>=
+tcrossprod(U,solve(B))
+@ 
+
+In the above, note how the positive x-component of the four-velocity
+is increased because we have actively boosted it.  We had better check
+the result for consistency:
+
+<<>>=
+is.consistent.4vel(tcrossprod(U,solve(B)))
+@ 
+
+
 
 
 \bibliography{lorentz}
