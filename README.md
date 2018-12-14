@@ -33,7 +33,7 @@ R> devtools::install_github("RobinHankin/lorentz")
 # Features
 
 Natural R idiom can be used to define three-velocities,
-four-velocities, and Lorentz transformations as $4\times 4$ matrices.
+four-velocities, and Lorentz transformations as four-by-four matrices.
 
 
 ```
