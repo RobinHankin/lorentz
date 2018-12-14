@@ -43,7 +43,8 @@ gam_ur(d)
 
   Function \code{gamm1(u)} returns the Lorentz factor minus 1, useful
   for slow speeds when larger accuracy is needed (much like
-  \code{expm1()}).  Function \code{gamm1()} is intended to work with
+  \code{expm1()}); to see the R idiom, type \dQuote{\code{gamm1.3vel}}
+  at the commandline.  Function \code{gamm1()} is intended to work with
   \code{3vel} objects or speeds.  The function will take a 4-velocity,
   but this is not recommended as accuracy is lost (all it does is return
   the time component of the 4-velocity minus 1).
