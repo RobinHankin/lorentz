@@ -1,4 +1,4 @@
-The lorentz R package: noncommutative and nonassociative Lorentz velocity addition in special relativity
+The lorentz R package: special relativity 
 ====================================
 
 # Introduction
@@ -7,10 +7,12 @@ The lorentz R package: noncommutative and nonassociative Lorentz velocity additi
 known''-- Ungar 2006.
 
 The `lorentz` package furnishes some R-centric functionality for
-manipulating three-velocities in the context of their being a
-gyrogroup, and the calculation of Wigner rotation.  Natural R idiom
-may be used to manipulate vectors of three-velocities, although one
-must be careful with brackets.
+special relativity.  Lorentz transformations of four-vectors are
+handled and some functionality for the stress energy tensor is given.
+
+The package also works with three-velocities in the context of their
+being a gyrogroup.  Natural R idiom may be used to manipulate vectors
+of three-velocities, although one must be careful with brackets.
 
 # Installation
 
@@ -30,7 +32,93 @@ R> devtools::install_github("RobinHankin/lorentz")
 
 # Features
 
+Natural R idiom can be used to define three-velocities,
+four-velocities, and Lorentz transformations as $4\times 4$ matrices.
+
+
+```
+R> u <- as.3vel(c(0.6,0,0))  # define a three-velocity, 0.6c to the right
+R> u
+       x y z
+[1,] 0.6 0 0
+
+R> as.4vel(u)    # convert to a four-velocity:
+        t    x y z
+[1,] 1.25 0.75 0 0
+
+R> gam(u)  # calculate the gamma term
+[1] 1.25
+
+R> B <- boost(as.3vel(c(0.6,0,0))) # give the Lorentz transformation
+R> B
+      t     x y z
+t  1.25 -0.75 0 0
+x -0.75  1.25 0 0
+y  0.00  0.00 1 0
+z  0.00  0.00 0 1
+
+R> B %*% (1:4)  # Lorentz transform of an arbitrary four-vector
+   [,1]
+t -0.25
+x  1.75
+y  3.00
+z  4.00 
+```
+
+The package is fully vectorized and includes functionality to convert
+between three-velocities and four-velocities:
+
+```
+R> set.seed(0)
+R> options(digits=3)
+R> # generate 5 random three-velocities:
+R> (u <- r3vel(5))
+          x       y      z
+[1,]  0.230  0.0719  0.314
+[2,] -0.311  0.4189 -0.277
+[3,] -0.185  0.5099 -0.143
+[4,] -0.739 -0.4641  0.129
+[5,] -0.304 -0.2890  0.593
+
+R> # calculate the gamma correction term:
+R> gam(u)
+[1] 1.09 1.24 1.21 2.13 1.46
+
+R> # add a velocity of 0.9c in the x-direction:
+R> v <- as.3vel(c(0.9,0,0))
+R> v+u
+         x      y      z
+[1,] 0.936  0.026  0.113
+[2,] 0.818  0.253 -0.168
+[3,] 0.858  0.267 -0.075
+[4,] 0.480 -0.605  0.168
+[5,] 0.820 -0.174  0.356
+
+R> # convert u to a four-velocity:
+R> as.4vel(u)
+        t      x       y      z
+[1,] 1.09  0.250  0.0783  0.341
+[2,] 1.24 -0.385  0.5190 -0.343
+[3,] 1.21 -0.223  0.6160 -0.173
+[4,] 2.13 -1.571 -0.9862  0.273
+[5,] 1.46 -0.443 -0.4209  0.864
+
+R> # use four-velocities to effect the same transformation:
+R> w <- as.4vel(u) %*% boost(-v)
+R> as.3vel(w)
+         x      y      z
+[1,] 0.936  0.026  0.113
+[2,] 0.818  0.253 -0.168
+[3,] 0.858  0.267 -0.075
+[4,] 0.480 -0.605  0.168
+[5,] 0.820 -0.174  0.356
+```
+
+
 ### Creation of three velocities:
+
+Three-velocites behave in interesting and counter-intuitive ways.
+
 
 ```
 R> u <- as.3vel(c(0.2,0.4,0.1))   # single three-velocity
@@ -65,17 +153,18 @@ R>
 ```
 
 Observe that the difference between ```u+v``` and ```v+u``` is not
-"small" in any sense.
-
-Commutativity is replaced with gyrocommutatitivity:
+"small" in any sense. Commutativity is replaced with gyrocommutatitivity:
 
 ```
-R> (u+v) - gyr(u,v,v+u)
+# Compare two different ways of calculating the same thing:
+R> (u+v) - gyr(u,v,v+u)  
                  x             y             z
 [1,]  0.000000e+00  5.122634e-16  6.670097e-18
 [2,]  1.550444e-16  6.644760e-17 -1.771936e-16
 [3,]  9.035809e-17  4.517904e-16  5.421485e-16
 [4,] -1.484050e-16 -1.484050e-16 -3.710124e-17
+
+# The other way round:
 R> (v+u) - gyr(v,u,u+v)
                  x             y             z
 [1,]  1.195281e-15  2.390563e-15 -2.027709e-16
@@ -103,7 +192,6 @@ R>
 ``` 
 
 (that is, significant departure from associativity).
-
 Associativity is replaced with gyroassociativity:
 
 ```
