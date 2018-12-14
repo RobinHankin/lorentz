@@ -641,15 +641,12 @@ right).  So he sees a four velocity of $\vvec{1}{0}$ and I see
 $\vvec{\gamma}{\gamma v}$, that is, with a positive speed: the bullets
 move from left to right (with the spaceship).
 
-
 \section{Vectorization}
-
 
 Here I discuss vectorized operations.  The issue is difficult because
 a vector of four-velocities is arranged so that each row is a
 four-velocity, and each column is a component.  To avoid confusion
-boost matrices and their transposes we will use $c=10$.
-
+between boost matrices and their transposes we will use $c=10$.
 
 <<>>=
 sol(10)
@@ -682,30 +679,27 @@ we can verify that the above is at least plausible:
 is.consistent.4vel(U %*% t(B))
 @ 
 
-
-Note carefully that the following natural idiom is {\bf INCORRECT}:
-
-<<>>=
-U %*% B  # Young Frankstein: Do Not Use This Brain!
-@ 
-
-It is not clear to me that the idiom above has any meaning at all.
-Anyway, in this context we really ought to use \code{tcrossprod()}:
+the above shows that the four velocities $U$, as observed by an
+observer corresponding to boost $B$, satisfies $U^iU_i=-c^2$.  Anyway,
+in this context we really ought to use \code{tcrossprod()}:
 
 <<>>=
 tcrossprod(U,B)
 @ 
 
+which would be preferable (because this idiom does not require one to
+take a transpose) although the speed increase is unlikely to matter
+much because $B$ is only $4\times 4$.
 
+The above transforms were passive: we have some four-vectors measured
+in my rest frame, and we want to see what these are four-vectors as
+measured by my friend Baz, who is moving in the positive x direction
+at 60\% of the speed of light (remember that $c=10$).  See how the
+x-component of the transformed four-velocity is negative, because in
+Baz's rest frame, the four velocities are pointing backwards.
 
-The above transforms were passive: we have some four-vectors and are
-now looking at those four-vectors from the perspective of my friend
-Baz, who is moving in the positive x direction at 60\% of the speed of
-light (remember that $c=10$).  See how the x-component of the
-transformed four-velocity is negative, because from Baz's perspective
-the four velocities are moving backwards.
-
-To effect an active transform we need to take the matrix inverse of $B$:
+To effect an {\em active} transform we need to take the matrix inverse
+of $B$:
 
 <<>>=
 solve(B)
@@ -727,8 +721,9 @@ is.consistent.4vel(tcrossprod(U,solve(B)))
 
 \subsection{Multiple boosts}
 
-First we will do some passive boosts.
 
+If we are considering multiple boosts, it is important to put them in
+the correct order.  First we will do some passive boosts.
 
 <<>>=
 sol(100)
@@ -750,9 +745,8 @@ With \code{tcrossprod()}:
 tcrossprod(U, B2 %*% B1)
 @ 
   
-Again magrittr provides arguable more readable idiom:
-       
-  
+Again magrittr provides arguably more readable idiom:
+         
 <<>>=
 U %>% tcrossprod(B2 %*% B1)
 @ 
@@ -776,6 +770,18 @@ Again the magrittr package can be used for more readable idiom:
 perfectfluid(3,100) %>% transform_uu(B1) %>% transform_uu(B2)
 perfectfluid(3,100) %>% transform_uu(B2 %*% B1)  # should match
 @                                                            
+
+
+\section{A warning}
+
+Note carefully that the following natural idiom is {\bf INCORRECT}:
+
+<<>>=
+U %*% B  # Young Frankstein: Do Not Use This Brain!
+@ 
+
+It is not clear to me that the idiom above has any meaning at all.
+
 
 
 \bibliography{lorentz}
