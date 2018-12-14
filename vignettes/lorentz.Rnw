@@ -670,7 +670,7 @@ being 10 (but note that boost matrices are not always symmetrical,
 even if $c=1$).
 
 To effect a {\em passive} boost we need to multiply each row of $U$ by
-the boost matrix $B$:
+the transpose of the boost matrix $B$:
 
 <<>>=
 U %*% t(B)
@@ -725,7 +725,57 @@ the result for consistency:
 is.consistent.4vel(tcrossprod(U,solve(B)))
 @ 
 
+\subsection{Multiple boosts}
 
+First we will do some passive boosts.
+
+
+<<>>=
+sol(100)
+B1 <- boost(r3vel(1)) %*% boost(r3vel(1))
+B2 <- boost(r3vel(1)) %*% boost(r3vel(1)) 
+U <- r4vel(3)
+@
+
+Successive boosts are effected by matrix multiplication:
+
+<<>>=
+U %*% t(B1) %*% t(B2)
+U %*% t(B2 %*% B1)    # note order of operations
+@ 
+
+With \code{tcrossprod()}:
+
+<<>>=
+tcrossprod(U, B2 %*% B1)
+@ 
+  
+Again magrittr provides arguable more readable idiom:
+       
+  
+<<>>=
+U %>% tcrossprod(B2 %*% B1)
+@ 
+
+\subsection{Multiple boosts of the stress-energy tensor}
+
+Multiple boosts work quite nicely with the package:
+
+<<>>=
+B1 <- boost(r3vel(1)) %*% boost(r3vel(1))
+B2 <- boost(r3vel(1)) %*% boost(r3vel(1))
+LHS <- transform_uu(transform_uu(dust(1),B1),B2)
+RHS <- transform_uu(dust(1),B2 %*% B1)   # note order
+LHS-RHS  # should be small
+@ 
+  
+Again the magrittr package can be used for more readable idiom:
+                                                           
+                                                           
+<<>>=
+perfectfluid(3,100) %>% transform_uu(B1) %>% transform_uu(B2)
+perfectfluid(3,100) %>% transform_uu(B2 %*% B1)  # should match
+@                                                            
 
 
 \bibliography{lorentz}
