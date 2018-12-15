@@ -72,6 +72,8 @@ gam(speed(x))  # works, but slow and inaccurate
 gam(x)         # recommended: avoids needless coercion
 
 
+
+## Some work in SI units and terrestrial speeds.  Use gamm1() for this.
 sol(299792458)
 sound <- 343 # speed of sound in SI
 gam(sound)
@@ -82,13 +84,12 @@ snail <- as.3vel(c(0.00275,0,0)) # even the world's fastest snail...
 gamm1(snail)                     # ...has only a small relativistic correction
 
 
+## for the ultrarelativistic case of speeds very close to the speed of
+##   light, use gam_ur():
 
-gam_ur(1) - gam(sol()-1)  ## see the extra accuracy of gam_ur()
-
-
-
-sol(1)
-gam_ur(4.9e-24)  # Oh-My-God particle
-
+sol(1)           # revert to relativistic units
+omgp <- 4.9e-24  # speed deficit of the Oh-My-God particle
+gam(1-omgp)      # numeric overflow
+gam_ur(4.9e-24)  # large but finite
 
 }
