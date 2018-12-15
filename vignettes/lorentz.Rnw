@@ -534,6 +534,8 @@ see a four-vector $\vvec{1}{0}$, and he sees $\vvec{\gamma}{-\gamma
 $-v$, that is, to the left (it moves to the left because he is moving
 to the right relative to me).
 
+\subsubsection*{Null vectors: light}
+
 Let's try it with light.  Recall that we describe a photon in terms of
 its four momentum, not four-velocity, which is undefined for a photon.
 Specifically, we {\em define} the four-momentum of a photon to be
