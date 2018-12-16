@@ -25,4 +25,26 @@
 }
 
 
+`reflect` <- function(P,m,ref=1){  # 'P' is the four-momentum (canonically
+                             # that of a photon but will work for
+                             # anything)
+
+  P <- rbind(P)
+  if(missing(m)){  # direct reflection
+    P[,-1] <- -P[,-1]
+  } else {
+    m <- rbind(m)
+    jj <- cbind(seq_len(nrow(P)),seq_len(nrow(m)),seq_along(ref))
+    
+    P <- P[jj[,1],]
+    m <- m[jj[,2],]
+    ref <- ref[jj[,3]]
+
+    P[,-1] <- P[,-1] - sweep(2*m,1,rowSums(P[,-1]*m)/rowSums(m*m),`*`)
+  }
+  return(sweep(P,1,ref,`*`))
+}
+  
+
+
 
