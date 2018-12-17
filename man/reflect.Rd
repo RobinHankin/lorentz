@@ -44,5 +44,5 @@ reflect(A \%*\% t(B),m)
 
 
 ## Now transform back to the original rest frame (NB: active transform):
-reflect(reflect(A \%*\% t(B),m) \%*\% solve(t(B)))
+reflect(A \%*\% t(B),m) \%*\% solve(t(B))
 }
