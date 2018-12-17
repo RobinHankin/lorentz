@@ -784,7 +784,66 @@ U %*% B  # Young Frankstein: Do Not Use This Brain!
 
 It is not clear to me that the idiom above has any meaning at all.
 
+\section{Photons}
 
+It is possible to define the four-momentum of photons by specifying
+their three-velocity and energy, and using \code{as.photon()}:
+ 
+<<>>=
+sol(1)
+(A <- as.photon(as.3vel(cbind(0.9,runif(5)/100,runif(5)/100))))
+@ 
+
+above, $A$ is a vector of four-momentum of 10 photons following a null
+path.  They are all moving approximately parallel to the x-axis.  We
+can check that this is indeed a null vector:
+                                                 
+<<>>=
+inner4(A)
+@                                                  
+
+showing that the vectors are indeed null.  We are going to reflect the
+photons in an oblique mirror which is itself moving at half the speed
+of light along the x-axis.  The first step is to define the mirror:
+                                                              
+<<>>=
+m <- c(1,1,1)
+B <- boost(as.3vel(c(0.5,0,0)))
+@ 
+
+Above, the three-vector $m$ is parallel to the normal vector of the
+mirror and $B$ shows the Lorentz boost needed to bring it to rest.  We
+are going to reflect these photons in this mirror.  The R idiom for
+the reflection is performed using a sequence of transformations.
+First, transform the
+photons' four-momentum to a frame in which the mirror is at rest:
+
+<<>>=
+A
+(A <- A %*% t(B))
+@ 
+
+Above, see how the photons have lost energy because of a redshift.
+Next, reflect the photons in the mirror (which is at rest):
+
+<<>>=
+(A <- reflect(A,m))
+@ 
+
+Above, see how the reflected photons have a reduced the x-component of
+momentum; but have acquired a substantial y- and z- component.
+Finally, we transform back to the original reference frame.  Observe that
+this requires an {\em active} transform which means that we need to
+use the matrix inverse of $B$:
+
+<<>>=
+(A <- A %*% solve(t(B)))
+@ 
+
+Thus in the original frame, the photons have lost about a quarter of
+their energy as a result of a Doppler effect: the mirror was receding
+from the source.  The photons have imparted energy to the mirror as a
+result of mechanical work.
 
 \bibliography{lorentz}
 \end{document}
