@@ -44,6 +44,11 @@ Note that the top-left element of \code{eta()} is \eqn{-c^2}, not
   
 }
 \author{Robin K. S. Hankin}
+\note{
+  Typing \dQuote{\code{sol(299792458)}} is a lot easier than typing
+  \dQuote{code{options("c"=299792458)}}, which is why the package uses
+  the idiom that it does.
+}
 \examples{
 
 sol()                          # returns current speed of light
