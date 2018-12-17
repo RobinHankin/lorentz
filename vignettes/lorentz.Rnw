@@ -845,6 +845,38 @@ their energy as a result of a Doppler effect: the mirror was receding
 from the source.  The photons have imparted energy to the mirror as a
 result of mechanical work.
 
+\subsection*{Mirrors and rotation-boost coupling}
+
+
+Consider the following R idiom, in which we take a bunch of photons
+which, in a certain reference frame are all moving (almost) parallel
+to the x-axis.  Then we reflect the photons from a mirror which is
+moving with a composition of pure boosts, and examine the reflected
+light in their original reference frame:
+
+
+<<>>=
+sol(1)
+Astart <- as.photon(as.3vel(cbind(0.9,runif(5)/1e4,runif(5)/1e4)))
+A <- Astart
+
+m <- c(1,0,0)
+B1 <- boost(as.3vel(c(-0.5, 0.1, 0.0)))
+B2 <- boost(as.3vel(c( 0.2, 0.0, 0.0)))
+B3 <- boost(as.3vel(c( 0.0, 0.0, 0.6)))
+B <- B1 %*% B2 %*% B3 
+A <- A %*% t(B)
+A <- reflect(A,m)
+A <- A %*% solve(t(B))
+Astart
+A
+@ 
+
+See how the photons have picked up momentum in the y- and z-
+direction, even though the mirror is oriented perpendicular to the
+x-axis (in its own frame).
+
+
 \bibliography{lorentz}
 \end{document}
  
