@@ -32,12 +32,24 @@ A <- as.photon(as.3vel(cbind(0.9,runif(10)/1000,runif(10)/1000)))
 ## m is a mirror oriented perpendicular to c(1,1,1):
 m <- c(1,1,1)
 
-## B is a boost representing the mirror's movement along the x-axis at speed c/2:
+## Reflect the photons in the mirror:
+reflect(A,m)
+
+## Reflect the photons in a series of mirrors:
+A \%>\% reflect(m) \%>\% reflect(1:3) \%>\% reflect(3:1) 
+
+## To reflect from a moving mirror we need to transform to a frame in
+##   which the mirror is at rest, then transform back to the original
+##   frame.  First create B, a boost representing the mirror's movement
+##   along the x-axis at speed c/2:
+
 B <- boost(as.3vel(c(0.5,0,0)))
 
 
-## first transform to the mirror's rest frame:
-A \%*\% t(B)  
+## Transform to the mirror's rest frame:
+A \%*\% t(B)    
+
+## NB: in the above, take a transpose because the *rows* of A are 4-vectors.
 
 ## Then reflect the photons in the mirror:
 reflect(A \%*\% t(B),m)
@@ -45,4 +57,9 @@ reflect(A \%*\% t(B),m)
 
 ## Now transform back to the original rest frame (NB: active transform):
 reflect(A \%*\% t(B),m) \%*\% solve(t(B))
+
+## or, better, use magrittr:
+A \%>\% tcrossprod(B) \%>\% reflect(m) \%>\% tcrossprod(solve(B))
+
+
 }
