@@ -61,9 +61,3 @@
   }
   return(as.4mom(sweep(P,1,ref,`*`)))
 }
-
-if(FALSE){
-  A <- as.photon(as.3vel(cbind(0.9,runif(10)/1000,runif(10)/1000)))
-  B <- boost(as.3vel(c(0.0009,0,0)))
-  reflect(reflect(A %*% t(B),c(1,1,1)) %*% solve(t(B)))
-}
