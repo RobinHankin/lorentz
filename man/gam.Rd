@@ -90,6 +90,6 @@ gamm1(snail)                     # ...has only a small relativistic correction
 sol(1)           # revert to relativistic units
 omgp <- 4.9e-24  # speed deficit of the Oh-My-God particle
 gam(1-omgp)      # numeric overflow
-gam_ur(4.9e-24)  # large but finite
+gam_ur(omgp)     # large but finite
 
 }
