@@ -53,8 +53,8 @@
     m <- rbind(m)
     jj <- cbind(seq_len(nrow(P)),seq_len(nrow(m)),seq_along(ref))
     
-    P <- P[jj[,1],]
-    m <- m[jj[,2],]
+    P <- P[jj[,1],,drop=FALSE]
+    m <- m[jj[,2],,drop=FALSE]
     ref <- ref[jj[,3]]
 
     P[,-1] <- P[,-1] - sweep(2*m,1,rowSums(P[,-1]*m)/rowSums(m*m),`*`)
