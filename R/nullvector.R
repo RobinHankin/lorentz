@@ -5,7 +5,7 @@
 `vel_to_4mom` <- function(U,m=1){  # U is (four) velocity, m rest mass
   U <- as.4vel(U)
   jj <- cbind(seq_along(U),seq_along(m))
-  as.4mom(sweep(U[jj[,1],drop=FALSE],1,m[jj[,2]],`*`))
+  as.4mom(sweep(unclass(U)[jj[,1],,drop=FALSE],1,m[jj[,2]],`*`))
 }
 
 `p_to_4mom` <- function(p,E=1){  # p is a 3-momentum, E the energy
@@ -21,7 +21,7 @@
   
 `as.4mom` <- function(x){
   stopifnot(ncol(x) == 4)
-  class(x) <- "4mom"  # This is the only place class 4mom is assigned
+  class(x) <- c("4mom","vec") # This is the only place class 4mom is assigned
   return(x)
 }
   

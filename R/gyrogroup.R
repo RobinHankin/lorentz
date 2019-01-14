@@ -42,7 +42,7 @@
   } else {
     stop("should have 3 or 4 columns")
   }
-  class(out) <- c("3vel","vel") # this is the only place where the class is set
+  class(out) <- c("3vel","vec") # this is the only place where the class is set
   return(out)
 }
 
@@ -74,10 +74,10 @@
   return(invisible(print(x)))
 }
 
-`length.vel` <- function(x){nrow(x)}
-`names.vel` <- function(x){rownames(x)}
+`length.vec` <- function(x){nrow(x)}
+`names.vec` <- function(x){rownames(x)}
 
-`names<-.vel` <- function(x,value){
+`names<-.vec` <- function(x,value){
   rownames(x) <- value
   return(x)
 }
@@ -192,7 +192,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   return(out)
 }
 
-`[.vel` <- function(x,i,j,...){
+`[.vec` <- function(x,i,j,...){
     x <- unclass(x)
     if(missing(i) & !missing(j)){ # x[,j]
       return(x[,j,drop=FALSE])
@@ -214,7 +214,8 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     }
 }
 
-`[<-.vel` <- function(x,i,j,value){
+`[<-.vec` <- function(x,i,j,value){
+    a <- attributes(x)
     x <- unclass(x)
     if(missing(i) & missing(j)){  # x[]
         x[] <- value
@@ -236,6 +237,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     } else {
         stop("this cannot happen")
     }
+    attributes(x) <- a
     return(x)
 }
   
@@ -245,6 +247,15 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   v <- jj[[2]]
   rowSums(unclass(u)!=unclass(v))==0
   }
+
+`Ops.4vel` <- function(e1,e2){
+  if(nargs() == 1){
+    stop("Unary operator '", .Generic, "' is not implemented for 4vel objects")
+  } else {
+    stop("Operator '", .Generic, "' is not implemented for 4vel objects.
+  Four velocities do not constitute a vector space.")
+  }
+}
 
 `Ops.3vel` <- function(e1,e2){
   f <- function(...){stop("odd---neither argument has class 3vel?")}
@@ -340,7 +351,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     }
   
   colnames(out) <- c("t","x","y","z")
-  class(out) <- c("4vel","vel")  # this is the only place class 4vel is assigned
+  class(out) <- c("4vel","vec")  # this is the only place class 4vel is assigned
   return(out)
 }
 
@@ -467,8 +478,6 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   tee <- seq(from=0,to=1,length.out=len)
   return(from + tee*(-from+to))
 }
-
-
 
 `boost` <- function(u){  # v = (u,v,w)
   u <- as.3vel(u)

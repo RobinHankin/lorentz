@@ -31,9 +31,9 @@ is.4mom(x)
 
 Four-momentum is a relativistic generalization of three-momentum, with
 the object's energy as the first element.  It can be defined as
-\eqn{mU}, where \eqn{m} is the rest mass and $U$ the four-velocity (use
-\code{vel_to_4mom()}), or \eqn{(E/c,p_x,p_y,p_z)}{(E/c,px,py,pz)} where
-\eqn{E} is the energy and \eqn{(p_x,p_y,p_z)}{(px,py,pz)} the
+\eqn{mU}, where \eqn{m} is the rest mass and \eqn{U}, the four-velocity
+(use \code{vel_to_4mom()}), or \eqn{(E/c,p_x,p_y,p_z)}{(E/c,px,py,pz)}
+where \eqn{E} is the energy and \eqn{(p_x,p_y,p_z)}{(px,py,pz)} the
 three-momentum (\code{p_to_4mom()}).
 
 The function \code{Ops.4mom()} passes unary and binary arithmetic
@@ -55,7 +55,8 @@ For the four-momentum of a photon, use \code{as.photon()}.
 o <- r4vel(5)
 
 vel_to_4mom(o)         # five objects, random velocities, all unit mass
-vel_to_4mom(o[1],1:5)  # five objects with identical 4vel, masses 1...5
+vel_to_4mom(o,   1:5)  # five objects with identical 4vel, masses 1..5
+vel_to_4mom(o[1],1:5)  # five objects with random velocities, masses 1..5
 
 
 p3 <- r3vel(5)
