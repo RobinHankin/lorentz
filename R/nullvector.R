@@ -14,6 +14,11 @@
   as.4mom(cbind(E[jj[,2]]/sol(),p[jj[,1],,drop=FALSE]))
 }
 
+`fourmom_mult` <- function(P,n){
+  jj <- cbind(seq_len(nrow(P)),seq_along(n))
+  as.4mom(sweep(P[jj[,1],,drop=FALSE],1,n[jj[,2]],`*`))
+}
+  
 `as.4mom` <- function(x){
   stopifnot(ncol(x) == 4)
   class(x) <- "4mom"  # This is the only place class 4mom is assigned
@@ -69,8 +74,6 @@
 }
 
 
-
-
 `Ops.4mom` <- function(e1,e2){
   f <- function(...){stop("odd---neither argument has class 3vel?")}
   unary <- nargs() == 1
@@ -102,9 +105,15 @@
     return(e1+e2)
   } else if(.Generic == "*"){
     if(xor(lclass,rclass)){
-      return(e1*e2)
+      if(lclass & !rclass){
+        return(fourmom_mult(e1,e2))
+      } else if(!lclass & rclass){
+        return(fourmom_mult(e2,e1))
+      } else {
+        stop("should not reach here")
+      }
     } else {
-      stop("Operator '", .Generic, "' is not implemented")
+      stop("Operator '", .Generic, "' not implemented for two 4moms")
     }
   } else {
     stop("should not reach here")
