@@ -67,8 +67,8 @@
 }
 
 `print.4vel` <- function(x, ...){
-  x <- unclass(x)
-  if(is.null(colnames(x)) & ncol(x)==3){
+  x <- rbind(unclass(x))
+  if(is.null(colnames(x)) & ncol(x)==4){ 
     colnames(x) <- c("t","x","y","z")
   }
   return(invisible(print(x)))
@@ -354,7 +354,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 }
 
 `inner4` <- function(U,V=U){
-  quad.3tdiag(eta(),U,V)
+  quad.3tdiag(eta(),unclass(U),unclass(V))
 }
 
 `is.consistent.4vel` <- function(U,give=FALSE, TOL=1e-10){
