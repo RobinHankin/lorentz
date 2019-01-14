@@ -1,17 +1,23 @@
 ## functionality for null vectors, specifically the four-momentum of a
-## photon.
+## photon.  Also some functionality for the four-momentum of objects
+## with non-zero rest mass.
 
-`as.4mom` <- function(x,E){
-  if(is.4mom(x) | (ncol(x)==4)){
-    out <- x
-  } else if(ncol(x)==3){
-    out <- cbind(E/sol(),x)
-  }  else {
-    stop("not recognised")
-  }
-  
-  class(out) <- "4mom"
-  return(out)
+`vel_to_4mom` <- function(U,m=1){  # U is (four) velocity, m rest mass
+  U <- as.4vel(U)
+  jj <- cbind(seq_along(U),seq_along(m))
+  as.4mom(sweep(U[jj[,1],drop=FALSE],1,m[jj[,2]],`*`))
+}
+
+`p_to_4mom` <- function(p,E=1){  # p is a 3-momentum, E the energy
+  p <- rbind(p)
+  jj <- cbind(seq_len(nrow(p)),seq_along(E))
+  as.4mom(cbind(E[jj[,2]]/sol(),p[jj[,1],,drop=FALSE]))
+}
+
+`as.4mom` <- function(x){
+  stopifnot(ncol(x) == 4)
+  class(x) <- "4mom"  # This is the only place class 4mom is assigned
+  return(x)
 }
   
 `is.4mom` <- function(x){inherits(x,"4mom")}
@@ -27,8 +33,8 @@
     }
     
     out <- cbind(1,out)
-    out %<>% sweep(1,E,`*`) %>% sweep(2,c(sol(),1,1,1), `/`) 
-    class(out) <- c("4mom","nullvec")
+    out %<>% sweep(1,E,`*`) %>% sweep(2,c(sol(),1,1,1), `/`) %>% as.4mom()
+    class(out) <- c(class(out),"nullvec")
     return(out)
 }
 
@@ -60,4 +66,51 @@
     P[,-1] <- P[,-1] - sweep(2*m,1,rowSums(P[,-1]*m)/rowSums(m*m),`*`)
   }
   return(as.4mom(sweep(P,1,ref,`*`)))
+}
+
+
+
+
+`Ops.4mom` <- function(e1,e2){
+  f <- function(...){stop("odd---neither argument has class 3vel?")}
+  unary <- nargs() == 1
+  lclass <- nchar(.Method[1]) > 0
+  rclass <- !unary && (nchar(.Method[2]) > 0)
+
+  if (!is.element(.Generic, c("+", "-", "*")))
+    stop("operator '", .Generic, "' is not implemented for 4mom objects")
+
+  if(unary){
+    if (.Generic == "+") {
+      return(e1)
+    } else if (.Generic == "-") {  # reflect about-face
+      e1[, -1] <- -e1[, -1]
+      return(e1)
+    } else {
+      stop("Unary operator '", .Generic, "' is not implemented for 4mom objects")
+    }
+  }
+  
+  if (.Generic == "+"){
+    if(lclass & rclass){
+      return(e1+e2)
+    }  else {
+      stop("error in Ops.4mom()")
+    }
+  } else if(.Generic == "-"){
+    e2[,-1] <- -e2[,-1]
+    return(e1+e2)
+  } else if(.Generic == "*"){
+    if(xor(lclass,rclass)){
+      return(e1*e2)
+    } else {
+      stop("Operator '", .Generic, "' is not implemented")
+    }
+  } else {
+    stop("should not reach here")
+  }
+}
+
+`sum.4mom` <- function(..., na.rm=FALSE){
+  as.4mom(rbind(colSums(do.call(`rbind`, list(...)), na.rm=na.rm)))
 }
