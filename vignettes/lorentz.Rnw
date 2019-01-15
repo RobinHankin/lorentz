@@ -145,9 +145,9 @@ L
 
 
 But observe that the resulting transform is not a pure boost, as the
-matrix is not symmetrical.  We may decompose the matrix into a pure
-translation composed with an orthogonal matrix, which represents a
-coordinate rotation:
+spatial components are not diagonal.  We may decompose the matrix into
+a pure translation composed with an orthogonal matrix, which
+represents a coordinate rotation:
              
 <<>>=
 U <- orthog(L)
@@ -187,7 +187,7 @@ $\bu\oplus\bv\neq\bv\oplus\bu$
 and~$(\bu\oplus\bv)\oplus\bw\neq\bu\oplus(\bv\oplus\bw)$.  He also
 defines the binary operator~$\ominus$
 as~$\bu\ominus\bv=\bu\oplus\left(-\bv\right)$, and implicitly
-defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$).  If
+defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$.  If
 we have
 
 \begin{equation}
@@ -327,7 +327,7 @@ comm_fail2(u=u, v=v)
   $\bv$, with $\bu,\bv$ as defined above; $\bu$ is constant while
   $\bv$ takes a sequence of values.  If velocity addition is
   commutative, then $\bu+\bv=\bv+\bu$ and the two paths end at the
-  same point: the parallelogram is closed.  The red arrows show the
+  same point: the parallelogram is closed.  The red lines show the
   difference between $\bu+\bv$ and $\bv+\bu$}
   \end{center}
 \end{figure}
@@ -401,8 +401,8 @@ x <- as.3vel(c(0.7, 0, -0.7))
 y <- as.3vel(c(0.1, 0.3, -0.6))
 @ 
 
-Then we can define \code{f()} which is the
-map~$\bx\mapsto\gyr{u}{v}\bx$:
+Then we can define \code{f()} to be themap~$\bx\mapsto\gyr{u}{v}\bx$.
+In R:
 
 <<>>=
 f <- gyrfun(u,v)
@@ -446,8 +446,8 @@ sol(299792458)
 sol()
 @ 
 
-
-(an empty argument queries the speed of light).  We can now consider
+The speed of light is now~$299792458$ until re-set by \code{sol()} (an
+empty argument queries the speed of light).  We can now consider
 speeds which are fast by terrestrial standards but involve only a
 small relativistic correction to the Galilean result:
                                                 
@@ -478,14 +478,24 @@ calculates $\gamma-1$ more accurately for speeds $\ll c$:
 gamm1(u)
 @                                                   
 
-The Lorentz boost is again calculated by the \code{boost()} function
+The Lorentz boost is again calculated by the \code{boost()} function:
               
 <<>>=
 boost(u)
 @ 
 
+note how the transformation is essentially the Galilean result, which
+would be
 
-note how the transformation is essentially the Galilean result.
+<<>>=
+gal <- cbind(c(1,-100*(1:3)),rbind(0,diag(3)))
+rownames(gal) <- c("t","x","y","z")
+colnames(gal) <- c("t","x","y","z")
+gal
+@ 
+
+The boost matrix is not symmetrical, even though it is a pure boost,
+because $c\neq 1$.  We can compose boosts as expected:
 
 <<>>=
 v <- as.3vel(c(400,-200,300))
@@ -493,29 +503,29 @@ boost(u) %*% boost(v)
 boost(v) %*% boost(u)
 @ 
 
-
-
-
+Again this is very close to the Galilean result (observe that the
+spatial components of the boost are almost equal to the identity
+matrix).
 
 \section*{Appendix A. Active and passive transforms}
 
 Passive transforms are the usual type of transforms taught and used in
-relativity.  I will discuss passive transforms first, then active
-transforms.
+relativity.  However, sometimes active transforms are needed and it is
+easy to confuse the two.  Here I will discuss passive transforms
+first, then active transforms.
 
 \subsection*{Passive transforms}
+
+\newcommand{\vvec}[2]{\left(\begin{array}{c} #1\\#2\end{array}\right)}
+\newcommand{\twomat}[4]{\left(\begin{array}{cc} #1 & #2\\ #3 & #4\\ \end{array}\right)}
 
 Consider the following canonical Lorentz transform in which we have
 only motion in the $x$-direction at speed $v$.  The motion is from
 left to right, and this means that $v>0$.  The physical interpretation
 is that I am at rest, and my friend is in his spaceship moving at
-speed $v$ past me; and we are wondering what various vectors look like
-to one another.
-
-\newcommand{\vvec}[2]{\left(\begin{array}{c} #1\\#2\end{array}\right)}
-\newcommand{\twomat}[4]{\left(\begin{array}{cc} #1 & #2\\ #3 & #4\\ \end{array}\right)}
-
-The Lorentz transform is:
+speed $v$ past me; and we are wondering what vectors which I measure
+in my own rest frame look like to him.  The (passive) Lorentz
+transform is:
 
 \begin{equation*}
 \twomat{\gamma}{\gamma v}{\gamma v}{\gamma}
@@ -529,10 +539,11 @@ And the canonical example of that is:
 
 where the vectors are four velocities (recall that $\vvec{1}{0}$ is
 the four-velocity of an object at rest).  What this means is that I
-see a four-vector $\vvec{1}{0}$, and he sees $\vvec{\gamma}{-\gamma
-  v}$.  So I see the object at rest, and he sees it as moving at speed
-$-v$, that is, to the left (it moves to the left because he is moving
-to the right relative to me).
+measure the four-velocity of an object to be $\vvec{1}{0}$, and he
+measures the same object as having a four-velocity of
+$\vvec{\gamma}{-\gamma v}$.  So I see the object at rest, and he sees
+it as moving at speed $-v$; that is, he sees it moving to the left (it
+moves to the left because he is moving to the right relative to me).
 
 \subsubsection*{Null vectors: light}
 
@@ -567,7 +578,7 @@ It's worth doing the same analysis with a leftward-moving photon:
   \end{equation*}
 
 Here the photon has more energy for him than me because of blue
-shifting: he is moving to the right and bashes into a photon moving to
+shifting: he is moving to the right and encounters a photon moving to
 the left.
 
 The above analysis uses {\em passive} transforms: There is a single
@@ -576,16 +587,17 @@ using two different coordinate systems.  One of the coordinate systems
 uses a set of axes that are {\em boosted} relative to the axes of the
 other. 
 
-This is why it makes sense to use notation of $x'$ and $x$ with a
-passive Lorentz transformation: the prime denotes measurements made
-using coordinates that are defined with respect to the boosted system,
-and we see things like
+This is why it makes sense to use prime notation as in
+$x\longrightarrow x'$ and $t\longrightarrow t'$ for a passive Lorentz
+transformation: the prime denotes measurements made using coordinates
+that are defined with respect to the boosted system, and we see things
+like
 
 \begin{equation*}
 \vvec{t'}{x'}=\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{t}{x}
 \end{equation*}  
 
-This is the first two elements of a displacement four-vector.  It is
+These are the first two elements of a displacement four-vector.  It is
 the same four-vector but viewed in two different reference frames.
 This is the default mode in the package:
 
@@ -594,7 +606,7 @@ sol(1)
 @ 
 
 <<>>=
-boost(as.3vel(c(0.5,0,0)))
+boost(as.3vel(c(0.6,0,0)))
 @ 
 
 (note that element $[1,2]$ is negative).
@@ -637,11 +649,18 @@ transform:
 \twomat{\gamma}{\gamma v}{\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{\gamma v}
 \end{equation*}
 
-
 (we again suppose that the spaceship moves at speed $v>0$ from left to
 right).  So he sees a four velocity of $\vvec{1}{0}$ and I see
 $\vvec{\gamma}{\gamma v}$, that is, with a positive speed: the bullets
 move from left to right (with the spaceship).
+
+The R idiom would be:
+
+<<>>=
+sol(299792458)
+(B <- boost(as.3vel(c(1000,0,0))))  # 1km/s left to right
+solve(B) %*% c(1,0,0,0)             # active transform ~= Galilean
+@ 
 
 \section{Vectorization}
 
@@ -650,12 +669,15 @@ a vector of four-velocities is arranged so that each row is a
 four-velocity, and each column is a component.  To avoid confusion
 between boost matrices and their transposes we will use $c=10$.
 
-<<>>=
+<<results=hide>>=
 sol(10)
 options(digits=3)
-u <- runif(7,3,4)  # speed in the x-direction [c=10]
-U <- cbind(gam(u),gam(u)*u,0,0)
-(U <- as.4vel(U))
+@ 
+
+<<>>=
+u <- 1:7  # speed in the x-direction [c=10]
+jj <- cbind(gam(u),gam(u)*u,0,0)
+(U <- as.4vel(jj))
 @ 
 
 Now a boost, also in the x-direction:
@@ -731,27 +753,20 @@ the correct order.  First we will do some passive boosts.
 sol(100)
 B1 <- boost(r3vel(1)) %*% boost(r3vel(1))
 B2 <- boost(r3vel(1)) %*% boost(r3vel(1)) 
-U <- r4vel(3)
+(U <- r4vel(5))
 @
 
-Successive boosts are effected by matrix multiplication:
+Successive boosts are effected by matrix multiplication; there are at
+least four natural R constructions:
 
 <<>>=
 U %*% t(B1) %*% t(B2)
 U %*% t(B2 %*% B1)    # note order of operations
-@ 
-
-With \code{tcrossprod()}:
-
-<<>>=
 tcrossprod(U, B2 %*% B1)
-@ 
-  
-Again magrittr provides arguably more readable idiom:
-         
-<<>>=
 U %>% tcrossprod(B2 %*% B1)
 @ 
+
+(in the above, note that the result is the same in each case).
 
 \subsection{Multiple boosts of the stress-energy tensor}
 
@@ -791,7 +806,7 @@ their three-velocity and energy, and using \code{as.photon()}:
  
 <<>>=
 sol(1)
-(A <- as.photon(as.3vel(cbind(0.9,runif(5)/100,runif(5)/100))))
+(A <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40))))
 @ 
 
 above, $A$ is a vector of four-momentum of 10 photons following a null
@@ -845,6 +860,14 @@ their energy as a result of a Doppler effect: the mirror was receding
 from the source.  The photons have imparted energy to the mirror as a
 result of mechanical work.
 
+It is possible to carry out the same operations in one line:
+
+
+<<>>=
+A <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40)))
+A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B))
+@ 
+
 \subsection*{Mirrors and rotation-boost coupling}
 
 
@@ -857,24 +880,26 @@ light in their original reference frame:
 
 <<>>=
 sol(1)
-Astart <- as.photon(as.3vel(cbind(0.9,runif(5)/1e4,runif(5)/1e4)))
-A <- Astart
-
-m <- c(1,0,0)
+light_start <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40)))
+m <- c(1,0,0)     # mirror normal to x-axis
 B1 <- boost(as.3vel(c(-0.5, 0.1, 0.0)))
 B2 <- boost(as.3vel(c( 0.2, 0.0, 0.0)))
 B3 <- boost(as.3vel(c( 0.0, 0.0, 0.6)))
-B <- B1 %*% B2 %*% B3 
-A <- A %*% t(B)
-A <- reflect(A,m)
-A <- A %*% solve(t(B))
-Astart
-A
+B <- B1 %*% B2 %*% B3   # matrix multiplication is associative!
+light <- light_start %*% t(B)
+light <- reflect(light,m)
+light <- light %*% solve(t(B))
+light
 @ 
 
 See how the photons have picked up momentum in the y- and z-
 direction, even though the mirror is oriented perpendicular to the
-x-axis (in its own frame).
+x-axis (in its own frame).  Again it is arguably preferable to use pipes:
+
+<<>>=
+light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B))
+@ 
+
 
 
 \bibliography{lorentz}
