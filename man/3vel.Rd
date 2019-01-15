@@ -2,10 +2,9 @@
 \alias{3vel}
 \alias{as.3vel}
 \alias{is.3vel}
-\alias{length.vel}
-\alias{length.vel}
-\alias{names.vel}
-\alias{names<-.vel}
+\alias{length.vec}
+\alias{names.vec}
+\alias{names<-.vec}
 \alias{threevel}
 \alias{3velocity}
 \alias{3-velocity}
@@ -20,9 +19,9 @@ Create and test for three-velocities, \code{3vel} objects.
 threevel(n)
 as.3vel(x)
 is.3vel(x)
-\method{length}{vel}(x)
-\method{names}{vel}(x)
-\method{names}{vel}(x) <- value
+\method{length}{vec}(x)
+\method{names}{vec}(x)
+\method{names}{vec}(x) <- value
 }
 \arguments{
   \item{n}{In function \code{3vel()}, number of three velocities to
