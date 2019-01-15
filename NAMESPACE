@@ -10,6 +10,7 @@ importFrom("tensor","tensor")
            
 
 S3method("Ops"    , "3vel")
+S3method("Ops"    , "4vel")
 S3method("Ops"    , "4mom")
 S3method("length" ,  "vec")
 S3method("names"  ,  "vec")
