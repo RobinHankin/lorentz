@@ -1,5 +1,6 @@
 \name{Ops.3vel}
 \alias{Ops.3vel}
+\alias{Ops.4vel}
 \alias{Ops.gyr}
 \alias{Ops}
 \alias{massage3}
@@ -12,6 +13,7 @@
 \description{Arithmetic operations for three-velocities}
 \usage{
 \method{Ops}{3vel}(e1, e2)
+\method{Ops}{4vel}(e1, e2)
 massage3(u,v)
 neg3(u)
 prod3(u,v=u)
@@ -61,6 +63,9 @@ dot3(v,r)
   and \eqn{r} a scalar.  Function \code{dot3()} has special dispensation
   for zero velocity and does not treat \code{NA} entries entirely
   consistently.
+
+  Arithmetic operations, executed via \code{Ops.4vel()}, are not defined
+  on four-velocities.
   
   The package is designed so that natural R idiom may be used for three
   velocity addition, see the examples section.
@@ -113,14 +118,5 @@ g(f(x)) - x
 ## -u+v == (-u) + v == neg3(u) + v == add3(neg3(u),v)
 
 ## u+v+w == (u+v)+w == add3(add3(u,v),w)
-
-
-
-
-
-
-
-
-
 
 }
