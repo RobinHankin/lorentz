@@ -15,6 +15,7 @@
 }
 
 `fourmom_mult` <- function(P,n){
+  P <- unclass(P)
   jj <- cbind(seq_len(nrow(P)),seq_along(n))
   as.4mom(sweep(P[jj[,1],,drop=FALSE],1,n[jj[,2]],`*`))
 }
