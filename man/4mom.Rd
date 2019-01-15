@@ -11,6 +11,7 @@
 \alias{p_to_4mom}
 \alias{as.4mom}
 \alias{is.4mom}
+\alias{fourmom_mult}
 \title{Four momentum}
 \description{Create and test for four-momentum}
 \usage{
@@ -19,13 +20,15 @@ vel_to_4mom(U,m=1)
 p_to_4mom(p,E=1)
 as.4mom(x)
 is.4mom(x)
+fourmom_mult(P,n)
 }
 \arguments{
-  \item{x,e1,e2}{Four-momentum}
+  \item{x,P,e1,e2}{Four-momentum}
   \item{p}{Three-momentum}
   \item{E}{Scalar; energy}
   \item{U}{Object coerced to four-velocity}
   \item{m}{Scalar; rest mass}
+  \item{n}{Multiplying factor}
 }
 \details{
 
