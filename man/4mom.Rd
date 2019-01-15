@@ -3,6 +3,7 @@
 \alias{4mom}
 \alias{fourmom}
 \alias{as.4mom}
+\alias{sum.4mom}
 \alias{fourmomentum}
 \alias{four-momentum}
 \alias{4momentum}
@@ -12,15 +13,18 @@
 \alias{as.4mom}
 \alias{is.4mom}
 \alias{fourmom_mult}
+\alias{fourmom_add}
 \title{Four momentum}
 \description{Create and test for four-momentum}
 \usage{
 \method{Ops}{4mom}(e1, e2)
+\method{sum}{4mom}(..., na.rm=FALSE)
 vel_to_4mom(U,m=1)
 p_to_4mom(p,E=1)
 as.4mom(x)
 is.4mom(x)
 fourmom_mult(P,n)
+fourmom_add(e1,e2)
 }
 \arguments{
   \item{x,P,e1,e2}{Four-momentum}
@@ -29,6 +33,7 @@ fourmom_mult(P,n)
   \item{U}{Object coerced to four-velocity}
   \item{m}{Scalar; rest mass}
   \item{n}{Multiplying factor}
+  \item{...,na.rm}{Arguments sent to \code{sum()}}
 }
 \details{
 

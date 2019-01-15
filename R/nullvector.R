@@ -19,6 +19,13 @@
   jj <- cbind(seq_len(nrow(P)),seq_along(n))
   as.4mom(sweep(P[jj[,1],,drop=FALSE],1,n[jj[,2]],`*`))
 }
+
+`fourmom_add` <- function(e1,e2){
+  e1 <- unclass(e1)
+  e2 <- unclass(e2)
+  jj <- cbind(seq_len(nrow(e1)),seq_len(nrow(e2)))
+  as.4mom(e1[jj[,1],,drop=FALSE] + e2[jj[,2],,drop=FALSE])
+}
   
 `as.4mom` <- function(x){
   stopifnot(ncol(x) == 4)
@@ -88,7 +95,7 @@
     if (.Generic == "+") {
       return(e1)
     } else if (.Generic == "-") {  # reflect about-face
-      e1[, -1] <- -e1[, -1]
+      e2[, -1] <- -e2[, -1]
       return(e1)
     } else {
       stop("Unary operator '", .Generic, "' is not implemented for 4mom objects")
@@ -97,7 +104,7 @@
   
   if (.Generic == "+"){
     if(lclass & rclass){
-      return(e1+e2)
+      return(fourmom_add(e1,e2))
     }  else {
       stop("error in Ops.4mom()")
     }
