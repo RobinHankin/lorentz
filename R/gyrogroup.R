@@ -193,29 +193,26 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 }
 
 `[.vec` <- function(x,i,j,...){
+    a <- class(x)
     x <- unclass(x)
     if(missing(i) & !missing(j)){ # x[,j]
       return(x[,j,drop=FALSE])
     } else if(!missing(i) & !missing(j)){  # x[i,j]
-      return(x[i,j,drop=FALSE])
+      out <- x[i,j,drop=FALSE]
     } else if(missing(i) & missing(j)){  # x[]
-      return(x)  # NB unclassed
+      out <- x  # NB unclassed
     } else if(!missing(i) & missing(j)){  # meat of function: idiom x[i]; x[i,]
-      x <- x[i,,drop=FALSE]
-      if(ncol(x)==3){
-        return(as.3vel(x))
-      } else if(ncol(x)==4){
-        return(as.4vel(x))
-      } else {
-        stop("this should not happen")
-      }
+      out <- x[i,,drop=FALSE]
+      if(ncol(out)==3){return(as.3vel(out))}
     } else {
       stop("this cannot happen")
     }
+    class(out) <- a
+    return(out)
 }
 
 `[<-.vec` <- function(x,i,j,value){
-    a <- attributes(x)
+    a <- class(x)
     x <- unclass(x)
     if(missing(i) & missing(j)){  # x[]
         x[] <- value
@@ -237,7 +234,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     } else {
         stop("this cannot happen")
     }
-    attributes(x) <- a
+    class(x) <- a
     return(x)
 }
   
