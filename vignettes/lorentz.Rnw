@@ -89,10 +89,12 @@ library(lorentz)
 \section{Introduction}
 
 In special relativity, the Lorentz transformations supercede their
-classical equivalent, the Galilean transforms.  Lorentz transforms are
-typically expressed in terms of $4\times 4$ matrices that take one set
-of coordinates to another set which is moving at constant velocity
-with respect to the first. 
+classical equivalent, the Galilean transforms.  Lorentz transforms
+operate on four-vectors such as four-velocity or four-potential and
+are usually operationalised as multiplication by a $4\times 4$ matrix.
+A Lorentz transform takes a four-vector as observed in one coordinate
+system and gives it as observed in another which is moving at constant
+velocity with respect to the first.
 
 The \pkg{lorentz} package provides functionality for dealing with
 Lorentz transformations.  It deals with Lorentz boosts, converts
@@ -100,10 +102,14 @@ between three-velocities and four-velocities, and provides
 computational support for the gyrogroup structure of three-velocities
 under successive addition.
 
-
 \section{Lorentz transforms}
 
-Consider the following three-velocity:
+
+Although the most natural way to consider relative movement between
+coordinate systems is the four-velocity, it is often the case that
+analysis will begin by defining a three-velocity.  In the
+\pkg{lorentz} package, three velocities are defined by the
+\code{as.3vel()} function, for example:
 
 <<>>=
 u <- as.3vel(c(0.3,-0.4,0.8))
@@ -111,8 +117,8 @@ u
 @ 
 
 (note that the package uses units in which $c=1$ by default, although
-this can be changed).  Three-velocity $u$ may be expressed as a
-four-velocity:
+this can be changed).  The three-velocity $u$ may be expressed as a
+four-velocity using the \code{as.4vel()} function:
 
 <<>>=
 as.4vel(u)
@@ -124,15 +130,18 @@ The corresponding coordinate transformation is given by \code{boost()}:
 boost(u)
 @ 
 
-And then an arbitrary four-vector may be expressed in the boosted coordinates:
+This matrix corresponds to the Lorentz transformation between a frame
+at rest, and one with a three velocity of \code{u} as defined above.
+Transforming an arbitrary four-vector from the rest frame to the
+moving one has straightforward R idiom:
 
 <<>>=
 boost(u) %*% c(4,5,-2,3)
 @ 
 
-Note that coordinate transformation is effected by standard matrix
-multiplication.  Composition of two Lorentz transforms is also
-ordinary matrix multiplication:
+Note that coordinate transformation is effected by standard R operator
+ \code{\%*\%}.  Composition of two Lorentz transforms is also ordinary
+ matrix multiplication:
 
 <<>>=
 v <- as.3vel(c(0.4,0.2,-0.1))
@@ -140,10 +149,9 @@ L <- boost(u) %*% boost(v)
 L
 @ 
 
-
 But observe that the resulting transform is not a pure boost, as the
-spatial components are not diagonal.  We may decompose the matrix into
-a pure translation composed with an orthogonal matrix, which
+spatial components are not symmetrical.  We may decompose the matrix
+into a pure translation composed with an orthogonal matrix, which
 represents a coordinate rotation:
              
 <<>>=
