@@ -18,6 +18,9 @@ as.photon(x,E=1)
   \item{x}{Vector of three-velocities}
   \item{E}{Energy, a scalar}
 }
+\details{
+  Returns the four-momentum of a photon.
+}
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{4mom}},\code{\link{reflect}}}
 \examples{
@@ -37,9 +40,6 @@ table(reflect(p,disco)[,2]>0) # should be TRUE with probability sqrt(0.5)
 
 B <- boost(as.3vel(c(0.5,0,0)))
 p \%>\% tcrossprod(B) \%>\% reflect(disco) \%>\% tcrossprod(solve(B))
-
-
-
 
 }
 
