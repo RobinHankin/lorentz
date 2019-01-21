@@ -92,15 +92,15 @@ In special relativity, the Lorentz transformations supercede their
 classical equivalent, the Galilean transforms.  Lorentz transforms
 operate on four-vectors such as four-velocity or four-potential and
 are usually operationalised as multiplication by a $4\times 4$ matrix.
-A Lorentz transform takes a four-vector as observed in one coordinate
-system and gives it as observed in another which is moving at constant
-velocity with respect to the first.
+A Lorentz transform takes the components of four-vector as observed in
+one coordinate system and returns the components observed in another
+system which is moving at constant velocity with respect to the first.
 
-The \pkg{lorentz} package provides functionality for dealing with
-Lorentz transformations.  It deals with Lorentz boosts, converts
-between three-velocities and four-velocities, and provides
-computational support for the gyrogroup structure of three-velocities
-under successive addition.
+The \pkg{lorentz} package provides R-centric functionality for Lorentz
+transformations.  It deals with Lorentz boosts, converts between
+three-velocities and four-velocities, and provides computational
+support for the gyrogroup structure of three-velocities under
+successive addition.
 
 \section{Lorentz transforms}
 
@@ -155,8 +155,8 @@ into a pure translation composed with an orthogonal matrix, which
 represents a coordinate rotation:
              
 <<>>=
-U <- orthog(L)
-P <- pureboost(L)
+(U <- orthog(L))
+(P <- pureboost(L))
 @              
 
 
