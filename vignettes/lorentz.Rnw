@@ -493,9 +493,7 @@ note how the transformation is essentially the Galilean result, which
 would be
 
 <<>>=
-gal <- cbind(c(1,-100*(1:3)),rbind(0,diag(3)))
-rownames(gal) <- c("t","x","y","z")
-colnames(gal) <- c("t","x","y","z")
+gal <- flob(cbind(c(1,-100*(1:3)),rbind(0,diag(3))))
 gal
 @ 
 

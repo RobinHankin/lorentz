@@ -12,6 +12,21 @@
   }
 }
 
+`coordnames` <- function(...){c("t","x","y","z")}
+
+`flob` <- function(x){
+  if(all(dim(x)==c(4,4))){
+    jj <- coordnames()
+  } else if(all(dim(x)==c(3,3))){
+    jj <- coordnames()[-1]
+  } else {
+    stop("matrix must be either 3x3 or 4x4")
+  }
+  rownames(x) <- jj
+  colnames(x) <- jj
+  return(x)
+}
+
 `eta` <- function(downstairs=TRUE){
   if(downstairs){
     return(diag(c(-sol()^2,1,1,1)))
@@ -61,7 +76,7 @@
 `print.3vel` <- function(x, ...){
   x <- unclass(x)
   if(is.null(colnames(x)) & ncol(x)==3){
-    colnames(x) <- c("x","y","z")
+    colnames(x) <- coordnames()[-1]
   }
   return(invisible(print(x)))
 }
@@ -69,7 +84,7 @@
 `print.4vel` <- function(x, ...){
   x <- rbind(unclass(x))
   if(is.null(colnames(x)) & ncol(x)==4){ 
-    colnames(x) <- c("t","x","y","z")
+    colnames(x) <- coordnames()
   }
   return(invisible(print(x)))
 }
@@ -347,7 +362,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
       stop("not recognised")
     }
   
-  colnames(out) <- c("t","x","y","z")
+  colnames(out) <- coordnames()
   class(out) <- c("4vel","vec")  # this is the only place class 4vel is assigned
   return(out)
 }
@@ -487,8 +502,8 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   ## convert units back to SI or whatever:
   out <- quad.3form(out,diag(c(1/sol(),1,1,1)),diag(c(sol(),1,1,1)))
 
-  rownames(out) <- c("t","x","y","z")
-  colnames(out) <- c("t","x","y","z")
+  rownames(out) <- coordnames()
+  colnames(out) <- coordnames()
 
   return(out)
  }
@@ -503,10 +518,10 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     return(out)
   }
 }
-
+   
 `pureboost` <- function(L){
   jj <- eigen(crossprod(L))
-  quad.tform(sqrt(diag(jj$values)),jj$vectors)
+  flob(quad.tform(sqrt(diag(jj$values)),jj$vectors))
 }
 
-`orthog` <- function(L){ tcrossprod(L,solve(pureboost(L))) } 
+`orthog` <- function(L){flob(tcrossprod(L,solve(pureboost(L))))} 
