@@ -838,11 +838,12 @@ photons' four-momentum to a frame in which the mirror is at rest:
 
 <<>>=
 A
-(A <- A %*% t(B))
+(A <- as.4mom(A %*% t(B)))
 @ 
 
-Above, see how the photons have lost energy because of a redshift.
-Next, reflect the photons in the mirror (which is at rest):
+Above, see how the photons have lost energy because of a redshift (the
+\code{as.4mom()} function has no effect other than changing the column
+names).  Next, reflect the photons in the mirror (which is at rest):
 
 <<>>=
 (A <- reflect(A,m))
@@ -855,7 +856,7 @@ this requires an {\em active} transform which means that we need to
 use the matrix inverse of $B$:
 
 <<>>=
-(A <- A %*% solve(t(B)))
+(A <- as.4mom(A %*% solve(t(B))))
 @ 
 
 Thus in the original frame, the photons have lost about a quarter of
@@ -868,7 +869,7 @@ It is possible to carry out the same operations in one line:
 
 <<>>=
 A <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40)))
-A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B))
+A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom()
 @ 
 
 \subsection*{Mirrors and rotation-boost coupling}
@@ -891,7 +892,7 @@ B3 <- boost(as.3vel(c( 0.0, 0.0, 0.6)))
 B <- B1 %*% B2 %*% B3   # matrix multiplication is associative!
 light <- light_start %*% t(B)
 light <- reflect(light,m)
-light <- light %*% solve(t(B))
+light <- as.4mom(light %*% solve(t(B)))
 light
 @ 
 
@@ -900,7 +901,7 @@ direction, even though the mirror is oriented perpendicular to the
 x-axis (in its own frame).  Again it is arguably preferable to use pipes:
 
 <<>>=
-light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B))
+light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom()
 @ 
 
 
