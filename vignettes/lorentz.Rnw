@@ -657,7 +657,8 @@ right).  So he sees a four velocity of $\vvec{1}{0}$ and I see
 $\vvec{\gamma}{\gamma v}$, that is, with a positive speed: the bullets
 move from left to right (with the spaceship).
 
-The R idiom would be:
+Here we use SI units to show the asymmetry of the boost matrix.  The R
+idiom would be:
 
 <<>>=
 sol(299792458)
