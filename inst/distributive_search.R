@@ -17,8 +17,8 @@
 
 
 
-library(gyrogroup)
-library(partitions)
+library("lorentz")
+library("partitions")
 
 u <- r3vel(1,0.4)
 v <- r3vel(1,0.5)
