@@ -1,5 +1,6 @@
-library(sphereplot)
-library(gyrogroup)
+library("lorentz")
+library("sphereplot")
+
 
 
 u <- as.3vel(c(0,0,0.8))
