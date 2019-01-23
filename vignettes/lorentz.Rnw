@@ -90,11 +90,11 @@ library(lorentz)
 
 In special relativity, the Lorentz transformations supercede their
 classical equivalent, the Galilean transforms~\citep{goldstein1980}.
-Lorentz transforms operate on four-vectors such as four-velocity or
-four-potential and are usually operationalised as multiplication by a
-$4\times 4$ matrix.  A Lorentz transform takes the components of
-four-vector as observed in one coordinate system and returns the
-components observed in another system which is moving at constant
+Lorentz transforms operate on four-vectors such as the four-velocity
+or four-potential and are usually operationalised as multiplication by
+a $4\times 4$ matrix.  A Lorentz transform takes the components of an
+arbitrary four-vector as observed in one coordinate system and returns
+the components observed in another system which is moving at constant
 velocity with respect to the first.
 
 The \pkg{lorentz} package provides R-centric functionality for Lorentz
@@ -820,11 +820,41 @@ indeed a null vector:
 inner4(A)
 @                                                  
 
-showing that the vectors are indeed null to numerical precision.  We
-are going to reflect the photons in an oblique mirror which is itself
-moving at half the speed of light along the x-axis.  The first step is
-to define the mirror \code{m}, and the boost \code{B} corresponding to
-its velocity:
+showing that the vectors are indeed null to numerical precision.  What
+do these photons look like in a frame moving along the $x$-axis at
+$0.7c$?
+  
+<<>>=
+tcrossprod(A,boost(as.3vel(c(0.7,0,0))))
+@   
+
+Above, see how the photons have lost the majority of their energy due
+to redshifting.  Blue shifting is easy to implement as either a
+passive transform:
+                                            
+<<>>=
+tcrossprod(A,boost(as.3vel(c(-0.7,0,0))))
+@   
+                  
+or an active transform:
+
+<<>>=
+tcrossprod(A,solve(boost(as.3vel(c(0.7,0,0)))))
+@   
+
+giving the same result.
+
+
+\subsection{Reflection in mirrors}
+
+\citet{gjurchinovski2004} discusses reflection of light from a
+uniformly moving mirror and here I show how the \pkg{lorentz} package
+can illustrate some of his insights.
+
+We are going to reflect the photons in an oblique mirror which is
+itself moving at half the speed of light along the x-axis.  The first
+step is to define the mirror \code{m}, and the boost \code{B}
+corresponding to its velocity:
                                                               
 <<>>=
 m <- c(1,1,1)
@@ -877,12 +907,12 @@ A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom()
 \subsection*{Mirrors and rotation-boost coupling}
 
 
-Consider the following R idiom, in which we take a bunch of photons
-which, in a certain reference frame are all moving (almost) parallel
-to the x-axis.  Then we reflect the photons from a mirror which is
-moving with a composition of pure boosts, and examine the reflected
-light in their original reference frame:
 
+Consider the following R idiom: we take a bunch of photons which, in a
+certain reference frame are all moving (almost) parallel to the
+x-axis.  Then we reflect the photons from a mirror which is moving
+with a composition of pure boosts, and examine the reflected light in
+their original reference frame:
 
 <<>>=
 sol(1)
@@ -906,7 +936,31 @@ x-axis (in its own frame).  Again it is arguably preferable to use pipes:
 light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom()
 @ 
 
+Compare when the speed of light is infinite:
+<<>>=
+sol(Inf)
+light_start <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40)))
+B1 <- boost(as.3vel(c(-0.5, 0.1, 0.0)))
+B2 <- boost(as.3vel(c( 0.2, 0.0, 0.0)))
+B3 <- boost(as.3vel(c( 0.0, 0.0, 0.6)))
+B <- B1 %*% B2 %*% B3
+light_start
+light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom()
+@ 
 
+Note that, in the infinite light speed case, the energy of the photons
+is zero (photons have zero rest mass); further observe that in this
+classical case, the effect of the mirror is to multiply the x-momentum
+by $-1$ and leave the ither components unchanged, as one might expect
+from a mirror perpendicular to $(1,0,0)$.
+
+\section{Conclusions}
+
+The \pkg{lorentz} package furnishes some functionality for
+manipulating four-vectors and three-velocities in the context of
+special relativity.  The R idiom is relatively natural and the package
+has been used to illustrate different features of relativistic
+kinematics.
 
 \bibliography{lorentz}
 \end{document}
