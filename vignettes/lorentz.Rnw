@@ -790,9 +790,10 @@ perfectfluid(3,100) %>% transform_uu(B2 %*% B1)  # should match
 @                                                            
 
 
-\section{A warning}
+\subsubsection*{A warning}
 
-Note carefully that the following natural idiom is {\bf INCORRECT}:
+It is easy to misapply matrix multiplication in this context.  Note
+carefully that the following natural idiom is {\bf incorrect}:
 
 <<>>=
 U %*% B  # Young Frankstein: Do Not Use This Brain!
@@ -810,17 +811,20 @@ sol(1)
 (A <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40))))
 @ 
 
-above, $A$ is a vector of four-momentum of 10 photons following a null
-path.  They are all moving approximately parallel to the x-axis.  We
-can check that this is indeed a null vector:
+above, $A$ is a vector of four-momentum of five photons, all of unit
+energy, each with a null world line.  They are all moving
+approximately parallel to the x-axis.  We can check that this is
+indeed a null vector:
                                                  
 <<>>=
 inner4(A)
 @                                                  
 
-showing that the vectors are indeed null.  We are going to reflect the
-photons in an oblique mirror which is itself moving at half the speed
-of light along the x-axis.  The first step is to define the mirror:
+showing that the vectors are indeed null to numerical precision.  We
+are going to reflect the photons in an oblique mirror which is itself
+moving at half the speed of light along the x-axis.  The first step is
+to define the mirror \code{m}, and the boost \code{B} corresponding to
+its velocity:
                                                               
 <<>>=
 m <- c(1,1,1)
