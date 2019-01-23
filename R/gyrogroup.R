@@ -493,6 +493,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 
 `boost` <- function(u){  # v = (u,v,w)
   u <- as.3vel(u)
+  if(is.infinite(sol())){return(flob(rbind(c(1,0,0,0),cbind(t(-u),diag(3)))))}
   g <- gam(u)  
   u <- as.vector(u)/sol()  # convert to c=1 units (NB previous line needs sol())
   jj <- -g*u

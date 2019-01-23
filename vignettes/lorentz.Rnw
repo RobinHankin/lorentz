@@ -486,19 +486,21 @@ The Lorentz boost is again calculated by the \code{boost()} function:
 boost(u)
 @ 
 
-note how the transformation is essentially the Galilean result, which
-would be
+The boost matrix is not symmetrical, even though it is a pure boost,
+because $c\neq 1$.  Note how the transformation is essentially the
+Galilean result, which may be calculated in the package exactly by
+setting the speed of light to infinity:
 
 <<>>=
-gal <- flob(cbind(c(1,-100*(1:3)),rbind(0,diag(3))))
-gal
+sol(Inf)
+boost(u)
 @ 
 
-(trivial function \code{flob()} sets the dimnames appropriately).  The
-boost matrix is not symmetrical, even though it is a pure boost,
-because $c\neq 1$.  We can compose boosts as expected:
+
+We can compose boosts as expected:
 
 <<>>=
+sol(299792458)
 v <- as.3vel(c(400,-200,300))
 boost(u) %*% boost(v)
 boost(v) %*% boost(u)
