@@ -604,11 +604,8 @@ These are the first two elements of a displacement four-vector.  It is
 the same four-vector but viewed in two different reference frames.
 This is the default mode in the package:
 
-<<print=FALSE,results=hide>>=
-sol(1)
-@ 
-
 <<>>=
+sol(1)
 boost(as.3vel(c(0.6,0,0)))
 @ 
 

@@ -4,11 +4,11 @@
     if(!is.null(jj)){
       return(jj)
     } else {
-      return(1)
+      return(invisible(1))
     }
   } else { # set SOL
     options("c" = c)
-    return(c)
+    return(invisible(c))
   }
 }
 
