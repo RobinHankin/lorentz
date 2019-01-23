@@ -89,12 +89,13 @@ library(lorentz)
 \section{Introduction}
 
 In special relativity, the Lorentz transformations supercede their
-classical equivalent, the Galilean transforms.  Lorentz transforms
-operate on four-vectors such as four-velocity or four-potential and
-are usually operationalised as multiplication by a $4\times 4$ matrix.
-A Lorentz transform takes the components of four-vector as observed in
-one coordinate system and returns the components observed in another
-system which is moving at constant velocity with respect to the first.
+classical equivalent, the Galilean transforms~\citep{goldstein1980}.
+Lorentz transforms operate on four-vectors such as four-velocity or
+four-potential and are usually operationalised as multiplication by a
+$4\times 4$ matrix.  A Lorentz transform takes the components of
+four-vector as observed in one coordinate system and returns the
+components observed in another system which is moving at constant
+velocity with respect to the first.
 
 The \pkg{lorentz} package provides R-centric functionality for Lorentz
 transformations.  It deals with Lorentz boosts, converts between
@@ -283,8 +284,7 @@ But we can use equations~\ref{nonass1} and~\ref{nonass2}:
 ((u+v)+w) - (u+(v+gyr(v,u,w)))
 @ 
 
-\clearpage
-\section{Visualization}
+\subsection{Visualization of noncommutativity and nonassociativity of three-velocities}
 
 Consider the following three-velocities:
 
@@ -353,8 +353,7 @@ ass_fail(u=u, v=v, w=w, bold=10)
 \end{figure}
 
 
-\newpage
-\section{The magrittr package: pipes}
+\subsection{The magrittr package: pipes}
 
 The \pkg{lorentz} package works nicely with \pkg{magrittr}.  If we
 define
@@ -392,9 +391,7 @@ speed(jj1-jj2)
 @ 
 
 
-\newpage
-\section{Functional notation}
-
+\subsection{Functional notation}
 
 It is possible to replace calls like \code{gyr(u,v,x)} with functional
 notation which can make for arguably more natural R idiom.  If we have
@@ -406,7 +403,7 @@ x <- as.3vel(c(0.7, 0, -0.7))
 y <- as.3vel(c(0.1, 0.3, -0.6))
 @ 
 
-Then we can define \code{f()} to be themap~$\bx\mapsto\gyr{u}{v}\bx$.
+Then we can define \code{f()} to be the map~$\bx\mapsto\gyr{u}{v}\bx$.
 In R:
 
 <<>>=
@@ -414,7 +411,7 @@ f <- gyrfun(u,v)
 f(w)
 @ 
 
-Then numerical verification of equation~\ref{doteq} and~\ref{gyrinv}
+Then numerical verification of equations~\ref{doteq} and~\ref{gyrinv}
 is straightforward:
 
 <<>>=
@@ -497,7 +494,8 @@ gal <- flob(cbind(c(1,-100*(1:3)),rbind(0,diag(3))))
 gal
 @ 
 
-The boost matrix is not symmetrical, even though it is a pure boost,
+(trivial function \code{flob()} sets the dimnames appropriately).  The
+boost matrix is not symmetrical, even though it is a pure boost,
 because $c\neq 1$.  We can compose boosts as expected:
 
 <<>>=
