@@ -52,6 +52,7 @@
 %% \Year{2004}
 %% \Submitdate{2004-09-29}
 %% \Acceptdate{2004-09-29}
+   \Repository{https://github.com/RobinHankin/lorentz}
 
 %% The address of (at least) one author should be given
 %% in the following format:
@@ -97,11 +98,22 @@ arbitrary four-vector as observed in one coordinate system and returns
 the components observed in another system which is moving at constant
 velocity with respect to the first.
 
-The \pkg{lorentz} package provides R-centric functionality for Lorentz
-transformations.  It deals with Lorentz boosts, converts between
-three-velocities and four-velocities, and provides computational
-support for the gyrogroup structure of three-velocities under
-successive addition.
+There are a few existing software tools for working with Lorentz
+transforms, mostly developed in an educational context.  Early work
+would include that of \citet{horwitz1992} who describe \pkg{relLab}, a
+system for building a range of {\em gendanken} experiments in an
+interactive graphical environment.  The author asserts that it runs on
+``any Macintosh computer with one megabyte of RAM or more'' but it is
+not clear whether the software is still available.  More modern
+contributions would include the \proglang{OpenRelativity}
+toolkit~\citep{sherin2016} which simulates the effects of special
+relativity in the \proglang{Unity} game engine.
+
+The \pkg{lorentz} package provides \proglang{R}-centric functionality
+for Lorentz transformations.  It deals with formal Lorentz boosts,
+converts between three-velocities and four-velocities, and provides
+computational support for the gyrogroup structure of three-velocities
+under successive addition. 
 
 \section{Lorentz transforms}
 
