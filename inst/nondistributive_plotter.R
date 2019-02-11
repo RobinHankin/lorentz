@@ -1,6 +1,6 @@
 # plotting functions called right at the end of this file
 
-library("gyrogroup")
+library("lorentz")
 
 
 # following three-velocities closely match those of comm_fail.Rd:
