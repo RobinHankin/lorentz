@@ -677,15 +677,27 @@ solve(B) %*% c(1,0,0,0)             # active transform ~= Galilean
 
 \section{Vectorization}
 
-Here I discuss vectorized operations.  The issue is difficult because
-a vector of four-velocities is arranged so that each row is a
-four-velocity, and each column is a component.  To avoid confusion
-between boost matrices and their transposes we will use $c=10$.
+Here I discuss vectorized operations (to avoid confusion between boost
+matrices and their transposes we will use $c=10$).  The issue is
+difficult because a Lorentz boost is conceptually a matrix product of
+a $4\times 4$ matrix with vector with four elements:
 
-<<results=hide>>=
+<<>>=
 sol(10)
 options(digits=3)
+u <- as.3vel(c(5,-6,4))
+(U <- as.4vel(u))
+B <- boost(U)
+B %*% as.vector(U)
 @ 
+
+(note that the result is the four-velocity of an object at rest, as
+expected).  However, things are different if we wish to consider many
+four-vectors in one R object.  A vector ${\mathbf V}$ of
+four-velocities is a matrix: each {\em row} of ${\mathbf V}$ is
+four-velocity.  Because a vector is treated (almost) as a one-column
+matrix in R, and the four-velocities are rows, we need to take a
+transpose in some sense.  
 
 <<>>=
 u <- 1:7  # speed in the x-direction [c=10]
