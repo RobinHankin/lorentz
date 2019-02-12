@@ -3,6 +3,8 @@
 \alias{transform_dd}
 \alias{transform_ud}
 \alias{transform_uu}
+\alias{raise}
+\alias{lower}
 \alias{perfectfluid}
 \alias{dust}
 \alias{photongas}
@@ -20,6 +22,8 @@ photongas(rho,u=0)
 transform_dd(TT, B)
 transform_ud(TT, B)
 transform_uu(TT, B)
+raise(TT)
+lower(TT)
 }
 
 \arguments{
@@ -46,6 +50,11 @@ transform_uu(TT, B)
   downstairs (covariant).  The stress-energy tensor is usually written
   with two upstairs indices, so use \code{transform_uu()} to transform
   it.
+
+  Function \code{lower()} lowers both indices of a tensor with two
+  upstairs indices.  Function \code{raise()} raises two downstairs
+  indices.  These two functions are identical; the Minkowski tensor is
+  symmetrical and equal to its own inverse.
 
 }
 \author{Robin K. S. Hankin}
