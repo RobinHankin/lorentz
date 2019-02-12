@@ -25,9 +25,9 @@
 \author{Robin K. S. Hankin}
 \examples{
 
- a <- as.3vel(c(4,5,6)/9)
- b <- as.3vel(c(-5,6,8)/14)
- x <- seq(a,b,len=9)
+a <- as.3vel(c(4,5,6)/9)
+b <- as.3vel(c(-5,6,8)/14)
+x <- seq(a,b,len=9)
 
 x[1]-a # should be zero
 x[9]-b # should be zero
