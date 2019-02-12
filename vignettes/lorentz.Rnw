@@ -81,10 +81,11 @@
 \newcommand{\gyr}[2]{\operatorname{gyr}\left[{\mathbf #1},{\mathbf #2}\right]}
 
 \SweaveOpts{}
+
 \begin{document}
 
 <<echo=FALSE,print=FALSE>>=
-library(lorentz)
+library("lorentz")
 @ 
 
 \section{Introduction}
@@ -182,270 +183,6 @@ P - t(P)
                
 (that is, zero to numerical precision).
 
-\section{Three velocities}
-
-
-The \pkg{lorentz} package includes functionality to compose
-three-velocities.  Three velocities do not form a group under
-composition as the velocity addition law is not associative.
-\cite{ungar2006} shows that the velocity addition law is
-
-\begin{equation}
-\bu\oplus\bv=
-\frac{1}{1+\bu\cdot\bv}
-\left\{
-\bu + \frac{\bv}{\gamma_\bu} + \frac{\gamma_\bu
-\left(\bu\cdot\bv\right)\bu}{1+\gamma_\bu}
-\right\}
-\end{equation}
-   
-where~$\gamma_\bu=\left(1-\bu\cdot\bu\right)^{-1/2}$ and we are
-assuming~$c=1$.  Ungar shows that, in general,
-$\bu\oplus\bv\neq\bv\oplus\bu$
-and~$(\bu\oplus\bv)\oplus\bw\neq\bu\oplus(\bv\oplus\bw)$.  He also
-defines the binary operator~$\ominus$
-as~$\bu\ominus\bv=\bu\oplus\left(-\bv\right)$, and implicitly
-defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$.  If
-we have
-
-\begin{equation}
-\gyr{u}{v}\bx=-\left(\bu\oplus\bv\right)\oplus\left(\bu\oplus\left(\bv\oplus\bx\right)\right)
-\end{equation}
-
-Then Ungar shows that 
-
-\begin{eqnarray}
-\bu\oplus\bv &=& \gyr{u}{v}\left(\bv\oplus\bu\right)\label{noncom}\\
-\gyr{u}{v}\bx\cdot\gyr{u}{v}\by &=& \bx\cdot\by\label{doteq}\\
-\gyr{u}{v}\left(\bx\oplus\by\right) &=& \gyr{u}{v}\bx\oplus\gyr{u}{v}\by\\
-\left(\gyr{u}{v}\right)^{-1} &=& \left(\gyr{v}{u}\right)\label{gyrinv}\\
-\bu\oplus\left(\bv\oplus\bw\right) &=&\left(\bu\oplus\bv\right)\oplus\gyr{u}{v}\bw\label{nonass1}\\
-\left(\bu\oplus\bv\right)\oplus\bw &=&\bu\oplus\left(\bv\oplus\gyr{v}{u}\bw\right)\label{nonass2}
-\end{eqnarray}
-
-Consider the following R session:
-
-<<kickoff>>=
-library(lorentz)
-u <- as.3vel(c(-0.7,+0.2,-0.3))
-v <- as.3vel(c(+0.3,+0.3,+0.4))
-w <- as.3vel(c(+0.1,+0.3,+0.8))
-x <- as.3vel(c(-0.2,-0.1,-0.9))
-u
-@ 
-
-Here we have three-vectors \code{u} etc.  We can see that \code{u} and
-\code{v} do not commute:
-
-<<try>>=
-u+v
-v+u
-@ 
-
-(the results differ).  We can use equation~\ref{noncom}
-<<>>=
-(u+v)-gyr(u,v,v+u)
-@ 
-
-showing agreement to within numerical error.  It is also possible to
-use the functional idiom:
-
-<<funcid>>=
-f <- gyrfun(u,v)
-(u+v)-f(v+u)    # should be zero
-@ 
-
-Function \code{gyrfun()} is vectorized, which means that it plays
-nicely with (R) vectors.  Consider
-
-<<vec9>>=
-u9 <- r3vel(9)
-u9
-@ 
-
-Then we can create a vectorized gyrofunction:
-
-<<vecfun>>=
-f <- gyrfun(u9,v)
-f(x)
-@ 
-
-
-Note that the package vectorization is transparent when using syntatic sugar:
-
-<<u9+x>>=
-u9+x
-@ 
-
-(here, the addition operates using R's standard recycling rules).
-
-\subsection{Associativity}
-
-
-Three velocity addition is not associative:
-
-<<nonass>>=
-(u+v)+w
-u+(v+w)
-@ 
-
-But we can use equations~\ref{nonass1} and~\ref{nonass2}:
-
-<<nonass1>>=
-(u+(v+w)) - ((u+v)+gyr(u,v,w))
-((u+v)+w) - (u+(v+gyr(v,u,w)))
-@ 
-
-\subsection{Visualization of noncommutativity and nonassociativity of three-velocities}
-
-Consider the following three-velocities:
-
-<<viss>>=
-u <- as.3vel(c(0.4,0,0))
-v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
-w <- as.3vel(c(0.8,-0.4,0))
-@ 
-
-Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
-is a vector of three velocities.  We can see the noncommutativity of
-three velocity addition in figures~\ref{comfail1} and~\ref{comfail2},
-and the nonassociativity in figures~\ref{assfail}.
-
-\begin{figure}[htbp]
-  \begin{center}
-<<comfail1_fig, fig=TRUE>>=
-comm_fail1(u=u, v=v)
-@
-\caption{Failure\label{comfail1} of the commutative law for velocity
-  composition in special relativity.  The arrows show successive
-  velocity boosts of $+\bu$ (purple), $+\bv$ (black), $-\bu$ (red),
-  and~$-\bv$ (blue) for $\bu,\bv$ as defined above.  Velocity $\bu$ is
-  constant, while $\bv$ takes a sequence of values.  If velocity
-  addition is commutative, the four boosts form a closed
-  quadrilateral; the thick arrows show a case where the boosts almost
-  close and the boosts nearly form a parallelogram.  The blue dots
-  show the final velocity after four successive boosts; the distance
-  of the blue dot from the origin measures the combined velocity,
-  equal to zero in the classical limit of low speeds.  The discrepancy
-  becomes larger and larger for the faster elements of the sequence
-  $\bv$}
-  \end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-  \begin{center}
-<<comfail2_fig, fig=TRUE>>=
-comm_fail2(u=u, v=v)
-@
-
-\caption{Another view of the failure of the commutative
-  law\label{comfail2} in special relativity.  The black arrows show
-  velocity boosts of $\bu$ and the blue arrows show velocity boosts of
-  $\bv$, with $\bu,\bv$ as defined above; $\bu$ is constant while
-  $\bv$ takes a sequence of values.  If velocity addition is
-  commutative, then $\bu+\bv=\bv+\bu$ and the two paths end at the
-  same point: the parallelogram is closed.  The red lines show the
-  difference between $\bu+\bv$ and $\bv+\bu$}
-  \end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-  \begin{center}
-<<assfail_fig, fig=TRUE>>=
-ass_fail(u=u, v=v, w=w, bold=10)
-@
-\caption{Failure of the associative law \label{assfail} for velocity
-  composition in special relativity.  The arrows show successive
-  boosts of $\bu$ followed by $\bv+\bw$ (black lines), and $\bu+\bv$
-  followed by $\bw$ (blue lines), for $\bu$, $\bv$, $\bw$ as defined
-  above; $\bu$ and $\bw$ are constant while $\bv$ takes a sequence of
-  values. The mismatch between $\bu+\left(\bv+\bw\right)$ and
-  $\left(\bu+\bv\right)+\bw$ is shown in red}
-  \end{center}
-\end{figure}
-
-
-\subsection{The magrittr package: pipes}
-
-The \pkg{lorentz} package works nicely with \pkg{magrittr}.  If we
-define
-
-<<defuvw>>=
- u <- as.3vel(c(+0.5,0.1,-0.2))
- v <- as.3vel(c(+0.4,0.3,-0.2))
- w <- as.3vel(c(-0.3,0.2,+0.2))
-@ 
-
-Then pipe notation operates as expected:
-
-<<>>=
-jj1 <- u %>% add(v)
-jj2 <- u+v
-speed(jj1-jj2)
-@ 
-
-The pipe operator is left associative:
-
-<<>>=
-jj1 <- u %>% add(v) %>% add(w)
-jj2 <- (u+v)+w
-speed(jj1-jj2)
-@ 
-
-
-If we want right associative addition, the pipe operator needs
-brackets:
-
-<<>>=
-jj1 <- u %>% add(v %>% add(w))
-jj2 <- u+(v+w)
-speed(jj1-jj2)
-@ 
-
-
-\subsection{Functional notation}
-
-It is possible to replace calls like \code{gyr(u,v,x)} with functional
-notation which can make for arguably more natural R idiom.  If we have
-
-<<funcnot>>=
-u <- as.3vel(c(0, 0.8, 0))
-v <- r3vel(5,0.9)
-x <- as.3vel(c(0.7, 0, -0.7))
-y <- as.3vel(c(0.1, 0.3, -0.6))
-@ 
-
-Then we can define \code{f()} to be the map~$\bx\mapsto\gyr{u}{v}\bx$.
-In R:
-
-<<>>=
-f <- gyrfun(u,v)
-f(w)
-@ 
-
-Then numerical verification of equations~\ref{doteq} and~\ref{gyrinv}
-is straightforward:
-
-<<>>=
-prod3(f(x),f(y)) - prod3(x,y)
-@ 
-
-and
-
-<<>>=
-f <- gyrfun(u,v)
-g <- gyrfun(v,u)
-f(g(x)) - g(f(x))
-@ 
-
-(zero to numerical precision).  It is possible to use pipes together
-with the functional notation:
-
-<<>>=
-x %<>% f %>% add(y)      # x <- f(x)+y
-x
-@ 
-
 
 \section{SI units}
 
@@ -522,7 +259,7 @@ Again this is very close to the Galilean result (observe that the
 spatial components of the boost are almost equal to the identity
 matrix).
 
-\section*{Appendix A. Active and passive transforms}
+\section{Active and passive transforms}
 
 Passive transforms are the usual type of transforms taught and used in
 relativity.  However, sometimes active transforms are needed and it is
@@ -768,7 +505,7 @@ the result for consistency:
 is.consistent.4vel(tcrossprod(U,solve(B)))
 @ 
 
-\subsection{Multiple boosts}
+\section{Multiple boosts}
 
 
 If we are considering multiple boosts, it is important to put them in
@@ -977,6 +714,269 @@ is zero (photons have zero rest mass); further observe that in this
 classical case, the effect of the mirror is to multiply the x-momentum
 by $-1$ and leave the ither components unchanged, as one might expect
 from a mirror perpendicular to $(1,0,0)$.
+
+\section{Three velocities}
+
+The \pkg{lorentz} package includes functionality to compose
+three-velocities.  Three velocities do not form a group under
+composition as the velocity addition law is not associative.
+\cite{ungar2006} shows that the velocity addition law is
+
+\begin{equation}
+\bu\oplus\bv=
+\frac{1}{1+\bu\cdot\bv}
+\left\{
+\bu + \frac{\bv}{\gamma_\bu} + \frac{\gamma_\bu
+\left(\bu\cdot\bv\right)\bu}{1+\gamma_\bu}
+\right\}
+\end{equation}
+   
+where~$\gamma_\bu=\left(1-\bu\cdot\bu\right)^{-1/2}$ and we are
+assuming~$c=1$.  Ungar shows that, in general,
+$\bu\oplus\bv\neq\bv\oplus\bu$
+and~$(\bu\oplus\bv)\oplus\bw\neq\bu\oplus(\bv\oplus\bw)$.  He also
+defines the binary operator~$\ominus$
+as~$\bu\ominus\bv=\bu\oplus\left(-\bv\right)$, and implicitly
+defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$.  If
+we have
+
+\begin{equation}
+\gyr{u}{v}\bx=-\left(\bu\oplus\bv\right)\oplus\left(\bu\oplus\left(\bv\oplus\bx\right)\right)
+\end{equation}
+
+Then Ungar shows that 
+
+\begin{eqnarray}
+\bu\oplus\bv &=& \gyr{u}{v}\left(\bv\oplus\bu\right)\label{noncom}\\
+\gyr{u}{v}\bx\cdot\gyr{u}{v}\by &=& \bx\cdot\by\label{doteq}\\
+\gyr{u}{v}\left(\bx\oplus\by\right) &=& \gyr{u}{v}\bx\oplus\gyr{u}{v}\by\\
+\left(\gyr{u}{v}\right)^{-1} &=& \left(\gyr{v}{u}\right)\label{gyrinv}\\
+\bu\oplus\left(\bv\oplus\bw\right) &=&\left(\bu\oplus\bv\right)\oplus\gyr{u}{v}\bw\label{nonass1}\\
+\left(\bu\oplus\bv\right)\oplus\bw &=&\bu\oplus\left(\bv\oplus\gyr{v}{u}\bw\right)\label{nonass2}
+\end{eqnarray}
+
+Consider the following R session:
+
+<<kickoff>>=
+sol(1)
+u <- as.3vel(c(-0.7,+0.2,-0.3))
+v <- as.3vel(c(+0.3,+0.3,+0.4))
+w <- as.3vel(c(+0.1,+0.3,+0.8))
+x <- as.3vel(c(-0.2,-0.1,-0.9))
+u
+@ 
+
+Here we have three-vectors \code{u} etc.  We can see that \code{u} and
+\code{v} do not commute:
+
+<<try>>=
+u+v
+v+u
+@ 
+
+(the results differ).  We can use equation~\ref{noncom}
+<<>>=
+(u+v)-gyr(u,v,v+u)
+@ 
+
+showing agreement to within numerical error.  It is also possible to
+use the functional idiom:
+
+<<funcid>>=
+f <- gyrfun(u,v)
+(u+v)-f(v+u)    # should be zero
+@ 
+
+Function \code{gyrfun()} is vectorized, which means that it plays
+nicely with (R) vectors.  Consider
+
+<<vec9>>=
+u9 <- r3vel(9)
+u9
+@ 
+
+Then we can create a vectorized gyrofunction:
+
+<<vecfun>>=
+f <- gyrfun(u9,v)
+f(x)
+@ 
+
+
+Note that the package vectorization is transparent when using syntatic sugar:
+
+<<u9+x>>=
+u9+x
+@ 
+
+(here, the addition operates using R's standard recycling rules).
+
+\subsection{Associativity}
+
+
+Three velocity addition is not associative:
+
+<<nonass>>=
+(u+v)+w
+u+(v+w)
+@ 
+
+But we can use equations~\ref{nonass1} and~\ref{nonass2}:
+
+<<nonass1>>=
+(u+(v+w)) - ((u+v)+gyr(u,v,w))
+((u+v)+w) - (u+(v+gyr(v,u,w)))
+@ 
+
+\subsection{Visualization of noncommutativity and nonassociativity of three-velocities}
+
+Consider the following three-velocities:
+
+<<viss>>=
+u <- as.3vel(c(0.4,0,0))
+v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
+w <- as.3vel(c(0.8,-0.4,0))
+@ 
+
+Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
+is a vector of three velocities.  We can see the noncommutativity of
+three velocity addition in figures~\ref{comfail1} and~\ref{comfail2},
+and the nonassociativity in figures~\ref{assfail}.
+
+\begin{figure}[htbp]
+  \begin{center}
+<<comfail1_fig, fig=TRUE>>=
+comm_fail1(u=u, v=v)
+@
+\caption{Failure\label{comfail1} of the commutative law for velocity
+  composition in special relativity.  The arrows show successive
+  velocity boosts of $+\bu$ (purple), $+\bv$ (black), $-\bu$ (red),
+  and~$-\bv$ (blue) for $\bu,\bv$ as defined above.  Velocity $\bu$ is
+  constant, while $\bv$ takes a sequence of values.  If velocity
+  addition is commutative, the four boosts form a closed
+  quadrilateral; the thick arrows show a case where the boosts almost
+  close and the boosts nearly form a parallelogram.  The blue dots
+  show the final velocity after four successive boosts; the distance
+  of the blue dot from the origin measures the combined velocity,
+  equal to zero in the classical limit of low speeds.  The discrepancy
+  becomes larger and larger for the faster elements of the sequence
+  $\bv$}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+<<comfail2_fig, fig=TRUE>>=
+comm_fail2(u=u, v=v)
+@
+
+\caption{Another view of the failure of the commutative
+  law\label{comfail2} in special relativity.  The black arrows show
+  velocity boosts of $\bu$ and the blue arrows show velocity boosts of
+  $\bv$, with $\bu,\bv$ as defined above; $\bu$ is constant while
+  $\bv$ takes a sequence of values.  If velocity addition is
+  commutative, then $\bu+\bv=\bv+\bu$ and the two paths end at the
+  same point: the parallelogram is closed.  The red lines show the
+  difference between $\bu+\bv$ and $\bv+\bu$}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+<<assfail_fig, fig=TRUE>>=
+ass_fail(u=u, v=v, w=w, bold=10)
+@
+\caption{Failure of the associative law \label{assfail} for velocity
+  composition in special relativity.  The arrows show successive
+  boosts of $\bu$ followed by $\bv+\bw$ (black lines), and $\bu+\bv$
+  followed by $\bw$ (blue lines), for $\bu$, $\bv$, $\bw$ as defined
+  above; $\bu$ and $\bw$ are constant while $\bv$ takes a sequence of
+  values. The mismatch between $\bu+\left(\bv+\bw\right)$ and
+  $\left(\bu+\bv\right)+\bw$ is shown in red}
+  \end{center}
+\end{figure}
+
+
+\subsection{The magrittr package: pipes}
+
+The \pkg{lorentz} package works nicely with \pkg{magrittr}.  If we
+define
+
+<<defuvw>>=
+ u <- as.3vel(c(+0.5,0.1,-0.2))
+ v <- as.3vel(c(+0.4,0.3,-0.2))
+ w <- as.3vel(c(-0.3,0.2,+0.2))
+@ 
+
+Then pipe notation operates as expected:
+
+<<>>=
+jj1 <- u %>% add(v)
+jj2 <- u+v
+speed(jj1-jj2)
+@ 
+
+The pipe operator is left associative:
+
+<<>>=
+jj1 <- u %>% add(v) %>% add(w)
+jj2 <- (u+v)+w
+speed(jj1-jj2)
+@ 
+
+
+If we want right associative addition, the pipe operator needs
+brackets:
+
+<<>>=
+jj1 <- u %>% add(v %>% add(w))
+jj2 <- u+(v+w)
+speed(jj1-jj2)
+@ 
+
+
+\subsection{Functional notation}
+
+It is possible to replace calls like \code{gyr(u,v,x)} with functional
+notation which can make for arguably more natural R idiom.  If we have
+
+<<funcnot>>=
+u <- as.3vel(c(0, 0.8, 0))
+v <- r3vel(5,0.9)
+x <- as.3vel(c(0.7, 0, -0.7))
+y <- as.3vel(c(0.1, 0.3, -0.6))
+@ 
+
+Then we can define \code{f()} to be the map~$\bx\mapsto\gyr{u}{v}\bx$.
+In R:
+
+<<>>=
+f <- gyrfun(u,v)
+f(w)
+@ 
+
+Then numerical verification of equations~\ref{doteq} and~\ref{gyrinv}
+is straightforward:
+
+<<>>=
+prod3(f(x),f(y)) - prod3(x,y)
+@ 
+
+and
+
+<<>>=
+f <- gyrfun(u,v)
+g <- gyrfun(v,u)
+f(g(x)) - g(f(x))
+@ 
+
+(zero to numerical precision).  It is possible to use pipes together
+with the functional notation:
+
+<<>>=
+x %<>% f %>% add(y)      # x <- f(x)+y
+x
+@ 
 
 \section{Conclusions}
 
