@@ -116,8 +116,179 @@ converts between three-velocities and four-velocities, and provides
 computational support for the gyrogroup structure of three-velocities
 under successive addition. 
 
-\section{Lorentz transforms}
+\section{Lorentz transforms: active and passive}
 
+Passive transforms are the usual type of transforms taught and used in
+relativity.  However, sometimes active transforms are needed and it is
+easy to confuse the two.  Here I will discuss passive transforms
+first, then active transforms.
+
+\subsection*{Passive transforms}
+
+\newcommand{\vvec}[2]{\left(\begin{array}{c} #1\\#2\end{array}\right)}
+\newcommand{\twomat}[4]{\left(\begin{array}{cc} #1 & #2\\ #3 & #4\\ \end{array}\right)}
+
+Consider the following canonical Lorentz transform in which we have
+only motion in the $x$-direction at speed $v$.  The motion is from
+left to right, and this means that $v>0$.  The physical interpretation
+is that I am at rest, and my friend is in his spaceship moving at
+speed $v$ past me; and we are wondering what vectors which I measure
+in my own rest frame look like to him.  The (passive) Lorentz
+transform is:
+
+\begin{equation*}
+\twomat{\gamma}{\gamma v}{\gamma v}{\gamma}
+\end{equation*}
+
+And the canonical example of that is:
+
+\begin{equation*}
+\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{-\gamma v}
+\end{equation*}
+
+where the vectors are four velocities (recall that $\vvec{1}{0}$ is
+the four-velocity of an object at rest).  What this means is that I
+measure the four-velocity of an object to be $\vvec{1}{0}$, and he
+measures the same object as having a four-velocity of
+$\vvec{\gamma}{-\gamma v}$.  So I see the object at rest, and he sees
+it as moving at speed $-v$; that is, he sees it moving to the left (it
+moves to the left because he is moving to the right relative to me).
+The package makes computations easy.  Suppose $v=0.6c$ in the
+$x$-direction.
+
+<<floater>>=
+                          # NB: speed of light = 1 by default
+u <- as.3vel(c(0.6,0,0))  # coerce to a three-velocity
+(B <- boost(u))           # transformation matrix
+@ 
+
+(note that element $[1,2]$ of the boost matrix $B$ is negative as we
+have a passive transform).  Then a four-velocity of $(1,0,0,0)^T$
+would appear in the moving frame as
+
+<<flighter>>=
+B %*% c(1,0,0,0)
+@ 
+
+Observe that it is possible to transform an arbitary four-vector:
+
+<<flayter>>=
+B %*% c(4,6,-8,9)
+@ 
+
+
+\subsubsection*{Null vectors: light}
+
+Let's try it with light (see section~\ref{photonsection} for more
+details on photons).  Recall that we describe a photon in terms of its
+four momentum, not four-velocity, which is undefined for a photon.
+Specifically, we {\em define} the four-momentum of a photon to be
+
+\begin{equation*}
+  \left(
+  \begin{array}{c}
+    E/c\\Ev_x/c^2\\Ev_y/c^2\\Ev_z/c^2
+  \end{array}
+  \right)
+  \end{equation*}
+
+So if we consider unit energy and keep $c=1$ we get $p=\vvec{1}{1}$
+in our one-dimensional world (for a rightward-moving photon) and the
+Lorentz transform is then
+
+\begin{equation*}
+  \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{1}=\vvec{\gamma-\gamma v}{\gamma-\gamma v}
+  \end{equation*}
+
+So I see a photon with unit energy, and he sees the photon with energy
+$\gamma(1-v)=\sqrt{1-v}<1$: the photon has less energy in his frame
+than mine because of Doppler redshifting.
+
+It's worth doing the same analysis with a leftward-moving photon:
+
+\begin{equation*}
+  \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{-1}=\vvec{\gamma(1+v)}{-\gamma(1+v)}
+  \end{equation*}
+
+Here the photon has more energy for him than me because of blue
+shifting: he is moving to the right and encounters a photon moving to
+the left.  The R idiom would be
+
+<<flooter>>=
+B %*% c(1,1,0,0)
+B %*% c(1,-1,0,0)
+@ 
+
+for the left- and right- moving photons respectively. 
+
+The above analysis uses {\em passive} transforms: There is a single
+physical reality, and we are just describing that one physical reality
+using two different coordinate systems.  One of the coordinate systems
+uses a set of axes that are {\em boosted} relative to the axes of the
+other. 
+
+This is why it makes sense to use prime notation as in
+$x\longrightarrow x'$ and $t\longrightarrow t'$ for a passive Lorentz
+transformation: the prime denotes measurements made using coordinates
+that are defined with respect to the boosted system, and we see
+notation like
+
+\begin{equation*}
+\vvec{t'}{x'}=\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{t}{x}
+\end{equation*}  
+
+These are the first two elements of a displacement four-vector.  It is
+the same four-vector but viewed in two different reference frames.
+
+\subsection*{Active transforms}
+
+In the passive view, there is a single physical reality, and we are
+just describing that one physical reality using two different
+coordinate systems.  Now we will consider active transforms: there are
+two physical realities, but one is boosted with respect to another.  
+
+Suppose me and my friend are at rest with respect to one another, but
+my friend is in a spaceship and I am outside it, in free space, at
+rest.  He constructs a four-vector in his spaceship; for example, he
+could fire bullets out of a gun which is fixed in the spaceship, and
+then calculate their four-velocity.  We both agree on this
+four-velocity as our reference frames are identical: we have no
+relative velocity.
+
+Now his spaceship acquires a constant velocity, leaving me stationary.
+My friend continues to fire bullets out of his gun and sees that their
+four-velocity, as viewed in his spaceship coordinates, is the same as
+when we were together.
+
+Now he wonders what the four-velocity of the bullets is in my
+reference frame.  This is an {\em active} transform: we have two
+distinct physical realities, one in the spaceship when it was at rest
+with respect to me, and one in the spaceship when moving.  And both
+these realities, by construction, look the same to my friend in the
+spaceship.
+
+Suppose, for example, he sees the bullets at rest in his spaceship;
+they have a four-velocity of $\vvec{1}{0}$, and my friend says to
+himself: ``I see bullets with a four velocity of $\vvec{1}{0}$, and I
+know what that means.  The bullets are at rest.  What are the bullets'
+four velocities in Robin's reference frame?".  This is an {\em active}
+transform:
+
+\begin{equation*}
+\twomat{\gamma}{\gamma v}{\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{\gamma v}
+\end{equation*}
+
+(we again suppose that the spaceship moves at speed $v>0$ from left to
+right).  So he sees a four velocity of $\vvec{1}{0}$ and I see
+$\vvec{\gamma}{\gamma v}$, that is, with a positive speed: the bullets
+move from left to right (with the spaceship).  The R idiom would be:
+
+<<>>=
+(B <- boost(as.3vel(c(0.8,0,0))))  # 0.8c left to right
+solve(B) %*% c(1,0,0,0)            # active transform
+@ 
+
+\section{Successive Lorentz transforms}
 
 Although the most natural way to consider relative movement between
 coordinate systems is the four-velocity, it is often the case that
@@ -126,19 +297,20 @@ analysis will begin by defining a three-velocity.  In the
 \code{as.3vel()} function, for example:
 
 <<>>=
+sol(1)    # revert to default speed of light: c=1
 u <- as.3vel(c(0.3,-0.4,0.8))
 u
 @ 
 
-(note that the package uses units in which $c=1$ by default, although
-this can be changed).  The three-velocity $u$ may be expressed as a
-four-velocity using the \code{as.4vel()} function:
+The three-velocity $u$ may be expressed as a four-velocity using the
+\code{as.4vel()} function:
 
 <<>>=
 as.4vel(u)
 @ 
 
-The corresponding coordinate transformation is given by \code{boost()}:
+Function \code{boost()} gives the corresponding coordinate
+transformation when given either a three-velocity or a four-velocity:
 
 <<>>=
 boost(u)
@@ -146,8 +318,8 @@ boost(u)
 
 This matrix corresponds to the Lorentz transformation between a frame
 at rest, and one with a three velocity of \code{u} as defined above.
-Transforming an arbitrary four-vector from the rest frame to the
-moving one has straightforward R idiom:
+As we saw above, transforming an arbitrary four-vector from the rest
+frame to the moving one has straightforward R idiom:
 
 <<>>=
 boost(u) %*% c(4,5,-2,3)
@@ -258,159 +430,6 @@ boost(v) %*% boost(u)
 Again this is very close to the Galilean result (observe that the
 spatial components of the boost are almost equal to the identity
 matrix).
-
-\section{Active and passive transforms}
-
-Passive transforms are the usual type of transforms taught and used in
-relativity.  However, sometimes active transforms are needed and it is
-easy to confuse the two.  Here I will discuss passive transforms
-first, then active transforms.
-
-\subsection*{Passive transforms}
-
-\newcommand{\vvec}[2]{\left(\begin{array}{c} #1\\#2\end{array}\right)}
-\newcommand{\twomat}[4]{\left(\begin{array}{cc} #1 & #2\\ #3 & #4\\ \end{array}\right)}
-
-Consider the following canonical Lorentz transform in which we have
-only motion in the $x$-direction at speed $v$.  The motion is from
-left to right, and this means that $v>0$.  The physical interpretation
-is that I am at rest, and my friend is in his spaceship moving at
-speed $v$ past me; and we are wondering what vectors which I measure
-in my own rest frame look like to him.  The (passive) Lorentz
-transform is:
-
-\begin{equation*}
-\twomat{\gamma}{\gamma v}{\gamma v}{\gamma}
-\end{equation*}
-
-And the canonical example of that is:
-
-\begin{equation*}
-\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{-\gamma v}
-\end{equation*}
-
-where the vectors are four velocities (recall that $\vvec{1}{0}$ is
-the four-velocity of an object at rest).  What this means is that I
-measure the four-velocity of an object to be $\vvec{1}{0}$, and he
-measures the same object as having a four-velocity of
-$\vvec{\gamma}{-\gamma v}$.  So I see the object at rest, and he sees
-it as moving at speed $-v$; that is, he sees it moving to the left (it
-moves to the left because he is moving to the right relative to me).
-
-\subsubsection*{Null vectors: light}
-
-Let's try it with light.  Recall that we describe a photon in terms of
-its four momentum, not four-velocity, which is undefined for a photon.
-Specifically, we {\em define} the four-momentum of a photon to be
-
-\begin{equation*}
-  \left(
-  \begin{array}{c}
-    E/c\\Ev_x/c^2\\Ev_y/c^2\\Ev_z/c^2
-  \end{array}
-  \right)
-  \end{equation*}
-
-So if we consider unit energy and keep $c=1$ we get $p=\vvec{1}{1}$
-in our one-dimensional world (for a rightward-moving photon) and the
-Lorentz transform is then
-
-\begin{equation*}
-  \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{1}=\vvec{\gamma-\gamma v}{\gamma-\gamma v}
-  \end{equation*}
-
-So I see a photon with unit energy, and he sees the photon with energy
-$\gamma(1-v)=\sqrt{1-v}<1$: the photon has less energy in his frame
-than mine because of Doppler redshifting.
-
-It's worth doing the same analysis with a leftward-moving photon:
-
-\begin{equation*}
-  \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{-1}=\vvec{\gamma(1+v)}{-\gamma(1+v)}
-  \end{equation*}
-
-Here the photon has more energy for him than me because of blue
-shifting: he is moving to the right and encounters a photon moving to
-the left.
-
-The above analysis uses {\em passive} transforms: There is a single
-physical reality, and we are just describing that one physical reality
-using two different coordinate systems.  One of the coordinate systems
-uses a set of axes that are {\em boosted} relative to the axes of the
-other. 
-
-This is why it makes sense to use prime notation as in
-$x\longrightarrow x'$ and $t\longrightarrow t'$ for a passive Lorentz
-transformation: the prime denotes measurements made using coordinates
-that are defined with respect to the boosted system, and we see things
-like
-
-\begin{equation*}
-\vvec{t'}{x'}=\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{t}{x}
-\end{equation*}  
-
-These are the first two elements of a displacement four-vector.  It is
-the same four-vector but viewed in two different reference frames.
-This is the default mode in the package:
-
-<<>>=
-sol(1)
-boost(as.3vel(c(0.6,0,0)))
-@ 
-
-(note that element $[1,2]$ is negative).
-
-\subsection*{Active transforms}
-
-In the passive view, there is a single physical reality, and we are
-just describing that one physical reality using two different
-coordinate systems.  Now we will consider active transforms: there are
-two physical realities, but one is boosted with respect to another.  
-
-Suppose me and my friend are at rest with respect to one another, but
-my friend is in a spaceship and I am outside it, in free space, at
-rest.  He constructs a four-vector in his spaceship; for example, he
-could fire bullets out of a gun which is fixed in the spaceship, and
-then calculate their four-velocity.  We both agree on this
-four-velocity as our reference frames are identical: we have no
-relative velocity.
-
-Now his spaceship acquires a constant velocity, leaving me stationary.
-My friend continues to fire bullets out of his gun and sees that their
-four-velocity, as viewed in his spaceship coordinates, is the same as
-when we were together.
-
-Now he wonders what the four-velocity of the bullets is in my
-reference frame.  This is an {\em active} transform: we have two
-distinct physical realities, one in the spaceship when it was at rest
-with respect to me, and one in the spaceship when moving.  And both
-these realities, by construction, look the same to my friend in the
-spaceship.
-
-Suppose, for example, he sees the bullets at rest in his spaceship;
-they have a four-velocity of $\vvec{1}{0}$, and my friend says to
-himself: ``I see bullets with a four velocity of $\vvec{1}{0}$, and I
-know what that means.  The bullets are at rest.  What are the bullets'
-four velocities in Robin's reference frame?".  This is an {\em active}
-transform:
-
-\begin{equation*}
-\twomat{\gamma}{\gamma v}{\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{\gamma v}
-\end{equation*}
-
-(we again suppose that the spaceship moves at speed $v>0$ from left to
-right).  So he sees a four velocity of $\vvec{1}{0}$ and I see
-$\vvec{\gamma}{\gamma v}$, that is, with a positive speed: the bullets
-move from left to right (with the spaceship).
-
-Here we use SI units to show the asymmetry of the boost matrix.  The R
-idiom would be:
-
-<<>>=
-sol(299792458)
-(B <- boost(as.3vel(c(1000,0,0))))  # 1km/s left to right
-solve(B) %*% c(1,0,0,0)             # active transform ~= Galilean
-@ 
 
 \section{Vectorization}
 
@@ -563,7 +582,7 @@ U %*% B  # Young Frankstein: Do Not Use This Brain!
 It is not clear to me that the idiom above has any meaning at all.
 
 \section{Photons}
-
+\label{photonsection}
 It is possible to define the four-momentum of photons by specifying
 their three-velocity and energy, and using \code{as.photon()}:
  
