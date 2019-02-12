@@ -290,73 +290,38 @@ solve(B) %*% c(1,0,0,0)            # active transform
 
 \section{Successive Lorentz transforms}
 
-Although the most natural way to consider relative movement between
-coordinate systems is the four-velocity, it is often the case that
-analysis will begin by defining a three-velocity.  In the
-\pkg{lorentz} package, three velocities are defined by the
-\code{as.3vel()} function, for example:
+Coordinate transformation is effected by standard matrix
+ multiplication; thus composition of two Lorentz transforms is also
+ ordinary matrix multiplication:
 
 <<>>=
-sol(1)    # revert to default speed of light: c=1
-u <- as.3vel(c(0.3,-0.4,0.8))
-u
-@ 
-
-The three-velocity $u$ may be expressed as a four-velocity using the
-\code{as.4vel()} function:
-
-<<>>=
-as.4vel(u)
-@ 
-
-Function \code{boost()} gives the corresponding coordinate
-transformation when given either a three-velocity or a four-velocity:
-
-<<>>=
-boost(u)
-@ 
-
-This matrix corresponds to the Lorentz transformation between a frame
-at rest, and one with a three velocity of \code{u} as defined above.
-As we saw above, transforming an arbitrary four-vector from the rest
-frame to the moving one has straightforward R idiom:
-
-<<>>=
-boost(u) %*% c(4,5,-2,3)
-@ 
-
-Note that coordinate transformation is effected by standard R operator
- \code{\%*\%}.  Composition of two Lorentz transforms is also ordinary
- matrix multiplication:
-
-<<>>=
-v <- as.3vel(c(0.4,0.2,-0.1))
+u <- as.3vel(c(0.3,-0.4,+0.8))
+v <- as.3vel(c(0.4,+0.2,-0.1))
 L <- boost(u) %*% boost(v)
 L
 @ 
 
 But observe that the resulting transform is not a pure boost, as the
 spatial components are not symmetrical.  We may decompose the matrix
-into a pure translation composed with an orthogonal matrix, which
-represents a coordinate rotation:
+product $L$ into a pure translation composed with an orthogonal
+matrix, which represents a coordinate rotation.  The R idiom is
+\code{pureboost()} for the pure boost component, and \code{orthog()}
+for the rotation:
              
 <<>>=
-(U <- orthog(L))
-(P <- pureboost(L))
+(P <- pureboost(L))  # pure boost
+P - t(P)   # check for symmetry
 @              
 
 
-In the above, $U$ should be orthogonal and $L$ symmetric:
-
+Now we compute the rotation:
 <<>>=
-crossprod(U) - diag(4)
-P - t(P)
+(U <- orthog(L))                  # rotation matrix
+round(crossprod(U) - diag(4),10)  # check for orthogonality
+## zero to within numerical uncertainty
 @ 
-               
-(that is, zero to numerical precision).
 
-
-\section{SI units}
+\section[Units in which $c=1$]{Units in which $\mathbf c\neq 1$}  
 
 The preceding material used units in which $c=1$.  Here I show how the
 package deals with units such as SI in which $c=299792458\neq 1$.  For
@@ -417,20 +382,6 @@ sol(Inf)
 boost(u)
 @ 
 
-
-We can compose boosts as expected:
-
-<<>>=
-sol(299792458)
-v <- as.3vel(c(400,-200,300))
-boost(u) %*% boost(v)
-boost(v) %*% boost(u)
-@ 
-
-Again this is very close to the Galilean result (observe that the
-spatial components of the boost are almost equal to the identity
-matrix).
-
 \section{Vectorization}
 
 Here I discuss vectorized operations (to avoid confusion between boost
@@ -448,12 +399,12 @@ B %*% as.vector(U)
 @ 
 
 (note that the result is the four-velocity of an object at rest, as
-expected).  However, things are different if we wish to consider many
-four-vectors in one R object.  A vector ${\mathbf V}$ of
-four-velocities is a matrix: each {\em row} of ${\mathbf V}$ is
-four-velocity.  Because a vector is treated (almost) as a one-column
-matrix in R, and the four-velocities are rows, we need to take a
-transpose in some sense.  
+expected, for we use passive transforms by default).  However, things
+are different if we wish to consider many four-vectors in one R
+object.  A vector ${\mathbf V}$ of four-velocities is a matrix: each
+{\em row} of ${\mathbf V}$ is four-velocity.  Because a vector is
+treated (almost) as a one-column matrix in R, and the four-velocities
+are rows, we need to take a transpose in some sense.
 
 <<>>=
 u <- 1:7  # speed in the x-direction [c=10]
@@ -538,7 +489,7 @@ B2 <- boost(r3vel(1)) %*% boost(r3vel(1))
 @
 
 Successive boosts are effected by matrix multiplication; there are at
-least four natural R constructions:
+least four equivalent R constructions:
 
 <<>>=
 U %*% t(B1) %*% t(B2)
@@ -549,37 +500,73 @@ U %>% tcrossprod(B2 %*% B1)
 
 (in the above, note that the result is the same in each case).
 
-\subsection{Multiple boosts of the stress-energy tensor}
-
-Multiple boosts work quite nicely with the package:
-
-<<>>=
-B1 <- boost(r3vel(1)) %*% boost(r3vel(1))
-B2 <- boost(r3vel(1)) %*% boost(r3vel(1))
-LHS <- transform_uu(transform_uu(dust(1),B1),B2)
-RHS <- transform_uu(dust(1),B2 %*% B1)   # note order
-LHS-RHS  # should be small
-@ 
-  
-Again the magrittr package can be used for more readable idiom:
-                                                           
-                                                           
-<<>>=
-perfectfluid(3,100) %>% transform_uu(B1) %>% transform_uu(B2)
-perfectfluid(3,100) %>% transform_uu(B2 %*% B1)  # should match
-@                                                            
-
-
-\subsubsection*{A warning}
+\subsection*{A warning}
 
 It is easy to misapply matrix multiplication in this context.  Note
 carefully that the following natural idiom is {\bf incorrect}:
 
 <<>>=
 U %*% B  # Young Frankstein: Do Not Use This Brain!
+## The above is incorrect.
 @ 
 
 It is not clear to me that the idiom above has any meaning at all.
+
+\section{The stress-energy tensor}
+
+The package includes functionality for dealing with the stress-energy
+tensor (sometimes the energy-momentum tensor):
+
+<<>>=
+sol(1)   # revert to relativistic units 
+dust(1)
+@ 
+
+The stress-energy tensor is usually considered with two upstairs
+(contravariant) indices, as in~$T^{\alpha\beta}$; it may be
+transformed using the \code{transform_uu()} function: package:
+
+<<>>=
+B <- boost(as.3vel(c(0.4,0.2,0.5)))
+transform_uu(dust(1),B)
+@ 
+
+See how in this reference frame, the stress-energy tensor has
+components corresponding to nonzero pressure and momentum transfer.
+If one wants to consider the stress-energy tensor with downstairs
+indices (here we will use a photon gas), we need to use
+\code{transform_dd()}:
+
+<<>>=
+photongas(1)
+transform_dd(photongas(1),B)
+@
+
+and as a consistency check we can verify that this is the same as
+transforming the SET with upstairs indices:
+
+<<>>=
+lower(transform_uu(lower(photongas(1)),lower(B))) %>% flob()
+@ 
+
+One of the calls to \code{lower()} is redundant; for a photon gas,
+raising or lowering both indices does not change the components as the
+Minkowski metric is symmetric and orthogonal.
+
+\subsection{Successive boosts}
+  
+Successive boots are represented as matrix multiplication.  Again the
+\pkg{magrittr} package can be used for more readable idiom.
+ 
+<<>>=
+B1 <- boost(as.3vel(c(0.5,-0.4,0.6)))
+B2 <- boost(as.3vel(c(0.1,-0.1,0.3)))
+perfectfluid(4,1)
+perfectfluid(4,1) %>% transform_uu(B1) %>% transform_uu(B2)
+perfectfluid(4,1) %>% transform_uu(B2 %*% B1)  # should match
+@                                                            
+
+
 
 \section{Photons}
 \label{photonsection}
@@ -629,9 +616,8 @@ giving the same result.
 
 \citet{gjurchinovski2004} discusses reflection of light from a
 uniformly moving mirror and here I show how the \pkg{lorentz} package
-can illustrate some of his insights.
-
-We are going to reflect the photons in an oblique mirror which is
+can illustrate some of his insights.  We are going to take the five
+photons defined above and reflect them in an oblique mirror which is
 itself moving at half the speed of light along the x-axis.  The first
 step is to define the mirror \code{m}, and the boost \code{B}
 corresponding to its velocity:
@@ -674,19 +660,15 @@ use the matrix inverse of $B$:
 Thus in the original frame, the photons have lost about a quarter of
 their energy as a result of a Doppler effect: the mirror was receding
 from the source.  The photons have imparted energy to the mirror as a
-result of mechanical work.
-
-It is possible to carry out the same operations in one line:
-
+result of mechanical work.  It is possible to carry out the same
+operations in one line:
 
 <<>>=
 A <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40)))
 A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom()
 @ 
 
-\subsection*{Mirrors and rotation-boost coupling}
-
-
+\subsection{Mirrors and rotation-boost coupling}
 
 Consider the following R idiom: we take a bunch of photons which, in a
 certain reference frame are all moving (almost) parallel to the
@@ -731,15 +713,16 @@ light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mo
 Note that, in the infinite light speed case, the energy of the photons
 is zero (photons have zero rest mass); further observe that in this
 classical case, the effect of the mirror is to multiply the x-momentum
-by $-1$ and leave the ither components unchanged, as one might expect
+by $-1$ and leave the other components unchanged, as one might expect
 from a mirror perpendicular to $(1,0,0)$.
 
 \section{Three velocities}
 
-The \pkg{lorentz} package includes functionality to compose
-three-velocities.  Three velocities do not form a group under
-composition as the velocity addition law is not associative.
-\cite{ungar2006} shows that the velocity addition law is
+In contrast to four-velocities, three-velocities do not form a group
+under composition as the velocity addition law is not
+associative~\citep{ungar2006}; this observation was the original
+motivation for the package.  \citeauthor{ungar2006} shows that the
+velocity addition law is
 
 \begin{equation}
 \bu\oplus\bv=
@@ -751,8 +734,8 @@ composition as the velocity addition law is not associative.
 \end{equation}
    
 where~$\gamma_\bu=\left(1-\bu\cdot\bu\right)^{-1/2}$ and we are
-assuming~$c=1$.  Ungar shows that, in general,
-$\bu\oplus\bv\neq\bv\oplus\bu$
+assuming~$c=1$.  \citeauthor{ungar2006} goes on to show that, in
+general, $\bu\oplus\bv\neq\bv\oplus\bu$
 and~$(\bu\oplus\bv)\oplus\bw\neq\bu\oplus(\bv\oplus\bw)$.  He also
 defines the binary operator~$\ominus$
 as~$\bu\ominus\bv=\bu\oplus\left(-\bv\right)$, and implicitly
@@ -763,7 +746,7 @@ we have
 \gyr{u}{v}\bx=-\left(\bu\oplus\bv\right)\oplus\left(\bu\oplus\left(\bv\oplus\bx\right)\right)
 \end{equation}
 
-Then Ungar shows that 
+then
 
 \begin{eqnarray}
 \bu\oplus\bv &=& \gyr{u}{v}\left(\bv\oplus\bu\right)\label{noncom}\\
@@ -916,10 +899,10 @@ ass_fail(u=u, v=v, w=w, bold=10)
 \end{figure}
 
 
-\subsection{The magrittr package: pipes}
+\subsection[The magrittr package: pipes]{The \pkg{magrittr} package: pipes}
 
-The \pkg{lorentz} package works nicely with \pkg{magrittr}.  If we
-define
+Three velocities in the \pkg{lorentz} package work nicely with
+\pkg{magrittr}.  If we define
 
 <<defuvw>>=
  u <- as.3vel(c(+0.5,0.1,-0.2))
