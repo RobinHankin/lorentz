@@ -589,6 +589,38 @@ lower(pf) %>% transform_dd(lower(B1) %*% lower(B2)) %>% raise()
 requires that the order of multiplication be reversed for successive
 covariant transforms, so \code{B1} and \code{B2} must be swapped).
 
+\subsection{Speed of light and the stress-energy tensor}
+
+Here I will perform another consistency check, this time with non-unit
+speed of light, for a perfect fluid:
+
+<<>>=
+sol(10)
+pf_rest <- perfectfluid(1,4)
+pf_rest
+@ 
+
+Thus \code{pf_rest} is the stress energy for a perfect fluid at rest
+in a particular frame $F$.  We may now consider the same perfect
+fluid, but moving with a three velocity of~$(3,4,5)'$: with respect to
+$F$:
+
+<<>>=
+u <- as.3vel(3:5)
+pf_moving <- perfectfluid(1,4,u)
+pf_moving
+@ 
+
+Then, as a consistency check, we will verify that transforming to a
+frame in which the fluid is at rest will result in a stress-energy
+tensor that matches \code{pf_rest}:
+
+<<>>=
+transform_uu(perfectfluid(1,4,u),boost(u))
+@ 
+
+thus showing agreement to within numerical precision.
+
 \section{Photons}
 \label{photonsection}
 It is possible to define the four-momentum of photons by specifying
