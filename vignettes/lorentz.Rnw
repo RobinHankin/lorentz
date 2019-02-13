@@ -545,17 +545,19 @@ downstairs indices (here we will use a photon gas), we need to use
 \code{transform_dd()}:
 
 <<>>=
-(pg <- photongas(3))
-transform_dd(photongas(1),B)
+pg <- photongas(3)
+pg
+transform_uu(pg,B)
 @
 
 again we see that the $[0,0]$ component is larger than its rest value,
 and we see nonzero off-diagonal components which correspond to the
 dynamical behaviour.  As a consistency check we can verify that this
-is the same as transforming the SET with upstairs indices:
+is the same as transforming the SET with upstairs indices, using the
+\code{lower()} and \code{raise()} functions:
 
 <<>>=
-lower(transform_uu(lower(pg),lower(B))) %>% flob()
+raise(transform_dd(lower(pg),lower(B)))
 @ 
 
 One of the calls to \code{lower()} is redundant; for a photon gas,
@@ -570,12 +572,22 @@ Successive boots are represented as matrix multiplication.  Again the
 <<>>=
 B1 <- boost(as.3vel(c(0.5,-0.4,0.6)))
 B2 <- boost(as.3vel(c(0.1,-0.1,0.3)))
-perfectfluid(4,1)
-perfectfluid(4,1) %>% transform_uu(B1) %>% transform_uu(B2)
-perfectfluid(4,1) %>% transform_uu(B2 %*% B1)  # should match
+pf <- perfectfluid(4,1)
+pf
+pf %>% transform_uu(B1) %>% transform_uu(B2)
+pf %>% transform_uu(B2 %*% B1)  # should match
 @                                                            
 
+Again as a consistency check, we may verify that transforming
+downstairs indices gives the same result:
 
+<<>>=
+lower(pf) %>% transform_dd(lower(B1) %*% lower(B2)) %>% raise()
+@ 
+
+(note that the matrix representation of the Lorentz transforms
+requires that the order of multiplication be reversed for successive
+covariant transforms, so \code{B1} and \code{B2} must be swapped).
 
 \section{Photons}
 \label{photonsection}
