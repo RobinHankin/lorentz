@@ -514,39 +514,48 @@ It is not clear to me that the idiom above has any meaning at all.
 
 \section{The stress-energy tensor}
 
-The package includes functionality for dealing with the stress-energy
-tensor (sometimes the energy-momentum tensor):
+The stress-energy tensor (sometimes the energy-momentum tensor) is a
+generalization and combination of the classical concepts of density,
+energy flux, and the classical stress tensor~\citep{schutz1985}.  It
+is a contravariant tensor of rank two, usually represented as a
+symmetric $4\times 4$ matrix.  The \pkg{lorentz} package includes
+functionality for applying Lorentz transforms to the stress energy
+tensor.
 
 <<>>=
-sol(1)   # revert to relativistic units 
-dust(1)
+sol(1)        # revert to relativistic units 
+D <- dust(1)  # "dust" is the simplest nontrivial SET
+D             # dust has only one nonzero component
 @ 
 
-The stress-energy tensor is usually considered with two upstairs
+The stress-energy tensor is usually written with two upstairs
 (contravariant) indices, as in~$T^{\alpha\beta}$; it may be
 transformed using the \code{transform_uu()} function: package:
 
 <<>>=
-B <- boost(as.3vel(c(0.4,0.2,0.5)))
-transform_uu(dust(1),B)
+B <- boost(as.3vel(c(0.0,0.8,0.0)))
+transform_uu(D,B)
 @ 
 
-See how in this reference frame, the stress-energy tensor has
-components corresponding to nonzero pressure and momentum transfer.
-If one wants to consider the stress-energy tensor with downstairs
-indices (here we will use a photon gas), we need to use
+In this reference frame, the dust is not at rest: the stress-energy
+tensor has components corresponding to nonzero pressure and momentum
+transfer, and the $[0,0]$ component is greater, at 2.78, than its rest
+value of 1.  If one wants to consider the stress-energy tensor with
+downstairs indices (here we will use a photon gas), we need to use
 \code{transform_dd()}:
 
 <<>>=
-photongas(1)
+(pg <- photongas(3))
 transform_dd(photongas(1),B)
 @
 
-and as a consistency check we can verify that this is the same as
-transforming the SET with upstairs indices:
+again we see that the $[0,0]$ component is larger than its rest value,
+and we see nonzero off-diagonal components which correspond to the
+dynamical behaviour.  As a consistency check we can verify that this
+is the same as transforming the SET with upstairs indices:
 
 <<>>=
-lower(transform_uu(lower(photongas(1)),lower(B))) %>% flob()
+lower(transform_uu(lower(pg),lower(B))) %>% flob()
 @ 
 
 One of the calls to \code{lower()} is redundant; for a photon gas,
