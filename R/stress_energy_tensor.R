@@ -10,5 +10,5 @@
 `transform_ud` <-  function(TT,B){ tensor(B,tensor(B,TT,1,2),2,2) }
 `transform_dd` <-  function(TT,B){ tensor(B,tensor(B,TT,1,2),1,2) }
 
-`lower` <- function(TT){emulator::quad.form(TT,eta())}
+`lower` <- function(TT){flob(emulator::quad.form(TT,eta()))}
 `raise` <- `lower`
