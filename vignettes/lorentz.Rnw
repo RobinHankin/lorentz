@@ -113,15 +113,15 @@ relativity in the \proglang{Unity} game engine.
 The \pkg{lorentz} package provides \proglang{R}-centric functionality
 for Lorentz transformations.  It deals with formal Lorentz boosts,
 converts between three-velocities and four-velocities, and provides
-computational support for the gyrogroup structure of three-velocities
-under successive addition. 
+computational support for the gyrogroup structure of relativistic
+three-velocity addition.
 
 \section{Lorentz transforms: active and passive}
 
 Passive transforms are the usual type of transforms taught and used in
 relativity.  However, sometimes active transforms are needed and it is
-easy to confuse the two.  Here I will discuss passive transforms
-first, then active transforms.
+easy to confuse the two.  Here I will discuss passive and then active
+transforms, and illustrate both in a computational context.
 
 \subsection*{Passive transforms}
 
@@ -129,36 +129,38 @@ first, then active transforms.
 \newcommand{\twomat}[4]{\left(\begin{array}{cc} #1 & #2\\ #3 & #4\\ \end{array}\right)}
 
 Consider the following canonical Lorentz transform in which we have
-only motion in the $x$-direction at speed $v$.  The motion is from
-left to right, and this means that $v>0$.  The physical interpretation
-is that I am at rest, and my friend is in his spaceship moving at
-speed $v$ past me; and we are wondering what vectors which I measure
-in my own rest frame look like to him.  The (passive) Lorentz
+motion in the $x$-direction at speed $v>0$; the motion is from left to
+right.  We consider only the first two components of four-vectors, the
+$y$- annd $z$- components being trivial.  A typical physical
+interpretation is that I am at rest, and my friend is in his spaceship
+moving at speed $v$ past me; and we are wondering what vectors which I
+measure in my own rest frame look like to him.  The (passive) Lorentz
 transform is:
 
 \begin{equation*}
-\twomat{\gamma}{\gamma v}{\gamma v}{\gamma}
+\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}
 \end{equation*}
 
-And the canonical example of that is:
+And the canonical example of that would be:
 
 \begin{equation*}
 \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{-\gamma v}
 \end{equation*}
 
 where the vectors are four velocities (recall that $\vvec{1}{0}$ is
-the four-velocity of an object at rest).  What this means is that I
-measure the four-velocity of an object to be $\vvec{1}{0}$, and he
-measures the same object as having a four-velocity of
-$\vvec{\gamma}{-\gamma v}$.  So I see the object at rest, and he sees
-it as moving at speed $-v$; that is, he sees it moving to the left (it
-moves to the left because he is moving to the right relative to me).
-The package makes computations easy.  Suppose $v=0.6c$ in the
-$x$-direction.
+the four-velocity of an object at rest).  Operationally, I measure the
+four-velocity of an object to be $\vvec{1}{0}$, and he measures the
+same object as having a four-velocity of $\vvec{\gamma}{-\gamma v}$.
+So I see the object at rest, and he sees it as moving at speed $-v$;
+that is, he sees it moving to the left (it moves to the left because
+he is moving to the right relative to me).  The package makes
+computations easy.  Suppose $v=0.6c$ in the $x$-direction.
 
 <<floater>>=
                           # NB: speed of light = 1 by default
 u <- as.3vel(c(0.6,0,0))  # coerce to a three-velocity
+u
+as.4vel(u)                # four-velocity is better for calculations
 (B <- boost(u))           # transformation matrix
 @ 
 
@@ -200,11 +202,11 @@ Lorentz transform is then
   \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{1}=\vvec{\gamma-\gamma v}{\gamma-\gamma v}
   \end{equation*}
 
-So I see a photon with unit energy, and he sees the photon with energy
-$\gamma(1-v)=\sqrt{1-v}<1$: the photon has less energy in his frame
-than mine because of Doppler redshifting.
-
-It's worth doing the same analysis with a leftward-moving photon:
+So, in the language used above, I see a photon with unit energy, and
+my friend sees the photon with energy $\gamma(1-v)=\sqrt{1-v}<1$: the
+photon has less energy in his frame than mine because of Doppler
+redshifting.  It's worth doing the same analysis with a
+leftward-moving photon:
 
 \begin{equation*}
   \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{-1}=\vvec{\gamma(1+v)}{-\gamma(1+v)}
@@ -221,11 +223,10 @@ B %*% c(1,-1,0,0)
 
 for the left- and right- moving photons respectively. 
 
-The above analysis uses {\em passive} transforms: There is a single
-physical reality, and we are just describing that one physical reality
-using two different coordinate systems.  One of the coordinate systems
-uses a set of axes that are {\em boosted} relative to the axes of the
-other. 
+The above analysis uses {\em passive} transforms: there is a single
+physical reality, and we describe that one physical reality using two
+different coordinate systems.  One of the coordinate systems uses a
+set of axes that are {\em boosted} relative to the axes of the other.
 
 This is why it makes sense to use prime notation as in
 $x\longrightarrow x'$ and $t\longrightarrow t'$ for a passive Lorentz
@@ -247,11 +248,12 @@ just describing that one physical reality using two different
 coordinate systems.  Now we will consider active transforms: there are
 two physical realities, but one is boosted with respect to another.  
 
-Suppose me and my friend are at rest with respect to one another, but
-my friend is in a spaceship and I am outside it, in free space, at
-rest.  He constructs a four-vector in his spaceship; for example, he
-could fire bullets out of a gun which is fixed in the spaceship, and
-then calculate their four-velocity.  We both agree on this
+Suppose me and my friend have zero relative velocity, but my friend is
+in a spaceship and I am outside it, in free space, at rest.  He
+constructs a four-vector in his spaceship; for example, he could fire
+bullets out of a gun which is fixed in the spaceship, and then
+calculate their four-velocity as it appears to him in his
+spaceship-centric coordinate system.  We both agree on this
 four-velocity as our reference frames are identical: we have no
 relative velocity.
 
@@ -317,6 +319,7 @@ P - t(P)   # check for symmetry
 Now we compute the rotation:
 <<>>=
 (U <- orthog(L))                  # rotation matrix
+U[2:4,2:4]                        # inspect the spatial components
 round(crossprod(U) - diag(4),10)  # check for orthogonality
 ## zero to within numerical uncertainty
 @ 
@@ -342,7 +345,7 @@ small relativistic correction to the Galilean result:
                                                 
 <<>>=
 u <- as.3vel(c(100,200,300))
-u
+as.4vel(u)
 @ 
 
 The gamma correction term $\gamma$ is only very slightly larger
@@ -449,10 +452,10 @@ much because $B$ is only $4\times 4$.
 
 The above transforms were passive: we have some four-vectors measured
 in my rest frame, and we want to see what these are four-vectors as
-measured by my friend Baz, who is moving in the positive x direction
-at 60\% of the speed of light (remember that $c=10$).  See how the
+measured by my friend, who is moving in the positive x direction at
+60\% of the speed of light (remember that $c=10$).  See how the
 x-component of the transformed four-velocity is negative, because in
-Baz's rest frame, the four velocities are pointing backwards.
+my friend's rest frame, the four velocities are pointing backwards.
 
 To effect an {\em active} transform we need to take the matrix inverse
 of $B$:
@@ -507,7 +510,10 @@ carefully that the following natural idiom is {\bf incorrect}:
 
 <<>>=
 U %*% B  # Young Frankstein: Do Not Use This Brain!
-## The above is incorrect.
+## The above idiom is incorrect.  See
+## https://www.youtube.com/watch?v=m7-bMBuVmHo&t=1s
+## (in particular @1:12) for a technical explanation of why 
+## this is a Very Bad Idea (tm).
 @ 
 
 It is not clear to me that the idiom above has any meaning at all.
@@ -539,10 +545,11 @@ transform_uu(D,B)
 
 In this reference frame, the dust is not at rest: the stress-energy
 tensor has components corresponding to nonzero pressure and momentum
-transfer, and the $[0,0]$ component is greater, at 2.78, than its rest
-value of 1.  If one wants to consider the stress-energy tensor with
-downstairs indices (here we will use a photon gas), we need to use
-\code{transform_dd()}:
+transfer, and the $[t,t]$ component is greater, at 2.78, than its rest
+value of 1.  Note that the $[t,y]$ component is negative as we use
+passive transforms.  If one wants to consider the stress-energy tensor
+with downstairs indices (here we will use a photon gas), we need to
+use \code{transform_dd()}:
 
 <<>>=
 pg <- photongas(3)
@@ -611,9 +618,9 @@ pf_moving <- perfectfluid(1,4,u)
 pf_moving
 @ 
 
-Then, as a consistency check, we will verify that transforming to a
-frame in which the fluid is at rest will result in a stress-energy
-tensor that matches \code{pf_rest}:
+The consistency check is to verify that transforming to a frame in
+which the fluid is at rest will result in a stress-energy tensor that
+matches \code{pf_rest}:
 
 <<>>=
 transform_uu(perfectfluid(1,4,u),boost(u))
@@ -835,7 +842,8 @@ v+u
 @ 
 
 showing agreement to within numerical error.  It is also possible to
-use the functional idiom:
+use the functional idiom in which we define \code{f()} to be the
+map~$\bx\mapsto\gyr{u}{v}\bx$.  In R:
 
 <<funcid>>=
 f <- gyrfun(u,v)
@@ -857,7 +865,6 @@ f <- gyrfun(u9,v)
 f(x)
 @ 
 
-
 Note that the package vectorization is transparent when using syntatic sugar:
 
 <<u9+x>>=
@@ -867,7 +874,6 @@ u9+x
 (here, the addition operates using R's standard recycling rules).
 
 \subsection{Associativity}
-
 
 Three velocity addition is not associative:
 
@@ -989,49 +995,35 @@ jj2 <- u+(v+w)
 speed(jj1-jj2)
 @ 
 
+\subsection{Numerical verification}
 
-\subsection{Functional notation}
+Here I provide numercial verification of equations~\ref{noncom}
+to~\ref{nonass2}.  If we have
 
-It is possible to replace calls like \code{gyr(u,v,x)} with functional
-notation which can make for arguably more natural R idiom.  If we have
-
-<<funcnot>>=
-u <- as.3vel(c(0, 0.8, 0))
-v <- r3vel(5,0.9)
-x <- as.3vel(c(0.7, 0, -0.7))
+<<funcnotation>>=
+x <- as.3vel(c(0.7, 0.0, -0.7))
 y <- as.3vel(c(0.1, 0.3, -0.6))
-@ 
-
-Then we can define \code{f()} to be the map~$\bx\mapsto\gyr{u}{v}\bx$.
-In R:
-
-<<>>=
-f <- gyrfun(u,v)
-f(w)
-@ 
-
-Then numerical verification of equations~\ref{doteq} and~\ref{gyrinv}
-is straightforward:
-
-<<>>=
-prod3(f(x),f(y)) - prod3(x,y)
-@ 
-
-and
-
-<<>>=
+u <- as.3vel(c(0.0, 0.8, +0.1))   # x,y,u: single three-velocities
+v <- r3vel(5,0.9)
+w <- r3vel(5,0.8)                 # v,w: vector of three-velocities
 f <- gyrfun(u,v)
 g <- gyrfun(v,u)
-f(g(x)) - g(f(x))
+@
+
+Then we can calculate the difference between the left hand side and
+right hand side numerically:
+  
+<<testeq3to8>>=
+max(speed((u+v) - f(v+u)))              # equation 3
+max(abs(prod3(f(x),f(y)) - prod3(x,y))) # equation 4
+max(speed(f(x+y) - (f(x)+f(y))))        # equation 5
+max(speed(f(g(x)) - g(f(x))))           # equation 6
+max(speed((u+(v+w)) - ((u+v)+f(w))))    # equation 7
+max(speed(((u+v)+w) - (u+(v+g(w)))))    # equation 8
 @ 
 
-(zero to numerical precision).  It is possible to use pipes together
-with the functional notation:
+(all zero to numerical precision). 
 
-<<>>=
-x %<>% f %>% add(y)      # x <- f(x)+y
-x
-@ 
 
 \section{Conclusions}
 
