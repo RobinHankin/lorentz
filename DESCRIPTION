@@ -1,8 +1,8 @@
 Package: lorentz
 Type: Package
 Title: The Lorentz Transform in Relativistic Physics
-Version: 1.0-1
-Author: Robin K. S. Hankin
+Version: 1.0-2
+Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
 Depends: magrittr
 Suggests: knitr
 Imports: emulator (>= 1.2-19),tensor
@@ -10,7 +10,7 @@ Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 Description: This package furnishes functionality to work with Lorentz
   transforms in special relativity.  It also implements the gyrogroup
   structure of three-velocities following Ungar (2006)
-  <doi:10.1088/0143-0807/27/3/L02>. For general relativity, see the
+  <doi:10.1088/0143-0807/27/3/L02>.  For general relativity, see the
   'schwarzschild' package.
 License: GPL-3
 URL: https://github.com/RobinHankin/lorentz.git
