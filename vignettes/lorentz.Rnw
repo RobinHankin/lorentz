@@ -725,7 +725,7 @@ operations in one line:
 
 <<>>=
 A <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40)))
-A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom()
+A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom
 @ 
 
 \subsection{Mirrors and rotation-boost coupling}
@@ -755,7 +755,7 @@ direction, even though the mirror is oriented perpendicular to the
 x-axis (in its own frame).  Again it is arguably preferable to use pipes:
 
 <<>>=
-light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom()
+light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom
 @ 
 
 Compare when the speed of light is infinite:
@@ -767,7 +767,7 @@ B2 <- boost(as.3vel(c( 0.2, 0.0, 0.0)))
 B3 <- boost(as.3vel(c( 0.0, 0.0, 0.6)))
 B <- B1 %*% B2 %*% B3
 light_start
-light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom()
+light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom
 @ 
 
 Note that, in the infinite light speed case, the energy of the photons
