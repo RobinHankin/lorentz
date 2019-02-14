@@ -512,7 +512,7 @@ carefully that the following natural idiom is {\bf incorrect}:
 U %*% B  # Young Frankstein: Do Not Use This Brain!
 ## The above idiom is incorrect.  See
 ## https://www.youtube.com/watch?v=m7-bMBuVmHo&t=1s
-## (in particular @1:12) for a technical explanation of why 
+## (in particular @1:08) for a technical explanation of why 
 ## this is a Very Bad Idea (tm).
 @ 
 
