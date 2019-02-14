@@ -90,7 +90,7 @@ library("lorentz")
 
 \section{Introduction}
 
-In special relativity, the Lorentz transformations supercede their
+In special relativity, the Lorentz transforms supercede their
 classical equivalent, the Galilean transforms~\citep{goldstein1980}.
 Lorentz transforms operate on four-vectors such as the four-velocity
 or four-potential and are usually operationalised as multiplication by
@@ -111,7 +111,7 @@ toolkit~\citep{sherin2016} which simulates the effects of special
 relativity in the \proglang{Unity} game engine.
 
 The \pkg{lorentz} package provides \proglang{R}-centric functionality
-for Lorentz transformations.  It deals with formal Lorentz boosts,
+for Lorentz transforms.  It deals with formal Lorentz boosts,
 converts between three-velocities and four-velocities, and provides
 computational support for the gyrogroup structure of relativistic
 three-velocity addition.
@@ -230,7 +230,7 @@ set of axes that are {\em boosted} relative to the axes of the other.
 
 This is why it makes sense to use prime notation as in
 $x\longrightarrow x'$ and $t\longrightarrow t'$ for a passive Lorentz
-transformation: the prime denotes measurements made using coordinates
+transform: the prime denotes measurements made using coordinates
 that are defined with respect to the boosted system, and we see
 notation like
 
@@ -376,7 +376,7 @@ boost(u)
 @ 
 
 The boost matrix is not symmetrical, even though it is a pure boost,
-because $c\neq 1$.  Note how the transformation is essentially the
+because $c\neq 1$.  Note how the transform is essentially the
 Galilean result, which may be calculated in the package exactly by
 setting the speed of light to infinity:
 
@@ -690,7 +690,7 @@ B <- boost(as.3vel(c(0.5,0,0)))
 Above, the three-vector $m$ is parallel to the normal vector of the
 mirror and $B$ shows the Lorentz boost needed to bring it to rest.  We
 are going to reflect these photons in this mirror.  The R idiom for
-the reflection is performed using a sequence of transformations.
+the reflection is performed using a sequence of transforms.
 First, transform the
 photons' four-momentum to a frame in which the mirror is at rest:
 
