@@ -413,8 +413,8 @@ ptm(to_natural=TRUE,change_time=FALSE) %*% disp
 @ 
 
 As a further check, we can take two boost matrices corresponding to
-the same coordinate transformation but expressed using different
-speeds of light, and verify that their orthogonal component agrees:
+the same coordinate transformation but expressed using different units
+of length and verify that their orthogonal component agrees:
 
 
 <<>>=
@@ -422,6 +422,10 @@ sol(1)
 B1 <- boost((2:4)/10) %*% boost(c(-5,1,3)/10)
 orthog(B1)[2:4,2:4]
 @ 
+
+Now we create \code{B2} which is the same physical object but using a
+length scale of one-tenth of \code{B2} (which requires that we
+multiply the speed of light by a factor of 10):
 
 <<>>=
 sol(10)
