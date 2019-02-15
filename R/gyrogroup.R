@@ -520,9 +520,29 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   }
 }
    
-`pureboost` <- function(L){
-  jj <- eigen(crossprod(L))
-  flob(quad.tform(sqrt(diag(jj$values)),jj$vectors))
+`pureboost` <- function(L,include_sol=TRUE){
+  if(is.infinite(sol())){return(L)}
+  if(include_sol){
+    left <- ptm(TRUE)
+    right <- ptm(FALSE)
+  } else {
+    left <- diag(nrow=4)
+    right <- diag(nrow=4)
+  }
+    
+  jj <- eigen(crossprod(quad.3form(L,left,right)))
+  quad.tform(sqrt(diag(jj$values)),jj$vectors) %>% quad.3form(right,left) %>% flob
 }
 
-`orthog` <- function(L){flob(tcrossprod(L,solve(pureboost(L))))} 
+`orthog` <- function(L){
+  if(is.infinite(sol())){
+    L[1,1] <- 1
+    L[1,2:4] <- 0
+    L[2:4,1] <- 0
+    return(L)
+    }
+  L %<>% quad.3form(ptm(TRUE),ptm(FALSE))  # convert to natural units
+  tcrossprod(L, solve(pureboost(L,FALSE))) %>% flob
+} 
+
+

@@ -19,7 +19,7 @@
 boost(u)
 rot(u,v,space=TRUE)
 is.consistent.boost(L, give=FALSE, TOL=1e-10)
-pureboost(L)
+pureboost(L,include_sol=TRUE)
 orthog(L)
 }
 \arguments{
@@ -32,7 +32,11 @@ orthog(L)
     consistent boost or not}
   \item{space}{Boolean, with default \code{TRUE} meaning to return just
     the spatial component of the rotation matrix and \code{FALSE}
-    meaning to return the full \eqn{4\times 4}{4x4} matrix transformation}
+    meaning to return the full \eqn{4\times 4}{4x4} matrix
+    transformation}
+  \item{include_sol}{In function \code{pureboost()}, Boolean with
+    default \code{TRUE} meaning to correctly account for the speed of
+    light, and \code{FALSE} meaning to assume \eqn{c=1}. See details}
 }
 \value{
   Function \code{boost()} returns a symmetric \eqn{4\times 4}{4*4}
@@ -64,7 +68,10 @@ orthog(L)
   we have two successive boosts corresponding to \eqn{u} and \eqn{v}, then
   the composed boost may be decomposed into a pure boost of \code{boost(u+v)}
   and a rotation of \code{rot(u,v)}.
-  
+
+  The reason argument \code{include_sol} exists is that function
+  \code{orthog()} needs to call \code{pureboost()} in an environment
+  where we pretend that \eqn{c=1}.
 }
 \references{
   \itemize{

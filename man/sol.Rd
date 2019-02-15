@@ -4,11 +4,13 @@
 \alias{minkowski}
 \alias{lightspeed}
 \alias{celerity}
+\alias{ptm}
 \title{Speed of light and Minkowski metric}
 \description{Getting and setting the speed of light}
 \usage{
 sol(c)
 eta(downstairs=TRUE)
+ptm(to_natural=TRUE, change_time=TRUE)
 }
 \arguments{
   \item{c}{Scalar, speed of light.  If missing, return the speed of
@@ -17,6 +19,8 @@ eta(downstairs=TRUE)
     the covariant metric tensor \eqn{g_{ij}{g_ij}} with two downstairs
       indices, and \code{FALSE} meaning to return the contraviariant
       version \eqn{g^{ij}}{g^ij} with two upstairs indices}
+    \item{to_natural,change_time}{Boolean, specifying the
+      nature of the passive transform matrix}
 }
 \details{
 
@@ -41,6 +45,12 @@ eta(downstairs=TRUE)
 
 Note that the top-left element of \code{eta()} is \eqn{-c^2}, not
 \eqn{-1}.
+
+Function \code{ptm()} returns a passive transformation matrix that
+converts displacement vectors to (\code{to_natural=TRUE}) and from
+(\code{to_natural=FALSE}) natural units.  Argument \code{change_time}
+specifies whether to change the unit of time (if \code{TRUE}) or the
+unit of length (if \code{FALSE}).
   
 }
 \author{Robin K. S. Hankin}
