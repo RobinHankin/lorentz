@@ -579,9 +579,9 @@ functionality for applying Lorentz transforms to the stress energy
 tensor.
 
 <<>>=
-sol(1)        # revert to relativistic units 
-D <- dust(1)  # "dust" is the simplest nontrivial SET
-D             # dust has only one nonzero component
+sol(1)        # revert to natural units 
+D <- dust(1)  # Dust is the simplest nontrivial SET, with only one 
+D             # nonzero component
 @ 
 
 The stress-energy tensor is usually written with two upstairs
