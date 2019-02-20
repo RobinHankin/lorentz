@@ -15,6 +15,12 @@ flob(x)
   \item{\dots}{Further arguments, currently ignored}
   \item{x}{A matrix}
 }
+\details{
+  Function \code{coordnames()} simply returns the character string
+  \code{c("t","x","y","z")}.  It may be overwritten.
+  Function \code{flob()} sets the row and columnnames of a \eqn{4\times
+    4}{4*4} matrix to \code{coordnames()}.
+}
 \author{Robin K. S. Hankin}
 \note{If anyone can think of a better name than \code{flob()} let me know}
 \examples{
