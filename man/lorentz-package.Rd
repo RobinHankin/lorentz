@@ -33,6 +33,29 @@ Maintainer: \packageMaintainer{lorentz}
 \keyword{ package }
 \examples{
 
+u <- as.3vel(c(0.3,0.6,-0.1))  # u is a three-velocity
+gam(u)                         # relativistic gamma term for u
+U <- as.4vel(u)                # U is a four-velocity
+B1 <- boost(u)                 # B1 is the Lorentz transform matrix for u
+B1 \%*\% c(1,0,0,0)              # Lorentz transform of zero 4-velocity (=-u)
+
+B2 <- boost(as.3vel(c(-0.1,0.8,0.3)))  
+B3 <- boost(as.3vel(c(-0.1,0.1,0.9)))  # more boosts
+
+Bi <- B1 \%*\% B2  # Bi is the boost for successive Lorentz transforms
+
+
+pureboost(Bi)      # Decompose Bi into a pure boost...
+orthog(Bi)         # and an orthogonal matrix
+
+Bj <- B2 \%*\% B1    # B1 and B2 do not commute...
+
+(B1 \%*\% B2) \%*\% B3 
+B1 \%*\% (B2 \%*\% B3)    # ...but composition *is* associative
+
+
+
+## Three velocities and the gyrogroup
 
 ## Create some random three-velocities:
 
@@ -41,9 +64,9 @@ v <- r3vel(10)
 w <- r3vel(10)
 
 u+v
-v+u  ## Velocity addition is not commutative
+v+u        # Three-velocity addition is not commutative...
 
-u+(v+w)   
-(u+v)+w   ## nor associative
+u+(v+w)   # ... nor associative
+(u+v)+w 
 
 }
