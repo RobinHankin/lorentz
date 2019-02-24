@@ -131,7 +131,7 @@ transforms, and illustrate both in a computational context.
 Consider the following canonical Lorentz transform in which we have
 motion in the $x$-direction at speed $v>0$; the motion is from left to
 right.  We consider only the first two components of four-vectors, the
-$y$- annd $z$- components being trivial.  A typical physical
+$y$- and $z$- components being trivial.  A typical physical
 interpretation is that I am at rest, and my friend is in his spaceship
 moving at speed $v$ past me; and we are wondering what vectors which I
 measure in my own rest frame look like to him.  The (passive) Lorentz
@@ -172,7 +172,7 @@ would appear in the moving frame as
 B %*% c(1,0,0,0)
 @ 
 
-Observe that it is possible to transform an arbitary four-vector:
+Observe that it is possible to transform an arbitrary four-vector:
 
 <<flayter>>=
 B %*% c(4,6,-8,9)
@@ -1047,7 +1047,7 @@ speed(jj1-jj2)
 
 \subsection{Numerical verification}
 
-Here I provide numercial verification of equations~\ref{noncom}
+Here I provide numerical verification of equations~\ref{noncom}
 to~\ref{nonass2}.  If we have
 
 <<funcnotation>>=
