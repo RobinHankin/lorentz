@@ -22,7 +22,7 @@ flob(x)
     4}{4*4} matrix to \code{coordnames()}.
 }
 \author{Robin K. S. Hankin}
-\note{If anyone can think of a better name than \code{flob()} let me know}
+\note{If anyone can think of a better name than \code{flob()} let me know.}
 \examples{
 
 coordnames()
