@@ -826,13 +826,15 @@ classical case, the effect of the mirror is to multiply the x-momentum
 by $-1$ and leave the other components unchanged, as one might expect
 from a mirror perpendicular to $(1,0,0)$.
 
-\section{Three velocities}
+\section{Three-velocities}
 
 In contrast to four-velocities, three-velocities do not form a group
 under composition as the velocity addition law is not
-associative~\citep{ungar2006}; this observation was the original
-motivation for the package.  \citeauthor{ungar2006} shows that the
-velocity addition law is
+associative~\citep{ungar2006}.  Instead, three-velocity composition
+has an algebraic structure known as a {\em gyrogroup} (this
+observation was the original motivation for the package).
+\citeauthor{ungar2006} shows that the velocity addition law for
+three-velocities is
 
 \begin{equation}
 \bu\oplus\bv=
