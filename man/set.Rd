@@ -8,6 +8,8 @@
 \alias{perfectfluid}
 \alias{dust}
 \alias{photongas}
+\alias{SET}
+\alias{stress}
 \alias{stress-energy}
 \alias{stress-energy-tensor}
 \alias{energy-momentum}
@@ -28,12 +30,12 @@ lower(TT)
 
 \arguments{
   \item{TT}{A second-rank tensor with indices either
-  downstairs-downstairs, downstairs-upstairs, or upstairs-upstairs}
-\item{B}{A boost matrix}
-\item{rho,p,u}{Density, pressure, and four-velocity of the dust}
+    downstairs-downstairs, downstairs-upstairs, or upstairs-upstairs}
+  \item{B}{A boost matrix}
+  \item{rho,p,u}{Density, pressure, and four-velocity of the dust}
 }
 \details{
-
+  
   Function \code{perfectfluid()} returns the stress-energy tensor, with
   two upstairs indices, for a perfect fluid with the conditions
   specified.  No checking for physical reasonableness (eg the weak
