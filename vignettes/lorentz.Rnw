@@ -393,7 +393,7 @@ disp  <- c(1,1,0,0)
 @ 
 
 Thus four-vector \code{disp} is the four-displacement corresponding to
-moving 1 meter along the x-axis and waiting for one second.  To
+moving 1 metre along the x-axis and waiting for one second.  To
 convert this to natural units we multiply by the passive
 transformation matrix given by \code{ptm()}:
 
@@ -403,9 +403,9 @@ ptm(to_natural=TRUE) %*% disp
 
 In the above, see how the same vector is expressed in natural units in
 which the speed of light is equal to 1: the unit of time is about
-$3\times 10^{-9}$ seconds and the unit of distance remains the meter.
+$3\times 10^{-9}$ seconds and the unit of distance remains the metre.
 Alternatively, we might decide to keep the unit of time equal to one
-second, and use a unit of distance equal to 299792458 meters which
+second, and use a unit of distance equal to 299792458 metres which
 again ensures that~$c=1$:
 
 <<>>=
