@@ -125,8 +125,8 @@ transforms, and illustrate both in a computational context.
 
 \subsection*{Passive transforms}
 
-\newcommand{\vvec}[2]{\left(\begin{array}{c} #1\\#2\end{array}\right)}
-\newcommand{\twomat}[4]{\left(\begin{array}{cc} #1 & #2\\ #3 & #4\\ \end{array}\right)}
+\newcommand{\vvec}[2]{\begin{pmatrix}#1 \\ #2\end{pmatrix}}
+\newcommand{\twomat}[4]{\begin{pmatrix} #1 & #2 \\ #3 & #4\end{pmatrix}}
 
 Consider the following canonical Lorentz transform in which we have
 motion in the $x$-direction at speed $v>0$; the motion is from left to
