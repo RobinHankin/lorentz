@@ -728,8 +728,8 @@ giving the same result.
 uniformly moving mirror and here I show how the \pkg{lorentz} package
 can illustrate some of his insights.  We are going to take the five
 photons defined above and reflect them in an oblique mirror which is
-itself moving at half the speed of light along the x-axis.  The first
-step is to define the mirror \code{m}, and the boost \code{B}
+itself moving at half the speed of light along the $x$-axis.  The
+first step is to define the mirror \code{m}, and the boost \code{B}
 corresponding to its velocity:
                                                               
 <<>>=
@@ -740,9 +740,9 @@ B <- boost(as.3vel(c(0.5,0,0)))
 Above, the three-vector $m$ is parallel to the normal vector of the
 mirror and $B$ shows the Lorentz boost needed to bring it to rest.  We
 are going to reflect these photons in this mirror.  The R idiom for
-the reflection is performed using a sequence of transforms.
-First, transform the
-photons' four-momentum to a frame in which the mirror is at rest:
+the reflection is performed using a sequence of transforms.  First,
+transform the photons' four-momentum to a frame in which the mirror is
+at rest:
 
 <<>>=
 A
@@ -758,10 +758,10 @@ names).  Next, reflect the photons in the mirror (which is at rest):
 @ 
 
 Above, see how the reflected photons have a reduced the x-component of
-momentum; but have acquired a substantial y- and z- component.
-Finally, we transform back to the original reference frame.  Observe that
-this requires an {\em active} transform which means that we need to
-use the matrix inverse of $B$:
+momentum; but have acquired a substantial $y$- and $z$- component.
+Finally, we transform back to the original reference frame.  Observe
+that this requires an {\em active} transform which means that we need
+to use the matrix inverse of $B$:
 
 <<>>=
 (A <- as.4mom(A %*% solve(t(B))))
@@ -782,7 +782,7 @@ A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom
 
 Consider the following R idiom: we take a bunch of photons which, in a
 certain reference frame are all moving (almost) parallel to the
-x-axis.  Then we reflect the photons from a mirror which is moving
+$x$-axis.  Then we reflect the photons from a mirror which is moving
 with a composition of pure boosts, and examine the reflected light in
 their original reference frame:
 
@@ -800,9 +800,10 @@ light <- as.4mom(light %*% solve(t(B)))
 light
 @ 
 
-See how the photons have picked up momentum in the y- and z-
+See how the photons have picked up momentum in the $y$- and $z$-
 direction, even though the mirror is oriented perpendicular to the
-x-axis (in its own frame).  Again it is arguably preferable to use pipes:
+$x$-axis (in its own frame).  Again it is arguably preferable to use
+pipes:
 
 <<>>=
 light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom
@@ -822,7 +823,7 @@ light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mo
 
 Note that, in the infinite light speed case, the energy of the photons
 is zero (photons have zero rest mass); further observe that in this
-classical case, the effect of the mirror is to multiply the x-momentum
+classical case, the effect of the mirror is to multiply the $x$-momentum
 by $-1$ and leave the other components unchanged, as one might expect
 from a mirror perpendicular to $(1,0,0)$.
 
