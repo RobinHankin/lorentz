@@ -49,8 +49,8 @@ orthog(L)
   (sometimes a \dfn{pure boost}), and when expressed in matrix form is
   symmetric.  Function \code{boost(u)} returns a \eqn{4\times 4}{4x4}
   matrix giving the Lorentz transform of an arbitrary three-velocity
-  \code{u}.  Pure boost matrices are symmetrical, but do not commute in
-  general.
+  \code{u}.  Pure boost matrices are symmetrical if \eqn{c=1}, but do
+  not commute in general.
 
   Boosts can be successively applied with regular matrix multiplication.
   However, composing two successive pure boosts does not return a pure

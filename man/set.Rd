@@ -16,7 +16,7 @@
 \alias{energy-momentum-tensor}
 \title{The energy-momentum tensor}
 \description{Various functionality to deal with the stress-energy tensor
-  in special relativity}
+  in special relativity.}
 \usage{
 perfectfluid(rho,p,u=0)
 dust(rho,u=0)
@@ -42,9 +42,10 @@ lower(TT)
   energy condition) is performed: caveat emptor!
 
   Function \code{dust()} is a (trivial) function that returns the
-  stress-energy tensor for a zero-pressure perfect fluid, that is, dust.
-  Function \code{photongas()} returns the same for a photon gas.  They
-  are here for discoverability reasons.
+  stress-energy tensor of a zero-pressure perfect fluid (that is, dust).
+  Function \code{photongas()} returns the stress-energy tensor of a
+  photon gas.  They are here for discoverability reasons; both are
+  special cases of a perfect fluid.
 
   Functions \code{transform_dd()} et seq transform a second-rank tensor
   using the Lorentz transform.  The letters \dQuote{u} or \dQuote{d}
@@ -55,8 +56,8 @@ lower(TT)
 
   Function \code{lower()} lowers both indices of a tensor with two
   upstairs indices.  Function \code{raise()} raises two downstairs
-  indices.  These two functions are identical; the Minkowski tensor is
-  symmetrical and equal to its own inverse.
+  indices.  These two functions have identical R idiom but do not return
+  identical values if \eqn{c\neq 1}{c!=1}.
 
 }
 \author{Robin K. S. Hankin}

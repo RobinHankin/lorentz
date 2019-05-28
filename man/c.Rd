@@ -14,8 +14,13 @@ or four velocities
   \item{\dots}{Vectors of three-velocities}
 }
 \details{
-  Returns a vector of three-velocities.  Names are inherited from the
-  behaviour of \code{cbind()}, not \code{c()}.
+
+  Returns a vector of three-velocities or four-velocities.  These are
+  stored as three- or four- column matrices; each row is a velocity.
+
+ Names are inherited from the behaviour of \code{cbind()}, not
+  \code{c()}.
+
 }
 \note{
 

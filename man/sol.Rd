@@ -16,8 +16,8 @@ ptm(to_natural=TRUE, change_time=TRUE)
   \item{c}{Scalar, speed of light.  If missing, return the speed of
     light}
   \item{downstairs}{Boolean, with default \code{TRUE} meaning to return
-    the covariant metric tensor \eqn{g_{ij}{g_ij}} with two downstairs
-      indices, and \code{FALSE} meaning to return the contraviariant
+    the covariant metric tensor \eqn{g_{ij}}{g_ij} with two downstairs
+      indices, and \code{FALSE} meaning to return the contravariant
       version \eqn{g^{ij}}{g^ij} with two upstairs indices}
     \item{to_natural,change_time}{Boolean, specifying the
       nature of the passive transform matrix}
@@ -47,10 +47,10 @@ Note that the top-left element of \code{eta()} is \eqn{-c^2}, not
 \eqn{-1}.
 
 Function \code{ptm()} returns a passive transformation matrix that
-converts displacement vectors to (\code{to_natural=TRUE}) and from
-(\code{to_natural=FALSE}) natural units.  Argument \code{change_time}
-specifies whether to change the unit of time (if \code{TRUE}) or the
-unit of length (if \code{FALSE}).
+converts displacement vectors to natural units (\code{to_natural=TRUE})
+or from natural units (\code{to_natural=FALSE}).  Argument
+\code{change_time} specifies whether to change the unit of time (if
+\code{TRUE}) or the unit of length (if \code{FALSE}).
   
 }
 \author{Robin K. S. Hankin}

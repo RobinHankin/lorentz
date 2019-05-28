@@ -19,7 +19,7 @@
 
   This definition is one of several plausible alternatives, but has the
   nice property that the first and last elements are exactly equal to
-  the \code{a} and \code{b}  respectively.
+  \code{a} and \code{b} respectively.
 
   }
 \author{Robin K. S. Hankin}

@@ -84,10 +84,13 @@ snail <- as.3vel(c(0.00275,0,0)) # even the world's fastest snail...
 gamm1(snail)                     # ...has only a small relativistic correction
 
 
-## for the ultrarelativistic case of speeds very close to the speed of
-##   light, use gam_ur():
+## For the ultrarelativistic case of speeds very close to the speed of
+## light, use gam_ur():
 
 sol(1)           # revert to relativistic units
+
+gam(0.99) - gam_ur(0.01) # zero to numerical accuracy
+
 omgp <- 4.9e-24  # speed deficit of the Oh-My-God particle
 gam(1-omgp)      # numeric overflow
 gam_ur(omgp)     # large but finite

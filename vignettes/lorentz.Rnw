@@ -172,7 +172,8 @@ would appear in the moving frame as
 B %*% c(1,0,0,0)
 @ 
 
-Observe that it is possible to transform an arbitrary four-vector:
+This corresponds to a speed of $-0.75/1.25=-0.6$.  Observe that it is
+possible to transform an arbitrary four-vector:
 
 <<flayter>>=
 B %*% c(4,6,-8,9)
@@ -337,9 +338,9 @@ sol()
 @ 
 
 The speed of light is now~$299792458$ until re-set by \code{sol()} (an
-empty argument queries the speed of light).  We can now consider
-speeds which are fast by terrestrial standards but involve only a
-small relativistic correction to the Galilean result:
+empty argument queries the speed of light).  We now consider speeds
+which are fast by terrestrial standards but involve only a small
+relativistic correction to the Galilean result:
                                                 
 <<>>=
 u <- as.3vel(c(100,200,300))
@@ -392,7 +393,7 @@ sol(299792458)
 disp  <- c(1,1,0,0)
 @ 
 
-Thus four-vector \code{disp} is the four-displacement corresponding to
+If we interpret \code{disp} as a four-displacement, it corresponds to
 moving 1 metre along the x-axis and waiting for one second.  To
 convert this to natural units we multiply by the passive
 transformation matrix given by \code{ptm()}:
@@ -455,7 +456,8 @@ B %*% as.vector(U)
 expected, for we use passive transforms by default).  However, things
 are different if we wish to consider many four-vectors in one R
 object.  A vector ${\mathbf V}$ of four-velocities is a matrix: each
-{\em row} of ${\mathbf V}$ is four-velocity.  Because a vector is
+{\em row} of ${\mathbf V}$ is a four-velocity.  In the package we
+represent this with objects of class \code{4vel}.  Because a vector is
 treated (almost) as a one-column matrix in R, and the four-velocities
 are rows, we need to take a transpose in some sense.
 
@@ -580,8 +582,8 @@ tensor.
 
 <<>>=
 sol(1)        # revert to natural units 
-D <- dust(1)  # Dust is the simplest nontrivial SET, with only one 
-D             # nonzero component
+D <- dust(1)  # Dust is the simplest nontrivial SET, with 
+D             # only one nonzero component
 @ 
 
 The stress-energy tensor is usually written with two upstairs
@@ -615,6 +617,7 @@ is the same as transforming the SET with upstairs indices, using the
 
 <<>>=
 raise(transform_dd(lower(pg),lower(B)))
+raise(transform_dd(lower(pg),lower(B))) - transform_uu(pg,B) #zero to numerical precision
 @ 
 
 One of the calls to \code{lower()} is redundant; for a photon gas,
@@ -780,11 +783,11 @@ A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom
 
 \subsection{Mirrors and rotation-boost coupling}
 
-Consider the following R idiom: we take a bunch of photons which, in a
-certain reference frame are all moving (almost) parallel to the
+Consider the following situation: we take a bunch of photons which in
+a certain reference frame are all moving (almost) parallel to the
 $x$-axis.  Then we reflect the photons from a mirror which is moving
 with a composition of pure boosts, and examine the reflected light in
-their original reference frame:
+their original reference frame.  The R idiom for this would be:
 
 <<>>=
 sol(1)

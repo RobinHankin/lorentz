@@ -3,14 +3,14 @@
 \alias{r4vel}
 \title{Random relativstic velocities}
 \description{
-Generates random three-velocities, optionally specifiying a magnitude
+Generates random three-velocities or four-velocities, optionally specifiying a magnitude
 }
 \usage{
 r3vel(n, r = NA)
 r4vel(...)
 }
 \arguments{
-  \item{n}{Number of three-velocities to generate}
+  \item{n}{Number of three- or four- velocities to generate}
   \item{r}{Absolute value of the three-velocities, with default
     \code{NA} meaning to sample uniformly from the unit ball}
   \item{...}{Arguments passed to \code{r3vel()}}
@@ -20,7 +20,7 @@ r4vel(...)
   \code{r4vel()} is a convenience wrapper for \code{as.4vel(r3vel())}.
 }
 \value{
-Returns a vector of three velocities.
+Returns a vector of three- or four- velocities.
 }
 \author{Robin K. S. Hankin}
 \note{
