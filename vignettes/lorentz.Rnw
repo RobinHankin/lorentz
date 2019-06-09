@@ -4,6 +4,7 @@
 \usepackage{bbm}
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{wasysym}
 \usepackage{amssymb}
 \usepackage{yfonts}
 
