@@ -1,0 +1,174 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+<!-- badges: start -->
+[![Build Status](https://travis-ci.org/RobinHankin/lorentz.svg?branch=master)](https://travis-ci.org/RobinHankin/lorentz)
+<!-- badges: end -->
+
+
+
+
+The lorentz R package: special relativity 
+
+# Introduction
+
+``The nonassociativity of Einstein's velocity addition is not widely
+known''-- Ungar 2006.
+
+The `lorentz` package furnishes some R-centric functionality for
+special relativity.  Lorentz transformations of four-vectors are
+handled and some functionality for the stress energy tensor is given.
+
+The package also works with three-velocities in the context of their
+being a gyrogroup.  Natural R idiom may be used to manipulate vectors
+of three-velocities, although one must be careful with brackets.
+
+# Installation
+
+To install the most recent stable version on CRAN, use ```install.packages()```
+at the R prompt:
+
+```
+R> install.packages("lorentz")
+```
+
+
+To install the current development version use ```devtools```:
+
+```
+R> devtools::install_github("RobinHankin/lorentz")
+```
+
+And then to load the package use ```library()```:
+
+
+```{r}
+library("lorentz")
+```
+
+
+# Features
+
+Natural R idiom can be used to define three-velocities,
+four-velocities, and Lorentz transformations as four-by-four matrices.
+
+
+```{r}
+ u <- as.3vel(c(0.6,0,0))  # define a three-velocity, 0.6c to the right
+ u
+
+as.4vel(u)    # convert to a four-velocity:
+gam(u)  # calculate the gamma term
+
+B <- boost(as.3vel(c(0.6,0,0))) # give the Lorentz transformation
+B
+
+ B %*% (1:4)  # Lorentz transform of an arbitrary four-vector
+```
+
+The package is fully vectorized and includes functionality to convert
+between three-velocities and four-velocities:
+
+```{r}
+ set.seed(0)
+ options(digits=3)
+ # generate 5 random three-velocities:
+ (u <- r3vel(5))
+ # calculate the gamma correction term:
+ gam(u)
+
+ # add a velocity of 0.9c in the x-direction:
+ v <- as.3vel(c(0.9,0,0))
+ v+u
+
+
+ # convert u to a four-velocity:
+ as.4vel(u)
+
+ # use four-velocities to effect the same transformation:
+ w <- as.4vel(u) %*% boost(-v)
+ as.3vel(w)
+```
+
+
+### Creation of three velocities:
+
+Three-velocites behave in interesting and counter-intuitive ways.
+
+
+```{r}
+ u <- as.3vel(c(0.2,0.4,0.1))   # single three-velocity
+ v <- r3vel(4,0.9)              # 4 random three-velocities with speed 0.9
+ w <- as.3vel(c(-0.5,0.1,0.3))  # single three-velocity
+```
+
+The three-velocity addition law is given by Ungar.
+
+Then we can see that velocity addition is not commutative:
+
+```{r}
+ u+v
+ v+u
+ (u+v)-(v+u)
+```
+
+Observe that the difference between ```u+v``` and ```v+u``` is not
+"small" in any sense. Commutativity is replaced with gyrocommutatitivity:
+
+```{r}
+# Compare two different ways of calculating the same thing:
+ (u+v) - gyr(u,v,v+u)  
+
+# The other way round:
+ (v+u) - gyr(v,u,u+v)
+``` 
+
+(that is, zero to numerical accuracy)
+
+### Nonassociativity
+
+It would be reasonable to expect that ```u+(v+w)==(u+v)+w```.
+However, this is not the case:
+ 
+```{r}
+ ((u+v)+w) - (u+(v+w))
+``` 
+
+(that is, significant departure from associativity).
+Associativity is replaced with gyroassociativity:
+
+```{r}
+ (u+(v+w)) - ((u+v)+gyr(u,v,w))
+ ((u+v)+w) - (u+(v+gyr(v,u,w)))
+```
+
+(zero to numerical accuracy).
+
+
+# References
+
+The most concise reference is
+
+*  A. A. Ungar 2006. _Thomas precession: a kinematic effect of the algebra of Einstein's velocity addition law.  Comments on "Deriving relativistic momentum and energy: II,  Three-dimensional case_.  European Journal of Physics, 27:L17-L20
+
+
+# Further information
+For more detail, see the package vignette
+
+```
+vignette("lorentz")
+``` 
+ 
+
