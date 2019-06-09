@@ -2,6 +2,8 @@
 
 before_install:
     - tlmgr install wasysym
+    - sudo apt-get install texlive texlive-latex3
+    - sudo apt install texlive-latex-extra
 
 language: R
 cache: packages
