@@ -13,23 +13,32 @@ reflect(P,m,ref=1)
   \item{ref}{Coefficient of reflectivity of the mirror}
 }
 \value{
-  Returns the four-momentum after reflection
+  Takes a four-momentum and  returns the four-momentum after reflection.
+  Will handle objects or photons.
+  
 }
 \author{Robin K. S. Hankin}
+\seealso{\code{\link{photon}}}
 \note{
-It is easy to reflect photons or other four-momenta of other objects
-from moving mirrors; see examples.
+
+  All four-momenta are measured in the rest frame of the mirror, but it
+  is easy to reflect from moving mirrors; see examples.
+
+  However, note that the \code{ref} argument is designed to work with
+  photons only, where it is conceptually the percentage of photons
+  reflected and not absorbed by the mirror.  If \code{ref} is less than
+  unity, odd results are given for four momenta of nonzero restmass
+  objects.
 }
 
 \examples{
 ## We will reflect some photons from an oblique mirror moving at half
-## the speed of light:
+## the speed of light.
 
-
-## A is a bunch of photons all moving roughly along the x-axis:
+## First create 'A', a bunch of photons all moving roughly along the x-axis:
 A <- as.photon(as.3vel(cbind(0.9,runif(10)/1000,runif(10)/1000)))
 
-## m is a mirror oriented perpendicular to c(1,1,1):
+## Now create 'm', a mirror oriented perpendicular to c(1,1,1):
 m <- c(1,1,1)
 
 ## Reflect the photons in the mirror:
@@ -39,9 +48,9 @@ reflect(A,m)
 A \%>\% reflect(m) \%>\% reflect(1:3) \%>\% reflect(3:1) 
 
 ## To reflect from a moving mirror we need to transform to a frame in
-##   which the mirror is at rest, then transform back to the original
-##   frame.  First create B, a boost representing the mirror's movement
-##   along the x-axis at speed c/2:
+## which the mirror is at rest, then transform back to the original
+## frame.  First create B, a boost representing the mirror's movement
+## along the x-axis at speed c/2:
 
 B <- boost(as.3vel(c(0.5,0,0)))
 
