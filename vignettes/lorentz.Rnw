@@ -781,6 +781,42 @@ A <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40)))
 A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom
 @ 
 
+\subsection{Disco ball}
+
+It is easy to define a disco ball:
+
+<<disco_ball>>=
+disco <- matrix(rnorm(3000),ncol=3) %>% sweep(1, sqrt(rowSums(.^2)),`/`)
+head(disco)
+@ 
+
+Then we define a null geodesic parallel to the x-axis, corresponding
+to photons, and reflect them in the disco ball:
+
+<<>>=
+p <- as.photon(c(1,0,0))
+reflect(p,head(disco))
+@ 
+
+we might ask what percentage of photons are reflected towards the source:
+
+<<disco_reflect_percentage>>=
+ table(reflect(p,disco)[,2]>0) # should be TRUE with probability sqrt(0.5)
+@ 
+
+(compare the expected value of $1000/\sqrt{2}\simeq 707$).  But it is
+perhaps more fun to consider a relativistic disco in which the mirror
+ball moves at 0.5c:
+
+
+<<relativistic_disco>>=
+B <- boost(as.3vel(c(0.5,0,0)))
+p %>% tcrossprod(B) %>% reflect(head(disco)) %>% tcrossprod(solve(B))
+@ 
+
+Note that a spinning disco ball would give the same (instantaneous)
+results.
+
 \subsection{Mirrors and rotation-boost coupling}
 
 Consider the following situation: we take a bunch of photons which in
