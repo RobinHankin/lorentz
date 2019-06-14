@@ -6,7 +6,7 @@
 \usepackage{amsmath}
 \usepackage{wasysym}
 \usepackage{amssymb}
-\usepackage{yfonts}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
