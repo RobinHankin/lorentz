@@ -4,11 +4,14 @@
     if(!is.null(jj)){
       return(jj)
     } else {
-      return(invisible(1))
+      return(1)
     }
   } else { # set SOL
     options("c" = c)
-    return(invisible(c))
+    if(isTRUE(getOption("showSOL"))){
+        options("prompt" = paste(c, "> "))
+    }
+    return(c)
   }
 }
 

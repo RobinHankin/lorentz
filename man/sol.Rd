@@ -25,11 +25,16 @@ ptm(to_natural=TRUE, change_time=TRUE)
 \details{
 
   In the context of an R package, the symbol \dQuote{c} presents
-  particular problems.  In the \pkg{gyrogroup} package, the speed of
-  light is denoted \dQuote{sol}, for  \sQuote{speed of light}.
+  particular problems.  In the \pkg{lorentz} package, the speed of light
+  is denoted \dQuote{sol}, for \sQuote{speed of light}.  You can set the
+  speed of light with \code{sol(x)}, and query it with \code{sol()}; see
+  the examples.  An infinite speed of light is sometimes useful for
+  Galilean transforms.
 
   The speed of light is a global variable, governed by
-  \code{options("c")}.  If \code{NULL}, define \code{c=1}.
+  \code{options("c")}.  If \code{NULL}, define \code{c=1}.  Setting
+  \code{showSOL} to \code{TRUE} changes the prompt to display the speed
+  of light which might be useful.
 
   Function \code{eta()} returns the Minkowski flat-space metric
 
@@ -51,7 +56,7 @@ converts displacement vectors to natural units (\code{to_natural=TRUE})
 or from natural units (\code{to_natural=FALSE}).  Argument
 \code{change_time} specifies whether to change the unit of time (if
 \code{TRUE}) or the unit of length (if \code{FALSE}).
-  
+
 }
 \author{Robin K. S. Hankin}
 \note{
