@@ -6,6 +6,7 @@ before_install:
     - tlmgr install ec
     - tlmgr install cm-super
     - tlmgr install yfonts
+    - sudo apt-get install texlive-fonts-recommended
     - sudo apt-get install texlive texlive-latex3
     - sudo apt install texlive-latex-extra
     - sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-fonts-extra texlive-latex-recommended
