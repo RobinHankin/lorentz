@@ -33,8 +33,8 @@ ptm(to_natural=TRUE, change_time=TRUE)
 
   The speed of light is a global variable, governed by
   \code{options("c")}.  If \code{NULL}, define \code{c=1}.  Setting
-  \code{showSOL} to \code{TRUE} changes the prompt to display the speed
-  of light which might be useful.
+  \code{showSOL} to \code{TRUE} makes \code{sol()} change the prompt to
+  display the speed of light which might be useful.
 
   Function \code{eta()} returns the Minkowski flat-space metric
 
