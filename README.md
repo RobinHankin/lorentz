@@ -1,7 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-The lorentz R package: special relativity
+<!-- badges: start -->
+
+[![Build
+Status](https://travis-ci.org/RobinHankin/lorentz.svg?branch=master)](https://travis-ci.org/RobinHankin/lorentz)
+<!-- badges: end -->
+
+# The lorentz R package: special relativity
 
 # Introduction
 

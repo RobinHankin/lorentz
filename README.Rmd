@@ -13,9 +13,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+<!-- badges: start -->
+[![Build Status](https://travis-ci.org/RobinHankin/lorentz.svg?branch=master)](https://travis-ci.org/RobinHankin/lorentz)
+<!-- badges: end -->
 
 
-The lorentz R package: special relativity 
+# The lorentz R package: special relativity 
 
 # Introduction
 
