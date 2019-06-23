@@ -5,6 +5,7 @@
 
 [![Build
 Status](https://travis-ci.org/RobinHankin/lorentz.svg?branch=master)](https://travis-ci.org/RobinHankin/lorentz)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)
 <!-- badges: end -->
 
 # The lorentz R package: special relativity
