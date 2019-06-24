@@ -1,5 +1,6 @@
 ---
 output: github_document
+title: "The lorentz package: special relativity in R"
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -16,10 +17,11 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Build Status](https://travis-ci.org/RobinHankin/lorentz.svg?branch=master)](https://travis-ci.org/RobinHankin/lorentz)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)
+[![Rdoc](http://www.rdocumentation.org/badges/version/lorentz)](http://www.rdocumentation.org/packages/lorentz)
 <!-- badges: end -->
 
 
-# The lorentz R package: special relativity 
+
 
 # Introduction
 

@@ -1,3 +1,5 @@
+The lorentz package: special relativity in R
+================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -6,9 +8,8 @@
 [![Build
 Status](https://travis-ci.org/RobinHankin/lorentz.svg?branch=master)](https://travis-ci.org/RobinHankin/lorentz)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)
+[![Rdoc](http://www.rdocumentation.org/badges/version/lorentz)](http://www.rdocumentation.org/packages/lorentz)
 <!-- badges: end -->
-
-# The lorentz R package: special relativity
 
 # Introduction
 
