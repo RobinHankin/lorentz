@@ -11,18 +11,20 @@ Status](https://travis-ci.org/RobinHankin/lorentz.svg?branch=master)](https://tr
 [![Rdoc](http://www.rdocumentation.org/badges/version/lorentz)](http://www.rdocumentation.org/packages/lorentz)
 <!-- badges: end -->
 
-# Introduction
-
-\`\`The nonassociativity of Einstein’s velocity addition is not widely
-known’’– Ungar 2006.
+# Overview
 
 The `lorentz` package furnishes some R-centric functionality for special
 relativity. Lorentz transformations of four-vectors are handled and some
-functionality for the stress energy tensor is given.
+functionality for the stress energy tensor is given. The package deals
+with four-momentum and has facilities for dealing with photons and
+mirrors in relativistic situations. A detailed vignette is provided in
+the package.
 
-The package also works with three-velocities in the context of their
-being a gyrogroup. Natural R idiom may be used to manipulate vectors of
-three-velocities, although one must be careful with brackets.
+The original motivation for the package was the investigation of the
+(nonassociative) gyrogroup structure of relativistic three-velocities
+under Einsteinian velocity composition. Natural R idiom may be used to
+manipulate vectors of three-velocities, although one must be careful
+with brackets.
 
 # Installation
 
@@ -39,13 +41,15 @@ And then to load the package use `library()`:
 
 ``` r
 library("lorentz")
-#> Loading required package: magrittr
 ```
 
-# Features
+# The `lorentz` package in use
 
-Natural R idiom can be used to define three-velocities, four-velocities,
-and Lorentz transformations as four-by-four matrices.
+The package furnishes natural R idiom for working with three-velocities,
+four-velocities, and Lorentz transformations as four-by-four matrices.
+Although natural units in which
+![c=1](https://latex.codecogs.com/png.latex?c%3D1 "c=1") are used by
+default, this can be changed.
 
 ``` r
  u <- as.3vel(c(0.6,0,0))  # define a three-velocity, 0.6c to the right

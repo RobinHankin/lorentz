@@ -1,6 +1,8 @@
 ---
-output: github_document
 title: "The lorentz package: special relativity in R"
+output:
+  github_document:
+    pandoc_args: --webtex
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -21,25 +23,27 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 
+# Overview
 
 
-# Introduction
-
-``The nonassociativity of Einstein's velocity addition is not widely
-known''-- Ungar 2006.
-
-The `lorentz` package furnishes some R-centric functionality for
+The ```lorentz``` package furnishes some R-centric functionality for
 special relativity.  Lorentz transformations of four-vectors are
 handled and some functionality for the stress energy tensor is given.
+The package deals with four-momentum and has facilities for dealing
+with photons and mirrors in relativistic situations.  A detailed
+vignette is provided in the package.
 
-The package also works with three-velocities in the context of their
-being a gyrogroup.  Natural R idiom may be used to manipulate vectors
-of three-velocities, although one must be careful with brackets.
+The original motivation for the package was the investigation of the
+(nonassociative) gyrogroup structure of relativistic three-velocities
+under Einsteinian velocity composition.  Natural R idiom may be used
+to manipulate vectors of three-velocities, although one must be
+careful with brackets.
+
 
 # Installation
 
-To install the most recent stable version on CRAN, use ```install.packages()```
-at the R prompt:
+To install the most recent stable version on CRAN, use
+```install.packages()``` at the R prompt:
 
 ```
 R> install.packages("lorentz")
@@ -55,15 +59,17 @@ R> devtools::install_github("RobinHankin/lorentz")
 And then to load the package use ```library()```:
 
 
-```{r}
+```{r,message=FALSE}
 library("lorentz")
 ```
 
 
-# Features
+# The ```lorentz``` package in use
 
-Natural R idiom can be used to define three-velocities,
-four-velocities, and Lorentz transformations as four-by-four matrices.
+The package furnishes natural R idiom for working with
+three-velocities, four-velocities, and Lorentz transformations as
+four-by-four matrices.  Although natural units in which $c=1$ are used
+by default, this can be changed.
 
 
 ```{r}
@@ -79,8 +85,7 @@ B
  B %*% (1:4)  # Lorentz transform of an arbitrary four-vector
 ```
 
-The package is fully vectorized and includes functionality to convert
-between three-velocities and four-velocities:
+The package is fully vectorized:
 
 ```{r}
  set.seed(0)
