@@ -1,7 +1,7 @@
 ## This is a systematic attempt to find a distributive law for
 ## three-velocities: r*(u+v) = <some function of u,v,r>.
 
-## Here, u and v are threevelocities and r is a real number.
+## Here, u and v are three-velocities and r is a real number.
 
 ## In this script, function possible() defines a large number of
 ## possible combinations of u, v, and r.  These are calculated at the
@@ -47,14 +47,14 @@ v <- r3vel(1,0.5)
 r <- 2
 
 `possible` <- function(u,v,r){ 
- # In function possible(), u,v are threevelocities and r is a real
+ # In function possible(), u,v are three-velocities and r is a real
  # number.  Function possible() returns a vector of 64*10752=688128
- # threevelocities [the '64' is from combinations of r, 1/r as in jj
+ # three-velocities [the '64' is from combinations of r, 1/r as in jj
  # below; the 10752 is from function f(), defined inside possible()]
 
   f <- function(r1,r2,r3){  
     ##  In function f(), r1,r2,r3 are real numbers; function f() has
-    ##  4*14 = 56 lines, so returns 56*192=10752 threevelocities.
+    ##  4*14 = 56 lines, so returns 56*192=10752 three-velocities.
 
     ## NB: Inside f(), r,u,v come from possible()'s scope
     c(
@@ -144,9 +144,9 @@ r <- 2
 }
 
 `every_sign` <- function(a1,a2,a3,a4,a5,r){
- # Function every_sign() has 16 lines; given 5 threevelocities and a
+ # Function every_sign() has 16 lines; given 5 three-velocities and a
  # scalar, function every_sign() returns a vector of 16*12=192
- # threevelocities [the 12 is from all3()]
+ # three-velocities [the 12 is from all3()]
   c(
       all3(c(a1 , a2 , +r*gyr(+a3,+a4,+a5))),
       all3(c(a1 , a2 , +r*gyr(+a3,+a4,-a5))),
@@ -188,7 +188,7 @@ r <- 2
 }
 
 `all4` <- function(x){  
- ## Every possible way of combining 4 threevelocities.  Function
+ ## Every possible way of combining 4 three-velocities.  Function
  ## all4() is not currently used in this script
   stopifnot(length(x)==4)
   out <- threevel(0)
@@ -200,8 +200,8 @@ r <- 2
 }
 
 `all3` <- function(x){   # every possible way of combining 3
-                         # threevelocities.  Function; if x=c(a,b,c)
-                         # with a,b,c threevelocities then all3()
+                         # three-velocities.  Function; if x=c(a,b,c)
+                         # with a,b,c three-velocities then all3()
                          # returns a vector of length 2*3!=12
 
   stopifnot(length(x)==3)
