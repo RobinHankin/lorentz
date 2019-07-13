@@ -124,8 +124,8 @@ rot(u,v,FALSE) \%*\% boost(v) \%*\% boost(u)
 boost(u+v)     # should be the same.
 
 
-orthog(boost(u) \%*\% boost(v)) - rot(u,v,FALSE)  # should be small
-pureboost(boost(v) \%*\% boost(u)) - boost(u+v)   # should be small
+orthog(boost(u) \%*\% boost(v)) - rot(u,v,FALSE)  # zero to numerical precision
+pureboost(boost(v) \%*\% boost(u)) - boost(u+v)   # ditto
 
 
 ## Define a random-ish Lorentz transform
@@ -145,9 +145,9 @@ is.consistent.boost(L)     # should be TRUE
 U <- orthog(L)
 P <- pureboost(L)
 
-L - U \%*\% P              # should be small (L = UP)
+L - U \%*\% P              # should be zero (L = UP)
 crossprod(U)               # should be identity (U is orthogonal)
-P - t(P)                   # should be small (P is symmetric)
+P - t(P)                   # should be zero (P is symmetric)
 
 ## First row of P should be a consistent 4-velocity:
 is.consistent.4vel(as.4vel(P[,1]))
