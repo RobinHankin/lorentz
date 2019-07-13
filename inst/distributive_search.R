@@ -15,6 +15,28 @@
 ## the corresponding element of variable 'badness', defined at the end
 ## of this script, will be zero.  I have not found one yet.
 
+## Function possible() returns a long vector of possible expressions
+## that might form the RHS for a distributive law.  The basic idea is
+## that r*(u+v) = ru+rv + <some correction> but because of
+## noncommutativity and nonassociativity, this gets complicated.
+
+## Function possible() returns a vector that includes things like
+
+## ru  + (rv  - r*gyr[ru, v,u+v])
+## ru  + (rv  - r*gyr[ru, v,v+u])
+## rv  + (ru  - r*gyr[su, v,u+v])
+## (ru + rv)  + r*gyr[ru, v,u])
+## (ru + rv)  + r*gyr[ru, v,v])
+## (ru + rv)  + r*gyr[ru, v,v])
+## (ru + rv)  + r*gyr[ru,-v,v])
+## (ru + rv)  +   gyr[ru,-v,v])
+## (ru + rv)  + s*gyr[ru,-v,v])
+
+## etc etc etc.  Here, r is a scalar, s=1/r, and u,v are
+## three-velocities.  Note the variety of orders (three-velocity
+## addition is not commutative), different bracketing (three-velocity
+## addition is not associative), and use of r or 1/r in differnt
+## places in the formula.
 
 
 library("lorentz")
