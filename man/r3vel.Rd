@@ -36,10 +36,9 @@ u <- as.3vel(c(0,0,0.9))
 pairs(unclass(u+a),asp=1)
 pairs(unclass(a+u),asp=1)
 
-sol(299792458)
-sound <- 343      # speed of sound in SI
-r3vel(100,343)    # random 3-velocities with speed=343
-
+sol(299792458)    # switch to SI units
+sound <- 343      # speed of sound in metres per second
+r3vel(100,343)    # random 3-velocities with speed = 343 m/s
 
 sol(1)   # return to default c=1
 
