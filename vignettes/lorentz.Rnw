@@ -26,7 +26,7 @@
 %% an abstract and keywords
 \Abstract{ Here I present the \pkg{lorentz} package for working with
   relativistic physics.  The package includes functionality for
-  Lorentz transforms and relativistic velocity addition, which is
+  Lorentz transforms and Einsteinian three-velocity addition, which is
   noncommutative and nonassociative.}
 
 
