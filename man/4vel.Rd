@@ -76,7 +76,7 @@ stopifnot(all(is.consistent.4vel(as.4vel(a))))
 U <- as.4vel(r3vel(10))
 V <- as.4vel(r3vel(10))
 B <- boost(as.3vel(1:3/10))
-frame1dotprod <- inner4(U \%*\% B, V \%*\% B)
+frame1dotprod <- inner4(U, V)
 frame2dotprod <- inner4(U \%*\% B, V \%*\% B)
 
 max(abs(frame1dotprod-frame2dotprod))  # should be small
