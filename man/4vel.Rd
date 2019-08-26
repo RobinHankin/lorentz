@@ -51,8 +51,8 @@ to3(U)
 
   Function \code{is.consistent.4vel()} checks for four-velocities being
   consistent in the sense that \eqn{U^iU_i=-c^2}{U.U=-c^2}.  Giving this
-  function a vector as in \code{is.consistent.4vel(1:5)} will return an
-  error.
+  function a vector, for example, \code{is.consistent.4vel(1:5)}, will
+  return an error.
   
   Compare the functions documented here with \code{boost()}, which
   returns a \eqn{4\times 4}{4*4} transformation matrix (which also
@@ -65,9 +65,9 @@ to3(U)
 a <- r3vel(10)
 as.4vel(a)     # a four-velocity
 
-as.3vel(as.4vel(a))-a   # should be small
+as.3vel(as.4vel(a))-a   # zero to numerical precision
 
-inner4(as.4vel(a))   # should be -1
+inner4(as.4vel(a))   #  -1 to numerical precision
 
 stopifnot(all(is.consistent.4vel(as.4vel(a))))
 
@@ -76,9 +76,9 @@ stopifnot(all(is.consistent.4vel(as.4vel(a))))
 U <- as.4vel(r3vel(10))
 V <- as.4vel(r3vel(10))
 B <- boost(as.3vel(1:3/10))
-frame1dotprod <- inner4(U \%*\% B, V \%*\% B)
-frame2dotprod <- inner4(U \%*\% B, V \%*\% B)
 
-max(abs(frame1dotprod-frame2dotprod))  # should be small
+frame1dotprod <- inner4(U, V)
+frame2dotprod <- inner4(U \%*\% B, V \%*\% B)
+max(abs(frame1dotprod-frame2dotprod))  # zero to numerical precision
 
 }
