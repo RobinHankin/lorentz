@@ -11,7 +11,7 @@ Coerce 3-vectors and 4-vectors to a matrix.  A convenience wrapper for
 \method{as.matrix}{4vel}(x, ...)
 }
 \arguments{
-  \item{x}{Object of class \code{3vec} or \code{4vec}}
+  \item{x}{Object of class \code{3vel} or \code{4vel}}
   \item{...}{Further arguments (currently ignored)}
 }
 \author{Robin K. S. Hankin}
