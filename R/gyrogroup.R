@@ -548,4 +548,5 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   flob(tcrossprod(L, solve(pureboost(L,FALSE))))
 } 
 
-
+`as.matrix.3vel` <- function(x,...){unclass(x)}
+`as.matrix.4vel` <- function(x,...){unclass(x)}
