@@ -30,6 +30,8 @@ S3method("speed"  , "3vel")
 S3method("speed"  , "4vel")
 
 
+S3method("as.matrix", "3vel")
+S3method("as.matrix", "4vel")
 
 S3method("gam"    , "default")
 S3method("gamm1"  , "default")
