@@ -174,7 +174,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   return(-expm1(jj)/exp(jj))
 }
 
-`gam_ur` <- function(d){  # d=1-speed, d<<1
+`gam_ur` <- function(d){  # d=1-speed, d<<c
   d <- d/sol()
   return(1/sqrt(2*d-d^2))
 }
@@ -427,7 +427,6 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     )
   }
 }
-
 
 `comm_fail1` <- function(u,v,bold=5,r=1){
     plot(NA, xlim=c(0,1), ylim=c(-0.2,1),
