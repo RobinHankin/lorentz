@@ -1,9 +1,9 @@
 exportPattern("^[[:alpha:]]+")
 
-importFrom("stats", "runif")
+importFrom("stats", "runif", "rnorm")
 importFrom("emulator","quad.tdiag","quad.tform", "quad.form","quad.3form", "quad.3tdiag")
 importFrom("graphics", "arrows", "legend", "plot", "points")
-
+importFrom("magic","adiag")
 import("magrittr")
 
 importFrom("tensor","tensor")

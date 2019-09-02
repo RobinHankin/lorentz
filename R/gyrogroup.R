@@ -115,6 +115,12 @@
 
 r4vel <- function(...){as.4vel(r3vel(...))}
 
+`rboost` <- function(r=NA){
+  O <- svd(matrix(rnorm(9),3,3))$v
+  if(det(O)<0){O <- -O} # det(O) either 1 or -1
+  crossprod(adiag(1,O),boost(r3vel(1,r=r)))
+}
+
 `massage3` <- function(u,v){
   lu <- length(u)
   lv <- length(v)
