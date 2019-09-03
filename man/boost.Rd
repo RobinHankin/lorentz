@@ -13,12 +13,15 @@
 \alias{pureboost}
 \alias{orthog}
 \alias{is.consistent.boost}
+\alias{is.consistent.boost.galilean}
+\alias{is.consistent.galilean.boost}
 \title{Lorentz transformations}
 \description{Lorenz transformations: boosts and rotations}
 \usage{
 boost(u)
 rot(u,v,space=TRUE)
 is.consistent.boost(L, give=FALSE, TOL=1e-10)
+is.consistent.boost.galilean(L, give=FALSE, TOL=1e-10)
 pureboost(L,include_sol=TRUE)
 orthog(L)
 }

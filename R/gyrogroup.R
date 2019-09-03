@@ -399,7 +399,16 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     }
 }
 
+`is.consistent.boost.galilean` <- function(L, TOL=1e-10){
+  stopifnot(all(dim(L) == 4))
+  return(
+      all(L[1,] == c(1,0,0,0)) &&
+      all(abs(crossprod(L[-1,-1])-diag(3))<TOL)
+  )
+}
+
 `is.consistent.boost` <- function(L, give=FALSE, TOL=1e-10){
+  if(is.infinite(sol())){return(is.consistent.boost.galilean(L, TOL=1e-10))}
   out <- quad.form(eta(),L) # should be eta()
   if(give){
     return(out)
