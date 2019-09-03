@@ -534,7 +534,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 `rot` <- function(u,v,space=TRUE){
   u <- as.3vel(u)
   v <- as.3vel(v)
-  out <- tcrossprod(crossprod(boost(-u-v), boost(u)),boost(v))
+  out <- boost(-u-v) %*% boost(u) %*% boost(v)
   if(space){
     return(out[2:4,2:4])
   } else {
