@@ -539,7 +539,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
    
 `pureboost.galilean` <- function(L){
   stopifnot(is.consistent.boost.galilean(L))
-  cbind(L[,1],rbind(0,diag(3)))
+  crossprod(orthog.galilean(L),L)
 }
 
 `orthog.galilean` <- function(L){
