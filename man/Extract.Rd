@@ -1,4 +1,6 @@
 \name{Extract.3vel}
+\alias{Extract.3vel}
+\alias{extract.3vel}
 \alias{[.vel}
 \alias{[<-.vel}
 \alias{[.3vel}
