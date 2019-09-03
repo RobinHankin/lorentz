@@ -12,6 +12,8 @@
 \alias{decompose}
 \alias{pureboost}
 \alias{orthog}
+\alias{pureboost.galilean}
+\alias{orthog.galilean}
 \alias{is.consistent.boost}
 \alias{is.consistent.boost.galilean}
 \alias{is.consistent.galilean.boost}
@@ -24,6 +26,8 @@ is.consistent.boost(L, give=FALSE, TOL=1e-10)
 is.consistent.boost.galilean(L, give=FALSE, TOL=1e-10)
 pureboost(L,include_sol=TRUE)
 orthog(L)
+pureboost.galilean(L)
+orthog.galilean(L)
 }
 \arguments{
   \item{u,v}{Three-velocities, coerced to  class \code{3vel}}
@@ -67,11 +71,18 @@ orthog(L)
   speed of light is not equal to 1, the functions still work but can be
   confusing.
   
+  Functions \code{pureboost.galilean()} and \code{orthog.galilean()} are
+  the Newtonian equivalents of \code{pureboost()} and \code{orthog()},
+  intended to be used when the speed of light is infinite (which causes
+  problems for the relativistic functions).
+
   The composition of two pure Lorentz boosts is not necessarily pure.  If
   we have two successive boosts corresponding to \eqn{u} and \eqn{v}, then
   the composed boost may be decomposed into a pure boost of \code{boost(u+v)}
   and a rotation of \code{rot(u,v)}.
 
+
+  
   The reason argument \code{include_sol} exists is that function
   \code{orthog()} needs to call \code{pureboost()} in an environment
   where we pretend that \eqn{c=1}.
