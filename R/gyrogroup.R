@@ -199,10 +199,12 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 `neg3` <- function(u){as.3vel(-unclass(u))}
 
 `dot3` <- function(v,r){
+  if(is.infinite(sol())){ return(as.3vel(unclass(v)*r)) }
     jj <- cbind(seq_along(v),seq_along(r))
     v <- v[jj[,1]]
     r <- r[jj[,2]]
-  
+
+
     vc <- sqrt(prod3(v))/sol()
     out <- sweep(unclass(v),1,tanh(r*atanh(vc))/vc,"*")
     out[vc==0,] <- 0
