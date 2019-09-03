@@ -26,7 +26,7 @@ is.consistent.boost(L, give=FALSE, TOL=1e-10)
 is.consistent.boost.galilean(L, give=FALSE, TOL=1e-10)
 pureboost(L,include_sol=TRUE)
 orthog(L)
-pureboost.galilean(L)
+pureboost.galilean(L, tidy=TRUE)
 orthog.galilean(L)
 }
 \arguments{
@@ -41,6 +41,10 @@ orthog.galilean(L)
     the spatial component of the rotation matrix and \code{FALSE}
     meaning to return the full \eqn{4\times 4}{4x4} matrix
     transformation}
+  \item{tidy}{In \code{pureboost.galilean()}, Boolean with default
+    \code{TRUE} meaning to return a \dquote{tidy} boost matrix with
+    spatial components forced to be a \eqn{3\times 3}{3x3} identity
+    matrix}
   \item{include_sol}{In function \code{pureboost()}, Boolean with
     default \code{TRUE} meaning to correctly account for the speed of
     light, and \code{FALSE} meaning to assume \eqn{c=1}. See details}
