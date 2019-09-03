@@ -42,7 +42,7 @@ orthog.galilean(L)
     meaning to return the full \eqn{4\times 4}{4x4} matrix
     transformation}
   \item{tidy}{In \code{pureboost.galilean()}, Boolean with default
-    \code{TRUE} meaning to return a \dquote{tidy} boost matrix with
+    \code{TRUE} meaning to return a \dQuote{tidy} boost matrix with
     spatial components forced to be a \eqn{3\times 3}{3x3} identity
     matrix}
   \item{include_sol}{In function \code{pureboost()}, Boolean with
