@@ -537,8 +537,18 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   }
 }
    
+`pureboost.galilean` <- function(L){
+  stopifnot(is.consistent.boost.galilean(L))
+  cbind(L[,1],rbind(0,diag(3)))
+}
+
+`orthog.galilean` <- function(L){
+  stopifnot(is.consistent.boost.galilean(L))
+  magic::adiag(1,L[-1,-1])
+}
+
 `pureboost` <- function(L,include_sol=TRUE){
-  if(is.infinite(sol())){return(L)}
+  if(is.infinite(sol())){return(pureboost.galilean(L))}
   if(include_sol){
     left <- ptm(TRUE)
     right <- ptm(FALSE)
@@ -552,12 +562,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 }
 
 `orthog` <- function(L){
-  if(is.infinite(sol())){
-    L[1,1] <- 1
-    L[1,2:4] <- 0
-    L[2:4,1] <- 0
-    return(L)
-    }
+  if(is.infinite(sol())){return(orthog.galilean(L))}
   L <- quad.3form(L,ptm(TRUE),ptm(FALSE))  # convert to natural units
   flob(tcrossprod(L, solve(pureboost(L,FALSE))))
 } 
