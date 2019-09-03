@@ -399,12 +399,17 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     }
 }
 
-`is.consistent.boost.galilean` <- function(L, TOL=1e-10){
+`is.consistent.boost.galilean` <- function(L, give=FALSE, TOL=1e-10){
   stopifnot(all(dim(L) == 4))
-  return(
-      all(L[1,] == c(1,0,0,0)) &&
-      all(abs(crossprod(L[-1,-1])-diag(3))<TOL)
-  )
+  out <- crossprod(L[-1,-1])
+  if(give){
+    return(out)
+  } else {
+    return(
+        all(L[1,] == c(1,0,0,0)) &&
+        all(abs(out-diag(3)) < TOL)
+    )
+  }
 }
 
 `is.consistent.boost` <- function(L, give=FALSE, TOL=1e-10){
