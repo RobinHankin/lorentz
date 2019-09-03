@@ -558,7 +558,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   }
     
   jj <- eigen(crossprod(quad.3form(L,left,right)))
-  flob(quad.3form(quad.tform(sqrt(diag(jj$values)),jj$vectors),left,right))
+  flob(quad.3form(quad.tform(sqrt(diag(jj$values)),jj$vectors),right,left))
 }
 
 `orthog` <- function(L){
