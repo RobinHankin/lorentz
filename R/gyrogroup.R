@@ -216,17 +216,17 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   return(out)
 }
 
-`[.vec` <- function(x,i,j,...){
+`[.vec` <- function(x,i,j,drop=TRUE,...){
     a <- class(x)
     x <- unclass(x)
     if(missing(i) & !missing(j)){ # x[,j]
-      return(x[,j,drop=FALSE])
+      return(x[,j,drop=drop])
     } else if(!missing(i) & !missing(j)){  # x[i,j]
-      out <- x[i,j,drop=FALSE]
+      out <- x[i,j,drop=drop]
     } else if(missing(i) & missing(j)){  # x[]
       out <- x  # NB unclassed
     } else if(!missing(i) & missing(j)){  # meat of function: idiom x[i]; x[i,]
-      out <- x[i,,drop=FALSE]
+      out <- x[i,,drop=FALSE]  # NB: overrides method default
       if(ncol(out)==3){return(as.3vel(out))}
     } else {
       stop("this cannot happen")

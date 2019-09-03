@@ -23,6 +23,9 @@ Salient use-cases are \code{u[1:5] <- u[1]} and \code{u[1] <- 0}.
 To extract a single component, pass a second index: \code{u[,1]}
 returns the x- component of the three-velocity.
 
+Extraction functions take a \code{drop} argument, except for \code{x[i]}
+which returns a \code{vec} object.
+
 Currently, \code{u[]} returns \code{u} but I am not sure this is
 desirable.  Maybe it should return \code{unclass(u)} or perhaps
 \code{c(unclass(u))}.
