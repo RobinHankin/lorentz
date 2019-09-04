@@ -375,14 +375,8 @@ boost(u)
 @ 
 
 The boost matrix is not symmetrical, even though it is a pure boost,
-because $c\neq 1$.  Note how the transform is essentially the
-Galilean result, which may be calculated in the package exactly by
-setting the speed of light to infinity:
-
-<<>>=
-sol(Inf)
-boost(u)
-@ 
+because $c\neq 1$.  Note how the transform is essentially the Galilean
+result, which is discussed below.
 
 \subsection{Changing units}
 
@@ -435,6 +429,59 @@ orthog(B2)[2:4,2:4]
 @ 
 
 so the two matrices agree, as expected.
+
+
+\section{Infinite speed of light}
+
+In the previous section considered speeds that were small compared
+with the speed of light and here we will consider the classical limit
+of infinite $c$:
+
+<<setcinfinite>>=
+sol(Inf)
+@ 
+
+Then the familiar parallelogram law operates:
+
+<<parallelograminfinitec>>=
+u <- as.3vel(1:3)
+v <- as.3vel(c(-6,8,3))
+u+v
+@ 
+
+The boost matrix is instructive:
+
+<<boostinfc>>=
+boost(u)
+@ 
+
+With an infinite speed of light, even ``large'' speeds have zero
+relativistic correction:
+
+<<gamm1google>>=
+gamm1(1e100)
+@ 
+
+Function \code{rboost()} will return a random Lorentz transform
+matrix, which is in general a combination of a pure Lorentz boost and
+an orthogonal rotation.  With an infinite speed of light, it requires
+a speed:
+
+<<rboostinfc>>=
+set.seed(0)
+(B <- rboost(1))  # random boost, speed 1
+@ 
+
+We can decompose \code{B} into a pure boost and an orthogonal
+transformation:
+
+<<orthoginfc>>=
+orthog(B)
+pureboost(B)
+@ 
+
+
+
 
 \section{Vectorization}
 
