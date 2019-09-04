@@ -325,7 +325,7 @@ round(crossprod(U) - diag(4),10)  # check for orthogonality
 ## zero to within numerical uncertainty
 @ 
 
-\section[Units in which $c=1$]{Units in which $\mathbf c\neq 1$}  
+\section[Units in which c is not 1]{Units in which ${\mathbf c\neq 1}$}  
 
 The preceding material used units in which $c=1$.  Here I show how the
 package deals with units such as SI in which $c=299792458\neq 1$.  For
