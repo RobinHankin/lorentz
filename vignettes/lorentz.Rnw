@@ -462,13 +462,14 @@ relativistic correction:
 gamm1(1e100)
 @ 
 
-Function \code{rboost()} will return a random Lorentz transform
-matrix, which is in general a combination of a pure Lorentz boost and
-an orthogonal rotation.  With an infinite speed of light, it requires
-a speed:
+Function \code{rboost()} returns a random Lorentz transform matrix,
+which is in general a combination of a pure Lorentz boost and an
+orthogonal rotation.  With an infinite speed of light, it requires a
+speed:
 
 <<rboostinfc>>=
 set.seed(0)
+options(digits=3)
 (B <- rboost(1))  # random boost, speed 1
 @ 
 
@@ -492,7 +493,6 @@ a $4\times 4$ matrix with vector with four elements:
 
 <<>>=
 sol(10)
-options(digits=3)
 u <- as.3vel(c(5,-6,4))
 (U <- as.4vel(u))
 B <- boost(U)
