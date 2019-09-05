@@ -19,7 +19,7 @@ affiliations:
   name: Auckland University of Technology
 ---
 
-# Summary
+# The Lorentz transform in special relativity
 
 In special relativity, the Lorentz transforms supercede their
 classical equivalent, the Galilean transforms [@goldstein1980].
@@ -29,6 +29,8 @@ a $4\times 4$ matrix.  A Lorentz transform takes the components of an
 arbitrary four-vector as observed in one coordinate system and returns
 the components observed in another system which is moving at constant
 velocity with respect to the first.
+
+# Previous related work
 
 There are a few existing software tools for working with Lorentz
 transforms, mostly developed in an educational context.  Early work
@@ -40,6 +42,8 @@ it is not clear whether the software is still available.  More modern
 contributions would include the ``OpenRelativity`` toolkit
 [@sherin2016] which simulates the effects of special relativity in the
 ``Unity`` game engine.
+
+# The ``lorentz`` package
 
 The ``lorentz`` package provides ``R``-centric functionality for
 Lorentz transforms.  It deals with formal Lorentz boosts, converts
