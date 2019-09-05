@@ -46,12 +46,15 @@ contributions would include the ``OpenRelativity`` toolkit
 # The ``lorentz`` package
 
 The ``lorentz`` package provides ``R``-centric functionality for
-Lorentz transforms.  It deals with formal Lorentz boosts, converts
-between three-velocities and four-velocities, and provides
-computational support for the gyrogroup structure of relativistic
-three-velocity addition.  The speed of light is one by default, but is
-user-settable and the classical limit is recovered by setting
-$c=\infty$.  Both passive and active transforms are implemented.
+Lorentz transforms.  It deals with formal Lorentz boosts and converts
+between three-velocities and four-velocities.  Computational support
+for the nonassociative and noncommutative gyrogroup structure of
+relativistic three-velocity addition is included.  Some functionality
+for relativistic transformation of tensors of order two such as the
+stress-energy tensor is given, and examples are included.  In the
+package, the speed of light is one by default, but is user-settable
+and the classical limit is recovered by setting $c=\infty$.  Both
+passive and active transforms are implemented.
 
 An extensive heuristic vignette detailing package idiom is included.
 The package is used to execute a formal sweep through many
