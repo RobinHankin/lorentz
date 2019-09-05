@@ -32,7 +32,7 @@ velocity with respect to the first.
 
 There are a few existing software tools for working with Lorentz
 transforms, mostly developed in an educational context.  Early work
-would include that of Horwitz et al., [-@horwitz1992] who describe
+would include that of Horwitz et al. [-@horwitz1992], who describe
 ``relLab``, a system for building a range of *gendanken* experiments
 in an interactive graphical environment.  The author asserts that it
 runs on "any Macintosh computer with one megabyte of RAM or more" but
@@ -45,9 +45,13 @@ The ``lorentz`` package provides ``R``-centric functionality for
 Lorentz transforms.  It deals with formal Lorentz boosts, converts
 between three-velocities and four-velocities, and provides
 computational support for the gyrogroup structure of relativistic
-three-velocity addition.  An extensive heuristic vignette detailing
-package idiom is included.  The package is used to execute a formal
-sweep through many possibilities, searching for a distributive law
-following an observation of Ungar [-@ungar2006].
+three-velocity addition.  The speed of light is one by default, but is
+user-settable and the classical limit is recovered by setting
+$c=\infty$.  Both passive and active transforms are implemented.
+
+An extensive heuristic vignette detailing package idiom is included.
+The package is used to execute a formal sweep through many
+possibilities, searching for a distributive law following an
+observation of Ungar [-@ungar2006].
 
 # References
