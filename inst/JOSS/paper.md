@@ -51,14 +51,20 @@ between three-velocities and four-velocities.  Computational support
 for the nonassociative and noncommutative gyrogroup structure of
 relativistic three-velocity addition is included.  Some functionality
 for relativistic transformation of tensors of order two such as the
-stress-energy tensor is given, and examples are included.  In the
-package, the speed of light is one by default, but is user-settable
-and the classical limit is recovered by setting $c=\infty$.  Both
-passive and active transforms are implemented.
+stress-energy tensor is given, with examples.  In the package, the
+speed of light is one by default, but is user-settable and the
+classical limit is recovered by setting $c=\infty$.  Both passive and
+active transforms are implemented.  An extensive heuristic vignette
+detailing package idiom is included.
 
-An extensive heuristic vignette detailing package idiom is included.
-The package is used to execute a formal sweep through many
-possibilities, searching for a distributive law following an
-observation of Ungar [-@ungar2006].
+There does not seem to be a known relativistic generalization of the
+classical distributive law $r\left({\bf u} + {\bf v}\right)=r{\bf u} +
+r{\bf v}$.  Ungar [-@ungar1997] states that ``It is hoped that one day
+a gyrodistributive law \ldots will be discovered.  If exists, it is
+expected to be the standard distributive law relaxed by Thomas
+gyration in some unexpected way''.  The package is used to execute a
+systematic sweep through a total of $2^{15}\cdot 3\cdot 7=688128$
+possible distributive laws consistent with Ungar's suggestion,
+unfortunately without success.
 
 # References
