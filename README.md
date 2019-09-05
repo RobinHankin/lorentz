@@ -63,15 +63,19 @@ as.4vel(u)    # convert to a four-velocity:
 gam(u)  # calculate the gamma term
 #> [1] 1.25
 
-B <- boost(as.3vel(c(0.6,0,0))) # give the Lorentz transformation
+B <- boost(u) # give the Lorentz transformation
 B
 #>       t     x y z
 #> t  1.25 -0.75 0 0
 #> x -0.75  1.25 0 0
 #> y  0.00  0.00 1 0
 #> z  0.00  0.00 0 1
+```
 
- B %*% (1:4)  # Lorentz transform of an arbitrary four-vector
+The boost matrix can be used to transform arbitrary four-vectors:
+
+``` r
+B %*% (1:4)  # Lorentz transform of an arbitrary four-vector
 #>    [,1]
 #> t -0.25
 #> x  1.75
@@ -79,8 +83,48 @@ B
 #> z  4.00
 ```
 
-The package is fully vectorized and includes functionality to convert
-between three-velocities and four-velocities:
+But it can also be used to transform four-velocities:
+
+``` r
+v <- as.4vel(c(0,0.7,-0.2))
+B %*% t(v)
+#>        [,1]
+#> t  1.823312
+#> x -1.093987
+#> y  1.021055
+#> z -0.291730
+```
+
+The classical parallelogram law for addition of velocities is incorrect
+when relativistic effects are included. To combine
+![u](https://latex.codecogs.com/png.latex?u "u") and
+![v](https://latex.codecogs.com/png.latex?v "v") in terms of successive
+boosts we would simply multiply the boost matrices:
+
+``` r
+boost(u) %*% boost(v)
+#>           t     x          y          z
+#> t  1.823312 -0.75 -1.2763187  0.3646625
+#> x -1.093987  1.25  0.7657912 -0.2187975
+#> y -1.021055  0.00  1.4240348 -0.1211528
+#> z  0.291730  0.00 -0.1211528  1.0346151
+```
+
+and note that the result depends on the order:
+
+``` r
+boost(v) %*% boost(u)
+#>            t          x          y          z
+#> t  1.8233124 -1.0939874 -1.0210549  0.2917300
+#> x -0.7500000  1.2500000  0.0000000  0.0000000
+#> y -1.2763187  0.7657912  1.4240348 -0.1211528
+#> z  0.3646625 -0.2187975 -0.1211528  1.0346151
+```
+
+# Vectorization
+
+The package is fully vectorized and can deal with vectors whose entries
+are three-velocities or four-velocities:
 
 ``` r
  set.seed(0)
@@ -128,7 +172,7 @@ between three-velocities and four-velocities:
 #> [5,] 0.820 -0.174  0.356
 ```
 
-### Creation of three velocities:
+# Three-velocities
 
 Three-velocites behave in interesting and counter-intuitive ways.
 
@@ -186,7 +230,7 @@ any sense. Commutativity is replaced with gyrocommutatitivity:
 
 (that is, zero to numerical accuracy)
 
-### Nonassociativity
+## Nonassociativity of three-velocities
 
 It would be reasonable to expect that `u+(v+w)==(u+v)+w`. However, this
 is not the case:

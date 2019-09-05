@@ -79,13 +79,44 @@ by default, this can be changed.
 as.4vel(u)    # convert to a four-velocity:
 gam(u)  # calculate the gamma term
 
-B <- boost(as.3vel(c(0.6,0,0))) # give the Lorentz transformation
+B <- boost(u) # give the Lorentz transformation
 B
-
- B %*% (1:4)  # Lorentz transform of an arbitrary four-vector
 ```
 
-The package is fully vectorized:
+The boost matrix  can be used to transform arbitrary four-vectors:
+
+```{r}
+B %*% (1:4)  # Lorentz transform of an arbitrary four-vector
+```
+
+But it can also be used to transform four-velocities:
+
+```{r}
+v <- as.4vel(c(0,0.7,-0.2))
+B %*% t(v)
+```
+
+
+The classical parallelogram law for addition of velocities is
+incorrect when relativistic effects are included.  To combine $u$ and
+$v$ in terms of successive boosts we would simply multiply the boost
+matrices:
+
+
+```{r}
+boost(u) %*% boost(v)
+```
+
+and note that the result depends on the order:
+
+```{r}
+boost(v) %*% boost(u)
+```
+
+# Vectorization
+
+The package is fully vectorized and can deal with vectors whose
+entries are three-velocities or four-velocities:
 
 ```{r}
  set.seed(0)
@@ -109,7 +140,7 @@ The package is fully vectorized:
 ```
 
 
-### Creation of three velocities:
+# Three-velocities
 
 Three-velocites behave in interesting and counter-intuitive ways.
 
@@ -143,7 +174,7 @@ Observe that the difference between ```u+v``` and ```v+u``` is not
 
 (that is, zero to numerical accuracy)
 
-### Nonassociativity
+## Nonassociativity of three-velocities
 
 It would be reasonable to expect that ```u+(v+w)==(u+v)+w```.
 However, this is not the case:
