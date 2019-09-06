@@ -4,7 +4,7 @@ Title: The Lorentz Transform in Relativistic Physics
 Version: 1.0-3
 Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
 Depends: magrittr
-Suggests: knitr
+Suggests: knitr,testthat
 Imports: emulator (>= 1.2-20),tensor,magic
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 Description: The Lorentz transform in special relativity; also the gyrogroup structure of three-velocities following Ungar (2006)
