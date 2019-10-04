@@ -1041,7 +1041,7 @@ w <- as.3vel(c(0.8,-0.4,0))
 Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
 is a vector of three velocities.  We can see the noncommutativity of
 three velocity addition in figures~\ref{comfail1} and~\ref{comfail2},
-and the nonassociativity in figures~\ref{assfail}.
+and the nonassociativity in figure~\ref{assfail}.
 
 \begin{figure}[htbp]
   \begin{center}
