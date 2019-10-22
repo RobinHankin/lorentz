@@ -275,8 +275,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   if(nargs() == 1){
     stop("Unary operator '", .Generic, "' is not implemented for 4vel objects")
   } else {
-    stop("Operator '", .Generic, "' is not implemented for 4vel objects.
-  Four velocities do not constitute a vector space.")
+    stop("Operator '", .Generic, "' is not implemented for 4vel objects (four-velocities do not constitute a vector space).")
   }
 }
 
