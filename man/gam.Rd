@@ -73,7 +73,7 @@ gam(x)         # recommended: avoids needless coercion
 
 
 
-## Some work in SI units and terrestrial speeds.  Use gamm1() for this.
+## Use SI units and deal with terrestrial speeds.  Use gamm1() for this.
 sol(299792458)
 sound <- 343 # speed of sound in SI
 gam(sound)

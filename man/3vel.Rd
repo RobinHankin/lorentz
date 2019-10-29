@@ -38,6 +38,9 @@ is.3vel(x)
 \author{Robin K. S. Hankin}
 \examples{
 
+U <- r4vel(U)
+as.4vel(as.3vel(U)) # equal to U, to numerical precision
+
 x <- as.3vel(1:3/4)
 u <- as.3vel(matrix(runif(30)/10,ncol=3))
 

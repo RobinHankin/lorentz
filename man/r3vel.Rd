@@ -22,7 +22,9 @@ rboost(r = NA)
   \code{r4vel()} is a convenience wrapper for \code{as.4vel(r3vel())}.
 
   Function \code{rboost()} returns a random \eqn{4\times 4}{4*4} Lorentz
-  boost matrix, drawn from the connected component.
+  boost matrix, drawn from the connected component.  If given
+  \code{r=0}, then a transform corresponding to a random rotation will
+  be returned.
 }
 \value{
 Returns a vector of three- or four- velocities.
