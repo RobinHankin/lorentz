@@ -39,7 +39,7 @@ is.3vel(x)
 \examples{
 
 U <- r4vel(7)
-U - as.4vel(as.3vel(U)) # zero to numerical precision
+as.4vel(as.3vel(U)) # equal to U, to numerical precision
 
 x <- as.3vel(1:3/4)
 u <- as.3vel(matrix(runif(30)/10,ncol=3))
