@@ -97,7 +97,7 @@
     if (.Generic == "+") {
       return(e1)
     } else if (.Generic == "-") {  # reflect about-face
-      e2[, -1] <- -e2[, -1]
+      e1[, -1] <- -e1[, -1]
       return(e1)
     } else {
       stop("Unary operator '", .Generic, "' is not implemented for 4mom objects")

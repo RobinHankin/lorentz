@@ -19,7 +19,7 @@ affiliations:
   name: Auckland University of Technology
 ---
 
-# The Lorentz transform in special relativity
+# Introduction: the Lorentz transform in special relativity
 
 In special relativity, the Lorentz transforms supercede their
 classical equivalent, the Galilean transforms [@goldstein1980].
@@ -41,9 +41,24 @@ runs on "any Macintosh computer with one megabyte of RAM or more" but
 it is not clear whether the software is still available.  More modern
 contributions would include the ``OpenRelativity`` toolkit
 [@sherin2016] which simulates the effects of special relativity in the
-``Unity`` game engine.
+``Unity`` game engine.  There are also many excellent github repos
+that provide functionality to create visual display of Lorentz
+transforms of events in a single spatial dimension (eg
+```https://github.com/nick1627/RelativityVisualisation```) although
+these are generally restricted to a single spatial dimension.
 
-# The ``lorentz`` package
+## Statement of need
+
+However, there does not appear to be an R package designed for
+systematic numerical investigation of the Lorentz group.  Here, I
+present `lorentz`, a consistent suite of vectorized routines that
+allows the user to manipulate Lorentz boosts---considered as members
+of $O(3,1)$ or $SO(3,1)$---and in particular facilitates investigation
+into the nonassociative and noncommutative "gyrogroup" structure of
+three-velocities [@ungar1997].
+
+
+# The ``lorentz`` package: summary of high-level functionality
 
 The ``lorentz`` package provides ``R``-centric functionality for
 Lorentz transforms.  It deals with formal Lorentz boosts and converts
@@ -56,6 +71,8 @@ speed of light is one by default, but is user-settable and the
 classical limit is recovered by setting $c=\infty$.  Both passive and
 active transforms are implemented.  An extensive heuristic vignette
 detailing package idiom is included.
+
+# Research application
 
 There does not seem to be a known relativistic generalization of the
 classical distributive law $r\left({\bf u} + {\bf v}\right)=r{\bf u} +
