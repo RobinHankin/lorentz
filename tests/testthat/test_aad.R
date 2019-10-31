@@ -76,6 +76,8 @@ test_that("Test suite aad.R",{
     expect_error(a[])
     expect_silent(a[1,1])
     expect_error(a[1:4] <- 0)
+    expect_error(a[] <- 0)
+    expect_error(a[] <- 1)
 
 
     a <- r3vel(10)
@@ -83,6 +85,8 @@ test_that("Test suite aad.R",{
     expect_error(a[])
     expect_silent(a[1:4] <- 0)
     expect_silent(a[1,1])
+    expect_error(a[] <- 0)
+    expect_error(a[] <- 1)
 
     
 

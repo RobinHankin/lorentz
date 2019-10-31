@@ -241,7 +241,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     a <- class(x)
     x <- unclass(x)
     if(missing(i) & missing(j)){  # x[]
-        x[] <- value
+      stop("not defined")
     } else if(missing(i) & !missing(j)){ # x[,j]
         x[,j] <- value
     } else if(!missing(i) & !missing(j)){  # x[i,j]
