@@ -1,4 +1,5 @@
 exportPattern("^[[:alpha:]]+")
+exportPattern("4vel")
 
 importFrom("stats", "runif", "rnorm")
 importFrom("emulator","quad.tdiag","quad.tform", "quad.form","quad.3form", "quad.3tdiag")
