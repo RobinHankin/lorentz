@@ -226,7 +226,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     } else if(!missing(i) & !missing(j)){  # x[i,j]
       out <- x[i,j,drop=drop]
     } else if(missing(i) & missing(j)){  # x[]
-      out <- x  # NB unclassed
+      stop("not defined")
     } else if(!missing(i) & missing(j)){  # meat of function: idiom x[i]; x[i,]
       out <- x[i,,drop=FALSE]  # NB: overrides method default
       if(ncol(out)==3){return(as.3vel(out))}
