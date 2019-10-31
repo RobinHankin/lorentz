@@ -396,7 +396,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     if(give){
         return(out)
     } else {
-        return(out<TOL*sol()^2)
+        return(abs(out)<TOL*sol()^2)
     }
 }
 
