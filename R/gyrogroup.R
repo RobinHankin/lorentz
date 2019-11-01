@@ -451,7 +451,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   }
 }
 
-`.seg` <- function(u,start=as.3vel(0), bold=5, ...){
+`my_seg` <- function(u,start=as.3vel(0), bold=5, ...){
   start <- unclass(start)[,1:2,drop=FALSE]
   u <- unclass(u)
   u <- u[,1:2,drop=FALSE]   # now a two-column matrix
@@ -482,10 +482,10 @@ r4vel <- function(...){as.4vel(r3vel(...))}
          type='n', asp=1,
          xlab='', ylab='', axes=FALSE,
          main="Failure of the parallelogram law")
-    .seg(u,start=0*u,col='purple',bold=bold)
-    .seg(u+v,start=u+v*0,col='black',bold=bold)
-    .seg((u+v)-u,start=u+v,col='red',bold=bold)
-    .seg(((u+v)-u)-v,start=(u+v)-u,col='blue',bold=bold)
+    my_seg(u,start=0*u,col='purple',bold=bold)
+    my_seg(u+v,start=u+v*0,col='black',bold=bold)
+    my_seg((u+v)-u,start=u+v,col='red',bold=bold)
+    my_seg(((u+v)-u)-v,start=(u+v)-u,col='blue',bold=bold)
     points(((u+v)-u)-v,pch=16,col='blue')
     legend("topright",lty=c(1,1,1,1,2),
            col=c("purple","black","red","blue","green"),
@@ -501,13 +501,13 @@ r4vel <- function(...){as.4vel(r3vel(...))}
          type='n',asp=1,
          xlab='',ylab='',axes=FALSE,
          main="Failure of the parallelogram law")
-    .seg(u,start=0*u,col='black',bold=bold)
-    .seg(u+v,start=u+v*0,col='blue',bold=bold)
+    my_seg(u,start=0*u,col='black',bold=bold)
+    my_seg(u+v,start=u+v*0,col='blue',bold=bold)
     
-    .seg(v,start=0*v,col='blue',bold=bold)
-    .seg(v+u,start=v,col='black',bold=bold)
+    my_seg(v,start=0*v,col='blue',bold=bold)
+    my_seg(v+u,start=v,col='black',bold=bold)
     
-    .seg(u+v,start=v+u,col='red',code=0,bold=bold)
+    my_seg(u+v,start=v+u,col='red',code=0,bold=bold)
     
     legend("topright",lty=c(1,1,1,2),
            col=c("black","blue","red","green"),
@@ -523,13 +523,13 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     plot(c(0,0),c(-0.1,1),xlim=c(0,1),ylim=c(-0.3,1),type='n',
          asp=1,pty='m',xlab='',ylab='',
          axes=FALSE,main='Failure of associative property')
-    .seg(u,start=v*0,col='black',bold=bold)
-    .seg(u+(v+w),start=v*0+u,col='black',bold=bold)
+    my_seg(u,start=v*0,col='black',bold=bold)
+    my_seg(u+(v+w),start=v*0+u,col='black',bold=bold)
     
-    .seg(u+v,start=v*0,col='blue',bold=bold)
-    .seg((u+v)+w,start=u+v,col='blue',bold=bold)
+    my_seg(u+v,start=v*0,col='blue',bold=bold)
+    my_seg((u+v)+w,start=u+v,col='blue',bold=bold)
     
-    .seg(u+(v+w),start=(u+v)+w,col='red',bold=bold)
+    my_seg(u+(v+w),start=(u+v)+w,col='red',bold=bold)
     legend("topright",lty=c(1,1,1,2),col=c("black","blue","red","green"),legend=c("u+(v+w)","(u+v)+w","mismatch","c=1"))
     
     points(0,0,pch=16,cex=3)
