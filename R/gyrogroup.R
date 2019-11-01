@@ -442,7 +442,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 }
 
 `is.consistent.boost` <- function(L, give=FALSE, TOL=1e-10){
-  if(is.infinite(sol())){return(is.consistent.boost.galilean(L, TOL=1e-10))}
+  if(is.infinite(sol())){return(is.consistent.boost.galilean(L, give=give, TOL=TOL))}
   out <- quad.form(eta(),L) # should be eta()
   if(give){
     return(out)
