@@ -100,7 +100,7 @@
       e1[, -1] <- -e1[, -1]
       return(e1)
     } else {
-      stop("Unary operator '", .Generic, "' is not implemented for 4mom objects")
+      stop("Unary operator '", .Generic, "' should not exist for 4mom objects")
     }
   }
   
