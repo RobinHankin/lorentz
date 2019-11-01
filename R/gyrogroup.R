@@ -400,8 +400,6 @@ r4vel <- function(...){as.4vel(r3vel(...))}
       } else {
         stop("inconsistent 4-velocity")
       }
-    } else if(is.vector(u)){
-      return(Recall(t(u)))
     } else {
       stop("not recognised")
     }
