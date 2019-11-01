@@ -150,9 +150,10 @@ test_that("Test suite aad.R",{
     expect_silent(gyr.a(a,a,a))
 
     sol(Inf)
-    expect_true(is.consistent.boost.galilean(rboost(1)))
-    expect_silent(is.consistent.boost.galilean(rboost(1),give=TRUE))
+    expect_true(is.consistent.boost(rboost(1)))
+    expect_silent(is.consistent.boost(rboost(1),give=TRUE))
     sol(1)
+
         
 
     
