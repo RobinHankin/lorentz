@@ -410,12 +410,8 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 }
 
 `to3` <- function(U){  # takes a 4velocity, returns a 3vel
-  stopifnot(is.4vel(U))
-  if(all(is.consistent.4vel(U))){
+    stopifnot(is.4vel(U))
     return(as.3vel(sweep(U[, -1, drop = FALSE],1,U[,1],"/")))
-  } else {
-    stop("not consistent 4-velocity")
-  }
 }
 
 `inner4` <- function(U,V=U){
