@@ -71,23 +71,49 @@ test_that("Test suite aad.R",{
     expect_silent(dot3(r3vel(4,2),3))
     sol(1)
 
-    a <- r4vel(10)
-    if(FALSE){
+    a <- r3vel(10)
     expect_silent(a[1:4])
-    expect_error(a[])
+    expect_silent(a[])
+    expect_silent(a[1:4] <- 0)
+    expect_silent(a[1,1])
+    expect_error(a[] <- 0)
+    expect_error(a[2] <- 3)
+    expect_silent(a[1:2] <- a[1])
+    expect_silent(a[,2] <- 0)
+    expect_silent(a[,2] <- 0.0001)
+    expect_error(a[,2] <- 10)
+    expect_silent(a[1,2] <- 10)
+
+    a <- r4vel(10)
+    expect_silent(a[1:4])
+    expect_silent(a[])
     expect_silent(a[1,1])
 
     expect_error(a[] <- 0)
     expect_error(a[] <- 1)
+    expect_silent(a[1] <- 0)
+    expect_error(a[1] <- 1)
 
-    a <- r3vel(10)
-    expect_silent(a[1:4])
-    expect_error(a[])
-    expect_silent(a[1:4] <- 0)
-    expect_silent(a[1,1])
-    expect_error(a[] <- 0)
-}
-   
+    expect_error(a[,2] <- 0)
+    expect_error(a[,2] <- 0.0001)
+    expect_error(a[,2] <- 10)
+
+
+    expect_silent(a[4:6] <- a[1])
+    expect_silent(a[4:6] <- 0)
+    expect_error(a[4:6] <- 100)
+
+    expect_error(a[5] <- function(x){x^2})
+    expect_error(a[5] <- 1:2)
+    
+    expect_silent(a[2,3] <- 0)
+
+
+
+
+
+
+
 }    
     
 

@@ -268,32 +268,33 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 }
   
 `[<-.4vel` <- function(x,i,j,value){
-    a <- class(x)
     x <- unclass(x)
     if(missing(i) & missing(j)){  # x[] <- value
-      stop("'x[] <- value' meaningless for 4-velocities")
+        stop("'x[] <- value' meaningless for 4-velocities")
     } else if(missing(i) & !missing(j)){ # x[,j]
-      stop("'x[,j] <- value' meaningless for 4-velocities")
+        stop("'x[,j] <- value' meaningless for 4-velocities")
     } else if(!missing(i) & !missing(j)){  # x[i,j]
         x[i,j] <- value
         return(x)
     } else if(!missing(i) & missing(j)){  # x[i,] == x[i]
-        if(length(value)==1){
-          if(value==0){
-          x[i,1] <- 1
-          x[i,-1] <- 0
-          return(as.4vel(x))
-          } else {
-            stop("4vel scalar replacement method only defined for special value 0")
-          }
+        if(is.4vel(value)){
+            jj <- t(x)
+            jj[,i] <- t(value)
+            x <- t(jj)
+            return(as.4vel(x))
+        } else if(length(value)==1){
+            if(value==0){
+                x[i,1] <- 1
+                x[i,-1] <- 0
+                return(as.4vel(x))
+            } else {
+                stop("4vel scalar replacement method only defined for special value 0")
+            }
         } else {  # length(value) > 0
-          jj <- t(x)
-          jj[,i] <- t(value)
-          x <- t(jj)
-          return(as.4vel(x))
+            stop("replacement value not acceptable")
         }
     } else {
-      stop("4vel replacement error: this cannot happen")
+        stop("4vel replacement error: this cannot happen")
     }
 }
   
