@@ -108,12 +108,33 @@ test_that("Test suite aad.R",{
     
     expect_silent(a[2,3] <- 0)
 
+    a <- r3vel(11)
+    b <- r3vel(11)
+    expect_true(all(a == a))
+    expect_true(all(a != b))
+    
 
+    a <- r4vel(11)
+    expect_error(+a)
+    expect_error(-a)
+    expect_error(a+a)
+    expect_error(a-a)
+    expect_error(a*2)
 
+    a <- r3vel(11)
+    expect_silent(+a)
+    expect_silent(-a)
+    expect_error(!a)
+    expect_error(a&a)
+    expect_silent(a*2)
+    expect_error(2/a)
+    expect_silent(a/2)
+    expect_silent(a*2)
+    expect_silent(2*a)
+    expect_error(a*a)
 
-
-
-
+    expect_silent(gyr.a(a,a,a))
+    
 }    
     
 
