@@ -73,6 +73,7 @@ test_that("Test suite aad.R",{
 
     a <- r3vel(10)
     expect_silent(as.4vel(a))
+    expect_silent(as.matrix(as.4vel(a)))
     expect_silent(as.4vel(c(1,0,0,0)))
     expect_silent(as.4vel(0))
     expect_error(as.4vel(0.2))
@@ -152,16 +153,31 @@ test_that("Test suite aad.R",{
     sol(Inf)
     expect_true(is.consistent.boost(rboost(1)))
     expect_silent(is.consistent.boost(rboost(1),give=TRUE))
+
+    expect_silent(pureboost(rboost(0.5)))
+    expect_silent(pureboost.galilean(rboost(1)))
+    expect_silent(pureboost.galilean(rboost(1),tidy=TRUE))
+    expect_silent(orthog.galilean(rboost(1)))
+
     sol(1)
+    expect_true(is.consistent.boost(rboost(.1)))
+    expect_silent(is.consistent.boost(rboost(.1),give=TRUE))
 
         
     u <- as.3vel(c(0.4,0,0))
     v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
     w <- as.3vel(c(0.8,-0.4,0))
     
-    comm_fail1(u=u, v=v)
-    comm_fail2(u=u, v=v)
-    ass_fail(u=u, v=v, w=w, bold=10)
+    expect_silent(comm_fail1(u=u, v=v))
+    expect_silent(comm_fail2(u=u, v=v))
+    expect_silent(ass_fail(u=u, v=v, w=w, bold=10))
+
+    rot(u,w)
+    rot(u,w,space=FALSE)
+
+    expect_silent(pureboost(rboost(0.5)))
+    expect_silent(pureboost(rboost(0.5),include_sol=FALSE))
+    expect_silent(orthog(rboost(0.5)))
     
 }    
     
