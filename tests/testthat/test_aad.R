@@ -72,6 +72,18 @@ test_that("Test suite aad.R",{
     sol(1)
 
     a <- r3vel(10)
+    expect_silent(as.4vel(a))
+    expect_silent(as.4vel(c(1,0,0,0)))
+    expect_silent(as.4vel(0))
+    expect_error(as.4vel(0.2))
+    expect_error(as.4vel(2))
+    expect_error(as.4vel(function(x){x^2}))
+    expect_error(as.4vel(rbind(1:4)))
+    expect_error(as.4vel(1:4))
+    expect_error(as.4vel(matrix(1:9,3,3)))
+    expect_error(as.4vel(matrix(1:25,5,5)))
+
+    a <- r3vel(10)
     expect_silent(a[1:4])
     expect_silent(a[])
     expect_silent(a[1:4] <- 0)
