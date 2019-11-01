@@ -69,7 +69,11 @@ test_that("Test suite aad.R",{
     
     sol(Inf)
     expect_silent(dot3(r3vel(4,2),3))
+    expect_silent(orthog(rboost(0.5)))
     sol(1)
+
+    expect_error(!vel_to_4mom(r3vel(5)))
+    expect_error(!as.4mom(r4vel(1)))
 
     a <- r3vel(10)
     expect_silent(as.4vel(a))
@@ -178,8 +182,25 @@ test_that("Test suite aad.R",{
     expect_silent(pureboost(rboost(0.5)))
     expect_silent(pureboost(rboost(0.5),include_sol=FALSE))
     expect_silent(orthog(rboost(0.5)))
-    
-}    
+
+    perfectfluid(1,1,0)
+    dust(1)
+    photongas(1)
+
+    transform_uu(dust(1),rboost(0.4))
+    transform_ud(dust(1),rboost(0.4))
+    transform_dd(dust(1),rboost(0.4))
+
+    raise(dust(1))
+    lower(dust(1))
+
+    ptm(TRUE,TRUE)
+    ptm(TRUE,FALSE)
+    ptm(FALSE,TRUE)
+    ptm(FALSE,FALSE)
+
+  }
+  
     
 
 })
