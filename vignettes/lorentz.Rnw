@@ -673,8 +673,8 @@ Minkowski metric is symmetric and orthogonal.
 
 \subsection{Successive boosts}
   
-Successive boots are represented as matrix multiplication.  Again the
-\pkg{magrittr} package can be used for more readable idiom.
+Successive boots are represented as ordinary matrix multiplication.
+Again the \pkg{magrittr} package can be used for more readable idiom.
  
 <<>>=
 B1 <- boost(as.3vel(c(0.5,-0.4,0.6)))
