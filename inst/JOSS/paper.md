@@ -51,12 +51,13 @@ these are generally restricted to a single spatial dimension.
 
 However, there does not appear to be an R package designed for
 systematic numerical investigation of the Lorentz group.  Here, I
-present `lorentz`, a consistent suite of vectorized routines that
+present `lorentz`, a consistent and documented suite of software that
 allows the user to manipulate Lorentz boosts---considered as members
-of $O(3,1)$ or $SO(3,1)$---and in particular facilitates investigation
-into the nonassociative and noncommutative "gyrogroup" structure of
-three-velocities [@ungar1997].
-
+of $O(3,1)$ or $SO(3,1)$---and also facilitates investigation into the
+nonassociative and noncommutative "gyrogroup" structure of
+three-velocities [@ungar1997].  The package allows the user to employ
+efficient and natural vectorised R idiom in the context of
+relativistic kinematics.
 
 # The ``lorentz`` package: summary of high-level functionality
 
