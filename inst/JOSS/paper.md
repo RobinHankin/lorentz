@@ -42,8 +42,8 @@ it is not clear whether the software is still available.  More modern
 contributions would include the ``OpenRelativity`` toolkit
 [@sherin2016] which simulates the effects of special relativity in the
 ``Unity`` game engine.  There are also many excellent github repos
-that provide functionality to create visual display of Lorentz
-transforms of events in a single spatial dimension (eg
+that provide functionality to create simple visual displays of Lorentz
+transforms of events (eg
 ```https://github.com/nick1627/RelativityVisualisation```) although
 these are generally restricted to a single spatial dimension.
 
