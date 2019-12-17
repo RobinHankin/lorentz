@@ -605,3 +605,9 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 
 `as.matrix.3vel` <- function(x,...){unclass(x)}
 `as.matrix.4vel` <- function(x,...){unclass(x)}
+
+`cosines` <- function(u, drop=TRUE){
+  out <- sweep(unclass(u),1,speed(u),"/")
+  if(drop){out <- drop(out)}
+  return(out)
+}
