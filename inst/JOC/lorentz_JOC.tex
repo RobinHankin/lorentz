@@ -437,28 +437,29 @@ Objects~$\BFv$ and $\BFw$ are single three-velocities, and object $\BFv$
 A relativistic three-velocity $\BFu$ may be ``multiplied'' by a scalar
 $r$ with the law
 $r\BFu=\sinh\left(r\sinh^{-1}\left|\left|\BFu\right|\right|\right)\BFu$,
-thus for example $2\BFu=\BFu+\BFu$~\citep{ungar1997}.  Three-velocities
-are not distributive in special relativity.  That is, given
-three-velocities $\BFu$, $\BFv$ and a scalar $r$, we have that
-$r(\BFu+\BFv)\neq r\BFu+r\BFv$ in general.  \cite{ungar1997} considers
-this and expresses the hope that one day a gyrodistributive law
-expressing $r\left(\BFu+\BFv\right)$ will be discovered; and that, if it
-exists, is ``expected to be the standard distributive law
-[i.e. $r\BFu+r\BFv$] relaxed by Thomas gyration in some unexpected
-way''.  The {\tt lorentz} package was written to leverage the
-structure of R in the finding of a distributive law.  By way of
-illustration, possible expressions for $r(\BFu+\BFv)$ might include
+thus for example $2\BFu=\BFu+\BFu$~\citep{ungar1997}.
+Three-velocities are not distributive in special relativity.  That is,
+given three-velocities $\BFu$, $\BFv$ and a scalar $r$, we have that
+$r(\BFu\oplus\BFv)\neq r\BFu\oplus r\BFv$ in general.
+\cite{ungar1997} considers this and expresses the hope that one day a
+gyrodistributive law expressing $r\left(\BFu\oplus\BFv\right)$ will be
+discovered; and that, if it exists, is ``expected to be the standard
+distributive law [i.e. $r\BFu\oplus r\BFv$] relaxed by Thomas gyration
+in some unexpected way''.  The {\tt lorentz} package was written to
+leverage the structure of R in the finding of a distributive law.  By
+way of illustration, possible expressions for $r(\BFu\oplus\BFv)$ might
+include
 
 \begin{itemize}
-\item $r\BFu  + (r\BFv  - r\operatorname{gyr}[r\BFu, \BFv,\BFu+\BFv])$
-\item $r\BFu  + (r\BFv  - r\operatorname{gyr}[r\BFu, \BFv,\BFv+\BFu])$
-\item $r\BFv  + (r\BFu  - r\operatorname{gyr}[s\BFu, \BFv,\BFu+\BFv])$
-\item $(r\BFu + r\BFv)  + r\operatorname{gyr}[r\BFu, \BFv,\BFu]$
-\item $(r\BFu + r\BFv)  + r\operatorname{gyr}[r\BFu, \BFv,\BFv]$
-\item $(r\BFu + r\BFv)  + r\operatorname{gyr}[r\BFu, \BFv,\BFv]$
-\item $(r\BFu + r\BFv)  + r\operatorname{gyr}[r\BFu,-\BFv,\BFv]$
-\item $(r\BFu + r\BFv)  +   \operatorname{gyr}[r\BFu,-\BFv,\BFv]$
-\item $(r\BFu + r\BFv)  + s\operatorname{gyr}[r\BFu,-\BFv,\BFv]$.
+\item $r\BFu  \oplus (r\BFv  \ominus \operatorname{gyr}[r\BFu, \BFv,\BFu\oplus\BFv])$
+\item $r\BFu  \oplus (r\BFv  \ominus \operatorname{gyr}[r\BFu, \BFv,\BFv\oplus\BFu])$
+\item $r\BFv  \oplus (r\BFu  \ominus r\operatorname{gyr}[s\BFu, \BFv,\BFu\oplus\BFv])$
+\item $(r\BFu \oplus r\BFv)  \oplus r\operatorname{gyr}[r\BFu, \BFv,\BFu]$
+\item $(r\BFu \oplus r\BFv)  \oplus r\operatorname{gyr}[r\BFu, \BFv,\BFv]$
+\item $(r\BFu \oplus r\BFv)  \oplus \operatorname{gyr}[r\BFu, \BFv,\BFv]$
+\item $(r\BFu \oplus r\BFv)  \oplus r\operatorname{gyr}[r\BFu,-\BFv,\BFv]$
+\item $(r\BFu \oplus r\BFv)  \oplus   \operatorname{gyr}[r\BFu,-\BFv,\BFv]$
+\item $(r\BFu \oplus r\BFv)  \oplus s\operatorname{gyr}[r\BFu,-\BFv,\BFv]$.
 \end{itemize}
 
 Here, $r$ is a scalar, $s=1/r$, and $\BFu$, $\BFv$ are three-velocities.
