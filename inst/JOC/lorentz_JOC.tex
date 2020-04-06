@@ -130,11 +130,8 @@ for relativistic three-velocities.
 
 
 
-\newcommand{\bu}{\mathbf u}
-\newcommand{\bv}{\mathbf v}
-\newcommand{\bw}{\mathbf w}
-\newcommand{\bx}{\mathbf x}
-\newcommand{\by}{\mathbf y}
+
+
 
 \newcommand{\gyr}[2]{\operatorname{gyr}\left[{\mathbf #1},{\mathbf #2}\right]}
 
@@ -269,34 +266,34 @@ observation was the original motivation for the package).
 three-velocities is
 
 \begin{equation}
-\bu\oplus\bv= \frac{1}{1+\bu\cdot\bv} \left\{ \bu +
-\frac{\bv}{\gamma_\bu} + \frac{\gamma_\bu
-  \left(\bu\cdot\bv\right)\bu}{1+\gamma_\bu} \right\}
+\BFu\oplus\BFv= \frac{1}{1+\BFu\cdot\BFv} \left\{ \BFu +
+\frac{\BFv}{\gamma_\BFu} + \frac{\gamma_\BFu
+  \left(\BFu\cdot\BFv\right)\BFu}{1+\gamma_\BFu} \right\}
 \end{equation}
    
-where~$\gamma_\bu=\left(1-\bu\cdot\bu\right)^{-1/2}$ and we are
+where~$\gamma_\BFu=\left(1-\BFu\cdot\BFu\right)^{-1/2}$ and we are
 assuming~$c=1$.  \citeauthor{ungar2006} goes on to show that, in
-general, $\bu\oplus\bv\neq\bv\oplus\bu$
-and~$(\bu\oplus\bv)\oplus\bw\neq\bu\oplus(\bv\oplus\bw)$.  He also
+general, $\BFu\oplus\BFv\neq\BFv\oplus\BFu$
+and~$(\BFu\oplus\BFv)\oplus\BFw\neq\BFu\oplus(\BFv\oplus\BFw)$.  He also
 defines the binary operator~$\ominus$
-as~$\bu\ominus\bv=\bu\oplus\left(-\bv\right)$, and implicitly
-defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$.  If
+as~$\BFu\ominus\BFv=\BFu\oplus\left(-\BFv\right)$, and implicitly
+defines~$\ominus\BFu\oplus\BFv$ to be~$\left(-\BFu\right)\oplus\BFv$.  If
 we have
 
 \begin{equation}
-\gyr{u}{v}\bx=-\left(\bu\oplus\bv\right)\oplus\left(\bu\oplus\left(\bv\oplus\bx\right)\right)
+\gyr{u}{v}\BFx=-\left(\BFu\oplus\BFv\right)\oplus\left(\BFu\oplus\left(\BFv\oplus\BFx\right)\right)
 \end{equation}
 
 then
 
 \begin{eqnarray}
-\bu\oplus\bv &=&
-\gyr{u}{v}\left(\bv\oplus\bu\right)\label{noncom}\\ \gyr{u}{v}\bx\cdot\gyr{u}{v}\by
-&=& \bx\cdot\by\label{doteq}\\ \gyr{u}{v}\left(\bx\oplus\by\right) &=&
-\gyr{u}{v}\bx\oplus\gyr{u}{v}\by\\ \left(\gyr{u}{v}\right)^{-1} &=&
-\left(\gyr{v}{u}\right)\label{gyrinv}\\ \bu\oplus\left(\bv\oplus\bw\right)
-&=&\left(\bu\oplus\bv\right)\oplus\gyr{u}{v}\bw\label{nonass1}\\ \left(\bu\oplus\bv\right)\oplus\bw
-&=&\bu\oplus\left(\bv\oplus\gyr{v}{u}\bw\right)\label{nonass2}
+\BFu\oplus\BFv &=&
+\gyr{u}{v}\left(\BFv\oplus\BFu\right)\label{noncom}\\ \gyr{u}{v}\BFx\cdot\gyr{u}{v}\BFy
+&=& \BFx\cdot\BFy\label{doteq}\\ \gyr{u}{v}\left(\BFx\oplus\BFy\right) &=&
+\gyr{u}{v}\BFx\oplus\gyr{u}{v}\BFy\\ \left(\gyr{u}{v}\right)^{-1} &=&
+\left(\gyr{v}{u}\right)\label{gyrinv}\\ \BFu\oplus\left(\BFv\oplus\BFw\right)
+&=&\left(\BFu\oplus\BFv\right)\oplus\gyr{u}{v}\BFw\label{nonass1}\\ \left(\BFu\oplus\BFv\right)\oplus\BFw
+&=&\BFu\oplus\left(\BFv\oplus\gyr{v}{u}\BFw\right)\label{nonass2}
 \end{eqnarray}
 
 Consider the following R session:
@@ -338,7 +335,7 @@ Here we have three-vectors {\tt u} etc.  We can see that {\tt u} and
 
 showing agreement to within numerical error.  It is also possible to
 use the functional idiom in which we define {\tt f()} to be the
-map~$\bx\mapsto\gyr{u}{v}\bx$.
+map~$\BFx\mapsto\gyr{u}{v}\BFx$.
 
 \subsection{Associativity}
 
@@ -383,7 +380,7 @@ Consider the following three-velocities:
 
 \end{verbatim}
 
-Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
+Objects~$\BFv$ and $\BFw$ are single three-velocities, and object $\BFv$
  is a vector of three velocities.  We can see the noncommutativity of
  three velocity addition in figures~\ref{comfail1} and~\ref{comfail2},
  and the nonassociativity in figure~\ref{assfail}.
@@ -393,9 +390,9 @@ Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
 \includegraphics{lorentz-comfail1_fig}
 \caption{Failure\label{comfail1} of the commutative law for velocity
   composition in special relativity.  The arrows show successive
-  velocity boosts of $+\bu$ (purple), $+\bv$ (black), $-\bu$ (red),
-  and~$-\bv$ (blue) for $\bu,\bv$ as defined above.  Velocity $\bu$ is
-  constant, while $\bv$ takes a sequence of values.  If velocity
+  velocity boosts of $+\BFu$ (purple), $+\BFv$ (black), $-\BFu$ (red),
+  and~$-\BFv$ (blue) for $\BFu,\BFv$ as defined above.  Velocity $\BFu$ is
+  constant, while $\BFv$ takes a sequence of values.  If velocity
   addition is commutative, the four boosts form a closed
   quadrilateral; the thick arrows show a case where the boosts almost
   close and the boosts nearly form a parallelogram.  The blue dots
@@ -403,7 +400,7 @@ Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
   of the blue dot from the origin measures the combined velocity,
   equal to zero in the classical limit of low speeds.  The discrepancy
   becomes larger and larger for the faster elements of the sequence
-  $\bv$}
+  $\BFv$}
   \end{center}
 \end{figure}
 
@@ -412,12 +409,12 @@ Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
 \includegraphics{lorentz-comfail2_fig}
 \caption{Another view of the failure of the commutative
   law\label{comfail2} in special relativity.  The black arrows show
-  velocity boosts of $\bu$ and the blue arrows show velocity boosts of
-  $\bv$, with $\bu,\bv$ as defined above; $\bu$ is constant while
-  $\bv$ takes a sequence of values.  If velocity addition is
-  commutative, then $\bu+\bv=\bv+\bu$ and the two paths end at the
+  velocity boosts of $\BFu$ and the blue arrows show velocity boosts of
+  $\BFv$, with $\BFu,\BFv$ as defined above; $\BFu$ is constant while
+  $\BFv$ takes a sequence of values.  If velocity addition is
+  commutative, then $\BFu+\BFv=\BFv+\BFu$ and the two paths end at the
   same point: the parallelogram is closed.  The red lines show the
-  difference between $\bu+\bv$ and $\bv+\bu$}
+  difference between $\BFu+\BFv$ and $\BFv+\BFu$}
   \end{center}
 \end{figure}
 
@@ -426,45 +423,45 @@ Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
 \includegraphics{lorentz-assfail_fig}
 \caption{Failure of the associative law \label{assfail} for velocity
   composition in special relativity.  The arrows show successive
-  boosts of $\bu$ followed by $\bv+\bw$ (black lines), and $\bu+\bv$
-  followed by $\bw$ (blue lines), for $\bu$, $\bv$, $\bw$ as defined
-  above; $\bu$ and $\bw$ are constant while $\bv$ takes a sequence of
-  values. The mismatch between $\bu+\left(\bv+\bw\right)$ and
-  $\left(\bu+\bv\right)+\bw$ is shown in red}
+  boosts of $\BFu$ followed by $\BFv+\BFw$ (black lines), and $\BFu+\BFv$
+  followed by $\BFw$ (blue lines), for $\BFu$, $\BFv$, $\BFw$ as defined
+  above; $\BFu$ and $\BFw$ are constant while $\BFv$ takes a sequence of
+  values. The mismatch between $\BFu+\left(\BFv+\BFw\right)$ and
+  $\left(\BFu+\BFv\right)+\BFw$ is shown in red}
   \end{center}
 \end{figure}
 
 
 \section{Distributivity in special relativity}
 
-A relativistic three-velocity $\bu$ may be ``multiplied'' by a scalar
+A relativistic three-velocity $\BFu$ may be ``multiplied'' by a scalar
 $r$ with the law
-$r\bu=\sinh\left(r\sinh^{-1}\left|\left|\bu\right|\right|\right)\bu$,
-thus for example $2\bu=\bu+\bu$~\citep{ungar1997}.  Three-velocities
+$r\BFu=\sinh\left(r\sinh^{-1}\left|\left|\BFu\right|\right|\right)\BFu$,
+thus for example $2\BFu=\BFu+\BFu$~\citep{ungar1997}.  Three-velocities
 are not distributive in special relativity.  That is, given
-three-velocities $\bu$, $\bv$ and a scalar $r$, we have that
-$r(\bu+\bv)\neq r\bu+r\bv$ in general.  \cite{ungar1997} considers
+three-velocities $\BFu$, $\BFv$ and a scalar $r$, we have that
+$r(\BFu+\BFv)\neq r\BFu+r\BFv$ in general.  \cite{ungar1997} considers
 this and expresses the hope that one day a gyrodistributive law
-expressing $r\left(\bu+\bv\right)$ will be discovered; and that, if it
+expressing $r\left(\BFu+\BFv\right)$ will be discovered; and that, if it
 exists, is ``expected to be the standard distributive law
-[i.e. $r\bu+r\bv$] relaxed by Thomas gyration in some unexpected
+[i.e. $r\BFu+r\BFv$] relaxed by Thomas gyration in some unexpected
 way''.  The {\tt lorentz} package was written to leverage the
 structure of R in the finding of a distributive law.  By way of
-illustration, possible expressions for $r(\bu+\bv)$ might include
+illustration, possible expressions for $r(\BFu+\BFv)$ might include
 
 \begin{itemize}
-\item $r\bu  + (r\bv  - r\operatorname{gyr}[r\bu, \bv,\bu+\bv])$
-\item $r\bu  + (r\bv  - r\operatorname{gyr}[r\bu, \bv,\bv+\bu])$
-\item $r\bv  + (r\bu  - r\operatorname{gyr}[s\bu, \bv,\bu+\bv])$
-\item $(r\bu + r\bv)  + r\operatorname{gyr}[r\bu, \bv,\bu]$
-\item $(r\bu + r\bv)  + r\operatorname{gyr}[r\bu, \bv,\bv]$
-\item $(r\bu + r\bv)  + r\operatorname{gyr}[r\bu, \bv,\bv]$
-\item $(r\bu + r\bv)  + r\operatorname{gyr}[r\bu,-\bv,\bv]$
-\item $(r\bu + r\bv)  +   \operatorname{gyr}[r\bu,-\bv,\bv]$
-\item $(r\bu + r\bv)  + s\operatorname{gyr}[r\bu,-\bv,\bv]$.
+\item $r\BFu  + (r\BFv  - r\operatorname{gyr}[r\BFu, \BFv,\BFu+\BFv])$
+\item $r\BFu  + (r\BFv  - r\operatorname{gyr}[r\BFu, \BFv,\BFv+\BFu])$
+\item $r\BFv  + (r\BFu  - r\operatorname{gyr}[s\BFu, \BFv,\BFu+\BFv])$
+\item $(r\BFu + r\BFv)  + r\operatorname{gyr}[r\BFu, \BFv,\BFu]$
+\item $(r\BFu + r\BFv)  + r\operatorname{gyr}[r\BFu, \BFv,\BFv]$
+\item $(r\BFu + r\BFv)  + r\operatorname{gyr}[r\BFu, \BFv,\BFv]$
+\item $(r\BFu + r\BFv)  + r\operatorname{gyr}[r\BFu,-\BFv,\BFv]$
+\item $(r\BFu + r\BFv)  +   \operatorname{gyr}[r\BFu,-\BFv,\BFv]$
+\item $(r\BFu + r\BFv)  + s\operatorname{gyr}[r\BFu,-\BFv,\BFv]$.
 \end{itemize}
 
-Here, $r$ is a scalar, $s=1/r$, and $\bu$, $\bv$ are three-velocities.
+Here, $r$ is a scalar, $s=1/r$, and $\BFu$, $\BFv$ are three-velocities.
 Note the variety of orders (three-velocity addition is not
 commutative), different bracketing (three-velocity addition is not
 associative), and use of $r$ or $s=1/r$ in different places in the
