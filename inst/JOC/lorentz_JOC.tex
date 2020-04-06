@@ -169,27 +169,22 @@ three-velocity addition.  The source code is available on github at
 
 
 
-\section{Lorentz transforms: active and passive}
-
-Passive transforms are the usual type of transforms taught and used in
-relativity.  However, sometimes active transforms are needed and it is
-easy to confuse the two.  Here I will discuss passive and then active
-transforms, and illustrate both in a computational context.
-
-\subsection*{Passive transforms}
+\section{Lorentz transforms}
 
 \newcommand{\vvec}[2]{\begin{pmatrix}#1 \\ #2\end{pmatrix}}
 \newcommand{\twomat}[4]{\begin{pmatrix} #1 & #2 \\ #3 &
     #4\end{pmatrix}}
 
-Consider the following canonical Lorentz transform in which we have
-motion in the $x$-direction at speed $v>0$; the motion is from left to
-right.  We consider only the first two components of four-vectors, the
-$y$- and $z$- components being trivial.  A typical physical
-interpretation is that I am at rest, and a colleague is in his
-spaceship moving at speed $v$ past me; and we are wondering what
-vectors which I measure in my own rest frame look like to him.  The
-(passive) Lorentz transform is:
+
+Here I will discuss (passive) Lorentz transforms in a computational
+context.  Consider the following canonical Lorentz transform in which
+we have motion in the $x$-direction at speed $v>0$; the motion is from
+left to right.  We consider only the first two components of
+four-vectors, the $y$- and $z$- components being trivial.  A typical
+physical interpretation is that I am at rest, and a colleague is in
+his spaceship moving at speed $v$ past me; we wonder what vectors
+which I measure in my own rest frame look like to him.  The
+appropriate coordinate transform would be:
 
 \begin{equation*}
 \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}
@@ -202,18 +197,13 @@ And the canonical example of that would be:
   v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{-\gamma v}
 \end{equation*}
 
-where the vectors are four velocities (recall that $\vvec{1}{0}$ is
-the four-velocity of an object at rest).  Operationally, I measure the
-four-velocity of an object to be $\vvec{1}{0}$, and he measures the
-same object as having a four-velocity of $\vvec{\gamma}{-\gamma v}$.
-So I see the object at rest, and he sees it as moving at speed $-v$;
-that is, he sees it moving to the left (it moves to the left because
-he is moving to the right relative to me).  The package makes
-computations easy.  Suppose $v=0.6c$ in the $x$-direction.
+The package makes this type of computation easy and employs natural R
+idiom.  Suppose, for example, that $v=0.6c$ in the $x$-direction:
 
 \begin{verbatim}
 
 > u <- as.3vel(c(0.6,0,0)) # coerce to a three-velocity u
+> u
 
        x y z 
 [1,] 0.6 0 0
@@ -260,10 +250,13 @@ z -2.519789  1.5878378 -0.2023170  2.1879612
 \end{verbatim}
 
 But observe that the resulting transform is not a pure boost, as the
-spatial components are not symmetrical.  We may decompose the matrix
-product $L$ into a pure translation composed with an orthogonal
-matrix, which represents a coordinate rotation.  The package provides
-extensive R idiom for effecting this composition.
+spatial components are not symmetrical\footnote{Identifying pure
+  boosts with symmetric transformation matrices applies only if $c=1$.
+  The package includes extensive capability for dealing with units in
+  which $c\neq 1$, but the algebra becomes more complicated.}.  We may
+decompose the matrix product $L$ into a pure translation composed with
+an orthogonal matrix, which represents a coordinate rotation.  The
+package provides extensive R idiom for effecting this composition.
 
 \section{Three-velocities}
 
@@ -349,7 +342,7 @@ map~$\bx\mapsto\gyr{u}{v}\bx$.
 
 \subsection{Associativity}
 
-Three velocity addition is not associative:
+Three-velocity addition is not associative:
 
 \begin{verbatim}
 > (u+v)+w
@@ -444,14 +437,20 @@ Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
 
 \section{Distributivity in special relativity}
 
-Three-velocities are not distributive in special relativiity.  That
-is, given three-velocities $\bu$, $\bv$ and a scalar $r$, we have that
-$r(\bu+\bv)\neq r\bu+r\bv$ in general.  Ungar (2006) goes on to
-suggest that a generalized distributive law would be an interesting
-and instructive object, if it existed.  The {\tt lorentz} package was
-written to leverage the structure of R in the finding of a
-distributive law.  By way of illustration, possible expressions for 
-$r(\bu+\bv)$ might include
+A relativistic three-velocity $\bu$ may be ``multiplied'' by a scalar
+$r$ with the law
+$r\bu=\sinh\left(r\sinh^{-1}\left|\left|\bu\right|\right|\right)\bu$,
+thus for example $2\bu=\bu+\bu$~\citep{ungar1997}.  Three-velocities
+are not distributive in special relativity.  That is, given
+three-velocities $\bu$, $\bv$ and a scalar $r$, we have that
+$r(\bu+\bv)\neq r\bu+r\bv$ in general.  \cite{ungar1997} considers
+this and expresses the hope that one day a gyrodistributive law
+expressing $r\left(\bu+\bv\right)$ will be discovered; and that, if it
+exists, is ``expected to be the standard distributive law
+[i.e. $r\bu+r\bv$] relaxed by Thomas gyration in some unexpected
+way''.  The {\tt lorentz} package was written to leverage the
+structure of R in the finding of a distributive law.  By way of
+illustration, possible expressions for $r(\bu+\bv)$ might include
 
 \begin{itemize}
 \item $r\bu  + (r\bv  - r\operatorname{gyr}[r\bu, \bv,\bu+\bv])$
@@ -462,7 +461,7 @@ $r(\bu+\bv)$ might include
 \item $(r\bu + r\bv)  + r\operatorname{gyr}[r\bu, \bv,\bv]$
 \item $(r\bu + r\bv)  + r\operatorname{gyr}[r\bu,-\bv,\bv]$
 \item $(r\bu + r\bv)  +   \operatorname{gyr}[r\bu,-\bv,\bv]$
-\item $(r\bu + r\bv)  + s\operatorname{gyr}[r\bu,-\bv,\bv]$
+\item $(r\bu + r\bv)  + s\operatorname{gyr}[r\bu,-\bv,\bv]$.
 \end{itemize}
 
 Here, $r$ is a scalar, $s=1/r$, and $\bu$, $\bv$ are three-velocities.
@@ -478,12 +477,10 @@ success.
 
 The {\tt lorentz} package furnishes some functionality for
 manipulating four-vectors and three-velocities in the context of
-special relativity.  The R idiom is relatively natural and the package
-has been used to illustrate different features of relativistic
-kinematics.
-
- 
-
+special relativity.  The R idiom is efficient and natural, and the
+package illustrates different features of relativistic kinematics 
+The package was used to carry out a systematic, but unsuccessful,
+search for a distributive law.
 
 
 % Appendix here
