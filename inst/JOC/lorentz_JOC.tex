@@ -84,17 +84,18 @@
 %   \EMAIL field can be repeated if more than one author
 \ARTICLEAUTHORS{%
 \AUTHOR{Robin K. S. Hankin}
-\AFF{AUT, \EMAIL{hankin.robin@gmail.com}, \URL{}}
+\AFF{Auckland University of Technology, \EMAIL{hankin.robin@gmail.com} \URL{}}
 % Enter all authors
 } % end of the block
 
 \ABSTRACT{%
 
 Here I present the {\tt lorentz} package for working with relativistic
-physics.  The package includes functionality for Lorentz tnransforms
-and Einsteinian three-velocity addition, which is noncommutative and
-nonassociative.  The package is used to search for a distributive law
-for relativistic three-velocities.
+physics in the R computer language.  The package includes
+functionality for Lorentz transforms and Einsteinian three-velocity
+addition, which is noncommutative and nonassociative.  The package is
+used to search for a distributive law for relativistic
+three-velocities.
 
 }%
 
@@ -156,12 +157,18 @@ contributions would include the {\tt OpenRelativity}
 toolkit~\citep{sherin2016} which simulates the effects of special
 relativity in the {\tt Unity} game engine.
 
-The {\tt lorentz} package provides {\tt R}-centric functionality for
-Lorentz transforms.  It deals with formal Lorentz boosts, converts
-between three-velocities and four-velocities, and provides
+The R computer language~\citep{rcore2020} is usually used for
+statistical computation but the language is sufficiently flexible to
+be applied to diverse numerical disciplines such as complex
+analysis~\citep{hankin2006}, recreational
+mathematics~\citep{hankin2005}, and knot theory~\citep{hankin2017}.
+
+The {\tt lorentz} package provides R-centric functionality for
+relativistic velocity addition.  It deals with formal Lorentz boosts,
+converts between three-velocities and four-velocities, and provides
 computational support for the gyrogroup structure of relativistic
-three-velocity addition.  The source code is available on github at
-\url{https://github.com/RobinHankin/lorentz}, and CRAN, at
+three-velocity addition.  Package source code is available on github
+at \url{https://github.com/RobinHankin/lorentz}, and CRAN, at
 \url{https://CRAN.R-project.org/package=lorentz}.
 
 
@@ -199,16 +206,14 @@ idiom.  Suppose, for example, that $v=0.6c$ in the $x$-direction:
 
 \begin{verbatim}
 
-> u <- as.3vel(c(0.6,0,0)) # coerce to a three-velocity u
+> u <- as.3vel(c(0.1, 0.6, -0.4))
 > u
+       x   y    z
+[1,] 0.1 0.6 -0.4
 
-       x y z 
-[1,] 0.6 0 0
-
-> as.4vel(u) # four-velocity is better for calculations
-
-        t    x y z
-[1,] 1.25 0.75 0 0
+> as.4vel(u)    # four-velocity is more useful in physics
+           t        x         y        z
+[1,] 1.45865 0.145865 0.8751899 -0.58346
 
 \end{verbatim}
 
@@ -216,12 +221,13 @@ For more general work one usually uses boosts, $4\times 4$
 transformation matrices:
 
 \begin{verbatim}
-> boost(u)
-      t     x y z
-   1.25 -0.75 0 0 
-x -0.75  1.25 0 0 
-y  0.00  0.00 1 0 
-z  0.00  0.00 0 1
+> boost(u) 
+           t           x           y           z
+t  1.4586499 -0.14586499 -0.87518995  0.58345997
+x -0.1458650  1.00865377  0.05192263 -0.03461509
+y -0.8751899  0.05192263  1.31153579 -0.20769053
+z  0.5834600 -0.03461509 -0.20769053  1.13846035
+> 
 
 \end{verbatim}
 
@@ -322,7 +328,7 @@ Here we have three-vectors {\tt u} etc.  We can see that {\tt u} and
 
 \end{verbatim}
 
-(the results differ).  We can use equation~\ref{noncom}
+(the results differ).  We can verify equation~\ref{noncom}:
 
 \begin{verbatim}
 
@@ -339,7 +345,9 @@ map~$\BFx\mapsto\gyr{u}{v}\BFx$.
 
 \subsection{Associativity}
 
-Three-velocity addition is not associative:
+Three-velocity addition is nonassociative, a phenomenon described as
+``bizarre and counterintuitive'' by \cite{ungar1997}.  We can give a
+clear numerical illustration of this using standard package idiom:
 
 \begin{verbatim}
 > (u+v)+w
@@ -368,6 +376,10 @@ But we can use equations~\ref{nonass1} and~\ref{nonass2}:
 [1,] 0 0 5.35e-16
 
 \end{verbatim}
+
+which verify the consistency of the gyrogroup structure of
+three-velocity additoion.
+
 
 \subsection{Visualization of noncommutativity and nonassociativity of three-velocities}
 
@@ -437,7 +449,7 @@ Objects~$\BFv$ and $\BFw$ are single three-velocities, and object $\BFv$
 A relativistic three-velocity $\BFu$ may be ``multiplied'' by a scalar
 $r$ with the law
 $r\BFu=\sinh\left(r\sinh^{-1}\left|\left|\BFu\right|\right|\right)\BFu$,
-thus for example $2\BFu=\BFu+\BFu$~\citep{ungar1997}.
+thus for example $2\BFu=\BFu\oplus\BFu$~\citep{ungar1997}.
 Three-velocities are not distributive in special relativity.  That is,
 given three-velocities $\BFu$, $\BFv$ and a scalar $r$, we have that
 $r(\BFu\oplus\BFv)\neq r\BFu\oplus r\BFv$ in general.
