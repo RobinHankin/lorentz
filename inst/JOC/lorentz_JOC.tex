@@ -1,0 +1,516 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Author template for INFORMS Journal on Computing (ijoc)
+%% Mirko Janc, Ph.D., INFORMS, mirko.janc@informs.org
+%% ver. 0.95, December 2010
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[ijoc,blindrev]{informs3}
+\documentclass[ijoc,nonblindrev]{informs3} % current default for manuscript submission
+
+%%\OneAndAHalfSpacedXI
+\OneAndAHalfSpacedXII % current default line spacing
+%%\DoubleSpacedXII
+%%\DoubleSpacedXI
+
+% If hyperref is used, dvi-to-ps driver of choice must be declared as
+%   an additional option to the \documentclass. For example
+%\documentclass[dvips,ijoc]{informs3}      % if dvips is used
+%\documentclass[dvipsone,ijoc]{informs3}   % if dvipsone is used, etc.
+
+% Private macros here (check that there is no clash with the style)
+
+% Natbib setup for author-year style
+\usepackage{natbib}
+ \bibpunct[, ]{(}{)}{,}{a}{}{,}%
+ \def\bibfont{\small}%
+ \def\bibsep{\smallskipamount}%
+ \def\bibhang{24pt}%
+ \def\newblock{\ }%
+ \def\BIBand{and}%
+
+%% Setup of theorem styles. Outcomment only one. 
+%% Preferred default is the first option.
+\TheoremsNumberedThrough     % Preferred (Theorem 1, Lemma 1, Theorem 2)
+%\TheoremsNumberedByChapter  % (Theorem 1.1, Lema 1.1, Theorem 1.2)
+
+%% Setup of the equation numbering system. Outcomment only one.
+%% Preferred default is the first option.
+\EquationsNumberedThrough    % Default: (1), (2), ...
+%\EquationsNumberedBySection % (1.1), (1.2), ...
+
+% In the reviewing and copyediting stage enter the manuscript number.
+%\MANUSCRIPTNO{} % When the article is logged in and DOI assigned to it,
+                 %   this manuscript number is no longer necessary
+
+%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%
+
+% Outcomment only when entries are known. Otherwise leave as is and 
+%   default values will be used.
+%\setcounter{page}{1}
+%\VOLUME{00}%
+%\NO{0}%
+%\MONTH{Xxxxx}% (month or a similar seasonal id)
+%\YEAR{0000}% e.g., 2005
+%\FIRSTPAGE{000}%
+%\LASTPAGE{000}%
+%\SHORTYEAR{00}% shortened year (two-digit)
+%\ISSUE{0000} %
+%\LONGFIRSTPAGE{0001} %
+%\DOI{10.1287/xxxx.0000.0000}%
+
+% Author's names for the running heads
+% Sample depending on the number of authors;
+% \RUNAUTHOR{Jones}
+% \RUNAUTHOR{Jones and Wilson}
+% \RUNAUTHOR{Jones, Miller, and Wilson}
+% \RUNAUTHOR{Jones et al.} % for four or more authors
+% Enter authors following the given pattern:
+\RUNAUTHOR{Hankin}
+
+% Title or shortened title suitable for running heads. Sample:
+% \RUNTITLE{Bundling Information Goods of Decreasing Value}
+% Enter the (shortened) title:
+\RUNTITLE{Special relativity in R}
+
+% Full title. Sample:
+% \TITLE{Bundling Information Goods of Decreasing Value}
+% Enter the full title:
+\TITLE{Special relativity in R: introducing the lorentz package}
+
+% Block of authors and their affiliations starts here:
+% NOTE: Authors with same affiliation, if the order of authors allows, 
+%   should be entered in ONE field, separated by a comma. 
+%   \EMAIL field can be repeated if more than one author
+\ARTICLEAUTHORS{%
+\AUTHOR{Robin K. S. Hankin}
+\AFF{AUT, \EMAIL{hankin.robin@gmail.com}, \URL{}}
+% Enter all authors
+} % end of the block
+
+\ABSTRACT{%
+
+Here I present the {\tt lorentz} package for working with relativistic
+physics.  The package includes functionality for Lorentz tnransforms
+and Einsteinian three-velocity addition, which is noncommutative and
+nonassociative.  The package is used to search for a distributive law
+for relativistic three-velocities.
+
+}%
+
+% Sample 
+%\KEYWORDS{deterministic inventory theory; infinite linear programming duality; 
+%  existence of optimal policies; semi-Markov decision process; cyclic schedule}
+
+% Fill in data. If unknown, outcomment the field
+\KEYWORDS{Lorentz transform, Lorentz group, Lorentz law, Lorentz
+  velocity addition, special relativity, relativistic physics,
+  Einstein velocity addition, Wigner rotation, gyrogroup,
+  gyromorphism, gyrocommutative, gyroassociative, four velocity,
+  three-velocity, nonassociative, noncommutative}
+\HISTORY{}
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Samples of sectioning (and labeling) in IJOC
+% NOTE: (1) \section and \subsection do NOT end with a period
+%       (2) \subsubsection and lower need end punctuation
+%       (3) capitalization is as shown (title style).
+%
+%\section{Introduction.}\label{intro} %%1.
+%\subsection{Duality and the Classical EOQ Problem.}\label{class-EOQ} %% 1.1.
+%\subsection{Outline.}\label{outline1} %% 1.2.
+%\subsubsection{Cyclic Schedules for the General Deterministic SMDP.}
+%  \label{cyclic-schedules} %% 1.2.1
+%\section{Problem Description.}\label{problemdescription} %% 2.
+
+% Text of your paper here
+
+
+
+
+\newcommand{\bu}{\mathbf u}
+\newcommand{\bv}{\mathbf v}
+\newcommand{\bw}{\mathbf w}
+\newcommand{\bx}{\mathbf x}
+\newcommand{\by}{\mathbf y}
+
+\newcommand{\gyr}[2]{\operatorname{gyr}\left[{\mathbf #1},{\mathbf #2}\right]}
+
+
+In special relativity, the Lorentz transforms supercede their
+classical equivalent, the Galilean transforms~\citep{goldstein1980}.
+Lorentz transforms operate on four-vectors such as the four-velocity
+or four-potential and are usually operationalised as multiplication by
+a $4\times 4$ matrix.  A Lorentz transform takes the components of an
+arbitrary four-vector as observed in one coordinate system and returns
+the components observed in another system which is moving at constant
+velocity with respect to the first.
+
+There are a few existing software tools for working with Lorentz
+transforms, mostly developed in an educational context.  Early work
+would include that of \citet{horwitz1992} who describe {\tt relLab}, a
+system for building a range of {\em gendanken} experiments in an
+interactive graphical environment.  The author asserts that it runs on
+``any Macintosh computer with one megabyte of RAM or more'' but it is
+not clear whether the software is still available.  More modern
+contributions would include the {\tt OpenRelativity}
+toolkit~\citep{sherin2016} which simulates the effects of special
+relativity in the {\tt Unity} game engine.
+
+The {\tt lorentz} package provides {\tt R}-centric functionality for
+Lorentz transforms.  It deals with formal Lorentz boosts, converts
+between three-velocities and four-velocities, and provides
+computational support for the gyrogroup structure of relativistic
+three-velocity addition.
+
+
+
+\section{Lorentz transforms: active and passive}
+
+Passive transforms are the usual type of transforms taught and used in
+relativity.  However, sometimes active transforms are needed and it is
+easy to confuse the two.  Here I will discuss passive and then active
+transforms, and illustrate both in a computational context.
+
+\subsection*{Passive transforms}
+
+\newcommand{\vvec}[2]{\begin{pmatrix}#1 \\ #2\end{pmatrix}}
+\newcommand{\twomat}[4]{\begin{pmatrix} #1 & #2 \\ #3 &
+    #4\end{pmatrix}}
+
+Consider the following canonical Lorentz transform in which we have
+motion in the $x$-direction at speed $v>0$; the motion is from left to
+right.  We consider only the first two components of four-vectors, the
+$y$- and $z$- components being trivial.  A typical physical
+interpretation is that I am at rest, and a colleague is in his
+spaceship moving at speed $v$ past me; and we are wondering what
+vectors which I measure in my own rest frame look like to him.  The
+(passive) Lorentz transform is:
+
+\begin{equation*}
+\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}
+\end{equation*}
+
+And the canonical example of that would be:
+
+\begin{equation*}
+\twomat{\gamma}{-\gamma v}{-\gamma
+  v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{-\gamma v}
+\end{equation*}
+
+where the vectors are four velocities (recall that $\vvec{1}{0}$ is
+the four-velocity of an object at rest).  Operationally, I measure the
+four-velocity of an object to be $\vvec{1}{0}$, and he measures the
+same object as having a four-velocity of $\vvec{\gamma}{-\gamma v}$.
+So I see the object at rest, and he sees it as moving at speed $-v$;
+that is, he sees it moving to the left (it moves to the left because
+he is moving to the right relative to me).  The package makes
+computations easy.  Suppose $v=0.6c$ in the $x$-direction.
+
+\begin{verbatim}
+
+> u <- as.3vel(c(0.6,0,0)) # coerce to a three-velocity u
+
+       x y z 
+[1,] 0.6 0 0
+
+> as.4vel(u) # four-velocity is better for calculations
+
+        t    x y z
+[1,] 1.25 0.75 0 0
+
+\end{verbatim}
+
+For more general work one usually uses boosts, $4\times 4$
+transformation matrices:
+
+\begin{verbatim}
+> boost(u)
+      t     x y z
+   1.25 -0.75 0 0 
+x -0.75  1.25 0 0 
+y  0.00  0.00 1 0 
+z  0.00  0.00 0 1
+
+\end{verbatim}
+
+\section{Successive Lorentz transforms}
+
+Coordinate transformation is effected by standard matrix
+multiplication; thus composition of two Lorentz transforms is also
+ordinary matrix multiplication:
+
+\begin{verbatim}
+
+> u <- as.3vel(c(0.3,-0.4,+0.8))
+> v <- as.3vel(c(0.4,+0.2,-0.1))
+> L <- boost(u) %*% boost(v)
+> L
+
+          t          x          y          z
+t  3.256577 -2.2327055  0.5419596 -2.0800479
+x -1.437147  1.6996791 -0.0237489  0.4194255
+y  1.091131 -0.7581795  1.1190282 -0.6029155
+z -2.519789  1.5878378 -0.2023170  2.1879612
+
+\end{verbatim}
+
+But observe that the resulting transform is not a pure boost, as the
+spatial components are not symmetrical.  We may decompose the matrix
+product $L$ into a pure translation composed with an orthogonal
+matrix, which represents a coordinate rotation.  The package provides
+extensive R idiom for effecting this composition.
+
+\section{Three-velocities}
+
+In contrast to four-velocities, three-velocities do not form a group
+under composition as the velocity addition law is not
+associative~\citep{ungar2006}.  Instead, three-velocity composition
+has an algebraic structure known as a {\em gyrogroup} (this
+observation was the original motivation for the package).
+\citeauthor{ungar2006} shows that the velocity addition law for
+three-velocities is
+
+\begin{equation}
+\bu\oplus\bv= \frac{1}{1+\bu\cdot\bv} \left\{ \bu +
+\frac{\bv}{\gamma_\bu} + \frac{\gamma_\bu
+  \left(\bu\cdot\bv\right)\bu}{1+\gamma_\bu} \right\}
+\end{equation}
+   
+where~$\gamma_\bu=\left(1-\bu\cdot\bu\right)^{-1/2}$ and we are
+assuming~$c=1$.  \citeauthor{ungar2006} goes on to show that, in
+general, $\bu\oplus\bv\neq\bv\oplus\bu$
+and~$(\bu\oplus\bv)\oplus\bw\neq\bu\oplus(\bv\oplus\bw)$.  He also
+defines the binary operator~$\ominus$
+as~$\bu\ominus\bv=\bu\oplus\left(-\bv\right)$, and implicitly
+defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$.  If
+we have
+
+\begin{equation}
+\gyr{u}{v}\bx=-\left(\bu\oplus\bv\right)\oplus\left(\bu\oplus\left(\bv\oplus\bx\right)\right)
+\end{equation}
+
+then
+
+\begin{eqnarray}
+\bu\oplus\bv &=&
+\gyr{u}{v}\left(\bv\oplus\bu\right)\label{noncom}\\ \gyr{u}{v}\bx\cdot\gyr{u}{v}\by
+&=& \bx\cdot\by\label{doteq}\\ \gyr{u}{v}\left(\bx\oplus\by\right) &=&
+\gyr{u}{v}\bx\oplus\gyr{u}{v}\by\\ \left(\gyr{u}{v}\right)^{-1} &=&
+\left(\gyr{v}{u}\right)\label{gyrinv}\\ \bu\oplus\left(\bv\oplus\bw\right)
+&=&\left(\bu\oplus\bv\right)\oplus\gyr{u}{v}\bw\label{nonass1}\\ \left(\bu\oplus\bv\right)\oplus\bw
+&=&\bu\oplus\left(\bv\oplus\gyr{v}{u}\bw\right)\label{nonass2}
+\end{eqnarray}
+
+Consider the following R session:
+
+\begin{verbatim}
+> u <- as.3vel(c(-0.7,+0.2,-0.3))
+> v <- as.3vel(c(+0.3,+0.3,+0.4))
+> w <- as.3vel(c(+0.1,+0.3,+0.8))
+> x <- as.3vel(c(-0.2,-0.1,-0.9))
+
+\end{verbatim}
+
+Here we have three-vectors {\tt u} etc.  We can see that {\tt u} and
+{\tt v} do not commute:
+
+\begin{verbatim}
+> u+v
+
+          x     y        z
+[1,] -0.545 0.482 -0.00454
+
+> v+u
+
+          x     y     z
+[1,] -0.429 0.572 0.132
+
+\end{verbatim}
+
+(the results differ).  We can use equation~\ref{noncom}
+
+\begin{verbatim}
+
+> (u+v)-gyr(u,v,v+u)
+
+            x         y        z 
+[1,] 1.77e-16 -7.08e-16 1.23e-16
+
+\end{verbatim}
+
+showing agreement to within numerical error.  It is also possible to
+use the functional idiom in which we define {\tt f()} to be the
+map~$\bx\mapsto\gyr{u}{v}\bx$.
+
+\subsection{Associativity}
+
+Three velocity addition is not associative:
+
+\begin{verbatim}
+> (u+v)+w
+
+          x     y     z
+[1,] -0.465 0.655 0.501
+
+> u+(v+w)
+
+          x     y     z 
+[1,] -0.549 0.667 0.416
+
+\end{verbatim}
+
+But we can use equations~\ref{nonass1} and~\ref{nonass2}:
+
+\begin{verbatim}
+> (u+(v+w)) - ((u+v)+gyr(u,v,w))
+
+            x         y         z
+[1,] 6.92e-16 -1.38e-15 -6.92e-16
+
+> ((u+v)+w) - (u+(v+gyr(v,u,w)))
+
+     x y        z
+[1,] 0 0 5.35e-16
+
+\end{verbatim}
+
+\subsection{Visualization of noncommutativity and nonassociativity of three-velocities}
+
+Consider the following three-velocities:
+
+\begin{verbatim}
+> u <- as.3vel(c(0.4,0,0))
+> v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
+> w <- as.3vel(c(0.8,-0.4,0))
+
+\end{verbatim}
+
+Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
+ is a vector of three velocities.  We can see the noncommutativity of
+ three velocity addition in figures~\ref{comfail1} and~\ref{comfail2},
+ and the nonassociativity in figure~\ref{assfail}.
+
+\begin{figure}[htbp]
+  \begin{center}
+\includegraphics{lorentz-comfail1_fig}
+\caption{Failure\label{comfail1} of the commutative law for velocity
+  composition in special relativity.  The arrows show successive
+  velocity boosts of $+\bu$ (purple), $+\bv$ (black), $-\bu$ (red),
+  and~$-\bv$ (blue) for $\bu,\bv$ as defined above.  Velocity $\bu$ is
+  constant, while $\bv$ takes a sequence of values.  If velocity
+  addition is commutative, the four boosts form a closed
+  quadrilateral; the thick arrows show a case where the boosts almost
+  close and the boosts nearly form a parallelogram.  The blue dots
+  show the final velocity after four successive boosts; the distance
+  of the blue dot from the origin measures the combined velocity,
+  equal to zero in the classical limit of low speeds.  The discrepancy
+  becomes larger and larger for the faster elements of the sequence
+  $\bv$}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+\includegraphics{lorentz-comfail2_fig}
+\caption{Another view of the failure of the commutative
+  law\label{comfail2} in special relativity.  The black arrows show
+  velocity boosts of $\bu$ and the blue arrows show velocity boosts of
+  $\bv$, with $\bu,\bv$ as defined above; $\bu$ is constant while
+  $\bv$ takes a sequence of values.  If velocity addition is
+  commutative, then $\bu+\bv=\bv+\bu$ and the two paths end at the
+  same point: the parallelogram is closed.  The red lines show the
+  difference between $\bu+\bv$ and $\bv+\bu$}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+\includegraphics{lorentz-assfail_fig}
+\caption{Failure of the associative law \label{assfail} for velocity
+  composition in special relativity.  The arrows show successive
+  boosts of $\bu$ followed by $\bv+\bw$ (black lines), and $\bu+\bv$
+  followed by $\bw$ (blue lines), for $\bu$, $\bv$, $\bw$ as defined
+  above; $\bu$ and $\bw$ are constant while $\bv$ takes a sequence of
+  values. The mismatch between $\bu+\left(\bv+\bw\right)$ and
+  $\left(\bu+\bv\right)+\bw$ is shown in red}
+  \end{center}
+\end{figure}
+
+
+\section{Distributivity in special relativity}
+
+Three-velocities are not distributive in special relativiity.  That
+is, given three-velocities $\bu$, $\bv$ and a scalar $r$, we have that
+$r(\bu+\bv)\neq r\bu+r\bv$ in general.  Ungar (2006) goes on to
+suggest that a generalized distributive law would be an interesting
+and instructive object, if it existed.  The {\tt lorentz} package was
+written to leverage the structure of R in the finding of a
+distributive law.  By way of illustration, possible expressions for 
+$r(\bu+\bv)$ might include
+
+\begin{itemize}
+\item $r\bu  + (r\bv  - r\operatorname{gyr}[r\bu, \bv,\bu+\bv])$
+\item $r\bu  + (r\bv  - r\operatorname{gyr}[r\bu, \bv,\bv+\bu])$
+\item $r\bv  + (r\bu  - r\operatorname{gyr}[s\bu, \bv,\bu+\bv])$
+\item $(r\bu + r\bv)  + r\operatorname{gyr}[r\bu, \bv,\bu]$
+\item $(r\bu + r\bv)  + r\operatorname{gyr}[r\bu, \bv,\bv]$
+\item $(r\bu + r\bv)  + r\operatorname{gyr}[r\bu, \bv,\bv]$
+\item $(r\bu + r\bv)  + r\operatorname{gyr}[r\bu,-\bv,\bv]$
+\item $(r\bu + r\bv)  +   \operatorname{gyr}[r\bu,-\bv,\bv]$
+\item $(r\bu + r\bv)  + s\operatorname{gyr}[r\bu,-\bv,\bv]$
+\end{itemize}
+
+Here, $r$ is a scalar, $s=1/r$, and $\bu$, $\bv$ are three-velocities.
+Note the variety of orders (three-velocity addition is not
+commutative), different bracketing (three-velocity addition is not
+associative), and use of $r$ or $s=1/r$ in different places in the
+formula.  The {\tt lorentz package} facilitates a systematic sweep
+through such plausible distributive laws, and the latest revision
+searches a total of 688128 possibilities, unfortunately without
+success.
+
+\section{Conclusions}
+
+The {\tt lorentz} package furnishes some functionality for
+manipulating four-vectors and three-velocities in the context of
+special relativity.  The R idiom is relatively natural and the package
+has been used to illustrate different features of relativistic
+kinematics.
+
+ 
+
+
+
+% Appendix here
+% Options are (1) APPENDIX (with or without general title) or 
+%             (2) APPENDICES (if it has more than one unrelated sections)
+% Outcomment the appropriate case if necessary
+%
+% \begin{APPENDIX}{<Title of the Appendix>}
+% \end{APPENDIX}
+%
+%   or 
+%
+% \begin{APPENDICES}
+% \section{<Title of Section A>}
+% \section{<Title of Section B>}
+% etc
+% \end{APPENDICES}
+
+
+% References here (outcomment the appropriate case) 
+
+% CASE 1: BiBTeX used to constantly update the references 
+%   (while the paper is being written).
+\bibliographystyle{informs2014} % outcomment this and next line in Case 1
+\bibliography{lorentz} % if more than one, comma separated
+
+% CASE 2: BiBTeX used to generate mypaper.bbl (to be further fine tuned)
+%\input{mypaper.bbl} % outcomment this line in Case 2
+
+\end{document}
+
+
