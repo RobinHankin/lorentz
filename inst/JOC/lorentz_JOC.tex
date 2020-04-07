@@ -216,7 +216,13 @@ that $\BFu=\left(0.1,0.6,-0.4\right)$:
 
 \end{verbatim}
 
-For more general work one usually uses boosts, $4\times 4$
+The package employs a number of devices to ensure numerical stability.
+For example, although $\gamma$ is calculated with package function
+{\tt gam()}, in the classical limit of slow speeds we have $\gamma$
+very close to 1; thus the speed of sound would have
+$\gamma\simeq1+6.5\cdot 10^{-13}$.  The package provides function {\tt
+  gamm1()} (named by analogy to {\tt expm1()}) which retains more
+precision.  For more general work one usually uses boosts, $4\times 4$
 transformation matrices:
 
 \begin{verbatim}
@@ -377,10 +383,10 @@ But we can use equations~\ref{nonass1} and~\ref{nonass2}:
 \end{verbatim}
 
 which verify the consistency of the gyrogroup structure of
-three-velocity additoion.
+three-velocity addition.
 
-
-\subsection{Visualization of noncommutativity and nonassociativity of three-velocities}
+\subsection{Visualization of noncommutativity and nonassociativity
+  of three-velocities}
 
 Consider the following three-velocities:
 
@@ -391,10 +397,10 @@ Consider the following three-velocities:
 
 \end{verbatim}
 
-Objects~$\BFv$ and $\BFw$ are single three-velocities, and object $\BFv$
- is a vector of three velocities.  We can see the noncommutativity of
- three velocity addition in figures~\ref{comfail1} and~\ref{comfail2},
- and the nonassociativity in figure~\ref{assfail}.
+Objects~$\BFv$ and $\BFw$ are single three-velocities, and object
+$\BFv$ is a vector of three velocities.  We can see the
+noncommutativity of three-velocity addition in figures~\ref{comfail1}
+and~\ref{comfail2}, and the nonassociativity in figure~\ref{assfail}.
 
 \begin{figure}[htbp]
   \begin{center}
