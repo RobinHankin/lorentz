@@ -76,7 +76,7 @@
 % Full title. Sample:
 % \TITLE{Bundling Information Goods of Decreasing Value}
 % Enter the full title:
-\TITLE{Special relativity in R: introducing the lorentz package}
+\TITLE{Special relativity in R: introducing the ``{\tt lorentz}'' package}
 
 % Block of authors and their affiliations starts here:
 % NOTE: Authors with same affiliation, if the order of authors allows, 
@@ -183,26 +183,25 @@ at \url{https://github.com/RobinHankin/lorentz}, and CRAN, at
 Here I will discuss (passive) Lorentz transforms in a computational
 context.  Consider the following canonical Lorentz transform in which
 we have motion in the $x$-direction at speed $v>0$; the motion is from
-left to right.  We consider only the first two components of
-four-vectors, the $y$- and $z$- components being trivial.  A typical
-physical interpretation is that I am at rest, and a colleague is in
-his spaceship moving at speed $v$ past me; we wonder what vectors
-which I measure in my own rest frame look like to him.  The
-appropriate coordinate transform would be:
+left to right.  A typical physical interpretation is that I am at
+rest, and a colleague is in his spaceship moving at speed
+$\BFu=\left(u,v,w\right)$ past me; we wonder what vectors which I
+measure in my own rest frame look like to him.  The appropriate
+coordinate transform would be:
 
-\begin{equation*}
-\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}
-\end{equation*}
+\begin{equation}
+  \begin{pmatrix}
+\gamma &-\gamma u&-\gamma v&-\gamma w\\
+    -\gamma u&1+(\gamma-1)n_xn_x&(\gamma-1)n_xn_y&(\gamma-1)n_xn_z\\
+    -\gamma v&(\gamma-1)n_yn_x&1+(\gamma-1)n_yn_y&(\gamma-1)n_yn_z\\
+    -\gamma w&(\gamma-1)n_zn_x&(\gamma-1)n_zn_y&1+(\gamma-1)n_zn_z
+  \end{pmatrix}
+\end{equation}
 
-And the canonical example of that would be:
-
-\begin{equation*}
-\twomat{\gamma}{-\gamma v}{-\gamma
-  v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{-\gamma v}
-\end{equation*}
-
-The package makes this type of computation easy and employs natural R
-idiom.  Suppose, for example, that $v=0.6c$ in the $x$-direction:
+where $\gamma=\left(1-\BFu\cdot\BFu\right)^{-1/2}$ and $n_x,n_y,n_z$
+are the direction cosines of $\BFu$.  The package makes this type of
+computation easy and employs natural R idiom.  Suppose, for example,
+that $\BFu=\left(0.1,0.6,-0.4\right)$:
 
 \begin{verbatim}
 
