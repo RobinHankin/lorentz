@@ -62,9 +62,7 @@ inst/*.S~
 
 inst/JOC/informs2014.bst
 inst/JOC/informs3.cls
-inst/JOC/lorentz-assfail_fig.pdf
-inst/JOC/lorentz-comfail1_fig.pdf
-inst/JOC/lorentz-comfail2_fig.pdf
+inst/JOC/*.pdf
 inst/JOC/lorentz_JOC.aux
 inst/JOC/lorentz_JOC.bbl
 inst/JOC/lorentz_JOC.blg
