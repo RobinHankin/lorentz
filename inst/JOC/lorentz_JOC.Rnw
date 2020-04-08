@@ -203,18 +203,12 @@ are the direction cosines of $\BFu$.  The package makes this type of
 computation easy and employs natural R idiom.  Suppose, for example,
 that $\BFu=\left(0.1,0.6,-0.4\right)$:
 
-\begin{verbatim}
-
-> u <- as.3vel(c(0.1, 0.6, -0.4))
-> u
-       x   y    z
-[1,] 0.1 0.6 -0.4
-
-> as.4vel(u)    # four-velocity is more useful in physics
-           t        x         y        z
-[1,] 1.45865 0.145865 0.8751899 -0.58346
-
-\end{verbatim}
+<<>>=
+library("lorentz")
+u <- as.3vel(c(0.1, 0.6, -0.4))
+u
+as.4vel(u)    # four-velocity is more useful in physics
+@ 
 
 The package employs a number of devices to ensure numerical stability.
 For example, although $\gamma$ is calculated with package function
@@ -225,16 +219,9 @@ $\gamma\simeq1+6.5\cdot 10^{-13}$.  The package provides function {\tt
 precision.  For more general work one usually uses boosts, $4\times 4$
 transformation matrices:
 
-\begin{verbatim}
-> boost(u) 
-           t           x           y           z
-t  1.4586499 -0.14586499 -0.87518995  0.58345997
-x -0.1458650  1.00865377  0.05192263 -0.03461509
-y -0.8751899  0.05192263  1.31153579 -0.20769053
-z  0.5834600 -0.03461509 -0.20769053  1.13846035
-> 
-
-\end{verbatim}
+<<>>=
+boost(u) 
+@ 
 
 \section{Successive Lorentz transforms}
 
@@ -242,20 +229,11 @@ Coordinate transformation is effected by standard matrix
 multiplication; thus composition of two Lorentz transforms is also
 ordinary matrix multiplication:
 
-\begin{verbatim}
-
-> u <- as.3vel(c(0.3,-0.4,+0.8))
-> v <- as.3vel(c(0.4,+0.2,-0.1))
-> L <- boost(u) %*% boost(v)
-> L
-
-          t          x          y          z
-t  3.256577 -2.2327055  0.5419596 -2.0800479
-x -1.437147  1.6996791 -0.0237489  0.4194255
-y  1.091131 -0.7581795  1.1190282 -0.6029155
-z -2.519789  1.5878378 -0.2023170  2.1879612
-
-\end{verbatim}
+<<>>=
+u <- as.3vel(c(0.3,-0.4,+0.8))
+v <- as.3vel(c(0.4,+0.2,-0.1))
+(L <- boost(u) %*% boost(v))
+@ 
 
 But observe that the resulting transform is not a pure boost, as the
 spatial components are not symmetrical\footnote{Identifying pure
@@ -309,40 +287,26 @@ then
 
 Consider the following R session:
 
-\begin{verbatim}
-> u <- as.3vel(c(-0.7,+0.2,-0.3))
-> v <- as.3vel(c(+0.3,+0.3,+0.4))
-> w <- as.3vel(c(+0.1,+0.3,+0.8))
-> x <- as.3vel(c(-0.2,-0.1,-0.9))
-
-\end{verbatim}
+<<>>=
+u <- as.3vel(c(-0.7,+0.2,-0.3))
+v <- as.3vel(c(+0.3,+0.3,+0.4))
+w <- as.3vel(c(+0.1,+0.3,+0.8))
+x <- as.3vel(c(-0.2,-0.1,-0.9))
+@ 
 
 Here we have three-vectors {\tt u} etc.  We can see that {\tt u} and
 {\tt v} do not commute:
 
-\begin{verbatim}
-> u+v
-
-          x     y        z
-[1,] -0.545 0.482 -0.00454
-
-> v+u
-
-          x     y     z
-[1,] -0.429 0.572 0.132
-
-\end{verbatim}
+<<>>=
+u+v
+v+u
+@ 
 
 (the results differ).  We can verify equation~\ref{noncom}:
 
-\begin{verbatim}
-
-> (u+v)-gyr(u,v,v+u)
-
-            x         y        z 
-[1,] 1.77e-16 -7.08e-16 1.23e-16
-
-\end{verbatim}
+<<>>=
+(u+v)-gyr(u,v,v+u)
+@ 
 
 showing agreement to within numerical error.  It is also possible to
 use the functional idiom in which we define {\tt f()} to be the
@@ -354,33 +318,17 @@ Three-velocity addition is nonassociative, a phenomenon described as
 ``bizarre and counterintuitive'' by \cite{ungar1997}.  We can give a
 clear numerical illustration of this using standard package idiom:
 
-\begin{verbatim}
-> (u+v)+w
-
-          x     y     z
-[1,] -0.465 0.655 0.501
-
-> u+(v+w)
-
-          x     y     z 
-[1,] -0.549 0.667 0.416
-
-\end{verbatim}
+<<>>=
+(u+v)+w
+u+(v+w)
+@ 
 
 But we can use equations~\ref{nonass1} and~\ref{nonass2}:
 
-\begin{verbatim}
-> (u+(v+w)) - ((u+v)+gyr(u,v,w))
-
-            x         y         z
-[1,] 6.92e-16 -1.38e-15 -6.92e-16
-
-> ((u+v)+w) - (u+(v+gyr(v,u,w)))
-
-     x y        z
-[1,] 0 0 5.35e-16
-
-\end{verbatim}
+<<>>=
+(u+(v+w)) - ((u+v)+gyr(u,v,w))
+((u+v)+w) - (u+(v+gyr(v,u,w)))
+@ 
 
 which verify the consistency of the gyrogroup structure of
 three-velocity addition.
@@ -390,12 +338,11 @@ three-velocity addition.
 
 Consider the following three-velocities:
 
-\begin{verbatim}
-> u <- as.3vel(c(0.4,0,0))
-> v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
-> w <- as.3vel(c(0.8,-0.4,0))
-
-\end{verbatim}
+<<>>=
+u <- as.3vel(c(0.4,0,0))
+v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
+w <- as.3vel(c(0.8,-0.4,0))
+@ 
 
 Objects~$\BFv$ and $\BFw$ are single three-velocities, and object
 $\BFv$ is a vector of three velocities.  We can see the
@@ -404,7 +351,9 @@ and~\ref{comfail2}, and the nonassociativity in figure~\ref{assfail}.
 
 \begin{figure}[htbp]
   \begin{center}
-\includegraphics{lorentz-comfail1_fig}
+<<comfail1_fig, fig=TRUE>>=
+comm_fail1(u=u, v=v)
+@
 \caption{Failure\label{comfail1} of the commutative law for velocity
   composition in special relativity.  The arrows show successive
   velocity boosts of $+\BFu$ (purple), $+\BFv$ (black), $-\BFu$ (red),
@@ -423,7 +372,9 @@ and~\ref{comfail2}, and the nonassociativity in figure~\ref{assfail}.
 
 \begin{figure}[htbp]
   \begin{center}
-\includegraphics{lorentz-comfail2_fig}
+<<comfail2_fig, fig=TRUE>>=
+comm_fail2(u=u, v=v)
+@
 \caption{Another view of the failure of the commutative
   law\label{comfail2} in special relativity.  The black arrows show
   velocity boosts of $\BFu$ and the blue arrows show velocity boosts of
@@ -437,7 +388,9 @@ and~\ref{comfail2}, and the nonassociativity in figure~\ref{assfail}.
 
 \begin{figure}[htbp]
   \begin{center}
-\includegraphics{lorentz-assfail_fig}
+<<assfail_fig, fig=TRUE>>=
+ass_fail(u=u, v=v, w=w, bold=10)
+@ 
 \caption{Failure of the associative law \label{assfail} for velocity
   composition in special relativity.  The arrows show successive
   boosts of $\BFu$ followed by $\BFv+\BFw$ (black lines), and $\BFu+\BFv$
