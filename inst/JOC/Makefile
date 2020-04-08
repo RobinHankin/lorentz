@@ -6,5 +6,5 @@ all:
 	pdflatex lorentz_JOC
 
 clean:
-	rm -f  *.aux *.log *.out *.bbl *.blg *.Rout *.txt *.pdf
+	rm -f  *.aux *.log *.out *.bbl *.blg *.Rout *.tex *.pdf
 
