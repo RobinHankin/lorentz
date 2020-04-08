@@ -1,0 +1,47 @@
+Here is a response to the editorial policy as set out by Ted Ralphs in
+the editorial statement, at "software tools".  The policy is preceded
+by a chevron (">") and my response is indicated inline.
+
+> Papers describing software and data made available to the research
+> community are particularly sought.
+
+The lorentz R package is made available to the research community and
+fits in well with editorial policy.
+
+
+> These papers need not provide novel mathematics or algorithms
+> themselves, but must be novel and important with respect to computing
+> and must describe or illustrate how the software and data can be used
+> to advance research and how it fits in the research literature.
+
+The manuscript describes the lorentz R package, which sets out the
+only R-centric software for special relativity.  Relativity is an
+important and interesting branch of physics and having an R package
+simplifies nand facilitates certain research tasks in the field,
+specifically the search for a distributive law for relativistic
+velocity addition.
+
+
+
+> The review process then will consist of two parts: verifying the
+> reproducibility/maintainability, and verifying the potential
+> importance to the research community. Reviews of these papers will be
+> completed within six weeks, assuming the reproducibility is easily
+> verified. On the other hand, this is not expected to be a review
+> process with numerous iterations but more of a go, no-go review.
+
+
+The package is maintained under an open-source license at github, and
+the package includes a number of internal consistency checks and an
+extensive vignette, which is a superset of the submitted manuscript.
+The package is available on CRAN which maintains strict
+reproducibility criteria and quality control.  The package subscribes
+to the online travis automated checking service.
+
+
+These papers are expected to be approximately five to ten pages in
+length. Authors must also submit their source code with compilation
+scripts (e.g., a makefile) or instructions, and test data with test
+scripts or instructions.  As a condition of publication the software
+must be released with a license adequate to allow use by researchers.
+
