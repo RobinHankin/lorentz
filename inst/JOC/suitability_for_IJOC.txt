@@ -1,0 +1,25 @@
+From the editorial statement:
+
+> The theory and practice of computing and operations research are
+> necessarily intertwined. The INFORMS Journal on Computing publishes
+> high quality papers that expand the envelope of operations research
+> and computing.
+
+The submission presents novel software that fills a specific need for
+relativistic velocity addition in the R language.
+
+> We seek original research papers on relevant theories, methods,
+> experiments, systems, and applications.  We also welcome novel
+> survey and tutorial papers, and papers describing new and useful
+> software tools.
+
+The sofware associated with this submision is new and useful to a
+range of practitioners working in the field.  It has been used to
+search for a new distributive law of Einsteinian velocity addition.
+
+
+> We expect contributions that can be built upon by subsequent
+> researchers or used by practitioners.
+
+The software has significant potential for further work including
+preliminary computational work in general relativity.
