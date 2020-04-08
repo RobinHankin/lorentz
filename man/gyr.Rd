@@ -31,7 +31,10 @@ gyrfun(u, v)
   \itemize{
     \item
 Ungar 2006. \dQuote{Thomas precession: a kinematic
-  effect...}. \emph{European Journal of Physics}, 27:L17-L20.
+  effect of the algebra of Einstein's velocity addition law.  Comments
+  on \sQuote{Deriving relativistic momentum and energy: {I}{I}.
+    {T}hree-dimensional case}}. \emph{European Journal of Physics},
+  27:L17-L20.
 \item
 Sbitneva 2001. \dQuote{Nonassociative geomery of special relativity}.
 \emph{International Journal of Theoretical Physics, volume 40, number 1,
