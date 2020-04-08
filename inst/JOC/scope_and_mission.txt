@@ -22,7 +22,6 @@ specifically the search for a distributive law for relativistic
 velocity addition.
 
 
-
 > The review process then will consist of two parts: verifying the
 > reproducibility/maintainability, and verifying the potential
 > importance to the research community. Reviews of these papers will be
@@ -30,18 +29,28 @@ velocity addition.
 > verified. On the other hand, this is not expected to be a review
 > process with numerous iterations but more of a go, no-go review.
 
-
-The package is maintained under an open-source license at github, and
-the package includes a number of internal consistency checks and an
+The package includes a number of internal consistency checks and an
 extensive vignette, which is a superset of the submitted manuscript.
 The package is available on CRAN which maintains strict
 reproducibility criteria and quality control.  The package subscribes
 to the online travis automated checking service.
 
 
-These papers are expected to be approximately five to ten pages in
-length. Authors must also submit their source code with compilation
-scripts (e.g., a makefile) or instructions, and test data with test
-scripts or instructions.  As a condition of publication the software
-must be released with a license adequate to allow use by researchers.
+> These papers are expected to be approximately five to ten pages in
+> length.
 
+Manuscript is eight and a half pages long.
+
+
+> Authors must also submit their source code with compilation
+> scripts (e.g., a makefile) or instructions, and test data with test
+> scripts or instructions.
+
+Source code for the manusript is Rnw format and the submission
+includes a Makefile.
+
+
+> As a condition of publication the software
+> must be released with a license adequate to allow use by researchers.
+
+The package is maintained under an open-source license at github.
