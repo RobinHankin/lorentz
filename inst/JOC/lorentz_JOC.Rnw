@@ -405,7 +405,7 @@ ass_fail(u=u, v=v, w=w, bold=10)
 
 A relativistic three-velocity $\BFu$ may be ``multiplied'' by a scalar
 $r$ with the law
-$r\BFu=\sinh\left(r\sinh^{-1}\left|\left|\BFu\right|\right|\right)\BFu$,
+$r\BFu=\tanh\left(r\tanh^{-1}\left|\left|\BFu\right|\right|\right)\BFu$,
 thus for example $2\BFu=\BFu\oplus\BFu$~\citep{ungar1997}.
 Three-velocities are not distributive in special relativity.  That is,
 given three-velocities $\BFu$, $\BFv$ and a scalar $r$, we have that
