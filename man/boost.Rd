@@ -50,23 +50,23 @@ orthog.galilean(L)
     light, and \code{FALSE} meaning to assume \eqn{c=1}. See details}
 }
 \value{
-  Function \code{boost()} returns a symmetric \eqn{4\times 4}{4*4}
+  Function \code{boost()} returns a \eqn{4\times 4}{4*4}
   matrix; function \code{rot()} returns an orthogonal matrix.
 }
 \details{
   Arguments \code{u,v} are coerced to three-velocities.
 
   A rotation-free Lorentz transformation is known as a \dfn{boost}
-  (sometimes a \dfn{pure boost}), and when expressed in matrix form is
-  symmetric.  Function \code{boost(u)} returns a \eqn{4\times 4}{4x4}
-  matrix giving the Lorentz transform of an arbitrary three-velocity
-  \code{u}.  Pure boost matrices are symmetrical if \eqn{c=1}, but do
-  not commute in general.
+  (sometimes a \dfn{pure boost}), here expressed in matrix form.  Pure
+  boost matrices are symmetric if \eqn{c=1}.  Function \code{boost(u)}
+  returns a \eqn{4\times 4}{4x4} matrix giving the Lorentz transform of
+  an arbitrary three-velocity \code{u}.
 
   Boosts can be successively applied with regular matrix multiplication.
-  However, composing two successive pure boosts does not return a pure
-  boost matrix: the product is not symmetric in general.  The resulting
-  matrix represents a \dfn{Lorentz transform}.
+  However, composing two successive pure boosts does not in general
+  return a pure boost matrix: the product is not symmetric in general.
+  Also note that boost matrices do not commute.  The resulting matrix
+  product represents a \dfn{Lorentz transform}.
 
   It is possible to decompose a Lorentz transform \eqn{L} into a pure
   boost and a spatial rotation.  Thus \eqn{L=OP} where \eqn{O} is an
@@ -80,13 +80,11 @@ orthog.galilean(L)
   intended to be used when the speed of light is infinite (which causes
   problems for the relativistic functions).
 
-  The composition of two pure Lorentz boosts is not necessarily pure.  If
-  we have two successive boosts corresponding to \eqn{u} and \eqn{v}, then
-  the composed boost may be decomposed into a pure boost of \code{boost(u+v)}
-  and a rotation of \code{rot(u,v)}.
+  As noted above, the composition of two pure Lorentz boosts is not
+  necessarily pure.  If we have two successive boosts corresponding to
+  \eqn{u} and \eqn{v}, then the composed boost may be decomposed into a
+  pure boost of \code{boost(u+v)} and a rotation of \code{rot(u,v)}.
 
-
-  
   The reason argument \code{include_sol} exists is that function
   \code{orthog()} needs to call \code{pureboost()} in an environment
   where we pretend that \eqn{c=1}.
