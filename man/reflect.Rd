@@ -1,6 +1,7 @@
 \name{reflect}
 \alias{reflect}
 \alias{mirror}
+\alias{mirrors}
 \alias{reflection}
 \title{Mirrors}
 \description{Plane mirrors in special relativity}
