@@ -7,8 +7,7 @@ Depends: magrittr
 Suggests: knitr,testthat
 Imports: emulator (>= 1.2-20),tensor,magic
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
-Description: The Lorentz transform in special relativity; also the gyrogroup structure of three-velocities following Ungar (2006)
-  <doi:10.1088/0143-0807/27/3/L02>.  For general relativity, see the
+Description: The Lorentz transform in special relativity; also the gyrogroup structure of three-velocities.  Includes active and passive transforms and the ability to use units in which the speed of light is not one.  For general relativity, see the
   'schwarzschild' package.
 License: GPL-3
 URL: https://github.com/RobinHankin/lorentz.git
