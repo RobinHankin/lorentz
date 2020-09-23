@@ -1,0 +1,109 @@
+---
+title: "mobius"
+author: "Robin KS Hankin"
+date: "11/09/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Möbius addition 
+
+We define Möbius addition $\oplus$ on the unit disk $\mathbb{D} =
+\left\lbrace z\in\mathbb{C}\colon\left|z\right|<1\right\rbrace$ as
+follows:
+
+\begin{equation}
+a\oplus z = \frac{a+z}{1+\overline{a}z}
+\end{equation}
+
+(naturally we define $a\ominus z=a\oplus(-z)$ and it convenient to
+write $\ominus z=0\ominus z=-z$).
+
+
+
+The $\oplus$ operator is neither commutative nor associative ($a\oplus
+b\neq b\oplus a$ and $a\oplus(b\oplus c)\neq (a\oplus b)\oplus c$ in
+general).  However, it does posess the _automorphic inverse property_
+
+\begin{equation}
+\ominus(a\oplus b) = \ominus a\ominus b
+\end{equation}
+
+and the _left cancellation law_
+
+\begin{equation}
+\ominus a\oplus (a\oplus z) = z
+\end{equation}
+
+
+proof:
+\[
+\ominus(a\oplus b) = -(a\oplus b)=-\frac{a+b}{1+\overline{a}b}=
+=\frac{(-a)+(-b)}{1+\overline{a}b}
+=\frac{(-a)+(-b)}{1+\overline{(-a)}(-b)}
+=(-a)\oplus(-b)
+=\ominus a\ominus b
+\]
+
+\[
+\ominus a\oplus (a\oplus z) = 
+\ominus a\oplus\frac{a+z}{1+\overline{a}z}
+=\frac{-a + \frac{a+z}{1+\overline{a}z}}{1+\overline{(-a)}\frac{a+z}{1+\overline{a}z}}
+=\frac{-a\overline{a}z +z}{1-\overline{a}a}
+=\frac{z(1-a\overline{a})}{1-\overline{a}a}
+=z,
+\]
+the last equality following from the fact that $a\in\mathbb{D}$.
+
+
+```{r}
+
+`%+%` <- function(x,y){(x+y)/(1+Conj(x)*y)}
+`%-%` <- function(x,y){(x-y)/(1-Conj(x)*y)}
+
+square <- function(a,b,len=100){ # a is lower left point, b is upper right
+    a <- a+0i
+    b <- b+0i
+    c(
+    seq(from=Re(a) + 1i*Im(a), to=Re(b) + 1i*Im(a),len=len),
+    seq(from=Re(b) + 1i*Im(a), to=Re(b) + 1i*Im(b),len=len),
+    seq(from=Re(b) + 1i*Im(b), to=Re(a) + 1i*Im(b),len=len),
+    seq(from=Re(a) + 1i*Im(b), to=Re(a) + 1i*Im(a),len=len)
+    )
+}
+
+gyrosetup <- function(...){
+	par(pty="s")
+	plot(NA,xlim=c(-1,1),ylim=c(-1,1),asp=1,axes=FALSE,xlab="",ylab="")
+theta <- seq(from=0,to=2*pi,len=400)
+points(sin(theta),cos(theta),type="l",col="gray",...)
+segments(x0=-1, x1= +1,y0=0,col='gray')
+segments(x0=0,y0=-1,y1=+1,col='gray')
+text(0.9,0.06,"Re")
+text(0.1,0.9,"Im")
+}
+
+polyz <- function(z,...){polygon(x=Re(z),y=Im(z),...)}
+
+gyrosetup()
+
+S <- square(-1-1i,1+1i)/6
+points(S,type="l")
+
+zs <- c(
+    +0.2 + 0.38i,
+    -0.2 + 0.58i,
+    +0.2 - 0.38i,
+    -0.3 - 0.38i
+)*1.4
+
+for(z in zs){
+points(Re(z),Im(z))
+polyz(S %+% z,col=rgb(1,0,0,alpha=0.3))
+polyz(z %+% S,col=rgb(0,0,1,alpha=0.3))
+}
+
+```
