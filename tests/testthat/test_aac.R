@@ -13,6 +13,8 @@ test_that("Test suite aac.R",{
 
       expect_silent(p_to_4mom(v,E=1))
 
+
+      expect_silent(cosines(v))
    
       P <- vel_to_4mom(as.3vel(c(0.8,0,0)) + r3vel(7,0.01))
       expect_true(is.4mom(P))    
