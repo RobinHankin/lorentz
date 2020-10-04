@@ -51,10 +51,11 @@ gam_ur(d)
 
   Function \code{gam_ur()} is used for the ultrarelativistic case where
   speeds are very close to the speed of light (the function is named for
-  \dQuote{gamma, ultrarelativistic}).
-    
+  \dQuote{gamma, ultrarelativistic}).  Its argument \code{d} is the
+  deficit, that is, \eqn{c-v} where \eqn{v} is the speed of the
+  transformation.  Algebraically, \code{gam_ur(c-v) == gam(v)}, but if
+  \code{d} is small the result is more accurate.  
 
-  
   Function \code{speedsquared(u)} returns the square of the speed of a
   \code{3vel} object.  Use this to avoid taking a needless square root.
 }
