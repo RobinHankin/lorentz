@@ -14,7 +14,7 @@ reflect(P,m,ref=1)
   \item{ref}{Coefficient of reflectivity of the mirror}
 }
 \value{
-  Takes a four-momentum and  returns the four-momentum after reflection.
+  Takes a four-momentum and returns the four-momentum after reflection.
   Will handle objects or photons.
   
 }
