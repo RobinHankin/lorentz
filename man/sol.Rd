@@ -3,7 +3,6 @@
 \alias{eta}
 \alias{minkowski}
 \alias{lightspeed}
-\alias{celerity}
 \alias{ptm}
 \title{Speed of light and Minkowski metric}
 \description{Getting and setting the speed of light}

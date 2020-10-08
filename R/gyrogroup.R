@@ -184,6 +184,47 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   d <- d/sol()
   return(1/sqrt(2*d-d^2))
 }
+
+`rapidity` <- function(u){ UseMethod("rapidity",u) }
+
+`rapidity.default` <- function(u){  # 'u' is a speed
+    sol()*atanh(u/sol())
+}
+
+`rapidity.3vel` <- function(u){
+    rapidity(speed(u))
+}
+
+`rapidity.4vel` <- function(u){
+    g <- u[,1] # gamma
+    log(2*g*(g+sqrt(g^2-1))-1)/2
+}
+
+`rapidity_ur` <- function(d){# d=1-speed, d<<c
+    d <- d/sol()
+    sol()*log((2-d)/d)/2
+}
+
+`celerity` <- function(u){ UseMethod("celerity",u) }
+
+`celerity.default` <- function(u){  # 'u' is a speed
+    u*gam(u)
+}
+
+`celerity.3vel` <- function(u){
+    celerity(speed(u))
+}
+
+`celerity.4vel` <- function(u){
+    g <- u[,1] # gamma
+    sqrt(g^2-1)
+}
+
+`celerity_ur` <- function(d){# d=1-speed, d<<c
+    d <- d/sol()
+    sol()*(1-d)/sqrt(d*(2-d))
+}
+
 `add3` <- function(u,v){  # eq 2
   jj <- massage3(u,v)
   u <- jj[[1]]

@@ -31,6 +31,13 @@ S3method("c"      , "4vel")
 S3method("speed"  , "3vel")
 S3method("speed"  , "4vel")
 
+S3method("rapidity", "3vel")
+S3method("rapidity", "4vel")
+S3method("rapidity", "default")
+
+S3method("celerity", "3vel")
+S3method("celerity", "4vel")
+S3method("celerity", "default")
 
 S3method("as.matrix", "3vel")
 S3method("as.matrix", "4vel")
