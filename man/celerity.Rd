@@ -35,17 +35,17 @@ rapidity_ur(d)
   the ultrarelativistic case where speeds are very close to the speed of
   light.  Its argument \code{d} is the deficit, that is, \eqn{c-v} where
   \eqn{v} is the speed of the transformation.  Algebraically,
-  \code{celerity_ur(c-v) == celerity(v)}, but if \code{d} is small the
-  result is more accurate.
-
+  \code{celerity_ur(c-v) == celerity(v)}, but if \eqn{d=1-v/c} is small
+  the result is more accurate.
 
   Things get a bit sticky for celerity and rapidity if \eqn{c\neq
   1}{c!=1}.  The guiding principle in the package is to give the
   celerity and rapidity the same units as \eqn{c}, so if \eqn{u\ll
   c}{u<<c} we have that all three of \code{celerity(u)},
   \code{rapidity(u)} and \code{u} are approximately equal.  Note
-  carefully that, in contrast, \eqn{\gamma}{g} is dimensionless.
-
+  carefully that, in contrast, \eqn{\gamma}{g} is dimensionless.  Also
+  observe that \code{d} in functions \code{celerity_ur()} and
+  \code{rapidity_ur()} has the same units as \eqn{c}.
   
 }
 \author{Robin K. S. Hankin}
