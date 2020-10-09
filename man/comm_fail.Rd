@@ -6,7 +6,7 @@
 \alias{ass_fail}
 \alias{my_seg}
 \title{
-Failure of commutativity and associativty using visual plots
+Failure of commutativity and associativity using visual plots
 }
 \description{
 Relativistic addition of three-velocities is neither commutative nor
