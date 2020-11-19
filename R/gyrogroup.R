@@ -100,7 +100,7 @@
   return(x)
 }
 
-`r3vel` <- function(n,r=NA){
+`r3vel` <- function(n=7,r=NA){
   z <- runif(n,-1,1)
   phi <- runif(n,0,2*pi)
   u <- sqrt(1-z^2)
