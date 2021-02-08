@@ -29,14 +29,15 @@ rapidity_ur(d)
 
   The \dfn{celerity} corresponding to speed \eqn{u} is defined as
   \eqn{u\gamma}{ug} and the \dfn{rapidity} is
-  \eqn{\mathrm{atanh}(u/c)}{omitted}.
+  \eqn{c\cdot\mathrm{atanh}(u/c)}{omitted}.
 
   Functions \code{celerity_ur()} and \code{rapidity_ur()} are used for
   the ultrarelativistic case where speeds are very close to the speed of
-  light.  Its argument \code{d} is the deficit, that is, \eqn{c-v} where
-  \eqn{v} is the speed of the transformation.  Algebraically,
+  light.  Its argument \code{d} is the deficit, that is, \eqn{d=c-v}
+  where \eqn{v} is the speed of the transformation.  Algebraically,
   \code{celerity_ur(c-v) == celerity(v)}, but if \eqn{d=1-v/c} is small
-  the result is more accurate.
+  the result of \code{celerity_ur()} is more accurate than that of
+  \code{celerity()}.
 
   Things get a bit sticky for celerity and rapidity if \eqn{c\neq
   1}{c!=1}.  The guiding principle in the package is to give the
