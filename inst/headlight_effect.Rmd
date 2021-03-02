@@ -88,7 +88,7 @@ plot(angle(p1),angle(p2),asp=1,xlim=c(0,pi),ylim=c(0,pi))
 abline(0,1,col='gray')
 ```
 
-```{r,photonsandenergy,fig.cap="Photons emitted from a stationary object (black lines) and an object moving at $0.7c$ to the right (red).  Lengths of lines correspond to photon energy and angles to the projected angle measured in the two reference frames"}
+```{r,photonsandenergy,fig.cap="Photons emitted from a stationary object (black lines) and an object moving at $0.7c$ to the right (red).  Lengths of lines correspond to photon energy and angles to the projected angle measured in the two reference frames.  Irregularity in red lines' lengths is due to the suppressed third dimension"}
 par(pty='s')
 plot(NA,xlim=c(-1.5,3),ylim=c(-1,1),asp=1,xlab="x",ylab="y")
 p1[,4] <- 0
