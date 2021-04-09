@@ -1,0 +1,101 @@
+---
+title: "The headlight effect in special relativity: a numerical illustration"
+output: bookdown::html_document2
+---
+
+```{r setup, include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(echo = TRUE)
+library("lorentz")
+library("magrittr")
+options("digits" = 5)
+```
+
+In special relativity, the _headlight effect_ (also known as
+_relativistic beaming_ and _light aberration_) occurs when a source of
+light moves relative to an observer.  Rays of light from the source
+which reach the observer are tilted towards the direction of the
+source's motion (relative to the observer).  It is as if light emitted
+by a moving object is concentrated towards its direction of motion.
+Also, light received by a moving object (e.g. the view from a very
+fast spacecraft) also appears concentrated towards its direction of
+motion
+[wikipedia](https://en.wikipedia.org/wiki/Relativistic_aberration).
+
+First we will create 10 photons emitted from a stationary object, in
+random directions:
+
+```{r readcurlingtable}
+p1 <- as.photon(r3vel(n=10))
+p1
+```
+
+See how they all have unit energy (column 1).  We can calculate the photons' angle with respect the
+the $x$-axis:
+
+```{r}
+angle <- function(P){acos(P[,2]/sqrt(rowSums(P[,-1]^2)))}
+angle(p1)
+summary(angle(p1))
+```
+
+and we see that the angles are reasonably uniformly distributed on the
+interval $[0,\pi)$.  But now suppose these photons are emitted from an
+object moving at say $0.7c$ along the $x$-axis.  This is most easily
+effected by a passive Lorentz transform
+
+```{r}
+B <- boost(c(-0.7,0,0))
+p2 <- p1 %>% tcrossprod(B)
+p2
+```
+
+above we see that the photons' energy has changed---as one might expect
+from Doppler shifting.  Although most photons have increased their
+energy, some have decreased: this is because they were emitted
+backwards compared with the path of the object.  Photon number 4, for
+example, was emitted almost exactly along the (negative) $x$-axis and
+this photon has about half its energy in the transformed frame.
+What angle do the photons make with the x-axis?
+
+```{r}
+angle(p2)
+summary(angle(p2))
+```
+
+we see that the mean angle changes from about 1.4 to about 0.8:
+relativistic aberration of light.  The effect may be illustrated
+more dramatically using a larger number of photons.
+
+
+```{r,unshiftedphotons,fig.cap="Distribution of angles made by photons from a uniform source at rest"}
+p1 <- as.photon(r3vel(n=10000))
+hist(angle(p1))
+
+```{r,shiftedphotons,fig.cap="Distribution of angles made by photons from a uniform source moving at 0.7c"}
+p2 <- p1 %>% tcrossprod(B)
+hist(angle(p2))
+```
+
+Figures \@ref(fig:unshiftedphotons) and \@ref(fig:shiftedphotons)
+show that the photons have a smaller angle in the shifted frame
+than the unshifted frame.  This may be illustrated by plotting one
+angle against the other:
+
+```{r,onagainstother,fig.cap="scattergraph of angles with x-axis for photons in the unshifted frame against angles in the shifted frame"}
+par(pty='s')
+plot(angle(p1),angle(p2),asp=1,xlim=c(0,pi),ylim=c(0,pi))
+abline(0,1,col='gray')
+```
+
+```{r,photonsandenergy,fig.cap="Photons emitted from a stationary object (black lines) and an object moving at $0.7c$ to the right (red).  Lengths of lines correspond to photon energy and angles to the projected angle measured in the two reference frames.  Irregularity in red lines' lengths is due to the suppressed third dimension"}
+par(pty='s')
+plot(NA,xlim=c(-1.5,3),ylim=c(-1,1),asp=1,xlab="x",ylab="y")
+p1[,4] <- 0
+p2[,4] <- 0
+for(i in seq_len(100)){
+   segments(x0=0,y0=0,x1=p1[i,1]*cos(angle(p1)[i]),y1=p1[i,1]*sin(angle(p1)[i])*sign(p1[i,3]),col='black')
+   segments(x0=0,y0=0,x1=p2[i,1]*cos(angle(p2)[i]),y1=p2[i,1]*sin(angle(p2)[i])*sign(p2[i,3]),col='red'  )
+}
+```
+
