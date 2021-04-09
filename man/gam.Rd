@@ -54,7 +54,7 @@ gam_ur(d)
   \dQuote{gamma, ultrarelativistic}).  Its argument \code{d} is the
   deficit, that is, \eqn{c-v} where \eqn{v} is the speed of the
   transformation.  Algebraically, \code{gam_ur(c-v) == gam(v)}, but if
-  \code{d} is small the result is more accurate.  
+  \code{d} is small compared to \code{c} the result is more accurate.
 
   Function \code{speedsquared(u)} returns the square of the speed of a
   \code{3vel} object.  Use this to avoid taking a needless square root.

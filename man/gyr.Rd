@@ -36,7 +36,7 @@ Ungar 2006. \dQuote{Thomas precession: a kinematic
     {T}hree-dimensional case}}. \emph{European Journal of Physics},
   27:L17-L20.
 \item
-Sbitneva 2001. \dQuote{Nonassociative geomery of special relativity}.
+Sbitneva 2001. \dQuote{Nonassociative geometry of special relativity}.
 \emph{International Journal of Theoretical Physics, volume 40, number 1,
   pages 359--362}}
 }
