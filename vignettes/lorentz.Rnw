@@ -84,6 +84,7 @@
 
 \begin{document}
 
+
 <<echo=FALSE,print=FALSE>>=
 library("lorentz")
 @ 
@@ -375,7 +376,10 @@ boost(u)
 @ 
 
 The boost matrix is not symmetrical, even though it is a pure boost,
-because $c\neq 1$.  Note how the transform is essentially the Galilean
+because $c\neq 1$.  
+
+
+Note how the transform is essentially the Galilean
 result, which is discussed below.
 
 \subsection{Changing units}

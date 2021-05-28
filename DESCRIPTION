@@ -4,7 +4,7 @@ Title: The Lorentz Transform in Relativistic Physics
 Version: 1.0-6
 Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
 Depends: magrittr
-Suggests: knitr,testthat
+Suggests: knitr,testthat,rmarkdown
 Imports: emulator (>= 1.2-20),tensor,magic
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 Description: The Lorentz transform in special relativity; also the gyrogroup structure of three-velocities.  Includes active and passive transforms and the ability to use units in which the speed of light is not one.  For general relativity, see the
@@ -12,7 +12,6 @@ Description: The Lorentz transform in special relativity; also the gyrogroup str
 License: GPL-3
 URL: https://github.com/RobinHankin/lorentz
 Encoding: UTF-8
-LazyData: true
 VignetteBuilder: knitr
 URL: https://github.com/RobinHankin/lorentz
 BugReports: https://github.com/RobinHankin/lorentz/issues
