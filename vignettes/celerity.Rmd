@@ -1,0 +1,25 @@
+---
+title: "Celerity in the `lorentz` package
+author: "Robin K. S. Hankin"
+output: html_document
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{celerity}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("lorentz")
+```
+
+In relativistic dynamics one usually uses three-velocity or four
+velocity to describe instantaneous properties of timelike
+trajectories.  The associated scalar quantity would be speed, the
+magnitude of the three-velocity.  However, there are two other
+measures that have pleasing properties: _celerity_ and _rapidity_.
+These quantities have associated functionality in the lorentz package
+which is shown here.
+
+
+
