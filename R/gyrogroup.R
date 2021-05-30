@@ -77,6 +77,7 @@
 `c.4vel` <- function(...){ as.4vel(do.call("rbind",list(...))) }
 
 `print.3vel` <- function(x, ...){
+  cat(paste("A vector of three-velocities (speed of light = ",capture.output(cat(sol())),")\n",sep=""))
   x <- unclass(x)
   if(is.null(colnames(x)) & ncol(x)==3){
     colnames(x) <- coordnames()[-1]
@@ -85,6 +86,7 @@
 }
 
 `print.4vel` <- function(x, ...){
+  cat(paste("A vector of four-velocities (speed of light = ",capture.output(cat(sol())),")\n",sep=""))
   x <- rbind(unclass(x))
   if(is.null(colnames(x)) & ncol(x)==4){ 
     colnames(x) <- coordnames()
