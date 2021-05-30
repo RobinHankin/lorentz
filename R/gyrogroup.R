@@ -39,6 +39,7 @@
 }
 
 `as.3vel` <- function(x){
+  if(is.3cel(x)){return(cel_to_vel(x))}    
   x <- unclass(x)
   if(length(x)==1){
     if(x==0){
@@ -64,16 +65,35 @@
   return(out)
 }
 
+
+`as.3cel` <- function(x){
+  if(is.3vel(x)){return(vel_to_cel(x))}
+  if(is.vector(x)){x <- t(x)}
+  if(ncol(x) == 4){   # assumed to be a 4-velocity
+    out <- x[,-1]  # lose the first column
+  } else if(ncol(x)==3){
+    out <- x
+  } else {
+    stop("should have 3 columns")
+  }
+  class(out) <- c("3cel","vec") # this is the only place where the class is set
+  return(out)
+}
+
 `3vel` <- function(n){ as.3vel(matrix(0,n,3))  }
 `4vel` <- function(n){ as.4vel(matrix(0,n,3))  }
+`3cel` <- function(n){ as.3cel(matrix(0,n,3))  }
 
 `threevel` <- `3vel`
 `fourvel` <- `4vel`
+`threecel` <- `3cel`
 
 `is.3vel` <- function(x){inherits(x,"3vel")}
+`is.3cel` <- function(x){inherits(x,"3cel")}
 `is.4vel` <- function(x){inherits(x,"4vel")}
 
 `c.3vel` <- function(...){ as.3vel(do.call("rbind",list(...))) }
+`c.3cel` <- function(...){ as.3cel(do.call("rbind",list(...))) }
 `c.4vel` <- function(...){ as.4vel(do.call("rbind",list(...))) }
 
 `print.3vel` <- function(x, ...){
@@ -158,6 +178,10 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 
 `gam.4vel` <- function(u){
   u[,1]
+}
+
+`gam.3cel` <- function(u){
+ sqrt(1+rowSums(unclass(u)^2))   
 }
 
 `gam.default` <- function(u){
