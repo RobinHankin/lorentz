@@ -39,7 +39,8 @@
 }
 
 `as.3vel` <- function(x){
-  if(is.3cel(x)){return(cel_to_vel(x))}    
+  if(is.3cel(x)){out <- cel_to_vel(x))}
+
   x <- unclass(x)
   if(length(x)==1){
     if(x==0){
@@ -186,6 +187,20 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 
 `gam.default` <- function(u){
   1/sqrt(1-u^2/sol()^2)
+}
+
+`beta` <- function(u){UseMethod("beta",u)}
+`beta.default` <- function(u){1/sqrt(1+u^2/sol()^2)}  # compare gam.default()
+`beta.3vel` <- function(u){  1/sqrt(1+rowSums(unclass(u)^2)/sol()^2)}  # compare gam.3vel()
+`beta.4vel` <- function(u){}
+`beta.4vel` <- function(u){
+  jj <- rowSums(unclass(u)^2/sol()^2)
+  return(sqrt((1+jj)/(1+2*jj)))
+}
+
+`beta_ur` <- function(d){  # compare gam_ur()
+  d <- d/sol()
+  return(1/sqrt(2-2*d+d^2))  # ...odd
 }
 
 `gamm1` <- function(u){   # gamm1() named in analogy to expm1()
