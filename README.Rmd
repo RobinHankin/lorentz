@@ -16,6 +16,9 @@ knitr::opts_chunk$set(
 )
 ```
 
+<img src="man/figures/lorentz.png" width = "150" align="right" />
+
+
 <!-- badges: start -->
 [![Build Status](https://travis-ci.com/RobinHankin/lorentz.svg?branch=master)](https://travis-ci.com/RobinHankin/lorentz)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)

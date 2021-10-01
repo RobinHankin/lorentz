@@ -4,3 +4,4 @@
 ^\.travis\.yml$
 ^LICENSE$
 ^inst/JOSS$
+inst/.RData

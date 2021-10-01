@@ -2,6 +2,9 @@ The lorentz package: special relativity in R
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<img src="man/figures/lorentz.png" width = "150" align="right" />
+
 <!-- badges: start -->
 
 [![Build
@@ -58,14 +61,12 @@ default, this can be changed.
 #> A vector of three-velocities (speed of light = 1)
 #>        x y z
 #> [1,] 0.6 0 0
-
 as.4vel(u)    # convert to a four-velocity:
 #> A vector of four-velocities (speed of light = 1)
 #>         t    x y z
 #> [1,] 1.25 0.75 0 0
 gam(u)  # calculate the gamma term
 #> [1] 1.25
-
 B <- boost(u) # give the Lorentz transformation
 B
 #>       t     x y z
@@ -144,7 +145,6 @@ are three-velocities or four-velocities:
  # calculate the gamma correction term:
  gam(u)
 #> [1] 1.09 1.24 1.21 2.13 1.46
-
  # add a velocity of 0.9c in the x-direction:
  v <- as.3vel(c(0.9,0,0))
  v+u
@@ -155,8 +155,6 @@ are three-velocities or four-velocities:
 #> [3,] 0.858  0.267 -0.075
 #> [4,] 0.480 -0.605  0.168
 #> [5,] 0.820 -0.174  0.356
-
-
  # convert u to a four-velocity:
  as.4vel(u)
 #> A vector of four-velocities (speed of light = 1)
@@ -166,7 +164,6 @@ are three-velocities or four-velocities:
 #> [3,] 1.21 -0.223  0.6160 -0.173
 #> [4,] 2.13 -1.571 -0.9862  0.273
 #> [5,] 1.46 -0.443 -0.4209  0.864
-
  # use four-velocities to effect the same transformation:
  w <- as.4vel(u) %*% boost(-v)
  as.3vel(w)
@@ -229,7 +226,6 @@ any sense. Commutativity is replaced with gyrocommutatitivity:
 #> [2,]  2.89e-16 -3.18e-15 -1.08e-16
 #> [3,] -4.26e-15  1.09e-13  4.67e-14
 #> [4,]  1.67e-15  4.76e-16  1.91e-15
-
 # The other way round:
  (v+u) - gyr(v,u,u+v)
 #> A vector of three-velocities (speed of light = 1)
