@@ -18,7 +18,7 @@
 \alias{is.consistent.boost.galilean}
 \alias{is.consistent.galilean.boost}
 \title{Lorentz transformations}
-\description{Lorenz transformations: boosts and rotations}
+\description{Lorentz transformations: boosts and rotations}
 \usage{
 boost(u)
 rot(u,v,space=TRUE)
