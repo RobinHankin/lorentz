@@ -73,6 +73,6 @@ eta()                          # note [t,t] term
 u <- as.3vel(c(100,200,300))   # fast terrestrial speed, but not relativistic
 boost(u)                       # boost matrix practically Galilean
 is.consistent.boost(boost(u))  # should be TRUE
-sol(1)                         # revert to relativisitic units
+sol(1)                         # revert to relativistic units
 
 }
