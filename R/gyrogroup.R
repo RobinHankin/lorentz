@@ -374,9 +374,9 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 
 `Ops.4vel` <- function(e1,e2){
   if(nargs() == 1){
-    stop("Unary operator '", .Generic, "' is not implemented for 4vel objects")
+    stop("unary operator '", .Generic, "' is not implemented for 4vel objects")
   } else {
-    stop("Operator '", .Generic, "' is not implemented for 4vel objects (four-velocities do not constitute a vector space).")
+    stop("operator '", .Generic, "' is not implemented for 4vel objects (four-velocities do not constitute a vector space).")
   }
 }
 
@@ -392,7 +392,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     } else if (.Generic == "-") {
       return(neg3(e1))
     } else {
-      stop("Unary operator '", .Generic, "' is not implemented for 3vel objects")
+      stop("unary operator '", .Generic, "' is not implemented for 3vel objects")
     }
   }
   if (!is.element(.Generic, c("+", "-",  "==", "!=", "*","/")))
