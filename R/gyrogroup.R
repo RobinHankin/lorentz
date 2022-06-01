@@ -39,28 +39,31 @@
 }
 
 `as.3vel` <- function(x){
-  if(is.3cel(x)){out <- cel_to_vel(x))}
-
-  x <- unclass(x)
-  if(length(x)==1){
-    if(x==0){
-      x <- c(0,0,0)
-    } else {
-      stop("not defined")
-    }
-  }
-
-  if(is.vector(x)){x <- t(x)}
-  if(ncol(x) == 4){   # assumed to be a 4-velocity
-    out <- to3(as.4vel(x))
-  } else if(ncol(x)==3){
-    if(all(rowSums(x^2)<sol()^2)){
-      out <- x
-    } else {
-      stop("speed > c")
-    }
+  if(is.3cel(x)){
+    out <- cel_to_vel(x)
   } else {
-    stop("should have 3 or 4 columns")
+
+    x <- unclass(x)
+    if(length(x)==1){
+      if(x==0){
+        x <- c(0,0,0)
+      } else {
+        stop("not defined")
+      }
+    }
+    
+    if(is.vector(x)){x <- t(x)}
+    if(ncol(x) == 4){   # assumed to be a 4-velocity
+      out <- to3(as.4vel(x))
+    } else if(ncol(x)==3){
+      if(all(rowSums(x^2)<sol()^2)){
+        out <- x
+      } else {
+        stop("speed > c")
+      }
+    } else {
+      stop("should have 3 or 4 columns")
+    }
   }
   class(out) <- c("3vel","vec") # this is the only place where the class is set
   return(out)
@@ -68,15 +71,18 @@
 
 
 `as.3cel` <- function(x){
-  if(is.3vel(x)){return(vel_to_cel(x))}
-  if(is.vector(x)){x <- t(x)}
-  if(ncol(x) == 4){   # assumed to be a 4-velocity
-    out <- x[,-1]  # lose the first column
-  } else if(ncol(x)==3){
-    out <- x
-  } else {
-    stop("should have 3 columns")
-  }
+  if(is.3vel(x)){
+    out <- vel_to_cel(x)
+    } else {
+      if(is.vector(x)){x <- t(x)}
+      if(ncol(x) == 4){   # assumed to be a 4-velocity
+        out <- x[,-1]  # lose the first column
+      } else if(ncol(x)==3){
+        out <- x
+      } else {
+        stop("should have 3 columns")
+      }
+    }
   class(out) <- c("3cel","vec") # this is the only place where the class is set
   return(out)
 }
@@ -99,6 +105,15 @@
 
 `print.3vel` <- function(x, ...){
   cat(paste("A vector of three-velocities (speed of light = ",capture.output(cat(sol())),")\n",sep=""))
+  x <- unclass(x)
+  if(is.null(colnames(x)) & ncol(x)==3){
+    colnames(x) <- coordnames()[-1]
+  }
+  return(invisible(print(x)))
+}
+
+`print.3cel` <- function(x, ...){
+  cat(paste("A vector of three-celerities (speed of light = ",capture.output(cat(sol())),")\n",sep=""))
   x <- unclass(x)
   if(is.null(colnames(x)) & ncol(x)==3){
     colnames(x) <- coordnames()[-1]
@@ -165,6 +180,11 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 `speed` <- function(u){UseMethod("speed",u)}
 
 `speed.3vel` <- function(u){sqrt(rowSums(unclass(u)^2))}
+`speed.3cel` <- function(u){
+  jj <- rowSums(unclass(u)^2/sol()^2)
+  return(sqrt(jj/(1+jj)))
+}
+  
 `speed.4vel` <- function(u){speed(as.3vel(u))}
 
 `speedsquared` <- function(u){rowSums(unclass(u)^2)}
@@ -189,7 +209,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   1/sqrt(1-u^2/sol()^2)
 }
 
-`beta` <- function(u){UseMethod("beta",u)}
+`beta` <- function(u){UseMethod("beta",u)} # see 'proper velocity addition formula' in the 'proper velocity' wikipedia page
 `beta.default` <- function(u){1/sqrt(1+u^2/sol()^2)}  # compare gam.default()
 `beta.3vel` <- function(u){  1/sqrt(1+rowSums(unclass(u)^2)/sol()^2)}  # compare gam.3vel()
 `beta.4vel` <- function(u){}
@@ -197,6 +217,8 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   jj <- rowSums(unclass(u)^2/sol()^2)
   return(sqrt((1+jj)/(1+2*jj)))
 }
+`beta.3cel` <- function(u){stop("not yet written")}
+
 
 `beta_ur` <- function(d){  # compare gam_ur()
   d <- d/sol()
@@ -210,6 +232,10 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 `gamm1.3vel` <- function(u){
   jj <- log1p(-rowSums(unclass(u)^2/sol()^2))/2
   return(-expm1(jj)/exp(jj))
+}
+
+`gamm1.3cel` <- function(u){
+  stop("not yet written")
 }
 
 `gamm1.4vel` <- function(u){ # should not be here
@@ -232,9 +258,8 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     sol()*atanh(u/sol())
 }
 
-`rapidity.3vel` <- function(u){
-    rapidity(speed(u))
-}
+`rapidity.3vel` <- function(u){ rapidity(speed(u)) }
+`rapidity.3cel` <- function(u){atanh(sqrt(1-1/(1+rowSums(unclass(u)^2/sol()^2))))}
 
 `rapidity.4vel` <- function(u){
     g <- u[,1] # gamma
@@ -254,6 +279,10 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 
 `celerity.3vel` <- function(u){
     celerity(speed(u))
+}
+
+`celerity.3cel` <- function(u){
+  stop("celerity.3cel() not yet written.  It makes sense but I have not got round to implementing it yet")
 }
 
 `celerity.4vel` <- function(u){
@@ -394,6 +423,8 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     stop("Operator '", .Generic, "' is not implemented for 4vel objects (four-velocities do not constitute a vector space).")
   }
 }
+
+`Ops.3cel` <- function(e1,e2){stop("not yet implemented (the operation might make sense, I just haven't got round to implementing this yet)")}
 
 `Ops.3vel` <- function(e1,e2){
   f <- function(...){stop("odd---neither argument has class 3vel?")}

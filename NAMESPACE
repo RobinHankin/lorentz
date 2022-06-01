@@ -11,39 +11,53 @@ importFrom("tensor","tensor")
            
 
 S3method("Ops"    , "3vel")
+S3method("Ops"    , "3cel")
 S3method("Ops"    , "4vel")
 S3method("Ops"    , "4mom")
 S3method("length" ,  "vec")
 S3method("names"  ,  "vec")
 S3method("names<-",  "vec")
 S3method("print"  , "3vel")
+S3method("print"  , "3cel")
 S3method("print"  , "4vel")
 S3method("print"  , "4mom")
 S3method("["      ,  "vec")
 S3method("[<-"    , "3vel")
 S3method("[<-"    , "4vel")
-S3method("gam"    , "3vel")
-S3method("gam"    , "4vel")
-S3method("gamm1"  , "3vel")
-S3method("gamm1"  , "4vel")
 S3method("c"      , "3vel")
 S3method("c"      , "4vel")
 S3method("speed"  , "3vel")
+S3method("speed"  , "3cel")
 S3method("speed"  , "4vel")
 
 S3method("rapidity", "3vel")
+S3method("rapidity", "3cel")
 S3method("rapidity", "4vel")
 S3method("rapidity", "default")
 
 S3method("celerity", "3vel")
+S3method("celerity", "3cel")
 S3method("celerity", "4vel")
 S3method("celerity", "default")
+
+S3method("beta", "3vel")
+S3method("beta", "3cel")
+S3method("beta", "4vel")
+S3method("beta", "default")
 
 S3method("as.matrix", "3vel")
 S3method("as.matrix", "4vel")
 
 S3method("gam"    , "default")
+S3method("gam"    , "3vel")
+S3method("gam"    , "3cel")
+S3method("gam"    , "4vel")
+
 S3method("gamm1"  , "default")
+S3method("gamm1"  , "3vel")
+S3method("gamm1"  , "4vel")
+
+
          
 S3method("seq", "3vel")
 S3method("sum", "4mom")
