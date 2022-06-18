@@ -11,6 +11,10 @@ library("magrittr")
 options("digits" = 5)
 ```
 
+<p style="text-align: right;">
+![](`r system.file("help/figures/lorentz.png", package = "lorentz")`){width=10%}
+</p>
+
 In special relativity, the _headlight effect_ (also known as
 _relativistic beaming_ and _light aberration_) occurs when a source of
 light moves relative to an observer.  Rays of light from the source
