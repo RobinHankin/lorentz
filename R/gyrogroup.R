@@ -609,7 +609,8 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   return(from + tee*(-from+to))
 }
 
-`boost` <- function(u){  # v = (u,v,w)
+`boost` <- function(u=0){  # v = (u,v,w)
+  if(identical(u,0)){u <- c(0,0,0)}
   u <- as.3vel(u)
   if(is.infinite(sol())){return(flob(rbind(c(1,0,0,0),cbind(t(-u),diag(3)))))}
   g <- gam(u)  

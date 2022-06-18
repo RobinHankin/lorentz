@@ -20,7 +20,7 @@
 \title{Lorentz transformations}
 \description{Lorentz transformations: boosts and rotations}
 \usage{
-boost(u)
+boost(u=0)
 rot(u,v,space=TRUE)
 is.consistent.boost(L, give=FALSE, TOL=1e-10)
 is.consistent.boost.galilean(L, give=FALSE, TOL=1e-10)
@@ -30,7 +30,9 @@ pureboost.galilean(L, tidy=TRUE)
 orthog.galilean(L)
 }
 \arguments{
-  \item{u,v}{Three-velocities, coerced to  class \code{3vel}}
+  \item{u,v}{Three-velocities, coerced to  class \code{3vel}.  In
+    function \code{boost()}, if \code{u} takes the special default value
+    \code{0}, this is interpreted as zero three velocity}
   \item{L}{Lorentz transform expressed as a \eqn{4\times 4}{4x4} matrix}
   \item{TOL}{Numerical tolerance}
   \item{give}{Boolean with \code{TRUE} meaning to return the transformed
