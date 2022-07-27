@@ -453,16 +453,24 @@ Then the familiar parallelogram law operates:
 u <- as.3vel(1:3)
 v <- as.3vel(c(-6,8,3))
 u+v
+v+u
 @ 
 
-The boost matrix is instructive:
+Above we see that composition of velocities is commutative, unlike the
+relativistic case.  The boost matrix is instructive:
 
 <<boostinfc>>=
 boost(u)
+boost(u+v)
+boost(u) %*% boost(v)
 @ 
 
-With an infinite speed of light, even ``large'' speeds have zero
-relativistic correction:
+Above, see how the boost matrix for the composed velocity of $u+v$
+does not have any rotational component, unlike the relativistic case
+[recall that \code{boost()} gives a {\em passive} transform, which is
+why the sign of the numbers in the first column is changed].  With an
+infinite speed of light, even ``large'' speeds have zero relativistic
+correction:
 
 <<gamm1google>>=
 gamm1(1e100)
