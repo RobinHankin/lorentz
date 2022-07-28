@@ -20,7 +20,8 @@ a\oplus z = \frac{a+z}{1+\overline{a}z}
 \end{equation}
 
 (naturally we define $a\ominus z=a\oplus(-z)$ and it convenient to
-write $\ominus z=0\ominus z=-z$).
+write $\ominus z=0\ominus z=-z$).  Observe that $0\oplus z=z\oplus
+0=z$, and $z\ominus z=(-z)\oplus z=0$.
 
 
 
@@ -41,7 +42,7 @@ and the _left cancellation law_
 
 proof:
 \[
-\ominus(a\oplus b) = -(a\oplus b)=-\frac{a+b}{1+\overline{a}b}=
+\ominus(a\oplus b) = -(a\oplus b)=-\frac{a+b}{1+\overline{a}b}
 =\frac{(-a)+(-b)}{1+\overline{a}b}
 =\frac{(-a)+(-b)}{1+\overline{(-a)}(-b)}
 =(-a)\oplus(-b)
@@ -56,7 +57,11 @@ proof:
 =\frac{z(1-a\overline{a})}{1-\overline{a}a}
 =z,
 \]
+
 the last equality following from the fact that $a\in\mathbb{D}$.
+Observe that, in general, $(a\oplus b)\ominus a \neq b$ and $\ominus
+a\oplus (z\oplus a)\neq z$, so one must use the left cancellation law
+with care.
 
 
 ```{r}
