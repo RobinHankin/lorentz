@@ -496,6 +496,26 @@ pureboost(B)
 @ 
 
 
+Boost matrices can be applied to any four-vector.  Here I show how
+pure spatial displacements transform with an infinite light speed.
+
+<<infinitelightspeedspatialdisplacement>>=
+(u <- as.3vel(c(10,0,0))) # velocity of 10, parallel to x axis
+(B <- boost(u))
+d <- c(0,1,0,0) # displacement of distance one, parallel to the x-axis
+B %*% d
+@
+
+Above we see that a spatial displacement is the same for both
+observers.  We can similarly apply a boost to a temporal displacement:
+
+<<classicalboostspatial>>=
+d <- c(1,0,0,0) # displacement of one unit of time, no spatial component
+B %*% d
+@
+
+Above we see the result expected from classical mechanics.
+
 
 
 \section{Vectorization}
