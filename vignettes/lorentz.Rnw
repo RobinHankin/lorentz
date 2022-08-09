@@ -206,8 +206,10 @@ Lorentz transform is then
   \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{1}=\vvec{\gamma-\gamma v}{\gamma-\gamma v}
   \end{equation*}
 
+
 So, in the language used above, I see a photon with unit energy, and
-my friend sees the photon with energy $\gamma(1-v)=\sqrt{1-v}<1$: the
+my friend sees the photon with energy
+$\gamma(1-v)=\sqrt{\frac{1-v}{1+v}}<1$, provided that $v>0$: the
 photon has less energy in his frame than mine because of Doppler
 redshifting.  It's worth doing the same analysis with a
 leftward-moving photon:
