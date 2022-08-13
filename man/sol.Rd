@@ -36,25 +36,17 @@ ptm(to_natural=TRUE, change_time=TRUE)
   display the speed of light which might be useful.
 
   Function \code{eta()} returns the Minkowski flat-space metric
+  \deqn{\operatorname{diag}\left(-c^2,1,1,1\right).}{diag(-c^2,1,1,1).}
 
-  \deqn{\left(\begin{array}{cccc}
-    -c^2& 0 & 0 & 0\\
-      0 & 1 & 0 & 0\\
-      0 & 0 & 1 & 0\\
-      0 & 0 & 0 & 1
-    \end{array}
-    \right)
-  }{
-    omitted}
+  Note that the top-left element of \code{eta()} is \eqn{-c^2}, not
+  \eqn{-1}.
 
-Note that the top-left element of \code{eta()} is \eqn{-c^2}, not
-\eqn{-1}.
-
-Function \code{ptm()} returns a passive transformation matrix that
-converts displacement vectors to natural units (\code{to_natural=TRUE})
-or from natural units (\code{to_natural=FALSE}).  Argument
-\code{change_time} specifies whether to change the unit of time (if
-\code{TRUE}) or the unit of length (if \code{FALSE}).
+  Function \code{ptm()} returns a passive transformation matrix that
+  converts displacement vectors to natural units
+  (\code{to_natural=TRUE}) or from natural units
+  (\code{to_natural=FALSE}).  Argument \code{change_time} specifies
+  whether to change the unit of time (if \code{TRUE}) or the unit of
+  length (if \code{FALSE}).
 
 }
 \author{Robin K. S. Hankin}

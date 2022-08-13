@@ -1,15 +1,20 @@
 ---
-title: "mobius"
-author: "Robin KS Hankin"
-date: "11/09/2020"
-output: html_document
+title: "Vectors on the unit disk: Möbius addition"
+author: "Robin K. S. Hankin"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{Mobius addition}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
+<p style="text-align: right;">
+![](`r system.file("help/figures/lorentz.png", package = "lorentz")`){width=10%}
+</p>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## Möbius addition 
 
 We define Möbius addition $\oplus$ on the unit disk $\mathbb{D} =
 \left\lbrace z\in\mathbb{C}\colon\left|z\right|<1\right\rbrace$ as
@@ -27,7 +32,7 @@ write $\ominus z=0\ominus z=-z$).  Observe that $0\oplus z=z\oplus
 
 The $\oplus$ operator is neither commutative nor associative ($a\oplus
 b\neq b\oplus a$ and $a\oplus(b\oplus c)\neq (a\oplus b)\oplus c$ in
-general).  However, it does posess the _automorphic inverse property_
+general).  However, it does possess the _automorphic inverse property_
 
 \begin{equation}
 \ominus(a\oplus b) = \ominus a\ominus b

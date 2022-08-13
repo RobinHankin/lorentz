@@ -1,7 +1,17 @@
 ---
 title: "The headlight effect in special relativity: a numerical illustration"
-output: bookdown::html_document2
+author: "Robin K. S. Hankin"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{the headlight effect}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
+<p style="text-align: right;">
+![](`r system.file("help/figures/lorentz.png", package = "lorentz")`){width=10%}
+</p>
+
 
 ```{r setup, include=FALSE}
 set.seed(0)
@@ -23,8 +33,9 @@ source's motion (relative to the observer).  It is as if light emitted
 by a moving object is concentrated towards its direction of motion.
 Also, light received by a moving object (e.g. the view from a very
 fast spacecraft) also appears concentrated towards its direction of
-motion
-[wikipedia](https://en.wikipedia.org/wiki/Relativistic_aberration).
+motion; see the
+[wikipedia](https://en.wikipedia.org/wiki/Relativistic_aberration)
+entry.
 
 First we will create 10 photons emitted from a stationary object, in
 random directions:
