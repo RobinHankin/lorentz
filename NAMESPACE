@@ -8,6 +8,7 @@ importFrom("magic","adiag")
 import("magrittr")
 
 importFrom("tensor","tensor")
+importFrom("utils","capture.output")
            
 
 S3method("Ops"    , "3vel")
