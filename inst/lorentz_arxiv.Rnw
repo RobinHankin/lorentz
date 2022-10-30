@@ -1,0 +1,1460 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+
+
+\documentclass{article}
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amssymb}        % needed for \leqslant
+\usepackage{amsmath}        % needed for cases
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}		% Can be removed after putting your text content
+\usepackage{graphicx}
+\usepackage[numbers]{natbib}
+\usepackage{doi}
+\usepackage{wrapfig}
+
+
+
+\title{Special relativity in R: introducing the {\tt lorentz} package}
+
+%\date{September 9, 1985}	% Here you can change the date presented in the paper title
+%\date{} 					% Or removing it
+
+\author{ \href{https://orcid.org/0000-0001-5982-0415}{\includegraphics[width=0.03\textwidth]{orcid.pdf}\hspace{1mm}Robin K. S.~Hankin}\thanks{\href{https://academics.aut.ac.nz/robin.hankin}{work};  
+\href{https://www.youtube.com/watch?v=JzCX3FqDIOc&list=PL9_n3Tqzq9iWtgD8POJFdnVUCZ_zw6OiB&ab_channel=TrinTragulaGeneralRelativity}{play}} \\
+ Auckland University of Technology\\
+	\texttt{hankin.robin@gmail.com} \\
+}
+
+% Uncomment to remove the date
+%\date{}
+
+% Uncomment to override  the `A preprint' in the header
+%\renewcommand{\headeright}{Technical Report}
+%\renewcommand{\undertitle}{Technical Report}
+\renewcommand{\shorttitle}{Special relativity in R}
+
+%%% Add PDF metadata to help others organize their library
+%%% Once the PDF is generated, you can check the metadata with
+%%% $ pdfinfo template.pdf
+\hypersetup{
+pdftitle={Special relativity in R},
+pdfsubject={q-bio.NC, q-bio.QM},
+pdfauthor={Robin K. S.~Hankin},
+pdfkeywords={Special relativity, three-velocity, Thomas rotation,
+  Lorentz transform, Poincare group, distributive law Einstein
+  velocity addition, Wigner rotation, gyrogroup, gyromorphism,
+  gyrocommutative, gyroassociative, four velocity, three-velocity,
+  nonassociative, noncommutative}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Here I present the {\tt lorentz} package for working with relativistic
+physics.  The package includes functionality for Lorentz transforms
+and Einsteinian three-velocity addition, which is noncommutative and
+nonassociative.  I use the package to systematically sweep a large
+space of potential distributive laws, without success.  The package is
+available on CRAN, at
+\url{https://CRAN.R-project.org/package=lorentz}.
+\end{abstract}
+
+\SweaveOpts{}
+
+\newcommand{\bu}{\mathbf u}
+\newcommand{\bv}{\mathbf v}
+\newcommand{\bw}{\mathbf w}
+\newcommand{\bx}{\mathbf x}
+\newcommand{\by}{\mathbf y}
+
+\newcommand{\gyr}[2]{\operatorname{gyr}\left[{\mathbf #1},{\mathbf #2}\right]}
+
+
+\section{Introduction}
+
+\setlength{\intextsep}{0pt}
+\begin{wrapfigure}{r}{0.2\textwidth}
+  \begin{center}
+\includegraphics[width=1in]{lorentz.png}
+  \end{center}
+\end{wrapfigure}
+
+
+
+
+<<echo=FALSE,print=FALSE>>=
+library("lorentz")
+@ 
+\section{Introduction}
+
+In special relativity, the Lorentz transforms supercede their
+classical equivalent, the Galilean transforms~\citep{goldstein1980}.
+Lorentz transforms operate on four-vectors such as the four-velocity
+or four-potential and are usually operationalised as multiplication by
+a $4\times 4$ matrix.  A Lorentz transform takes the components of an
+arbitrary four-vector as observed in one coordinate system and returns
+the components observed in another system which is moving at constant
+velocity with respect to the first.
+
+There are a few existing software tools for working with Lorentz
+transforms, mostly developed in an educational context.  Early work
+would include that of \citet{horwitz1992} who describe {\tt relLab}, a
+system for building a range of {\em gendanken} experiments in an
+interactive graphical environment.  The author asserts that it runs on
+``any Macintosh computer with one megabyte of RAM or more'' but it is
+not clear whether the software is still available.  More modern
+contributions would include the {\tt OpenRelativity}
+toolkit~\citep{sherin2016} which simulates the effects of special
+relativity in the {\tt Unity} game engine.
+
+The {\tt lorentz} package provides {\tt R}-centric functionality
+for Lorentz transforms.  It deals with formal Lorentz boosts,
+converts between three-velocities and four-velocities, and provides
+computational support for the gyrogroup structure of relativistic
+three-velocity addition.
+
+\section{Lorentz transforms: active and passive}
+
+Passive transforms are the usual type of transforms taught and used in
+relativity.  However, sometimes active transforms are needed and it is
+easy to confuse the two.  Here I will discuss passive and then active
+transforms, and illustrate both in a computational context.
+
+\subsection*{Passive transforms}
+
+\newcommand{\vvec}[2]{\begin{pmatrix}#1 \\ #2\end{pmatrix}}
+\newcommand{\twomat}[4]{\begin{pmatrix} #1 & #2 \\ #3 & #4\end{pmatrix}}
+
+Consider the following canonical Lorentz transform in which we have
+motion in the $x$-direction at speed $v>0$; the motion is from left to
+right.  We consider only the first two components of four-vectors, the
+$y$- and $z$- components being trivial.  A typical physical
+interpretation is that I am at rest, and my friend is in his spaceship
+moving at speed $v$ past me; and we are wondering what vectors which I
+measure in my own rest frame look like to him.  The (passive) Lorentz
+transform is:
+
+\begin{equation*}
+\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}
+\end{equation*}
+
+And the canonical example of that would be:
+
+\begin{equation*}
+\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{-\gamma v}
+\end{equation*}
+
+where the vectors are four velocities (recall that $\vvec{1}{0}$ is
+the four-velocity of an object at rest).  Operationally, I measure the
+four-velocity of an object to be $\vvec{1}{0}$, and he measures the
+same object as having a four-velocity of $\vvec{\gamma}{-\gamma v}$.
+So I see the object at rest, and he sees it as moving at speed $-v$;
+that is, he sees it moving to the left (it moves to the left because
+he is moving to the right relative to me).  The package makes
+computations easy.  Suppose $v=0.6c$ in the $x$-direction.
+
+<<floater>>=
+                          # NB: speed of light = 1 by default
+u <- as.3vel(c(0.6,0,0))  # coerce to a three-velocity
+u
+as.4vel(u)                # four-velocity is better for calculations
+(B <- boost(u))           # transformation matrix
+@ 
+
+(note that element $[1,2]$ of the boost matrix $B$ is negative as we
+have a passive transform).  Then a four-velocity of $(1,0,0,0)^T$
+would appear in the moving frame as
+
+<<flighter>>=
+B %*% c(1,0,0,0)
+@ 
+
+This corresponds to a speed of $-0.75/1.25=-0.6$.  Observe that it is
+possible to transform an arbitrary four-vector:
+
+<<flayter>>=
+B %*% c(4,6,-8,9)
+@ 
+
+
+\subsubsection*{Null vectors: light}
+
+Let's try it with light (see section~\ref{photonsection} for more
+details on photons).  Recall that we describe a photon in terms of its
+four momentum, not four-velocity, which is undefined for a photon.
+Specifically, we {\em define} the four-momentum of a photon to be
+
+\begin{equation*}
+  \left(
+  \begin{array}{c}
+    E/c\\Ev_x/c^2\\Ev_y/c^2\\Ev_z/c^2
+  \end{array}
+  \right)
+  \end{equation*}
+
+So if we consider unit energy and keep $c=1$ we get $p=\vvec{1}{1}$
+in our one-dimensional world (for a rightward-moving photon) and the
+Lorentz transform is then
+
+\begin{equation*}
+  \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{1}=\vvec{\gamma-\gamma v}{\gamma-\gamma v}
+  \end{equation*}
+
+
+So, in the language used above, I see a photon with unit energy, and
+my friend sees the photon with energy
+$\gamma(1-v)=\sqrt{\frac{1-v}{1+v}}<1$, provided that $v>0$: the
+photon has less energy in his frame than mine because of Doppler
+redshifting.  It's worth doing the same analysis with a
+leftward-moving photon:
+
+\begin{equation*}
+  \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{-1}=\vvec{\gamma(1+v)}{-\gamma(1+v)}
+  \end{equation*}
+
+Here the photon has more energy for him than me because of blue
+shifting: he is moving to the right and encounters a photon moving to
+the left.  The R idiom would be
+
+<<flooter>>=
+B %*% c(1,1,0,0)
+B %*% c(1,-1,0,0)
+@ 
+
+for the left- and right- moving photons respectively. 
+
+The above analysis uses {\em passive} transforms: there is a single
+physical reality, and we describe that one physical reality using two
+different coordinate systems.  One of the coordinate systems uses a
+set of axes that are {\em boosted} relative to the axes of the other.
+
+This is why it makes sense to use prime notation as in
+$x\longrightarrow x'$ and $t\longrightarrow t'$ for a passive Lorentz
+transform: the prime denotes measurements made using coordinates
+that are defined with respect to the boosted system, and we see
+notation like
+
+\begin{equation*}
+\vvec{t'}{x'}=\twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{t}{x}
+\end{equation*}  
+
+These are the first two elements of a displacement four-vector.  It is
+the same four-vector but viewed in two different reference frames.
+
+\subsection*{Active transforms}
+
+In the passive view, there is a single physical reality, and we are
+just describing that one physical reality using two different
+coordinate systems.  Now we will consider active transforms: there are
+two physical realities, but one is boosted with respect to another.  
+
+Suppose me and my friend have zero relative velocity, but my friend is
+in a spaceship and I am outside it, in free space, at rest.  He
+constructs a four-vector in his spaceship; for example, he could fire
+bullets out of a gun which is fixed in the spaceship, and then
+calculate their four-velocity as it appears to him in his
+spaceship-centric coordinate system.  We both agree on this
+four-velocity as our reference frames are identical: we have no
+relative velocity.
+
+Now his spaceship acquires a constant velocity, leaving me stationary.
+My friend continues to fire bullets out of his gun and sees that their
+four-velocity, as viewed in his spaceship coordinates, is the same as
+when we were together.
+
+Now he wonders what the four-velocity of the bullets is in my
+reference frame.  This is an {\em active} transform: we have two
+distinct physical realities, one in the spaceship when it was at rest
+with respect to me, and one in the spaceship when moving.  And both
+these realities, by construction, look the same to my friend in the
+spaceship.
+
+Suppose, for example, he sees the bullets at rest in his spaceship;
+they have a four-velocity of $\vvec{1}{0}$, and my friend says to
+himself: ``I see bullets with a four velocity of $\vvec{1}{0}$, and I
+know what that means.  The bullets are at rest.  What are the bullets'
+four velocities in Robin's reference frame?".  This is an {\em active}
+transform:
+
+\begin{equation*}
+\twomat{\gamma}{\gamma v}{\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{\gamma v}
+\end{equation*}
+
+(we again suppose that the spaceship moves at speed $v>0$ from left to
+right).  So he sees a four velocity of $\vvec{1}{0}$ and I see
+$\vvec{\gamma}{\gamma v}$, that is, with a positive speed: the bullets
+move from left to right (with the spaceship).  The R idiom would be:
+
+<<>>=
+(B <- boost(as.3vel(c(0.8,0,0))))  # 0.8c left to right
+solve(B) %*% c(1,0,0,0)            # active transform
+@ 
+
+\section{Successive Lorentz transforms}
+
+Coordinate transformation is effected by standard matrix
+ multiplication; thus composition of two Lorentz transforms is also
+ ordinary matrix multiplication:
+
+<<>>=
+u <- as.3vel(c(0.3,-0.4,+0.8))
+v <- as.3vel(c(0.4,+0.2,-0.1))
+L <- boost(u) %*% boost(v)
+L
+@ 
+
+But observe that the resulting transform is not a pure boost, as the
+spatial components are not symmetrical.  We may decompose the matrix
+product $L$ into a pure translation composed with an orthogonal
+matrix, which represents a coordinate rotation.  The R idiom is
+{\tt pureboost()} for the pure boost component, and {\tt orthog()}
+for the rotation:
+             
+<<>>=
+(P <- pureboost(L))  # pure boost
+P - t(P)   # check for symmetry
+@              
+
+
+Now we compute the rotation:
+<<>>=
+(U <- orthog(L))                  # rotation matrix
+U[2:4,2:4]                        # inspect the spatial components
+round(crossprod(U) - diag(4),10)  # check for orthogonality
+## zero to within numerical uncertainty
+@ 
+
+\section[Units in which c is not 1]{Units in which ${\mathbf c\neq 1}$}  
+
+The preceding material used units in which $c=1$.  Here I show how the
+package deals with units such as SI in which $c=299792458\neq 1$.  For
+obvious reasons we cannot have a function called {\tt c()} so the
+package gets and sets the speed of light with function {\tt sol()}:
+
+<<>>=
+sol(299792458)
+sol()
+@ 
+
+The speed of light is now~$299792458$ until re-set by {\tt sol()} (an
+empty argument queries the speed of light).  We now consider speeds
+which are fast by terrestrial standards but involve only a small
+relativistic correction to the Galilean result:
+                                                
+<<>>=
+u <- as.3vel(c(100,200,300))
+as.4vel(u)
+@ 
+
+The gamma correction term $\gamma$ is only very slightly larger
+than~$1$ and indeed R's default print method suppresses the
+difference:
+                    
+<<>>=
+gam(u)
+@ 
+
+However, we can display more significant figures by subtracting one:
+
+<<>>=
+gam(u)-1
+@                                                     
+
+or alternatively we can use the {\tt gamm1()} function which
+calculates $\gamma-1$ more accurately for speeds $\ll c$:
+                                                  
+<<>>=
+gamm1(u)
+@                                                   
+
+The Lorentz boost is again calculated by the {\tt boost()} function:
+              
+<<>>=
+boost(u)
+@ 
+
+The boost matrix is not symmetrical, even though it is a pure boost,
+because $c\neq 1$.  
+
+
+Note how the transform is essentially the Galilean
+result, which is discussed below.
+
+\subsection{Changing units}
+
+Often we have a four-vector in SI units and wish to express this in natural units.
+
+<<>>=
+sol(299792458)
+disp  <- c(1,1,0,0)
+@ 
+
+If we interpret {\tt disp} as a four-displacement, it corresponds to
+moving 1 metre along the x-axis and waiting for one second.  To
+convert this to natural units we multiply by the passive
+transformation matrix given by {\tt ptm()}:
+
+<<>>=
+ptm(to_natural=TRUE) %*% disp
+@ 
+
+In the above, see how the same vector is expressed in natural units in
+which the speed of light is equal to 1: the unit of time is about
+$3\times 10^{-9}$ seconds and the unit of distance remains the metre.
+Alternatively, we might decide to keep the unit of time equal to one
+second, and use a unit of distance equal to 299792458 metres which
+again ensures that~$c=1$:
+
+<<>>=
+ptm(to_natural=TRUE,change_time=FALSE) %*% disp
+@ 
+
+As a further check, we can take two boost matrices corresponding to
+the same coordinate transformation but expressed using different units
+of length and verify that their orthogonal component agrees:
+
+
+<<>>=
+sol(1)
+B1 <- boost((2:4)/10) %*% boost(c(-5,1,3)/10)
+orthog(B1)[2:4,2:4]
+@ 
+
+Now we create {\tt B2} which is the same physical object but using a
+length scale of one-tenth of {\tt B2} (which requires that we
+multiply the speed of light by a factor of 10):
+
+<<>>=
+sol(10)
+B2 <- boost(2:4) %*% boost(c(-5,1,3))  # exactly the same as B1 above
+orthog(B2)[2:4,2:4]
+@ 
+
+so the two matrices agree, as expected.
+
+
+\section{Infinite speed of light}
+
+In the previous section considered speeds that were small compared
+with the speed of light and here we will consider the classical limit
+of infinite $c$:
+
+<<setcinfinite>>=
+sol(Inf)
+@ 
+
+Then the familiar parallelogram law operates:
+
+<<parallelograminfinitec>>=
+u <- as.3vel(1:3)
+v <- as.3vel(c(-6,8,3))
+u+v
+v+u
+@ 
+
+Above we see that composition of velocities is commutative, unlike the
+relativistic case.  The boost matrix is instructive:
+
+<<boostinfc>>=
+boost(u)
+boost(u+v)
+boost(u) %*% boost(v)
+@ 
+
+Above, see how the boost matrix for the composed velocity of $u+v$
+does not have any rotational component, unlike the relativistic case
+[recall that {\tt boost()} gives a {\em passive} transform, which is
+why the sign of the numbers in the first column is changed].  With an
+infinite speed of light, even ``large'' speeds have zero relativistic
+correction:
+
+<<gamm1google>>=
+gamm1(1e100)
+@ 
+
+Function {\tt rboost()} returns a random Lorentz transform matrix,
+which is in general a combination of a pure Lorentz boost and an
+orthogonal rotation.  With an infinite speed of light, it requires a
+speed:
+
+<<rboostinfc>>=
+set.seed(0)
+options(digits=3)
+(B <- rboost(1))  # random boost, speed 1
+@ 
+
+We can decompose {\tt B} into a pure boost and an orthogonal
+transformation:
+
+<<orthoginfc>>=
+orthog(B)
+pureboost(B)
+@ 
+
+
+Boost matrices can be applied to any four-vector.  Here I show how
+pure spatial displacements transform with an infinite light speed.
+
+<<infinitelightspeedspatialdisplacement>>=
+(u <- as.3vel(c(10,0,0))) # velocity of 10, parallel to x axis
+(B <- boost(u))
+d <- c(0,1,0,0) # displacement of distance one, parallel to the x-axis
+B %*% d
+@
+
+Above we see that a spatial displacement is the same for both
+observers.  We can similarly apply a boost to a temporal displacement:
+
+<<classicalboostspatial>>=
+d <- c(1,0,0,0) # displacement of one unit of time, no spatial component
+B %*% d
+@
+
+Above we see the result expected from classical mechanics.
+
+
+
+\section{Vectorization}
+
+Here I discuss vectorized operations (to avoid confusion between boost
+matrices and their transposes we will use $c=10$).  The issue is
+difficult because a Lorentz boost is conceptually a matrix product of
+a $4\times 4$ matrix with vector with four elements:
+
+<<>>=
+sol(10)
+u <- as.3vel(c(5,-6,4))
+(U <- as.4vel(u))
+B <- boost(U)
+B %*% as.vector(U)
+@ 
+
+(note that the result is the four-velocity of an object at rest, as
+expected, for we use passive transforms by default).  However, things
+are different if we wish to consider many four-vectors in one R
+object.  A vector ${\mathbf V}$ of four-velocities is a matrix: each
+{\em row} of ${\mathbf V}$ is a four-velocity.  In the package we
+represent this with objects of class {\tt 4vel}.  Because a vector is
+treated (almost) as a one-column matrix in R, and the four-velocities
+are rows, we need to take a transpose in some sense.
+
+<<>>=
+u <- 1:7  # speed in the x-direction [c=10]
+jj <- cbind(gam(u),gam(u)*u,0,0)
+(U <- as.4vel(jj))
+@ 
+
+Now a boost, also in the x-direction:
+
+<<>>=
+(B <- boost(as.3vel(c(6,0,0))))  # 60% speed of light
+@ 
+
+Note the asymmetry of $B$, in this case reflecting the speed of light
+being 10 (but note that boost matrices are not always symmetrical,
+even if $c=1$).
+
+To effect a {\em passive} boost we need to multiply each row of $U$ by
+the transpose of the boost matrix $B$:
+
+<<>>=
+U %*% t(B)
+@ 
+
+we can verify that the above is at least plausible:
+
+<<>>=
+is.consistent.4vel(U %*% t(B))
+@ 
+
+the above shows that the four velocities $U$, as observed by an
+observer corresponding to boost $B$, satisfies $U^iU_i=-c^2$.  Anyway,
+in this context we really ought to use {\tt tcrossprod()}:
+
+<<>>=
+tcrossprod(U,B)
+@ 
+
+which would be preferable (because this idiom does not require one to
+take a transpose) although the speed increase is unlikely to matter
+much because $B$ is only $4\times 4$.
+
+The above transforms were passive: we have some four-vectors measured
+in my rest frame, and we want to see what these are four-vectors as
+measured by my friend, who is moving in the positive x direction at
+60\% of the speed of light (remember that $c=10$).  See how the
+x-component of the transformed four-velocity is negative, because in
+my friend's rest frame, the four velocities are pointing backwards.
+
+To effect an {\em active} transform we need to take the matrix inverse
+of $B$:
+
+<<>>=
+solve(B)
+@ 
+
+and then
+
+<<>>=
+tcrossprod(U,solve(B))
+@ 
+
+In the above, note how the positive x-component of the four-velocity
+is increased because we have actively boosted it.  We had better check
+the result for consistency:
+
+<<>>=
+is.consistent.4vel(tcrossprod(U,solve(B)))
+@ 
+
+\section{Multiple boosts}
+
+
+If we are considering multiple boosts, it is important to put them in
+the correct order.  First we will do some passive boosts.
+
+<<>>=
+sol(100)
+B1 <- boost(r3vel(1)) %*% boost(r3vel(1))
+B2 <- boost(r3vel(1)) %*% boost(r3vel(1)) 
+(U <- r4vel(5))
+@
+
+Successive boosts are effected by matrix multiplication; there are at
+least four equivalent R constructions:
+
+<<>>=
+U %*% t(B1) %*% t(B2)
+U %*% t(B2 %*% B1)    # note order of operations
+tcrossprod(U, B2 %*% B1)
+U %>% tcrossprod(B2 %*% B1)
+@ 
+
+(in the above, note that the result is the same in each case).
+
+\subsection*{A warning}
+
+It is easy to misapply matrix multiplication in this context.  Note
+carefully that the following natural idiom is {\bf incorrect}:
+
+<<>>=
+U %*% B  # Young Frankstein: Do Not Use This Brain!
+## The above idiom is incorrect.  See
+## https://www.youtube.com/watch?v=m7-bMBuVmHo&t=1s
+## (in particular @1:08) for a technical explanation of why 
+## this is a Very Bad Idea (tm).
+@ 
+
+It is not clear to me that the idiom above has any meaning at all.
+
+\section{The stress-energy tensor}
+
+The stress-energy tensor (sometimes the energy-momentum tensor) is a
+generalization and combination of the classical concepts of density,
+energy flux, and the classical stress tensor~\citep{schutz1985}.  It
+is a contravariant tensor of rank two, usually represented as a
+symmetric $4\times 4$ matrix.  The {\tt lorentz} package includes
+functionality for applying Lorentz transforms to the stress energy
+tensor.
+
+<<>>=
+sol(1)        # revert to natural units 
+D <- dust(1)  # Dust is the simplest nontrivial SET, with 
+D             # only one nonzero component
+@ 
+
+The stress-energy tensor is usually written with two upstairs
+(contravariant) indices, as in~$T^{\alpha\beta}$; it may be
+transformed using the {\tt transform\_uu()} function: package:
+
+<<>>=
+B <- boost(as.3vel(c(0.0,0.8,0.0)))
+transform_uu(D,B)
+@ 
+
+In this reference frame, the dust is not at rest: the stress-energy
+tensor has components corresponding to nonzero pressure and momentum
+transfer, and the $[t,t]$ component is greater, at 2.78, than its rest
+value of 1.  Note that the $[t,y]$ component is negative as we use
+passive transforms.  If one wants to consider the stress-energy tensor
+with downstairs indices (here we will use a photon gas), we need to
+use {\tt transform\_dd()}:
+
+<<>>=
+pg <- photongas(3)
+pg
+transform_uu(pg,B)
+@
+
+again we see that the $[0,0]$ component is larger than its rest value,
+and we see nonzero off-diagonal components which correspond to the
+dynamical behaviour.  As a consistency check we can verify that this
+is the same as transforming the SET with upstairs indices, using the
+{\tt lower()} and {\tt raise()} functions:
+
+<<>>=
+raise(transform_dd(lower(pg),lower(B)))
+raise(transform_dd(lower(pg),lower(B))) - transform_uu(pg,B) #zero to numerical precision
+@ 
+
+One of the calls to {\tt lower()} is redundant; for a photon gas,
+raising or lowering both indices does not change the components as the
+Minkowski metric is symmetric and orthogonal.
+
+\subsection{Successive boosts}
+  
+Successive boots are represented as ordinary matrix multiplication.
+Again the {\tt magrittr} package can be used for more readable idiom.
+ 
+<<>>=
+B1 <- boost(as.3vel(c(0.5,-0.4,0.6)))
+B2 <- boost(as.3vel(c(0.1,-0.1,0.3)))
+pf <- perfectfluid(4,1)
+pf
+pf %>% transform_uu(B1) %>% transform_uu(B2)
+pf %>% transform_uu(B2 %*% B1)  # should match
+@                                                            
+
+Again as a consistency check, we may verify that transforming
+downstairs indices gives the same result:
+
+<<>>=
+lower(pf) %>% transform_dd(lower(B1) %*% lower(B2)) %>% raise()
+@ 
+
+(note that the matrix representation of the Lorentz transforms
+requires that the order of multiplication be reversed for successive
+covariant transforms, so {\tt B1} and {\tt B2} must be swapped).
+
+\subsection{Speed of light and the stress-energy tensor}
+
+Here I will perform another consistency check, this time with non-unit
+speed of light, for a perfect fluid:
+
+<<>>=
+sol(10)
+pf_rest <- perfectfluid(1,4)
+pf_rest
+@ 
+
+Thus {\tt pf\_rest} is the stress energy for a perfect fluid at rest
+in a particular frame $F$.  We may now consider the same perfect
+fluid, but moving with a three velocity of~$(3,4,5)'$: with respect to
+$F$:
+
+<<>>=
+u <- as.3vel(3:5)
+pf_moving <- perfectfluid(1,4,u)
+pf_moving
+@ 
+
+The consistency check is to verify that transforming to a frame in
+which the fluid is at rest will result in a stress-energy tensor that
+matches {\tt pf\_rest}:
+
+<<>>=
+transform_uu(perfectfluid(1,4,u),boost(u))
+@ 
+
+thus showing agreement to within numerical precision.
+
+\section{Photons}
+\label{photonsection}
+It is possible to define the four-momentum of photons by specifying
+their three-velocity and energy, and using {\tt as.photon()}:
+ 
+<<>>=
+sol(1)
+(A <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40))))
+@ 
+
+above, $A$ is a vector of four-momentum of five photons, all of unit
+energy, each with a null world line.  They are all moving
+approximately parallel to the x-axis.  We can check that this is
+indeed a null vector:
+                                                 
+<<>>=
+inner4(A)
+@                                                  
+
+showing that the vectors are indeed null to numerical precision.  What
+do these photons look like in a frame moving along the $x$-axis at
+$0.7c$?
+  
+<<>>=
+tcrossprod(A,boost(as.3vel(c(0.7,0,0))))
+@   
+
+Above, see how the photons have lost the majority of their energy due
+to redshifting.  Blue shifting is easy to implement as either a
+passive transform:
+                                            
+<<>>=
+tcrossprod(A,boost(as.3vel(c(-0.7,0,0))))
+@   
+                  
+or an active transform:
+
+<<>>=
+tcrossprod(A,solve(boost(as.3vel(c(0.7,0,0)))))
+@   
+
+giving the same result.
+
+
+\subsection{Reflection in mirrors}
+
+\citet{gjurchinovski2004} discusses reflection of light from a
+uniformly moving mirror and here I show how the {\tt lorentz} package
+can illustrate some of his insights.  We are going to take the five
+photons defined above and reflect them in an oblique mirror which is
+itself moving at half the speed of light along the $x$-axis.  The
+first step is to define the mirror {\tt m}, and the boost {\tt B}
+corresponding to its velocity:
+                                                              
+<<>>=
+m <- c(1,1,1)
+B <- boost(as.3vel(c(0.5,0,0)))
+@ 
+
+Above, the three-vector $m$ is parallel to the normal vector of the
+mirror and $B$ shows the Lorentz boost needed to bring it to rest.  We
+are going to reflect these photons in this mirror.  The R idiom for
+the reflection is performed using a sequence of transforms.  First,
+transform the photons' four-momentum to a frame in which the mirror is
+at rest:
+
+<<>>=
+A
+(A <- as.4mom(A %*% t(B)))
+@ 
+
+Above, see how the photons have lost energy because of a redshift (the
+{\tt as.4mom()} function has no effect other than changing the column
+names).  Next, reflect the photons in the mirror (which is at rest):
+
+<<>>=
+(A <- reflect(A,m))
+@ 
+
+Above, see how the reflected photons have a reduced the x-component of
+momentum; but have acquired a substantial $y$- and $z$- component.
+Finally, we transform back to the original reference frame.  Observe
+that this requires an {\em active} transform which means that we need
+to use the matrix inverse of $B$:
+
+<<>>=
+(A <- as.4mom(A %*% solve(t(B))))
+@ 
+
+Thus in the original frame, the photons have lost about a quarter of
+their energy as a result of a Doppler effect: the mirror was receding
+from the source.  The photons have imparted energy to the mirror as a
+result of mechanical work.  It is possible to carry out the same
+operations in one line:
+
+<<>>=
+A <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40)))
+A %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom
+@ 
+
+\subsection{Disco ball}
+
+It is easy to define a disco ball, which is a sphere covered in
+mirrors.  For the purposes of exposition, we will use a rather shabby
+ball with only 7 mirrors:
+
+<<disco_ball>>=
+dfun <- function(n){matrix(rnorm(n*3),ncol=3) %>% sweep(1, sqrt(rowSums(.^2)),`/`)}
+(disco <- dfun(7))
+@ 
+
+Then we define a unit-energy photon moving parallel to the x-axis, and
+reflect it in the disco ball:
+
+<<>>=
+p <- as.photon(c(1,0,0))
+reflect(p,disco)
+@ 
+
+(above, {\tt p} is a photon moving along the x-axis; standard R
+recycling rules imply that we effectively have one photon per mirror
+in {\tt disco}.  See how the photons' energy is unchanged by the
+reflection).  We might ask what percentage of photons are reflected
+towards the source; but to do this we would need a somewhat more
+stylish disco ball, here with 1000 mirrors:
+
+<<disco_reflect_percentage>>=
+table(reflect(p,dfun(1000))[,2]>0) # should be TRUE with probability sqrt(0.5)
+@ 
+
+(compare the expected value of $1000/\sqrt{2}\simeq 707$).  But it is
+perhaps more fun to consider a relativistic disco in which the mirror
+ball moves at 0.5c:
+
+
+<<relativistic_disco>>=
+B <- boost(as.3vel(c(0.5,0,0)))
+p %>% tcrossprod(B) %>% reflect(disco) %>% tcrossprod(solve(B))
+@ 
+
+Above, note the high energy of the photon in the third row.  This is
+because the third mirror of {\tt disco} is such that the photon hits
+it with grazing incidence; this means that the receding of the mirror
+is almost immaterial.  Note further that a spinning disco ball would
+give the same (instantaneous) results.
+
+\subsection{Mirrors and rotation-boost coupling}
+
+Consider the following situation: we take a bunch of photons which in
+a certain reference frame are all moving (almost) parallel to the
+$x$-axis.  Then we reflect the photons from a mirror which is moving
+with a composition of pure boosts, and examine the reflected light in
+their original reference frame.  The R idiom for this would be:
+
+<<>>=
+sol(1)
+light_start <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40)))
+m <- c(1,0,0)     # mirror normal to x-axis
+B1 <- boost(as.3vel(c(-0.5, 0.1, 0.0)))
+B2 <- boost(as.3vel(c( 0.2, 0.0, 0.0)))
+B3 <- boost(as.3vel(c( 0.0, 0.0, 0.6)))
+B <- B1 %*% B2 %*% B3   # matrix multiplication is associative!
+light <- light_start %*% t(B)
+light <- reflect(light,m)
+light <- as.4mom(light %*% solve(t(B)))
+light
+@ 
+
+See how the photons have picked up momentum in the $y$- and $z$-
+direction, even though the mirror is oriented perpendicular to the
+$x$-axis (in its own frame).  Again it is arguably preferable to use
+pipes:
+
+<<>>=
+light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom
+@ 
+
+Compare when the speed of light is infinite:
+<<>>=
+sol(Inf)
+light_start <- as.photon(as.3vel(cbind(0.9,1:5/40,5:1/40)))
+B1 <- boost(as.3vel(c(-0.5, 0.1, 0.0)))
+B2 <- boost(as.3vel(c( 0.2, 0.0, 0.0)))
+B3 <- boost(as.3vel(c( 0.0, 0.0, 0.6)))
+B <- B1 %*% B2 %*% B3
+light_start
+light_start %>% tcrossprod(B) %>% reflect(m) %>% tcrossprod(solve(B)) %>% as.4mom
+@ 
+
+Note that, in the infinite light speed case, the energy of the photons
+is zero (photons have zero rest mass); further observe that in this
+classical case, the effect of the mirror is to multiply the $x$-momentum
+by $-1$ and leave the other components unchanged, as one might expect
+from a mirror perpendicular to $(1,0,0)$.
+
+\section{Three-velocities}
+
+In contrast to four-velocities, three-velocities do not form a group
+under composition as the velocity addition law is not
+associative~\citep{ungar2006}.  Instead, three-velocity composition
+has an algebraic structure known as a {\em gyrogroup} (this
+observation was the original motivation for the package).
+\citeauthor{ungar2006} shows that the velocity addition law for
+three-velocities is
+
+\begin{equation}
+\bu\oplus\bv=
+\frac{1}{1+\bu\cdot\bv}
+\left\{
+\bu + \frac{\bv}{\gamma_\bu} + \frac{\gamma_\bu
+\left(\bu\cdot\bv\right)\bu}{1+\gamma_\bu}
+\right\}
+\end{equation}
+   
+where~$\gamma_\bu=\left(1-\bu\cdot\bu\right)^{-1/2}$ and we are
+assuming~$c=1$.  \citeauthor{ungar2006} goes on to show that, in
+general, $\bu\oplus\bv\neq\bv\oplus\bu$
+and~$(\bu\oplus\bv)\oplus\bw\neq\bu\oplus(\bv\oplus\bw)$.  He also
+defines the binary operator~$\ominus$
+as~$\bu\ominus\bv=\bu\oplus\left(-\bv\right)$, and implicitly
+defines~$\ominus\bu\oplus\bv$ to be~$\left(-\bu\right)\oplus\bv$.  If
+we have
+
+\begin{equation}
+\gyr{u}{v}\bx=-\left(\bu\oplus\bv\right)\oplus\left(\bu\oplus\left(\bv\oplus\bx\right)\right)
+\end{equation}
+
+then
+
+\begin{eqnarray}
+\bu\oplus\bv &=& \gyr{u}{v}\left(\bv\oplus\bu\right)\label{noncom}\\
+\gyr{u}{v}\bx\cdot\gyr{u}{v}\by &=& \bx\cdot\by\label{doteq}\\
+\gyr{u}{v}\left(\bx\oplus\by\right) &=& \gyr{u}{v}\bx\oplus\gyr{u}{v}\by\\
+\left(\gyr{u}{v}\right)^{-1} &=& \left(\gyr{v}{u}\right)\label{gyrinv}\\
+\bu\oplus\left(\bv\oplus\bw\right) &=&\left(\bu\oplus\bv\right)\oplus\gyr{u}{v}\bw\label{nonass1}\\
+\left(\bu\oplus\bv\right)\oplus\bw &=&\bu\oplus\left(\bv\oplus\gyr{v}{u}\bw\right)\label{nonass2}
+\end{eqnarray}
+
+Consider the following R session:
+
+<<kickoff>>=
+sol(1)
+u <- as.3vel(c(-0.7,+0.2,-0.3))
+v <- as.3vel(c(+0.3,+0.3,+0.4))
+w <- as.3vel(c(+0.1,+0.3,+0.8))
+x <- as.3vel(c(-0.2,-0.1,-0.9))
+u
+@ 
+
+Here we have three-vectors {\tt u} etc.  We can see that {\tt u} and
+{\tt v} do not commute:
+
+<<try>>=
+u+v
+v+u
+@ 
+
+(the results differ).  We can use equation~\ref{noncom}
+<<>>=
+(u+v)-gyr(u,v,v+u)
+@ 
+
+showing agreement to within numerical error.  It is also possible to
+use the functional idiom in which we define {\tt f()} to be the
+map~$\bx\mapsto\gyr{u}{v}\bx$.  In R:
+
+<<funcid>>=
+f <- gyrfun(u,v)
+(u+v)-f(v+u)    # should be zero
+@ 
+
+Function {\tt gyrfun()} is vectorized, which means that it plays
+nicely with (R) vectors.  Consider
+
+<<vec9>>=
+u9 <- r3vel(9)
+u9
+@ 
+
+Then we can create a vectorized gyrofunction:
+
+<<vecfun>>=
+f <- gyrfun(u9,v)
+f(x)
+@ 
+
+Note that the package vectorization is transparent when using syntatic sugar:
+
+<<u9+x>>=
+u9+x
+@ 
+
+(here, the addition operates using R's standard recycling rules).
+
+\subsection{Associativity}
+
+Three velocity addition is not associative:
+
+<<nonass>>=
+(u+v)+w
+u+(v+w)
+@ 
+
+But we can use equations~\ref{nonass1} and~\ref{nonass2}:
+
+<<nonass1>>=
+(u+(v+w)) - ((u+v)+gyr(u,v,w))
+((u+v)+w) - (u+(v+gyr(v,u,w)))
+@ 
+
+\subsection{Visualization of noncommutativity and nonassociativity of three-velocities}
+
+Consider the following three-velocities:
+
+<<viss>>=
+u <- as.3vel(c(0.4,0,0))
+v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
+w <- as.3vel(c(0.8,-0.4,0))
+@ 
+
+Objects~$\bv$ and $\bw$ are single three-velocities, and object $\bv$
+is a vector of three velocities.  We can see the noncommutativity of
+three velocity addition in figures~\ref{comfail1} and~\ref{comfail2},
+and the nonassociativity in figure~\ref{assfail}.
+
+\begin{figure}[htbp]
+  \begin{center}
+<<comfail1_fig, fig=TRUE>>=
+comm_fail1(u=u, v=v)
+@
+\caption{Failure\label{comfail1} of the commutative law for velocity
+  composition in special relativity.  The arrows show successive
+  velocity boosts of $+\bu$ (purple), $+\bv$ (black), $-\bu$ (red),
+  and~$-\bv$ (blue) for $\bu,\bv$ as defined above.  Velocity $\bu$ is
+  constant, while $\bv$ takes a sequence of values.  If velocity
+  addition is commutative, the four boosts form a closed
+  quadrilateral; the thick arrows show a case where the boosts almost
+  close and the boosts nearly form a parallelogram.  The blue dots
+  show the final velocity after four successive boosts; the distance
+  of the blue dot from the origin measures the combined velocity,
+  equal to zero in the classical limit of low speeds.  The discrepancy
+  becomes larger and larger for the faster elements of the sequence
+  $\bv$}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+<<comfail2_fig, fig=TRUE>>=
+comm_fail2(u=u, v=v)
+@
+
+\caption{Another view of the failure of the commutative
+  law\label{comfail2} in special relativity.  The black arrows show
+  velocity boosts of $\bu$ and the blue arrows show velocity boosts of
+  $\bv$, with $\bu,\bv$ as defined above; $\bu$ is constant while
+  $\bv$ takes a sequence of values.  If velocity addition is
+  commutative, then $\bu+\bv=\bv+\bu$ and the two paths end at the
+  same point: the parallelogram is closed.  The red lines show the
+  difference between $\bu+\bv$ and $\bv+\bu$}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+<<assfail_fig, fig=TRUE>>=
+ass_fail(u=u, v=v, w=w, bold=10)
+@
+\caption{Failure of the associative law \label{assfail} for velocity
+  composition in special relativity.  The arrows show successive
+  boosts of $\bu$ followed by $\bv+\bw$ (black lines), and $\bu+\bv$
+  followed by $\bw$ (blue lines), for $\bu$, $\bv$, $\bw$ as defined
+  above; $\bu$ and $\bw$ are constant while $\bv$ takes a sequence of
+  values. The mismatch between $\bu+\left(\bv+\bw\right)$ and
+  $\left(\bu+\bv\right)+\bw$ is shown in red}
+  \end{center}
+\end{figure}
+
+
+\subsection[The magrittr package: pipes]{The {\tt magrittr} package: pipes}
+
+Three velocities in the {\tt lorentz} package work nicely with
+{\tt magrittr}.  If we define
+
+<<defuvw>>=
+ u <- as.3vel(c(+0.5,0.1,-0.2))
+ v <- as.3vel(c(+0.4,0.3,-0.2))
+ w <- as.3vel(c(-0.3,0.2,+0.2))
+@ 
+
+Then pipe notation operates as expected:
+
+<<>>=
+jj1 <- u %>% add(v)
+jj2 <- u+v
+speed(jj1-jj2)
+@ 
+
+The pipe operator is left associative:
+
+<<>>=
+jj1 <- u %>% add(v) %>% add(w)
+jj2 <- (u+v)+w
+speed(jj1-jj2)
+@ 
+
+
+If we want right associative addition, the pipe operator needs
+brackets:
+
+<<>>=
+jj1 <- u %>% add(v %>% add(w))
+jj2 <- u+(v+w)
+speed(jj1-jj2)
+@ 
+
+\subsection{Numerical verification}
+
+Here I provide numerical verification of equations~\ref{noncom}
+to~\ref{nonass2}.  If we have
+
+<<funcnotation>>=
+x <- as.3vel(c(0.7, 0.0, -0.7))
+y <- as.3vel(c(0.1, 0.3, -0.6))
+u <- as.3vel(c(0.0, 0.8, +0.1))   # x,y,u: single three-velocities
+v <- r3vel(5,0.9)
+w <- r3vel(5,0.8)                 # v,w: vector of three-velocities
+f <- gyrfun(u,v)
+g <- gyrfun(v,u)
+@
+
+Then we can calculate the difference between the left hand side and
+right hand side numerically:
+  
+<<testeq3to8>>=
+max(speed((u+v) - f(v+u)))              # equation 3
+max(abs(prod3(f(x),f(y)) - prod3(x,y))) # equation 4
+max(speed(f(x+y) - (f(x)+f(y))))        # equation 5
+max(speed(f(g(x)) - g(f(x))))           # equation 6
+max(speed((u+(v+w)) - ((u+v)+f(w))))    # equation 7
+max(speed(((u+v)+w) - (u+(v+g(w)))))    # equation 8
+@ 
+
+(all zero to numerical precision). 
+
+
+\section{Conclusions}
+
+The {\tt lorentz} package furnishes some functionality for
+manipulating four-vectors and three-velocities in the context of
+special relativity.  The R idiom is relatively natural and the package
+has been used to illustrate different features of relativistic
+kinematics.
+
+\bibliographystyle{apalike}
+\bibliography{lorentz_arxiv}
+
+\appendix
+\section{A systematic search for a distributive law for three-velocities}
+
+Here, I make a systematic attempt to find a distributive law for
+three-velocities, that is, finding an expression for $r*(u+v)$ where
+$u$ and $v$ are three-velocities and $r$ is a real number.  We define
+a large number of possible combinations of $u$, $v$, and $r$.  These
+are calculated and the results compared with the exact value.  If
+there is an exact expression, this will have zero discrepancy.
+
+I have tried to enumerate the various combinations of $u,v,r$.  Signs
+are permuted in {\tt every\_sign()} and {\tt all3()} and {\tt
+  all3brack()}.  If one of the many combinations (the current total
+stands at 688128) represents the RHS of a putative distributive law,
+the corresponding element of variable {\tt badness}, defined at the
+end of this script, will be zero.
+
+Function {\tt possible()}, defined below, returns a long vector of
+possible expressions that might form the RHS for a distributive law.
+The basic idea is that $r*(u+v) = ru+rv + X$ (where $X$ is a
+correction term) but because of noncommutativity and nonassociativity,
+this gets complicated.  Function {\tt possible()} returns a vector
+that includes expressions such as
+
+\begin{Schunk}
+\begin{Sinput}
+## ru  + (rv  - r*gyr[ru, v,u+v])
+## ru  + (rv  - r*gyr[ru, v,v+u])
+## rv  + (ru  - r*gyr[su, v,u+v])
+## (ru + rv)  + r*gyr[ru, v,u])
+## (ru + rv)  + r*gyr[ru, v,v])
+## (ru + rv)  + r*gyr[ru, v,v])
+## (ru + rv)  + r*gyr[ru,-v,v])
+## (ru + rv)  +   gyr[ru,-v,v])
+## (ru + rv)  + s*gyr[ru,-v,v])
+\end{Sinput}
+\end{Schunk}
+
+etc etc etc.  Here, $r$ is a scalar, $s=1/r$, and $u,v$ are
+three-velocities; {\tt ru} and {\tt su} represent scalar mutliples of
+$u$.  Note the variety of orders (three-velocity addition is not
+commutative), different bracketing (three-velocity addition is not
+associative), and use of $r$ or $1/r$ in different places in the
+formula.
+
+<<>>=
+library("partitions") # needed for perms()
+
+u <- r3vel(1,0.4)
+v <- r3vel(1,0.5)
+r <- 2
+
+
+`possible` <- function(u,v,r){ 
+ # In function possible(), u,v are three-velocities and r is a real
+ # number.  Function possible() returns a vector of 64*10752=688128
+ # three-velocities [the '64' is from combinations of r, 1/r as in jj
+ # below; the 10752 is from function f(), defined inside possible()]
+
+  f <- function(r1,r2,r3){  
+    ##  In function f(), r1,r2,r3 are real numbers; function f() has
+    ##  4*14 = 56 lines, so returns 56*192=10752 three-velocities.
+
+    ## NB: Inside f(), r,u,v come from possible()'s scope
+    c(
+        every_sign(r*u,r*v, r1*u     ,r2*v  , u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v  , v+u,r3),
+        every_sign(r*u,r*v, r1*v     ,r2*u  , u+v,r3),
+        every_sign(r*u,r*v, r1*v     ,r2*u  , v+u,r3),
+
+        every_sign(r*u,r*v, r1*u     ,r2*v  , u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v  , v-u,r3),
+        every_sign(r*u,r*v, r1*v     ,r2*u  , u-v,r3),
+        every_sign(r*u,r*v, r1*v     ,r2*u  , v-u,r3),
+        
+        every_sign(r*u,r*v, r1*u     ,r2*v+u, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v+u, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u+v, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u+v, v+u,r3),
+
+        every_sign(r*u,r*v, r1*u     ,r2*v-u, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v-u, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u-v, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u-v, v+u,r3),
+
+        every_sign(r*u,r*v, r1*u     ,r2*v+u, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v+u, v-u,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u+v, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u+v, v-u,r3),
+        
+        every_sign(r*u,r*v, r1*u     ,r2*v-u, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*v-u, v-u,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u-v, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,r2*u-v, v-u,r3),
+
+        
+        every_sign(r*u,r*v, r1*u     ,v+r2*u, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,v+r2*u, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,u+r2*v, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,u+r2*v, v+u,r3),
+        
+        every_sign(r*u,r*v, r1*u     ,v+r2*u, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,v+r2*u, v-u,r3),
+        every_sign(r*u,r*v, r1*u     ,u+r2*v, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,u+r2*v, v-u,r3),
+        
+        every_sign(r*u,r*v, r1*u     ,v-r2*u, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,v-r2*u, v+u,r3),
+        every_sign(r*u,r*v, r1*u     ,u-r2*v, u+v,r3),
+        every_sign(r*u,r*v, r1*u     ,u-r2*v, v+u,r3),
+        
+        every_sign(r*u,r*v, r1*u     ,v-r2*u, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,v-r2*u, v-u,r3),
+        every_sign(r*u,r*v, r1*u     ,u-r2*v, u-v,r3),
+        every_sign(r*u,r*v, r1*u     ,u-r2*v, v-u,r3),
+        
+        every_sign(r*u,r*v, r1*u+r2*v,v     , u+v,r3),
+        every_sign(r*u,r*v, r1*u+r2*v,v     , v+u,r3),
+        every_sign(r*u,r*v, r1*v+r2*u,u     , u+v,r3),
+        every_sign(r*u,r*v, r1*v+r2*u,u     , v+u,r3),
+        
+        every_sign(r*u,r*v, r1*u+r2*v,v     , u-v,r3),
+        every_sign(r*u,r*v, r1*u+r2*v,v     , v-u,r3),
+        every_sign(r*u,r*v, r1*v+r2*u,u     , u-v,r3),
+        every_sign(r*u,r*v, r1*v+r2*u,u     , v-u,r3),
+        
+        every_sign(r*u,r*v, r1*u-r2*v,v     , u+v,r3),
+        every_sign(r*u,r*v, r1*u-r2*v,v     , v+u,r3),
+        every_sign(r*u,r*v, r1*v-r2*u,u     , u+v,r3),
+        every_sign(r*u,r*v, r1*v-r2*u,u     , v+u,r3),
+        
+        every_sign(r*u,r*v, r1*u-r2*v,v     , u-v,r3),
+        every_sign(r*u,r*v, r1*u-r2*v,v     , v-u,r3),
+        every_sign(r*u,r*v, r1*v-r2*u,u     , u-v,r3),
+        every_sign(r*u,r*v, r1*v-r2*u,u     , v-u,r3)
+
+    )
+  }
+
+  jj <- c(r,1,1/r,0)
+  jj <- as.matrix(expand.grid(jj,jj,jj))
+  ## jj has 4^3=64 rows
+  out <- u
+  for(i in seq_len(nrow(jj))){
+      ## cat(paste(i," / ",nrow(jj),"\n",sep="")) # for debugging
+    out <- c(out,f(jj[i,1],jj[i,2],jj[i,3]))
+  } 
+  return(out)  # out has 64*18432=1179648 elements
+}
+
+`every_sign` <- function(a1,a2,a3,a4,a5,r){
+ # Function every_sign() has 16 lines; given 5 three-velocities and a
+ # scalar, function every_sign() returns a vector of 16*12=192
+ # three-velocities [the 12 is from all3()]
+  c(
+      all3(c(a1 , a2 , +r*gyr(+a3,+a4,+a5))),
+      all3(c(a1 , a2 , +r*gyr(+a3,+a4,-a5))),
+      all3(c(a1 , a2 , +r*gyr(+a3,-a4,+a5))),
+      all3(c(a1 , a2 , +r*gyr(+a3,-a4,-a5))),
+      all3(c(a1 , a2 , +r*gyr(-a3,+a4,+a5))),
+      all3(c(a1 , a2 , +r*gyr(-a3,+a4,-a5))),
+      all3(c(a1 , a2 , +r*gyr(-a3,-a4,+a5))),
+      all3(c(a1 , a2 , +r*gyr(-a3,-a4,-a5))),
+      all3(c(a1 , a2 , -r*gyr(+a3,+a4,+a5))),
+      all3(c(a1 , a2 , -r*gyr(+a3,+a4,-a5))),
+      all3(c(a1 , a2 , -r*gyr(+a3,-a4,+a5))),
+      all3(c(a1 , a2 , -r*gyr(+a3,-a4,-a5))),
+      all3(c(a1 , a2 , -r*gyr(-a3,+a4,+a5))),
+      all3(c(a1 , a2 , -r*gyr(-a3,+a4,-a5))),
+      all3(c(a1 , a2 , -r*gyr(-a3,-a4,+a5))),
+      all3(c(a1 , a2 , -r*gyr(-a3,-a4,-a5)))
+  )
+}
+
+`all3brack` <- function(x){  # If [abc] = c(x[1],x[2],x[3]), function
+                             # all3brack() returns a+(b+c) and (a+b)+c
+  c(
+      x[1]+(x[2]+x[3])   ,
+      (x[1]+x[2])+x[3]
+  )
+}
+
+`all4brack` <- function(x){
+  ## Returns the 5 different ways to bracket 4 objects.  Function
+  ## all4vbrack() not currently used in this script.
+  c(
+  (x[1]+x[2])+(x[3]+x[4])   ,
+  ((x[1]+x[2])+x[3])+x[4]   ,
+  (x[1]+(x[2]+x[3]))+x[4]   ,
+  x[1]+((x[2]+x[3])+x[4])   ,
+  x[1]+(x[2]+(x[3]+x[4]))
+  )
+}
+
+`all4` <- function(x){  
+ ## Every possible way of combining 4 three-velocities.  Function
+ ## all4() is not currently used in this script
+  stopifnot(length(x)==4)
+  out <- threevel(0)
+  jj <- perms(4)
+  for(i in seq_len(ncol(jj))){
+    out <- c(out,all4brack(x[jj[,i]]))
+  }
+  return(out)
+}
+
+`all3` <- function(x){   # every possible way of combining 3
+                         # three-velocities.  Function; if x=c(a,b,c)
+                         # with a,b,c three-velocities then all3()
+                         # returns a vector of length 2*3!=12
+
+  stopifnot(length(x)==3)
+  out <- threevel(0)
+  jj <- perms(3)
+  for(i in seq_len(ncol(jj))){
+    out <- c(out,all3brack(x[jj[,i]]))
+  }
+  return(out)
+}
+@
+
+
+We can now run the diagnostic:
+
+<<rundiagnostic,cache=TRUE>>=
+badness <- prod3(r*(u+v) - possible(u,v,r))  # badness == 0 for perfect law
+print(min(badness))
+@ 
+
+We see that this systematic sweep through function space does not
+include a distributive law.
+
+\end{document}
