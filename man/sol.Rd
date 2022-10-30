@@ -36,7 +36,7 @@ ptm(to_natural=TRUE, change_time=TRUE)
   display the speed of light which might be useful.
 
   Function \code{eta()} returns the Minkowski flat-space metric
-  \deqn{\operatorname{diag}\left(-c^2,1,1,1\right).}{diag(-c^2,1,1,1).}
+  \deqn{\mathrm{diag}\left(-c^2,1,1,1\right).}{diag(-c^2,1,1,1).}
 
   Note that the top-left element of \code{eta()} is \eqn{-c^2}, not
   \eqn{-1}.
