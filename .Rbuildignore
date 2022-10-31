@@ -6,3 +6,5 @@
 ^inst/JOSS$
 ^inst/JOC$
 inst/.RData
+^inst/lorentz_arxiv.Rnw$
+^inst/lorentz_arxiv.bib$
