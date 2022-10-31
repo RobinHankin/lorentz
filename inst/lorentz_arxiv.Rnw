@@ -23,7 +23,7 @@
 
 
 
-\title{Special relativity in R: introducing the {\tt lorentz} package}
+\title{Special relativity in R: introducing the {\tt lorentz} package and a systematic search for a distributive law for three-velocities}
 
 %\date{September 9, 1985}	% Here you can change the date presented in the paper title
 %\date{} 					% Or removing it
@@ -1228,12 +1228,22 @@ kinematics.
 \appendix
 \section{A systematic search for a distributive law for three-velocities}
 
+Ungar~\cite{ungar1997} states:
+
+\begin{quote}
+It is hoped that one day a gyrodistributive law connecting [three
+velocity addition] $\oplus$ and [scalar multiplication] $\odot$ will
+be discovered.  If [it] exists, it is expected to be the standard
+distributive law relaxed by Thomas gyration in some unexpected way.
+\end{quote}
+
 Here, I make a systematic attempt to find a distributive law for
-three-velocities, that is, finding an expression for $r*(u+v)$ where
-$u$ and $v$ are three-velocities and $r$ is a real number.  We define
-a large number of possible combinations of $u$, $v$, and $r$.  These
-are calculated and the results compared with the exact value.  If
-there is an exact expression, this will have zero discrepancy.
+three-velocities, that is, finding an expression for $r\odot(u\oplus
+v)$ where $u$ and $v$ are three-velocities and $r$ is a real number.
+We define a large number of possible combinations of $u$, $v$, and $r$
+using {\tt lorentz} package idiom.  These are calculated and the
+results compared with the exact value.  If there is an exact
+expression, this will have zero discrepancy.
 
 I have tried to enumerate the various combinations of $u,v,r$.  Signs
 are permuted in {\tt every\_sign()} and {\tt all3()} and {\tt
@@ -1244,10 +1254,10 @@ end of this script, will be zero.
 
 Function {\tt possible()}, defined below, returns a long vector of
 possible expressions that might form the RHS for a distributive law.
-The basic idea is that $r*(u+v) = ru+rv + X$ (where $X$ is a
-correction term) but because of noncommutativity and nonassociativity,
-this gets complicated.  Function {\tt possible()} returns a vector
-that includes expressions such as
+The basic idea is that $r\odot(u\oplus v) = r\odot u+r\odot v + X$
+(where $X$ is a correction term) but because of noncommutativity and
+nonassociativity, this gets complicated.  Function {\tt possible()}
+returns a vector that includes expressions such as
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1265,10 +1275,10 @@ that includes expressions such as
 
 etc etc etc.  Here, $r$ is a scalar, $s=1/r$, and $u,v$ are
 three-velocities; {\tt ru} and {\tt su} represent scalar mutliples of
-$u$.  Note the variety of orders (three-velocity addition is not
-commutative), different bracketing (three-velocity addition is not
-associative), and use of $r$ or $1/r$ in different places in the
-formula.
+$u$ $r\odot u$ and $s\odot u$.  Note the variety of orders
+(three-velocity addition is not commutative), different bracketing
+(three-velocity addition is not associative), and use of $r$ or $1/r$
+in different places in the formula.
 
 <<>>=
 library("partitions") # needed for perms()
@@ -1284,9 +1294,10 @@ r <- 2
  # three-velocities [the '64' is from combinations of r, 1/r as in jj
  # below; the 10752 is from function f(), defined inside possible()]
 
-  f <- function(r1,r2,r3){  
-    ##  In function f(), r1,r2,r3 are real numbers; function f() has
-    ##  4*14 = 56 lines, so returns 56*192=10752 three-velocities.
+  f <- function(r1,r2,r3){
+    ## In function f(), r1,r2,r3 are real numbers; function f() has 4*14
+    ## = 56 lines, so returns 56*192=10752 three-velocities [192 from
+    ## every_sign()]
 
     ## NB: Inside f(), r,u,v come from possible()'s scope
     c(
@@ -1362,18 +1373,18 @@ r <- 2
         every_sign(r*u,r*v, r1*v-r2*u,u     , v-u,r3)
 
     )
-  }
+  }   # function f() closes
 
-  jj <- c(r,1,1/r,0)
-  jj <- as.matrix(expand.grid(jj,jj,jj))
+  r11r0 <- c(r,1,1/r,0)
+  jj <- as.matrix(expand.grid(r11r0,r11r0,r11r0))
   ## jj has 4^3=64 rows
   out <- u
   for(i in seq_len(nrow(jj))){
       ## cat(paste(i," / ",nrow(jj),"\n",sep="")) # for debugging
     out <- c(out,f(jj[i,1],jj[i,2],jj[i,3]))
   } 
-  return(out)  # out has 64*18432=1179648 elements
-}
+  return(out)  # out has 64*110752=688128 elements
+} # function possible() closes
 
 `every_sign` <- function(a1,a2,a3,a4,a5,r){
  # Function every_sign() has 16 lines; given 5 three-velocities and a
