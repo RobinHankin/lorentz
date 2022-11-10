@@ -54,6 +54,29 @@ ptm(to_natural=TRUE, change_time=TRUE)
   Typing \dQuote{\code{sol(299792458)}} is a lot easier than typing
   \dQuote{\code{options("c"=299792458)}}, which is why the package uses
   the idiom that it does.
+
+  In a R-devel discussion about options for printing, Martin Maechler
+  makes the following observation: \dQuote{\emph{Good programming style
+  for functions according to my book is to have them depend only on
+  their arguments, and if a global option really (really? think twice!)
+  should influence behavior, there should be arguments of the function
+  which have a default determined by the global option}}
+
+  I think he is right in general, but offer the observation that the
+  speed of light depends on the units chosen, and typically one fixes
+  one's units once and for all, and does not subsequently change them.
+  This would indicate (to me at least) that a global option would be
+  appropriate.  Further, there \emph{is} a default, \eqn{c=1}, which is
+  returned by \code{sol()} if the option is unset.  This is not just a
+  \dQuote{default}, though: it is used in the overwhelming majority of
+  cases.  Indeed, pedagogically speaking, one learning objective from
+  the package is that units in which \eqn{c\neq 1} are difficult,
+  awkward, and unnatural.  In the package \proglang{R} code, the
+  \emph{only} place the speed of light option is accessed is via
+  \code{sol()}.  Similar arguments are presented in the \pkg{clifford}
+  package at \code{signature.Rd}.
+
+  
 }
 \examples{
 
