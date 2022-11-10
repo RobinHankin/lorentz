@@ -23,7 +23,7 @@
 
 
 
-\title{Special relativity in R: introducing the {\tt lorentz} package and a systematic search for a distributive law for three-velocities}
+\title{A systematic search for a three-velocity gyrodistributive law in special relativity with the {\tt lorentz} R package}
 
 %\date{September 9, 1985}	% Here you can change the date presented in the paper title
 %\date{} 					% Or removing it
@@ -60,14 +60,23 @@ pdfkeywords={Special relativity, three-velocity, Thomas rotation,
 \maketitle
 
 \begin{abstract}
+
 Here I present the {\tt lorentz} package for working with relativistic
-physics.  The package includes functionality for Lorentz transforms
-and Einsteinian three-velocity addition, which is noncommutative and
-nonassociative.  I use the package to systematically sweep a large
-space of potential distributive laws, without success.  The package is
-available on CRAN, at
-\url{https://CRAN.R-project.org/package=lorentz}.
-\end{abstract}
+physics.  The package includes functionality for four-vector
+transformations, three-velocity addition, and other relativistic
+processes such as the behaviour of photons. It was designed to
+facilitate the search for a gyrodistributive law.  In special
+relativity, three-velocities and scalars constitute a gyrovector space
+with addition $\oplus$ and scalar multiplication $\odot$.  Standard
+vector spaces obey the distributive law $a(x+y)=ax+ay$ for scalar $a$
+and vectors $x,y$; but no analogous gyrodistributive law for
+$r\odot(u\oplus v)$ is known.  The package was designed to facilitate
+the search for a gyrodistributive law and includes functionality for
+four-vector transformations and three-velocity addition, which is
+noncommutative and nonassociative.  I use the package to
+systematically sweep a large space of potential gyrodistributive laws,
+without success.  The package is available on CRAN, at
+\url{https://CRAN.R-project.org/package=lorentz}.  \end{abstract}
 
 \SweaveOpts{}
 
@@ -80,8 +89,6 @@ available on CRAN, at
 \newcommand{\gyr}[2]{\operatorname{gyr}\left[{\mathbf #1},{\mathbf #2}\right]}
 
 
-\section{Introduction}
-
 \setlength{\intextsep}{0pt}
 \begin{wrapfigure}{r}{0.2\textwidth}
   \begin{center}
@@ -90,14 +97,12 @@ available on CRAN, at
 \end{wrapfigure}
 
 
-
-
 <<echo=FALSE,print=FALSE>>=
 library("lorentz")
 @ 
 \section{Introduction}
 
-In special relativity, the Lorentz transforms supercede their
+In special relativity, the Lorentz transforms supersede their
 classical equivalent, the Galilean transforms~\citep{goldstein1980}.
 Lorentz transforms operate on four-vectors such as the four-velocity
 or four-potential and are usually operationalised as multiplication by
@@ -117,11 +122,14 @@ contributions would include the {\tt OpenRelativity}
 toolkit~\citep{sherin2016} which simulates the effects of special
 relativity in the {\tt Unity} game engine.
 
-The {\tt lorentz} package provides {\tt R}-centric functionality
-for Lorentz transforms.  It deals with formal Lorentz boosts,
-converts between three-velocities and four-velocities, and provides
-computational support for the gyrogroup structure of relativistic
-three-velocity addition.
+The {\tt lorentz} package~\cite{hankin2022_lorentz_package} is written
+in the R programming language~\cite{rcore2022}, providing {\tt
+R}-centric functionality for the physics of special relativity.  It
+deals with formal Lorentz boosts, converts between three-velocities
+and four-velocities, and provides computational support for the
+gyrogroup structure of relativistic three-velocity addition.  I
+leverage the power of the R programming language and the package
+itself to search for a gyrodistributive law in appendix A.
 
 \section{Lorentz transforms: active and passive}
 
@@ -160,8 +168,9 @@ four-velocity of an object to be $\vvec{1}{0}$, and he measures the
 same object as having a four-velocity of $\vvec{\gamma}{-\gamma v}$.
 So I see the object at rest, and he sees it as moving at speed $-v$;
 that is, he sees it moving to the left (it moves to the left because
-he is moving to the right relative to me).  The package makes
-computations easy.  Suppose $v=0.6c$ in the $x$-direction.
+he is moving to the right relative to me).  The {\tt lorentz}
+package~\cite{hankin2022_lorentz_package} makes computations easy.
+Suppose $v=0.6c$ in the $x$-direction.
 
 <<floater>>=
                           # NB: speed of light = 1 by default
@@ -1054,7 +1063,7 @@ f <- gyrfun(u9,v)
 f(x)
 @ 
 
-Note that the package vectorization is transparent when using syntatic sugar:
+Note that the package vectorization is transparent when using syntactic sugar:
 
 <<u9+x>>=
 u9+x
@@ -1220,7 +1229,11 @@ The {\tt lorentz} package furnishes some functionality for
 manipulating four-vectors and three-velocities in the context of
 special relativity.  The R idiom is relatively natural and the package
 has been used to illustrate different features of relativistic
-kinematics.
+kinematics.  The package leverages the powerful R programming language
+to conduct a systematic search for a gyrodistributive law, without
+success.  If such a law exists, it is complicated: it is not one of
+the 688128 natural forms considered in the search.
+
 
 \bibliographystyle{apalike}
 \bibliography{lorentz_arxiv}
@@ -1238,14 +1251,15 @@ distributive law relaxed by Thomas gyration in some unexpected way.
 \end{quote}
 
 Here, I make a systematic attempt to find a distributive law for
-three-velocities, that is, finding an expression for $r\odot(u\oplus
-v)$ where $u$ and $v$ are three-velocities and $r$ is a real number.
-We define a large number of possible combinations of $u$, $v$, and $r$
-using {\tt lorentz} package idiom.  These are calculated and the
-results compared with the exact value.  If there is an exact
-expression, this will have zero discrepancy.
+three-velocities, that is, finding an expression for
+$r\odot(\bu\oplus\bv)$ where $\bu$ and $\bv$ are three-velocities and
+$r$ is a real number.  We define a large number of possible
+combinations of $\bu$, $\bv$, and $r$ using {\tt lorentz} package
+idiom.  These are calculated and the results compared with the exact
+value.  If there is an exact expression, this will have zero
+discrepancy.
 
-I have tried to enumerate the various combinations of $u,v,r$.  Signs
+I have tried to enumerate the various combinations of $\bu,\bv,r$.  Signs
 are permuted in {\tt every\_sign()} and {\tt all3()} and {\tt
   all3brack()}.  If one of the many combinations (the current total
 stands at 688128) represents the RHS of a putative distributive law,
@@ -1254,7 +1268,7 @@ end of this script, will be zero.
 
 Function {\tt possible()}, defined below, returns a long vector of
 possible expressions that might form the RHS for a distributive law.
-The basic idea is that $r\odot(u\oplus v) = r\odot u+r\odot v + X$
+The basic idea is that $r\odot(\bu\oplus\bv) = r\odot\bu+r\odot\bv + X$
 (where $X$ is a correction term) but because of noncommutativity and
 nonassociativity, this gets complicated.  Function {\tt possible()}
 returns a vector that includes expressions such as
@@ -1264,21 +1278,23 @@ returns a vector that includes expressions such as
 ## ru  + (rv  - r*gyr[ru, v,u+v])
 ## ru  + (rv  - r*gyr[ru, v,v+u])
 ## rv  + (ru  - r*gyr[su, v,u+v])
-## (ru + rv)  + r*gyr[ru, v,u])
-## (ru + rv)  + r*gyr[ru, v,v])
-## (ru + rv)  + r*gyr[ru, v,v])
-## (ru + rv)  + r*gyr[ru,-v,v])
-## (ru + rv)  +   gyr[ru,-v,v])
-## (ru + rv)  + s*gyr[ru,-v,v])
+## rv  + (ru  - r*gyr[su, v,u+v])
+## gyr[ru,-v,v+u] + (ru+rv)
+## (gyr[ru,-v,v+u] + ru) +rv
+## s*gyr[ru,-v,v] + (ru+rv)
+## (s*gyr[ru,-v,v] + ru)  + rv
+## ru + (s*gyr[ru,u,v] + rv)
+## (s*gyr[ru,-v,v] + ru)  + rv
 \end{Sinput}
 \end{Schunk}
 
 etc etc etc.  Here, $r$ is a scalar, $s=1/r$, and $u,v$ are
-three-velocities; {\tt ru} and {\tt su} represent scalar mutliples of
-$u$ $r\odot u$ and $s\odot u$.  Note the variety of orders
-(three-velocity addition is not commutative), different bracketing
-(three-velocity addition is not associative), and use of $r$ or $1/r$
-in different places in the formula.
+three-velocities; {\tt ru} and {\tt su} represent $r\odot\bu$ and
+$s\odot\bu$.  Note the variety of orders (three-velocity addition is
+not commutative), different bracketing (three-velocity addition is not
+associative), and use of $r$ or $1/r$ in different places in the
+formula.  The {\tt partitions} package~\cite{hankin2006} is used to
+ensure that the scheme may easily be improved in the future.
 
 <<>>=
 library("partitions") # needed for perms()
@@ -1466,6 +1482,8 @@ print(min(badness))
 @ 
 
 We see that this systematic sweep through function space does not
-include a distributive law.
+include a distributive law; the minimum error (at about 0.002) is far
+greater than one would expect for a correct law (if it exists) which
+would be subject to numerical roundoff error only.
 
 \end{document}
