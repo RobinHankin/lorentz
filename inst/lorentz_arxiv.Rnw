@@ -956,9 +956,15 @@ reflect(p,disco)
 (above, {\tt p} is a photon moving along the x-axis; standard R
 recycling rules imply that we effectively have one photon per mirror
 in {\tt disco}.  See how the photons' energy is unchanged by the
-reflection).  We might ask what percentage of photons are reflected
-towards the source; but to do this we would need a somewhat more
-stylish disco ball, here with 1000 mirrors:
+reflection).    
+
+Observe that a photon hitting the disco ball at grazing incidence
+would be deflected only slightly and be emitted with a positive
+x-momentum, while a photon impinging perpendicularly will have
+negative x-momentum after reflection.  We might ask what percentage of
+photons are reflected towards the source, in the sense of emerging
+with a negative component of x-momentum.  To do this accurately we
+would need a somewhat more stylish disco ball, here with 1000 mirrors:
 
 <<disco_reflect_percentage>>=
 table(reflect(p,dfun(1000))[,2]>0) # should be TRUE with probability sqrt(0.5)
