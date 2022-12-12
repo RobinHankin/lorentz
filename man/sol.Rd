@@ -23,7 +23,7 @@ ptm(to_natural=TRUE, change_time=TRUE)
 }
 \details{
 
-  In the context of an R package, the symbol \dQuote{c} presents
+  In the context of an \R package, the symbol \dQuote{c} presents
   particular problems.  In the \pkg{lorentz} package, the speed of light
   is denoted \dQuote{sol}, for \sQuote{speed of light}.  You can set the
   speed of light with \code{sol(x)}, and query it with \code{sol()}; see
