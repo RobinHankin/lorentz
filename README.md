@@ -8,7 +8,6 @@ The lorentz package: special relativity in R
 <!-- badges: start -->
 
 [![Build
-Status](https://travis-ci.com/RobinHankin/lorentz.svg?branch=master)](https://travis-ci.com/RobinHankin/lorentz)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)
 [![Rdoc](https://www.rdocumentation.org/badges/version/lorentz)](https://www.rdocumentation.org/packages/lorentz)
 [![Codecov test
