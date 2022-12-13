@@ -5,6 +5,7 @@
 \alias{speedsquared}
 \alias{gam}
 \alias{gam.3vel}
+\alias{gam.3cel}
 \alias{gam.4vel}
 \alias{gam.default}
 \alias{gamm1}
@@ -22,6 +23,7 @@ speedsquared(u)
 gam(u)
 gamm1(u)
 \method{gam}{3vel}(u)
+\method{gam}{3cel}(u)
 \method{gam}{4vel}(u)
 \method{gamm1}{3vel}(u)
 \method{gamm1}{4vel}(u)

@@ -1,11 +1,13 @@
 \name{print.3vel}
 \alias{print.3vel}
+\alias{print.3cel}
 \alias{print.4vel}
 \alias{print.4mom}
 \title{Print methods for three-velocities and four-velocities}
 \description{Print methods for three-velocities}
 \usage{
 \method{print}{3vel}(x, ...)
+\method{print}{3cel}(x, ...)
 \method{print}{4vel}(x, ...)
 \method{print}{4mom}(x, ...)
 }
