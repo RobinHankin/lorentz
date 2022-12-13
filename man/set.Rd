@@ -56,7 +56,7 @@ lower(TT)
 
   Function \code{lower()} lowers both indices of a tensor with two
   upstairs indices.  Function \code{raise()} raises two downstairs
-  indices.  These two functions have identical R idiom but do not return
+  indices.  These two functions have identical \R idiom but do not return
   identical values if \eqn{c\neq 1}{c!=1}.
 
 }

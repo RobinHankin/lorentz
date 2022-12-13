@@ -67,7 +67,7 @@ dot3(v,r)
   Arithmetic operations, executed via \code{Ops.4vel()}, are not defined
   on four-velocities.
   
-  The package is designed so that natural R idiom may be used for three
+  The package is designed so that natural \R idiom may be used for three
   velocity addition, see the examples section.
 }
 \value{
