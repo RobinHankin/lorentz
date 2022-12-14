@@ -7,11 +7,13 @@ Depends: magrittr
 Suggests: knitr,testthat,rmarkdown
 Imports: emulator (>= 1.2-20),tensor,magic
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
-Description: The Lorentz transform in special relativity; also the gyrogroup structure of three-velocities.
-    Includes active and passive transforms and the ability to use
-    units in which the speed of light is not one.  Includes some experimental functionality for celerity and
-    rapidity. For general relativity, see the 'schwarzschild' package.
-License: GPL-3 URL: https://github.com/RobinHankin/lorentz Encoding:
-UTF-8 VignetteBuilder: knitr URL:
-https://github.com/RobinHankin/lorentz BugReports:
-https://github.com/RobinHankin/lorentz/issues
+Description: The Lorentz transform in special relativity; also the gyrogroup structure
+    of three-velocities.  Performs active and passive transforms and has the ability to
+    use units in which the speed of light is not unity.  Includes some experimental
+    functionality for celerity and rapidity. For general relativity, see the 'schwarzschild' package.
+License: GPL-3
+URL: https://github.com/RobinHankin/lorentz
+Encoding: UTF-8
+VignetteBuilder: knitr
+URL: https://github.com/RobinHankin/lorentz
+BugReports: https://github.com/RobinHankin/lorentz/issues
