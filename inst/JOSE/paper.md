@@ -29,23 +29,6 @@ arbitrary four-vector as observed in one coordinate system and returns
 the components observed in another system which is moving at constant
 velocity with respect to the first.
 
-# Previous related work
-
-There are a few existing software tools for working with Lorentz
-transforms, mostly developed in an educational context.  Early work
-would include that of Horwitz et al. [-@horwitz1992], who describe
-``relLab``, a system for building a range of *gendanken* experiments
-in an interactive graphical environment.  The author asserts that it
-runs on "any Macintosh computer with one megabyte of RAM or more" but
-it is not clear whether the software is still available.  More modern
-contributions would include the ``OpenRelativity`` toolkit
-[@sherin2016] which simulates the effects of special relativity in the
-``Unity`` game engine.  There are also many excellent github repos
-that provide functionality to create simple visual displays of Lorentz
-transforms of events (eg
-```https://github.com/nick1627/RelativityVisualisation```) although
-these are generally restricted to a single spatial dimension.
-
 # Statement of need
 
 Einstein's theory of special relativity presents specific difficulties
@@ -81,6 +64,23 @@ three-velocities [@ungar1997]; but the pedagogical impact of this is
 to reinforce the primacy of four-vectors in relativity.  One student,
 using the package, succinctly offers the observation that
 ``three-velocities suck": surely a profound insight.
+
+# Previous related work
+
+There are a few existing software tools for working with Lorentz
+transforms, mostly developed in an educational context.  Early work
+would include that of Horwitz et al. [-@horwitz1992], who describe
+``relLab``, a system for building a range of *gendanken* experiments
+in an interactive graphical environment.  The author asserts that it
+runs on "any Macintosh computer with one megabyte of RAM or more" but
+it is not clear whether the software is still available.  More modern
+contributions would include the ``OpenRelativity`` toolkit
+[@sherin2016] which simulates the effects of special relativity in the
+``Unity`` game engine.  There are also many excellent github repos
+that provide functionality to create simple visual displays of Lorentz
+transforms of events (eg
+```https://github.com/nick1627/RelativityVisualisation```) although
+these are generally restricted to a single spatial dimension.
 
 # The ``lorentz`` package: summary of high-level functionality
 
