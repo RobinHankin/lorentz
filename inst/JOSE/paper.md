@@ -20,14 +20,15 @@ affiliations:
 
 # Introduction: the Lorentz transform in special relativity
 
-In special relativity, the Lorentz transforms supercede their
-classical equivalent, the Galilean transforms [@goldstein1980].
-Lorentz transforms operate on four-vectors such as the four-velocity
-or four-potential and are usually operationalised as multiplication by
-a $4\times 4$ matrix.  A Lorentz transform takes the components of an
-arbitrary four-vector as observed in one coordinate system and returns
-the components observed in another system which is moving at constant
-velocity with respect to the first.
+In special relativity [@einstein1905], the Lorentz transforms
+[@lorentz1904] supercede their classical equivalent, the Galilean
+transforms [@goldstein1980].  Lorentz transforms operate on
+four-vectors such as the four-velocity or four-potential and are
+usually operationalised as multiplication by a $4\times 4$ matrix.  A
+Lorentz transform takes the components of an arbitrary four-vector as
+observed in one coordinate system and returns the components observed
+in another system which is moving at constant velocity with respect to
+the first.
 
 # Statement of need
 
