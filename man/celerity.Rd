@@ -1,5 +1,6 @@
 \name{celerity}
 \alias{celerity}
+\alias{threecel}
 \alias{rapidity}
 \alias{celerity.3vel}
 \alias{celerity.4vel}
@@ -9,8 +10,12 @@
 \alias{rapidity.4vel}
 \alias{rapidity.default}
 \alias{rapidity_ur}
+\alias{as.3cel}
+\alias{cel_to_vel}
+\alias{vel_to_cel}
+\alias{is.3cel}
 \title{Celerity and rapidity}
-\description{The celerity and rapidity of an object}
+\description{The celerity and rapidity of an object (experimental functionality)}
 \usage{
 \method{celerity}{3vel}(u)
 \method{celerity}{4vel}(u)
@@ -18,9 +23,12 @@ celerity_ur(d)
 \method{rapidity}{3vel}(u)
 \method{rapidity}{4vel}(u)
 rapidity_ur(d)
+as.3cel(x)
+cel_to_vel(x)
+vel_to_cel(x)
 }
 \arguments{
-  \item{u}{Speed: either a vector of speeds or a vector of
+  \item{u,x}{Speed: either a vector of speeds or a vector of
     three-velocities or four-velocities}
   \item{d}{In functions \code{celerity_ur()} and \code{rapidity_ur()},
       deficit of speed; speed of light minus speed of object}
@@ -76,3 +84,4 @@ c(celerity_ur(omgp),rapidity_ur(omgp))
 sol(1)
 
 }
+

@@ -1,5 +1,6 @@
 \name{c.3vel}
 \alias{c.3vel}
+\alias{c.3cel}
 \alias{c.4vel}
 \title{Combine vectors of three-velocities and four-velocities into a single vector}
 \description{
@@ -8,6 +9,7 @@ or four velocities
 }
 \usage{
 \method{c}{3vel}(...)
+\method{c}{3cel}(...)
 \method{c}{4vel}(...)
 }
 \arguments{

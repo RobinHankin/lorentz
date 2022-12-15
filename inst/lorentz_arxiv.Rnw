@@ -141,9 +141,8 @@ sciences~\cite{mullen2022}.  For example, functionality for working
 with general relativity is given
 in~\cite{hankin2020,hankin2021string}.  R is interpreted, not
 compiled, giving instant feedback on commands and allowing rapid
-development.
-
-In this document, the typical cycle is presented as follows:
+development.  In this document, the typical cycle is presented as
+follows:
 
 <<>>=
 2+2
@@ -161,16 +160,16 @@ installed independently and cover a wide range of computational
 facilities.  R packages contain code, data, and documentation in a
 standardised format that can be installed by users of R, typically via
 a centralised software repository such as CRAN.  R packages must
-conform to a relatively strict specification and pass extensive
-quality control checks which ensure the usability and long-term
-stability of packages for end users.
+conform to a strict specification and pass extensive quality control
+checks which ensure the usability and long-term stability of packages
+for end users.
 
 \subsection{Installation of the {\tt lorentz} package}
 
 The R system may be downloaded from \url{https://cran.r-project.org/};
 many users prefer the Rstudio IDE, available from
 \url{https://posit.co/}.  Once R is installed, the {\tt lorentz}
-package is easily loaded:
+package is easily loaded.  Type:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -178,7 +177,8 @@ package is easily loaded:
 \end{Sinput}
 \end{Schunk}
 
-which will download the package from CRAN.  To install the package, use
+at the command line, and this will download the package from CRAN.  To
+install the package, use
 
 \begin{Schunk}
 \begin{Sinput}

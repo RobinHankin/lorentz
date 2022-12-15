@@ -105,6 +105,15 @@
   return(invisible(print(x)))
 }
 
+`print.3cel` <- function(x, ...){
+  cat(paste("A vector of three-celerities (speed of light = ",capture.output(cat(sol())),")\n",sep=""))
+  x <- unclass(x)
+  if(is.null(colnames(x)) & ncol(x)==3){
+    colnames(x) <- coordnames()[-1]
+  }
+  return(invisible(print(x)))
+}
+
 `print.4vel` <- function(x, ...){
   cat(paste("A vector of four-velocities (speed of light = ",capture.output(cat(sol())),")\n",sep=""))
   x <- rbind(unclass(x))

@@ -1,0 +1,31 @@
+File lorentz_arxiv.Rnw is basically the same as the vignette
+(vignettes/lorentz.Rmd) but modified for arxiv.  The bib file is a
+modified version of vignettes/lorentz.bib, now under version control.
+There might be a better way to do this.
+
+Weave  'lorentz_arxiv.Rnw' with something like
+
+R CMD Sweave lorentz_arxiv.Rnw
+
+(that takes about five minutes).  This will create lorentz_arxiv.tex.
+
+To latex lorentz_arxiv.tex, you will need a couple of auxiliary files:
+
+* arxiv.sty from https://github.com/kourgeorge/arxiv-style
+* orcid.png, from https://orcid.org/signin
+* lorentz.png, the hexsticker, copied from man/figures
+
+Then 
+
+pdflatex lorentz_arxiv
+bibtex lorentz_arxiv
+pdflatex lorentz_arxiv
+pdflatex lorentz_arxiv
+
+will create lorentz_arxiv.pdf and lorentz_arxiv.bbl
+
+These files will have to be uploaded to arxiv for it to process
+lorentz_arxiv.tex; remember to upload lorentz_arxiv.bbl as well.
+
+NOTE: the tex file, lorentz_arxiv.tex, is NOT under version control.
+
