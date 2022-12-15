@@ -27,8 +27,10 @@
 \Abstract{ Here I present the \pkg{lorentz} package for working with
   relativistic physics.  The package includes functionality for
   Lorentz transforms and Einsteinian three-velocity addition, which is
-  noncommutative and nonassociative.}
-
+  noncommutative and nonassociative.  It is available on CRAN at
+  \url{https://CRAN.R-project.org/package=lorentz}.  To cite the
+  \pkg{lorentz} package, use \citet{hankin2022_lorentz}.
+}
 
 \Keywords{Lorentz transform, Lorentz group, Lorentz law, Lorentz
   velocity addition, special relativity, relativistic physics,
