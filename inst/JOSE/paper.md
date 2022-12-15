@@ -52,11 +52,11 @@ boosts using familiar matrix multiplication, and in addition
 incorporates in an efficient and consistent interface to deal with
 many aspects of undergraduate-level relativity including active and
 passive transforms, four-mometum of photons, and in particular the
-difficult and nonintuitive things that happen when units in which
-$c\neq 1$ [such as S. I.] are used.  The classical limit of $c=\infty$
-is discussed explicitly and computationally.  The package allows the
-user to employ efficient and natural vectorised R idiom in the context
-of relativistic kinematics.
+difficult and nonintuitive behaviour of units in which $c\neq 1$ [such
+as S. I.].  The classical limit of $c=\infty$ is discussed explicitly
+and computationally.  The package allows the user to employ efficient
+and natural vectorised R idiom in the context of relativistic
+kinematics.
 
 The package was originally written to facilitate investigation into
 the nonassociative and noncommutative "gyrogroup" structure of
