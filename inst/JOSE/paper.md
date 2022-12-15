@@ -42,16 +42,16 @@ classical velocity addition law is incorrect for both three-velocities
 and four-velocities in relativistic mechanics, students may reasonably
 ask in what way four-velocities are preferable to three-velocities.
 
-The `lorentz` package furnishes a consistent suite of computational
-functionality to give numerical illustration of many concepts of
-special relativity, including manipulation of three- and four-
-velocities.  It is accessible to undergraduates, being written in the
-`R` programming language [@rcore2022] which will be familiar to many
-physics students.  The package allows the user to manipulate Lorentz
-boosts using familiar matrix multiplication, and in addition
-incorporates in an efficient and consistent interface to deal with
-many aspects of undergraduate-level relativity including active and
-passive transforms, four-mometum of photons, and in particular the
+The `lorentz` package [@hankin2022_lorentz] furnishes a consistent
+suite of computational functionality to give numerical illustration of
+many concepts of special relativity, including manipulation of three-
+and four- velocities.  It is accessible to undergraduates, being
+written in the `R` programming language [@rcore2022] which will be
+familiar to many physics students.  The package allows the user to
+manipulate Lorentz boosts using familiar matrix multiplication, and in
+addition incorporates in an efficient and consistent interface to deal
+with many aspects of undergraduate-level relativity including active
+and passive transforms, four-mometum of photons, and in particular the
 difficult and nonintuitive behaviour of units in which $c\neq 1$ [such
 as S. I.].  The classical limit of $c=\infty$ is discussed explicitly
 and computationally.  The package allows the user to employ efficient
