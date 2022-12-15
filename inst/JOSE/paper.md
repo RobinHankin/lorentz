@@ -98,7 +98,7 @@ detailing package idiom is included.  There does not seem to be a
 known relativistic generalization of the classical distributive law
 $r\left({\bf u} + {\bf v}\right)=r{\bf u} + r{\bf v}$ [@ungar1997].
 Ungar states that ``It is hoped that one day a gyrodistributive law
-\ldots will be discovered.  If exists, it is expected to be the
+$\ldots$ will be discovered.  If exists, it is expected to be the
 standard distributive law relaxed by Thomas gyration in some
 unexpected way''.  The package is used to execute a systematic sweep
 through possible distributive laws consistent with Ungar's suggestion,
