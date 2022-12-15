@@ -22,13 +22,12 @@ affiliations:
 
 In special relativity [@einstein1905], the Lorentz transforms
 [@lorentz1904] supercede their classical equivalent, the Galilean
-transforms [@goldstein1980].  Lorentz transforms operate on
-four-vectors such as the four-velocity or four-potential and are
-usually operationalised as multiplication by a $4\times 4$ matrix.  A
-Lorentz transform takes the components of an arbitrary four-vector as
-observed in one coordinate system and returns the components observed
-in another system which is moving at constant velocity with respect to
-the first.
+transforms.  Lorentz transforms operate on four-vectors such as the
+four-velocity or four-potential and are usually operationalised as
+multiplication by a $4\times 4$ matrix.  A Lorentz transform takes the
+components of an arbitrary four-vector as observed in one coordinate
+system and returns the components observed in another system which is
+moving at constant velocity with respect to the first.
 
 # Statement of need
 
@@ -82,6 +81,11 @@ that provide functionality to create simple visual displays of Lorentz
 transforms of events (eg
 ```https://github.com/nick1627/RelativityVisualisation```) although
 these are generally restricted to a single spatial dimension.
+
+Educational models (in the sense of @possel2018) for Einstein's
+general theory of relativity [@einstein1907] tend to be physical
+[@possel2018]; but software examples would include the work of
+@hankin2022 for visualizing black holes and gravitational radiation.
 
 # The ``lorentz`` package: summary of high-level functionality
 
