@@ -85,7 +85,7 @@ these are generally restricted to a single spatial dimension.
 Educational models (in the sense of @possel2018) for Einstein's
 general theory of relativity [@einstein1907] tend to be physical
 [@possel2018]; but software examples would include the work of
-@hankin2022 for visualizing black holes and gravitational radiation.
+@hankin2021 for visualizing black holes and gravitational radiation.
 
 # The ``lorentz`` package: summary of high-level functionality
 
