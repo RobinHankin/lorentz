@@ -1,4 +1,4 @@
-# this is a test comment line
+# this is file "dockermaker", to run it change directory to inst/JOSE and type . ./dockermaker
 docker run --rm \
     --volume $PWD/:/data \
     --user $(id -u):$(id -g) \
