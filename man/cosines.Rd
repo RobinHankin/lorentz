@@ -1,5 +1,6 @@
 \name{cosines}
 \alias{cosines}
+\alias{cosine}
 \alias{dcosines}
 \alias{direction.cosines}
 \title{Direction cosines}
