@@ -46,7 +46,8 @@ m <- c(1,1,1)
 reflect(A,m)
 
 ## Reflect the photons in a series of mirrors:
-A \%>\% reflect(m) \%>\% reflect(1:3) \%>\% reflect(3:1) 
+A |> reflect(m) |> reflect(1:3) |> reflect(3:1) 
+
 
 ## To reflect from a moving mirror we need to transform to a frame in
 ## which the mirror is at rest, then transform back to the original
@@ -66,10 +67,7 @@ reflect(A \%*\% t(B),m)
 
 
 ## Now transform back to the original rest frame (NB: active transform):
-reflect(A \%*\% t(B),m) \%*\% solve(t(B))
-
-## or, better, use magrittr:
-A \%>\% tcrossprod(B) \%>\% reflect(m) \%>\% tcrossprod(solve(B))
+A |> tcrossprod(B) |> reflect(m) |> tcrossprod(solve(B))
 
 
 }
