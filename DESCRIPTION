@@ -15,7 +15,6 @@ Description: The Lorentz transform in special relativity; also the
     publications please use Hankin (2022)
     <doi:10.48550/ARXIV.2212.07005>.
 License: GPL-3
-URL: https://github.com/RobinHankin/lorentz
 Encoding: UTF-8
 VignetteBuilder: knitr
 URL: https://github.com/RobinHankin/lorentz
