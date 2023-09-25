@@ -112,7 +112,7 @@
 <span><span class="co">#&gt; A vector of three-velocities (speed of light = 1)</span></span>
 <span><span class="co">#&gt;        x y z</span></span>
 <span><span class="co">#&gt; [1,] 0.6 0 0</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/lorentz/man/4vel.html" class="external-link">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span>    <span class="co"># convert to a four-velocity:</span></span>
+<span><span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/4vel.html">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span>    <span class="co"># convert to a four-velocity:</span></span>
 <span><span class="co">#&gt; A vector of four-velocities (speed of light = 1)</span></span>
 <span><span class="co">#&gt;         t    x y z</span></span>
 <span><span class="co">#&gt; [1,] 1.25 0.75 0 0</span></span>
@@ -135,7 +135,7 @@
 <span><span class="co">#&gt; z  4.00</span></span></code></pre></div>
 <p>But it can also be used to transform four-velocities:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lorentz/man/4vel.html" class="external-link">as.4vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.7</span>,<span class="op">-</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/4vel.html">as.4vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.7</span>,<span class="op">-</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">B</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">v</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        [,1]</span></span>
 <span><span class="co">#&gt; t  1.823312</span></span>
@@ -189,7 +189,7 @@
 <span><span class="co">#&gt; [4,] 0.480 -0.605  0.168</span></span>
 <span><span class="co">#&gt; [5,] 0.820 -0.174  0.356</span></span>
 <span> <span class="co"># convert u to a four-velocity:</span></span>
-<span> <span class="fu"><a href="https://rdrr.io/pkg/lorentz/man/4vel.html" class="external-link">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span></span>
+<span> <span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/4vel.html">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A vector of four-velocities (speed of light = 1)</span></span>
 <span><span class="co">#&gt;         t      x       y      z</span></span>
 <span><span class="co">#&gt; [1,] 1.09  0.250  0.0783  0.341</span></span>
@@ -198,7 +198,7 @@
 <span><span class="co">#&gt; [4,] 2.13 -1.571 -0.9862  0.273</span></span>
 <span><span class="co">#&gt; [5,] 1.46 -0.443 -0.4209  0.864</span></span>
 <span> <span class="co"># use four-velocities to effect the same transformation:</span></span>
-<span> <span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lorentz/man/4vel.html" class="external-link">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="reference/boost.html">boost</a></span><span class="op">(</span><span class="op">-</span><span class="va">v</span><span class="op">)</span></span>
+<span> <span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/4vel.html">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="reference/boost.html">boost</a></span><span class="op">(</span><span class="op">-</span><span class="va">v</span><span class="op">)</span></span>
 <span> <span class="fu"><a href="reference/3vel.html">as.3vel</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A vector of three-velocities (speed of light = 1)</span></span>
 <span><span class="co">#&gt;          x      y      z</span></span>
