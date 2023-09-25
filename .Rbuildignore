@@ -8,3 +8,7 @@
 inst/.RData
 ^inst/lorentz_arxiv.Rnw$
 ^inst/lorentz_arxiv.bib$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$

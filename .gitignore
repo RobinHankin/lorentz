@@ -69,3 +69,5 @@ inst/JOC/lorentz_JOC.blg
 inst/JOC/lorentz_JOC.log
 inst/JOC/lorentz_JOC.pdf
 vignettes/lorentz.tex~
+inst/doc
+docs

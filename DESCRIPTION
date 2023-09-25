@@ -17,5 +17,5 @@ Description: The Lorentz transform in special relativity; also the
 License: GPL-3
 Encoding: UTF-8
 VignetteBuilder: knitr
-URL: https://github.com/RobinHankin/lorentz
+URL: https://github.com/RobinHankin/lorentz, https://robinhankin.github.io/lorentz/
 BugReports: https://github.com/RobinHankin/lorentz/issues
