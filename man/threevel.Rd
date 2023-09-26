@@ -1,4 +1,4 @@
-\name{3vel}
+\name{threevel}
 \alias{3vel}
 \alias{as.3vel}
 \alias{is.3vel}

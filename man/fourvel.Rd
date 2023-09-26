@@ -1,4 +1,4 @@
-\name{4vel}
+\name{fourvel}
 \alias{4vel}
 \alias{fourvel}
 \alias{as.4vel}

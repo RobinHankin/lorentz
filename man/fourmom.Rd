@@ -1,4 +1,4 @@
-\name{4mom}
+\name{fourmom}
 \alias{Ops.4mom}
 \alias{4mom}
 \alias{fourmom}
