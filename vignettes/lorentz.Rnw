@@ -647,7 +647,7 @@ It is easy to misapply matrix multiplication in this context.  Note
 carefully that the following natural idiom is {\bf incorrect}:
 
 <<>>=
-U %*% B  # Young Frankstein: Do Not Use This Brain!
+U %*% B  # Young Frankenstein: Do Not Use This Brain!
 ## The above idiom is incorrect.  See
 ## https://www.youtube.com/watch?v=m7-bMBuVmHo&t=1s
 ## (in particular @1:08) for a technical explanation of why 
