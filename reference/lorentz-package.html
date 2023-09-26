@@ -99,10 +99,10 @@ Index:  This package was not yet installed at build time.<br></p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="3vel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>,<span class="fl">0.6</span>,<span class="op">-</span><span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>  <span class="co"># u is a three-velocity</span></span></span>
+<span class="r-in"><span><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>,<span class="fl">0.6</span>,<span class="op">-</span><span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>  <span class="co"># u is a three-velocity</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gam.html">gam</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span>                         <span class="co"># relativistic gamma term for u</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.360828</span>
-<span class="r-in"><span><span class="va">U</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/4vel.html">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span>                <span class="co"># U is a four-velocity</span></span></span>
+<span class="r-in"><span><span class="va">U</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/fourvel.html">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span>                <span class="co"># U is a four-velocity</span></span></span>
 <span class="r-in"><span><span class="va">B1</span> <span class="op">&lt;-</span> <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span>                 <span class="co"># B1 is the Lorentz transform matrix for u</span></span></span>
 <span class="r-in"><span><span class="va">B1</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>              <span class="co"># Lorentz transform of zero 4-velocity (=-u)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         [,1]</span>
@@ -111,8 +111,8 @@ Index:  This package was not yet installed at build time.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> y -0.8164966</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> z  0.1360828</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">B2</span> <span class="op">&lt;-</span> <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="3vel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.8</span>,<span class="fl">0.3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>  </span></span>
-<span class="r-in"><span><span class="va">B3</span> <span class="op">&lt;-</span> <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="3vel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.1</span>,<span class="fl">0.9</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>  <span class="co"># more boosts</span></span></span>
+<span class="r-in"><span><span class="va">B2</span> <span class="op">&lt;-</span> <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.8</span>,<span class="fl">0.3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>  </span></span>
+<span class="r-in"><span><span class="va">B3</span> <span class="op">&lt;-</span> <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.1</span>,<span class="fl">0.9</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>  <span class="co"># more boosts</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">Bi</span> <span class="op">&lt;-</span> <span class="va">B1</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">B2</span>  <span class="co"># Bi is the boost for successive Lorentz transforms</span></span></span>
 <span class="r-in"><span></span></span>
@@ -125,10 +125,10 @@ Index:  This package was not yet installed at build time.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> z -0.88726725  0.01243579  0.65677268  1.16436170</span>
 <span class="r-in"><span><span class="fu"><a href="boost.html">orthog</a></span><span class="op">(</span><span class="va">Bi</span><span class="op">)</span>         <span class="co"># and an orthogonal matrix</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               t             x             y             z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.000000e+00 -1.046611e-14 -5.410925e-13 -1.350410e-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -1.236185e-13  9.794943e-01  1.895365e-01  6.831470e-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y -5.484482e-13 -1.983854e-01  9.664761e-01  1.629943e-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -3.897417e-14 -3.513115e-02 -1.732047e-01  9.842591e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.000000e+00 -1.041767e-14 -5.394647e-13 -1.348189e-13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x -1.246934e-13  9.794943e-01  1.895365e-01  6.831470e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y -5.534047e-13 -1.983854e-01  9.664761e-01  1.629943e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -3.920328e-14 -3.513115e-02 -1.732047e-01  9.842591e-01</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">Bj</span> <span class="op">&lt;-</span> <span class="va">B2</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">B1</span>    <span class="co"># B1 and B2 do not commute...</span></span></span>
 <span class="r-in"><span></span></span>
@@ -157,57 +157,57 @@ Index:  This package was not yet installed at build time.<br></p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">u</span><span class="op">+</span><span class="va">v</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A vector of three-velocities (speed of light = 1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 x           y          z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] -0.14012069 -0.62601780  0.6615552</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.03221912  0.80830918 -0.1790383</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] -0.51656237  0.75619466 -0.3864460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.02018581 -0.68080689 -0.6230009</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  0.28496129  0.51928238 -0.8055608</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] -0.77433707 -0.36292028  0.4997554</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] -0.21713576 -0.51391738  0.6332958</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -0.96249693  0.25344854  0.0534315</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -0.53101214  0.08288555  0.8213696</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] -0.16401754 -0.96046223 -0.1704456</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                x          y           z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] -0.3444412  0.6983339  0.58647645</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.6895628 -0.4650692  0.53725314</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  0.7931959  0.1009218  0.25232836</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.5530328 -0.6274499  0.48475157</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] -0.6787429 -0.5756227 -0.05311419</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] -0.3424327 -0.3741123 -0.85121222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  0.5145694 -0.2551687  0.80883461</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -0.1789742 -0.5973247  0.13124325</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -0.2713302 -0.1553406 -0.94910876</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] -0.5461782  0.1132170  0.79735565</span>
 <span class="r-in"><span><span class="va">v</span><span class="op">+</span><span class="va">u</span>        <span class="co"># Three-velocity addition is not commutative...</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A vector of three-velocities (speed of light = 1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 x           y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] -0.06316762 -0.77064871  0.50129613</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.18056196  0.68120864 -0.43567038</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] -0.32084315  0.28889549 -0.89532490</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] -0.33723700 -0.75672746 -0.40702625</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  0.98925519 -0.07673528 -0.12357687</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] -0.78620661 -0.03329154  0.60152751</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] -0.33490797 -0.43338375  0.64213529</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -0.68779558  0.71917857 -0.05666438</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -0.26064390 -0.16716574  0.93145707</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] -0.82509649 -0.54141501  0.06728077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                x          y           z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] -0.6711606  0.6492677  0.27974913</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.6107656 -0.3480603  0.69731381</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  0.7648237  0.3428026  0.02335794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.2751253 -0.3123473  0.87250674</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] -0.6877500 -0.5246194  0.21593735</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] -0.5624661  0.3485030 -0.73753640</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  0.9692475 -0.2105927  0.01778238</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -0.2720548 -0.5705745  0.08052525</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -0.4924499 -0.5818790 -0.64611774</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] -0.6758689  0.4966423  0.49340890</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">u</span><span class="op">+</span><span class="op">(</span><span class="va">v</span><span class="op">+</span><span class="va">w</span><span class="op">)</span>   <span class="co"># ... nor associative</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A vector of three-velocities (speed of light = 1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                x           y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  0.1113195 -0.83587689  0.01351084</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.2023680  0.96209896 -0.15777599</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] -0.5443017  0.76784713 -0.31187046</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.1203930 -0.63871732 -0.75023903</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  0.2878327  0.51184303 -0.80941004</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] -0.6705080 -0.42475047  0.58340998</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  0.3457588 -0.48163601  0.47578638</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -0.9607838  0.27279415  0.02222649</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -0.4416477  0.01992503  0.88601495</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] -0.1982400 -0.91900822 -0.31324931</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                x          y          z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] -0.3157297  0.7173706  0.6143113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.6876553 -0.4436965  0.5663931</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  0.2357646  0.4276689  0.6933954</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.5914443 -0.5876025  0.5304440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] -0.8789689 -0.3724481  0.1907068</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] -0.2453856 -0.3545384 -0.9008849</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  0.5380859 -0.2841948  0.7929533</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -0.5470712 -0.1171870 -0.3991193</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -0.2629860 -0.1600888 -0.9514120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] -0.4838323  0.2869392  0.8222362</span>
 <span class="r-in"><span><span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span><span class="op">+</span><span class="va">w</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A vector of three-velocities (speed of light = 1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 x            y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  0.11652737 -0.621716988 -0.09696920</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.26092544  0.929098691 -0.24350555</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] -0.53728852  0.770894246 -0.33212223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.04709357 -0.682168700 -0.72162032</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  0.29147239  0.505599474 -0.81199527</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] -0.68064194 -0.447343973  0.56067697</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  0.32714930 -0.547996789  0.51736036</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -0.95676426  0.285196758  0.01270503</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -0.41274422  0.005694978  0.89171483</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] -0.15023309 -0.932207873 -0.30744832</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                x           y          z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] -0.3532592  0.72046409  0.5902044</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.6848023 -0.43861420  0.5727080</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  0.3184378  0.22758788  0.7928863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.5780328 -0.55901355  0.5671619</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] -0.8825639 -0.29947530  0.2339996</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] -0.2577174 -0.34437610 -0.9015431</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  0.5877426 -0.30292899  0.7486239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -0.4507652 -0.01407778 -0.4107295</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -0.2673802 -0.16888618 -0.9486604</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] -0.4536078  0.33705328  0.8171351</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

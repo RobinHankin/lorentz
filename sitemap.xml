@@ -19,15 +19,6 @@
     <loc>https://robinhankin.github.io/lorentz/index.html</loc>
   </url>
   <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/3vel.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/4mom.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/4vel.html</loc>
-  </url>
-  <url>
     <loc>https://robinhankin.github.io/lorentz/reference/Extract.html</loc>
   </url>
   <url>
@@ -53,6 +44,12 @@
   </url>
   <url>
     <loc>https://robinhankin.github.io/lorentz/reference/cosines.html</loc>
+  </url>
+  <url>
+    <loc>https://robinhankin.github.io/lorentz/reference/fourmom.html</loc>
+  </url>
+  <url>
+    <loc>https://robinhankin.github.io/lorentz/reference/fourvel.html</loc>
   </url>
   <url>
     <loc>https://robinhankin.github.io/lorentz/reference/galileo.html</loc>
@@ -89,5 +86,8 @@
   </url>
   <url>
     <loc>https://robinhankin.github.io/lorentz/reference/sol.html</loc>
+  </url>
+  <url>
+    <loc>https://robinhankin.github.io/lorentz/reference/threevel.html</loc>
   </url>
 </urlset>
