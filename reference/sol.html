@@ -111,22 +111,22 @@
   “<code>options("c"=299792458)</code>”, which is why the package uses
   the idiom that it does.</p>
 <p>In a R-devel discussion about options for printing, Martin Maechler
-  makes the following observation: “<em>Good programming style
+  makes the following observation: “Good programming style
   for functions according to my book is to have them depend only on
   their arguments, and if a global option really (really? think twice!)
   should influence behavior, there should be arguments of the function
-  which have a default determined by the global option</em>”</p>
+  which have a default determined by the global option”</p>
 <p>I think he is right in general, but offer the observation that the
   speed of light depends on the units chosen, and typically one fixes
   one's units once and for all, and does not subsequently change them.
   This would indicate (to me at least) that a global option would be
-  appropriate.  Further, there <em>is</em> a default, \(c=1\), which is
+  appropriate.  Further, there is a default, \(c=1\), which is
   returned by <code>sol()</code> if the option is unset.  This is not just a
   “default”, though: it is used in the overwhelming majority of
   cases.  Indeed, pedagogically speaking, one learning objective from
   the package is that units in which \(c\neq 1\) are difficult,
   awkward, and unnatural.  In the package R code, the
-  <em>only</em> place the speed of light option is accessed is via
+  only place the speed of light option is accessed is via
   <code>sol()</code>.  Similar arguments are presented in the <span class="pkg">clifford</span>
   package at <code>signature.Rd</code>.</p>
   
