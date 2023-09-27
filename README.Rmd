@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 # Overview
 
 
-The ```lorentz``` package furnishes some R-centric functionality for
+The `lorentz` package furnishes some R-centric functionality for
 special relativity.  Lorentz transformations of four-vectors are
 handled and some functionality for the stress energy tensor is given.
 The package deals with four-momentum and has facilities for dealing
@@ -46,20 +46,20 @@ careful with brackets.
 # Installation
 
 To install the most recent stable version on CRAN, use
-```install.packages()``` at the R prompt:
+`install.packages()` at the R prompt:
 
 ```
 R> install.packages("lorentz")
 ```
 
 
-To install the current development version use ```devtools```:
+To install the current development version use `devtools`:
 
 ```
 R> devtools::install_github("RobinHankin/lorentz")
 ```
 
-And then to load the package use ```library()```:
+And then to load the package use `library()`:
 
 
 ```{r,message=FALSE}
@@ -67,7 +67,7 @@ library("lorentz")
 ```
 
 
-# The ```lorentz``` package in use
+# The `lorentz` package in use
 
 The package furnishes natural R idiom for working with
 three-velocities, four-velocities, and Lorentz transformations as
@@ -164,8 +164,8 @@ Then we can see that velocity addition is not commutative:
  (u+v)-(v+u)
 ```
 
-Observe that the difference between ```u+v``` and ```v+u``` is not
-"small" in any sense. Commutativity is replaced with gyrocommutatitivity:
+Observe that the difference between `u+v` and `v+u` is not
+"small" in any sense.  Commutativity is replaced with gyrocommutatitivity:
 
 ```{r}
 # Compare two different ways of calculating the same thing:
@@ -179,7 +179,7 @@ Observe that the difference between ```u+v``` and ```v+u``` is not
 
 ## Nonassociativity of three-velocities
 
-It would be reasonable to expect that ```u+(v+w)==(u+v)+w```.
+It would be reasonable to expect that `u+(v+w)==(u+v)+w`.
 However, this is not the case:
  
 ```{r}

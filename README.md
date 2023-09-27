@@ -7,8 +7,7 @@ The lorentz package: special relativity in R
 
 <!-- badges: start -->
 
-[![Build
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)
 [![Rdoc](https://www.rdocumentation.org/badges/version/lorentz)](https://www.rdocumentation.org/packages/lorentz)
 [![Codecov test
 coverage](https://app.codecov.io/gh/RobinHankin/lorentz/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/lorentz/branch/master)
@@ -60,12 +59,14 @@ default, this can be changed.
 #> A vector of three-velocities (speed of light = 1)
 #>        x y z
 #> [1,] 0.6 0 0
+
 as.4vel(u)    # convert to a four-velocity:
 #> A vector of four-velocities (speed of light = 1)
 #>         t    x y z
 #> [1,] 1.25 0.75 0 0
 gam(u)  # calculate the gamma term
 #> [1] 1.25
+
 B <- boost(u) # give the Lorentz transformation
 B
 #>       t     x y z
@@ -144,6 +145,7 @@ are three-velocities or four-velocities:
  # calculate the gamma correction term:
  gam(u)
 #> [1] 1.09 1.24 1.21 2.13 1.46
+
  # add a velocity of 0.9c in the x-direction:
  v <- as.3vel(c(0.9,0,0))
  v+u
@@ -154,6 +156,8 @@ are three-velocities or four-velocities:
 #> [3,] 0.858  0.267 -0.075
 #> [4,] 0.480 -0.605  0.168
 #> [5,] 0.820 -0.174  0.356
+
+
  # convert u to a four-velocity:
  as.4vel(u)
 #> A vector of four-velocities (speed of light = 1)
@@ -163,6 +167,7 @@ are three-velocities or four-velocities:
 #> [3,] 1.21 -0.223  0.6160 -0.173
 #> [4,] 2.13 -1.571 -0.9862  0.273
 #> [5,] 1.46 -0.443 -0.4209  0.864
+
  # use four-velocities to effect the same transformation:
  w <- as.4vel(u) %*% boost(-v)
  as.3vel(w)
@@ -225,14 +230,15 @@ any sense. Commutativity is replaced with gyrocommutatitivity:
 #> [2,]  2.89e-16 -3.18e-15 -1.08e-16
 #> [3,] -4.26e-15  1.09e-13  4.67e-14
 #> [4,]  1.67e-15  4.76e-16  1.91e-15
+
 # The other way round:
  (v+u) - gyr(v,u,u+v)
 #> A vector of three-velocities (speed of light = 1)
-#>             x         y         z
-#> [1,] 3.21e-15 -6.42e-16  2.89e-15
-#> [2,] 3.76e-15 -1.73e-15 -2.53e-16
-#> [3,] 1.47e-14 -4.07e-14 -2.03e-14
-#> [4,] 9.05e-15  6.43e-15  3.24e-14
+#>              x         y         z
+#> [1,]  3.21e-15 -6.42e-16  2.89e-15
+#> [2,] -1.45e-15  1.73e-15  1.08e-16
+#> [3,]  1.47e-14 -4.07e-14 -2.03e-14
+#> [4,]  9.05e-15  6.43e-15  3.24e-14
 ```
 
 (that is, zero to numerical accuracy)
@@ -258,11 +264,11 @@ replaced with gyroassociativity:
 ``` r
  (u+(v+w)) - ((u+v)+gyr(u,v,w))
 #> A vector of three-velocities (speed of light = 1)
-#>      x         y         z
-#> [1,] 0  8.16e-17 -6.53e-16
-#> [2,] 0 -9.49e-16  0.00e+00
-#> [3,] 0  3.21e-15  1.60e-15
-#> [4,] 0  0.00e+00  0.00e+00
+#>             x        y         z
+#> [1,]  0.0e+00 8.16e-17 -6.53e-16
+#> [2,] -3.8e-15 2.85e-15  9.49e-16
+#> [3,]  0.0e+00 3.21e-15  1.60e-15
+#> [4,]  0.0e+00 0.00e+00  0.00e+00
  ((u+v)+w) - (u+(v+gyr(v,u,w)))
 #> A vector of three-velocities (speed of light = 1)
 #>              x         y         z
@@ -278,10 +284,10 @@ replaced with gyroassociativity:
 
 The most concise reference is
 
--   A. A. Ungar 2006. *Thomas precession: a kinematic effect of the
-    algebra of Einstein’s velocity addition law. Comments on "Deriving
-    relativistic momentum and energy: II, Three-dimensional case*.
-    European Journal of Physics, 27:L17-L20
+- A. A. Ungar 2006. *Thomas precession: a kinematic effect of the
+  algebra of Einstein’s velocity addition law. Comments on “Deriving
+  relativistic momentum and energy: II, Three-dimensional case*.
+  European Journal of Physics, 27:L17-L20
 
 # Further information
 
