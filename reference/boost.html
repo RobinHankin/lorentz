@@ -177,95 +177,95 @@ but is algebraically equivalent to</p>
 <span class="r-in"><span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="r3vel.html">r3vel</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html" class="external-link">solve</a></span><span class="op">(</span><span class="fu">boost</span><span class="op">(</span><span class="op">-</span><span class="va">u</span><span class="op">)</span><span class="op">)</span>  <span class="co"># should be zero</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               t x             y            z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t -2.220446e-16 0 -6.938894e-18 0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x  1.110223e-16 0  6.938894e-18 0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.000000e+00 0 -2.220446e-16 6.938894e-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z  2.220446e-16 0  6.938894e-18 0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               t            x             y             z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  0.000000e+00 2.220446e-16  0.000000e+00 -5.551115e-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  0.000000e+00 0.000000e+00  1.110223e-16  0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.000000e+00 1.110223e-16  0.000000e+00 -2.081668e-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -1.110223e-16 0.000000e+00 -3.469447e-17  2.220446e-16</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu">boost</span><span class="op">(</span><span class="va">v</span><span class="op">)</span>   <span class="co"># not a pure boost (not symmetrical)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            t           x           y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.3404603 -0.08749876 -0.17898985 -0.87013823</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -0.2228739  0.99640272  0.05936516  0.23093322</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y -0.1157302 -0.02806326  1.00595189 -0.02582106</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -0.8566024 -0.11853311  0.12873978  1.30504546</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t         x          y          z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  2.8293143 0.9447546 -0.5133426 -2.4184576</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  2.0565295 1.3561104 -0.5265159 -1.7643863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.2982849 0.2046380  0.9126703 -0.4627419</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -1.6391253 0.1079317  0.3915795  1.8766321</span>
 <span class="r-in"><span><span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span>  <span class="co"># not the same!</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            t           x           y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.3404603 -0.22287387 -0.11573023 -0.85660240</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -0.2228739  1.02122350  0.01102059  0.08157126</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y -0.1157302  0.01102059  1.00572259  0.04235696</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -0.8566024  0.08157126  0.04235696  1.31351425</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t          x          y          z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  2.8293143  2.0565295  0.2982849 -1.6391253</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  2.0565295  2.1044571  0.1601936 -0.8802907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.2982849  0.1601936  1.0232349 -0.1276799</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -1.6391253 -0.8802907 -0.1276799  1.7016222</span>
 <span class="r-in"><span><span class="fu">boost</span><span class="op">(</span><span class="va">v</span><span class="op">+</span><span class="va">u</span><span class="op">)</span>  <span class="co"># also not the same!</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             t            x            y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.34046034 -0.087498759 -0.178989847 -0.87013823</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -0.08749876  1.003271165  0.006691585  0.03253036</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y -0.17898985  0.006691585  1.013688489  0.06654499</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -0.87013823  0.032530359  0.066544989  1.32350069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t          x          y          z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  2.8293143  0.9447546 -0.5133426 -2.4184576</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  0.9447546  1.2330865 -0.1266500 -0.5966732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y -0.5133426 -0.1266500  1.0688167  0.3242088</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -2.4184576 -0.5966732  0.3242088  2.5274111</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">u</span><span class="op">+</span><span class="va">v</span>  <span class="co"># returns a three-velocity</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A vector of three-velocities (speed of light = 1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              x          y        z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.1662667 0.08633618 0.639036</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              x          y         z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.726865 -0.1054266 0.5793366</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu">boost</span><span class="op">(</span><span class="va">v</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu">boost</span><span class="op">(</span><span class="va">w</span><span class="op">)</span>  <span class="co"># associative, no brackets needed</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            t            x           y          z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.9703081  0.152912219  0.87610475 -1.4460886</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -0.1752591  0.967492351 -0.06751415  0.3001935</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.5962159  0.006827137  1.15907580 -0.1094077</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -1.5798496 -0.295455730 -0.64772267  1.7288973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t         x          y         z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  3.1526476 1.3185600 -0.9506724  2.509344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  2.5971409 1.6469125 -0.8667368  2.069200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y -1.1751111 0.1498462  0.9767734 -1.185051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z  0.9017539 0.0618543  0.4454873  1.269203</span>
 <span class="r-in"><span><span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="op">(</span><span class="va">v</span><span class="op">+</span><span class="va">w</span><span class="op">)</span><span class="op">)</span>  <span class="co"># not the same!</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            t           x           y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.9703081 -0.17525915  0.59621587 -1.57984960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -0.1752591  1.01034094 -0.03517894  0.09321696</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.5962159 -0.03517894  1.11967559 -0.31711573</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -1.5798496  0.09321696 -0.31711573  1.84029155</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t          x          y          z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  3.1526476  2.5971409 -1.1751111  0.9017539</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  2.5971409  2.6242989 -0.7349357  0.5639732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y -1.1751111 -0.7349357  1.3325315 -0.2551772</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z  0.9017539  0.5639732 -0.2551772  1.1958173</span>
 <span class="r-in"><span><span class="fu">boost</span><span class="op">(</span><span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span><span class="op">+</span><span class="va">w</span><span class="op">)</span>  <span class="co"># also not the same!</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            t           x           y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.9887921 -0.14656752  0.57513484 -1.61339141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -0.1465675  1.00718753 -0.02820407  0.07911918</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.5751348 -0.02820407  1.11067350 -0.31046576</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -1.6133914  0.07911918 -0.31046576  1.87093106</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t          x           y           z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  7.3310840  7.2415447  0.52383294 -0.17442198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  7.2415447  7.2944953  0.45532605 -0.15161107</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.5238329  0.4553261  1.03293700 -0.01096712</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -0.1744220 -0.1516111 -0.01096712  1.00365175</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">rot</span><span class="op">(</span><span class="va">u</span>,<span class="va">v</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             x          y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x  0.98807052 0.04232058  0.14807300</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y -0.03238987 0.99710127 -0.06884734</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -0.15055743 0.06322996  0.98657713</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           x          y          z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.8487308 -0.2508258 -0.4655560</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y 0.1310462  0.9526572 -0.2743558</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z 0.5123308  0.1718449  0.8414193</span>
 <span class="r-in"><span><span class="fu">rot</span><span class="op">(</span><span class="va">v</span>,<span class="va">u</span><span class="op">)</span>    <span class="co"># transpose (=inverse) of rot(u,v)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            x           y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.98807052 -0.03238987 -0.15055743</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y 0.04232058  0.99710127  0.06322996</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z 0.14807300 -0.06884734  0.98657713</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            x          y         z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  0.8487308  0.1310462 0.5123308</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y -0.2508258  0.9526572 0.1718449</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -0.4655560 -0.2743558 0.8414193</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">rot</span><span class="op">(</span><span class="va">u</span>,<span class="va">v</span>,<span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu">boost</span><span class="op">(</span><span class="va">v</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            t           x           y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.3404603 -0.22287387 -0.11573023 -0.85660240</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -0.2228739  1.02122350  0.01102059  0.08157126</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y -0.1157302  0.01102059  1.00572259  0.04235696</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -0.8566024  0.08157126  0.04235696  1.31351425</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t          x          y          z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  2.8293143  2.0565295  0.2982849 -1.6391253</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  2.0565295  2.1044571  0.1601936 -0.8802907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.2982849  0.1601936  1.0232349 -0.1276799</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -1.6391253 -0.8802907 -0.1276799  1.7016222</span>
 <span class="r-in"><span><span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span>     <span class="co"># should be the same.</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            t           x           y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.3404603 -0.22287387 -0.11573023 -0.85660240</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -0.2228739  1.02122350  0.01102059  0.08157126</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y -0.1157302  0.01102059  1.00572259  0.04235696</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -0.8566024  0.08157126  0.04235696  1.31351425</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t          x          y          z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  2.8293143  2.0565295  0.2982849 -1.6391253</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  2.0565295  2.1044571  0.1601936 -0.8802907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.2982849  0.1601936  1.0232349 -0.1276799</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -1.6391253 -0.8802907 -0.1276799  1.7016222</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">orthog</span><span class="op">(</span><span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu">boost</span><span class="op">(</span><span class="va">v</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fu">rot</span><span class="op">(</span><span class="va">u</span>,<span class="va">v</span>,<span class="cn">FALSE</span><span class="op">)</span>  <span class="co"># zero to numerical precision</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               t             x             y             z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t -1.332268e-15 -1.894933e-16 -1.905817e-16 -1.444052e-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -4.580890e-16 -4.440892e-16 -3.469447e-16 -6.106227e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y  2.621092e-17 -2.636780e-16  4.440892e-16 -2.775558e-17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -2.009105e-16 -8.326673e-17 -1.665335e-16 -8.881784e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  3.208545e-14 -1.349643e-14  6.590105e-15  2.945268e-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x -3.211982e-14  1.243450e-14 -5.606626e-15 -2.581269e-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y -3.844904e-15  1.471046e-15 -6.661338e-16 -3.441691e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z  1.314304e-14 -4.329870e-15  2.081668e-15  9.658940e-15</span>
 <span class="r-in"><span><span class="fu">pureboost</span><span class="op">(</span><span class="fu">boost</span><span class="op">(</span><span class="va">v</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span>   <span class="co"># ditto</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               t             x             y             z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  0.000000e+00 -8.326673e-17  2.775558e-17 -2.220446e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -8.326673e-17 -8.881784e-16  6.262352e-16 -8.465451e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y  1.387779e-17  6.609296e-16  6.661338e-16 -2.636780e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -2.220446e-16 -7.910339e-16 -2.636780e-16  0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  3.552714e-15  0.000000e+00 -2.220446e-16 -8.881784e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x -4.440892e-16  2.664535e-15  2.775558e-16 -1.776357e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y -2.220446e-16  3.053113e-16  6.661338e-16 -6.106227e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -6.661338e-16 -1.554312e-15 -6.106227e-16  6.661338e-16</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Define a random-ish Lorentz transform</span></span></span>
@@ -287,28 +287,28 @@ but is algebraically equivalent to</p>
 <span class="r-in"><span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fu">pureboost</span><span class="op">(</span><span class="va">L</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">L</span> <span class="op">-</span> <span class="va">U</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">P</span>              <span class="co"># should be zero (L = UP)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              t             x            y             z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t 5.684342e-14 -1.265654e-14 5.329071e-14 -5.995204e-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 6.661338e-15 -1.554312e-15 6.217249e-15 -8.881784e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y 3.730349e-14 -9.547918e-15 3.463896e-14 -4.884981e-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z 1.243450e-14 -2.720046e-15 1.110223e-14 -1.443290e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               t            x             y             z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t -8.881784e-16 5.551115e-16 -4.440892e-16 -2.775558e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  2.220446e-16 0.000000e+00  2.498002e-16  6.245005e-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y -8.881784e-16 6.661338e-16 -4.440892e-16 -1.942890e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -3.330669e-16 1.665335e-16 -2.775558e-16  0.000000e+00</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">crossprod</a></span><span class="op">(</span><span class="va">U</span><span class="op">)</span>               <span class="co"># should be identity (U is orthogonal)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               t             x             y             z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.000000e+00  7.930368e-13 -2.019851e-12  2.929001e-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x  7.930368e-13  1.000000e+00 -7.347072e-13  1.057810e-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y -2.019851e-12 -7.347072e-13  1.000000e+00 -2.687586e-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z  2.929001e-13  1.057810e-13 -2.687586e-13  1.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.000000e+00  3.461953e-15 -8.989447e-15 -1.485972e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  3.461953e-15  1.000000e+00 -5.031191e-15 -5.414561e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y -8.989447e-15 -5.031191e-15  1.000000e+00  1.772504e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -1.485972e-15 -5.414561e-16  1.772504e-15  1.000000e+00</span>
 <span class="r-in"><span><span class="va">P</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">P</span><span class="op">)</span>                   <span class="co"># should be zero (P is symmetric)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               t             x             y            z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  0.000000e+00  2.220446e-16  0.000000e+00 0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x -2.220446e-16  0.000000e+00 -2.220446e-16 2.775558e-17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y  0.000000e+00  2.220446e-16  0.000000e+00 0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z  0.000000e+00 -2.775558e-17  0.000000e+00 0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              t             x            y            z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t 0.000000e+00 -1.110223e-16 0.000000e+00 0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1.110223e-16  0.000000e+00 5.551115e-17 1.387779e-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y 0.000000e+00 -5.551115e-17 0.000000e+00 0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z 0.000000e+00 -1.387779e-17 0.000000e+00 0.000000e+00</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## First row of P should be a consistent 4-velocity:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="fourvel.html">is.consistent.4vel</a></span><span class="op">(</span><span class="va">P</span><span class="op">[</span><span class="fl">1</span>,,drop<span class="op">=</span><span class="cn">FALSE</span><span class="op">]</span>,give<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            t </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.187583e-12 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1.065814e-14 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
