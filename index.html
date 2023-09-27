@@ -81,13 +81,13 @@
 <div class="page-header"><h1 id="the-lorentz-package-special-relativity-in-r">The lorentz package: special relativity in R<a class="anchor" aria-label="anchor" href="#the-lorentz-package-special-relativity-in-r"></a>
 </h1></div>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<p><img src="reference/figures/lorentz.png" width="150" align="right"></p>
 <!-- badges: start -->
 
 </div>
 <div class="section level1">
 <h1 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h1>
+<p><img src="../../../../Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/library/lorentz/help/figures/lorentz.png" width="20%" style="float:right; padding:10px"></p>
 <p>The <code>lorentz</code> package furnishes some R-centric functionality for special relativity. Lorentz transformations of four-vectors are handled and some functionality for the stress energy tensor is given. The package deals with four-momentum and has facilities for dealing with photons and mirrors in relativistic situations. A detailed vignette is provided in the package.</p>
 <p>The original motivation for the package was the investigation of the (nonassociative) gyrogroup structure of relativistic three-velocities under Einsteinian velocity composition. Natural R idiom may be used to manipulate vectors of three-velocities, although one must be careful with brackets.</p>
 </div>
@@ -112,12 +112,14 @@
 <span><span class="co">#&gt; A vector of three-velocities (speed of light = 1)</span></span>
 <span><span class="co">#&gt;        x y z</span></span>
 <span><span class="co">#&gt; [1,] 0.6 0 0</span></span>
+<span></span>
 <span><span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/fourvel.html">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span>    <span class="co"># convert to a four-velocity:</span></span>
 <span><span class="co">#&gt; A vector of four-velocities (speed of light = 1)</span></span>
 <span><span class="co">#&gt;         t    x y z</span></span>
 <span><span class="co">#&gt; [1,] 1.25 0.75 0 0</span></span>
 <span><span class="fu"><a href="reference/gam.html">gam</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span>  <span class="co"># calculate the gamma term</span></span>
 <span><span class="co">#&gt; [1] 1.25</span></span>
+<span></span>
 <span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/boost.html">boost</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span> <span class="co"># give the Lorentz transformation</span></span>
 <span><span class="va">B</span></span>
 <span><span class="co">#&gt;       t     x y z</span></span>
@@ -178,6 +180,7 @@
 <span> <span class="co"># calculate the gamma correction term:</span></span>
 <span> <span class="fu"><a href="reference/gam.html">gam</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1.09 1.24 1.21 2.13 1.46</span></span>
+<span></span>
 <span> <span class="co"># add a velocity of 0.9c in the x-direction:</span></span>
 <span> <span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.9</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span> <span class="va">v</span><span class="op">+</span><span class="va">u</span></span>
@@ -188,6 +191,8 @@
 <span><span class="co">#&gt; [3,] 0.858  0.267 -0.075</span></span>
 <span><span class="co">#&gt; [4,] 0.480 -0.605  0.168</span></span>
 <span><span class="co">#&gt; [5,] 0.820 -0.174  0.356</span></span>
+<span></span>
+<span></span>
 <span> <span class="co"># convert u to a four-velocity:</span></span>
 <span> <span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/fourvel.html">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A vector of four-velocities (speed of light = 1)</span></span>
@@ -197,6 +202,7 @@
 <span><span class="co">#&gt; [3,] 1.21 -0.223  0.6160 -0.173</span></span>
 <span><span class="co">#&gt; [4,] 2.13 -1.571 -0.9862  0.273</span></span>
 <span><span class="co">#&gt; [5,] 1.46 -0.443 -0.4209  0.864</span></span>
+<span></span>
 <span> <span class="co"># use four-velocities to effect the same transformation:</span></span>
 <span> <span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/fourvel.html">as.4vel</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="reference/boost.html">boost</a></span><span class="op">(</span><span class="op">-</span><span class="va">v</span><span class="op">)</span></span>
 <span> <span class="fu"><a href="reference/threevel.html">as.3vel</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span></span>
@@ -250,14 +256,15 @@
 <span><span class="co">#&gt; [2,]  2.89e-16 -3.18e-15 -1.08e-16</span></span>
 <span><span class="co">#&gt; [3,] -4.26e-15  1.09e-13  4.67e-14</span></span>
 <span><span class="co">#&gt; [4,]  1.67e-15  4.76e-16  1.91e-15</span></span>
+<span></span>
 <span><span class="co"># The other way round:</span></span>
 <span> <span class="op">(</span><span class="va">v</span><span class="op">+</span><span class="va">u</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="reference/gyr.html">gyr</a></span><span class="op">(</span><span class="va">v</span>,<span class="va">u</span>,<span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A vector of three-velocities (speed of light = 1)</span></span>
-<span><span class="co">#&gt;             x         y         z</span></span>
-<span><span class="co">#&gt; [1,] 3.21e-15 -6.42e-16  2.89e-15</span></span>
-<span><span class="co">#&gt; [2,] 3.76e-15 -1.73e-15 -2.53e-16</span></span>
-<span><span class="co">#&gt; [3,] 1.47e-14 -4.07e-14 -2.03e-14</span></span>
-<span><span class="co">#&gt; [4,] 9.05e-15  6.43e-15  3.24e-14</span></span></code></pre></div>
+<span><span class="co">#&gt;              x         y         z</span></span>
+<span><span class="co">#&gt; [1,]  3.21e-15 -6.42e-16  2.89e-15</span></span>
+<span><span class="co">#&gt; [2,] -1.45e-15  1.73e-15  1.08e-16</span></span>
+<span><span class="co">#&gt; [3,]  1.47e-14 -4.07e-14 -2.03e-14</span></span>
+<span><span class="co">#&gt; [4,]  9.05e-15  6.43e-15  3.24e-14</span></span></code></pre></div>
 <p>(that is, zero to numerical accuracy)</p>
 <div class="section level2">
 <h2 id="nonassociativity-of-three-velocities">Nonassociativity of three-velocities<a class="anchor" aria-label="anchor" href="#nonassociativity-of-three-velocities"></a>
@@ -275,11 +282,11 @@
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="op">(</span><span class="va">v</span><span class="op">+</span><span class="va">w</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="reference/gyr.html">gyr</a></span><span class="op">(</span><span class="va">u</span>,<span class="va">v</span>,<span class="va">w</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A vector of three-velocities (speed of light = 1)</span></span>
-<span><span class="co">#&gt;      x         y         z</span></span>
-<span><span class="co">#&gt; [1,] 0  8.16e-17 -6.53e-16</span></span>
-<span><span class="co">#&gt; [2,] 0 -9.49e-16  0.00e+00</span></span>
-<span><span class="co">#&gt; [3,] 0  3.21e-15  1.60e-15</span></span>
-<span><span class="co">#&gt; [4,] 0  0.00e+00  0.00e+00</span></span>
+<span><span class="co">#&gt;             x        y         z</span></span>
+<span><span class="co">#&gt; [1,]  0.0e+00 8.16e-17 -6.53e-16</span></span>
+<span><span class="co">#&gt; [2,] -3.8e-15 2.85e-15  9.49e-16</span></span>
+<span><span class="co">#&gt; [3,]  0.0e+00 3.21e-15  1.60e-15</span></span>
+<span><span class="co">#&gt; [4,]  0.0e+00 0.00e+00  0.00e+00</span></span>
 <span> <span class="op">(</span><span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span><span class="op">+</span><span class="va">w</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="op">(</span><span class="va">v</span><span class="op">+</span><span class="fu"><a href="reference/gyr.html">gyr</a></span><span class="op">(</span><span class="va">v</span>,<span class="va">u</span>,<span class="va">w</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A vector of three-velocities (speed of light = 1)</span></span>
 <span><span class="co">#&gt;              x         y         z</span></span>
@@ -346,7 +353,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=lorentz" class="external-link"><img src="https://www.r-pkg.org/badges/version/lorentz" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://github.com/RobinHankin/lorentz/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/RobinHankin/lorentz/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://www.rdocumentation.org/packages/lorentz" class="external-link"><img src="https://www.rdocumentation.org/badges/version/lorentz" alt="Rdoc"></a></li>
 <li><a href="https://app.codecov.io/gh/RobinHankin/lorentz/branch/master" class="external-link"><img src="https://app.codecov.io/gh/RobinHankin/lorentz/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
