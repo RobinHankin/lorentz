@@ -4,7 +4,7 @@ The lorentz package: special relativity in R
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)
+[![R-CMD-check](https://github.com/RobinHankin/lorentz/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/RobinHankin/lorentz/actions/workflows/R-CMD-check.yaml)
 [![Rdoc](https://www.rdocumentation.org/badges/version/lorentz)](https://www.rdocumentation.org/packages/lorentz)
 [![Codecov test
 coverage](https://app.codecov.io/gh/RobinHankin/lorentz/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/lorentz/branch/master)
