@@ -95,13 +95,13 @@ orthog.galilean(L)
   \itemize{
     \item
     Ungar 2006. \dQuote{Thomas precession: a kinematic
-      effect\ldots}. \emph{European Journal of Physics}, 27:L17-L20
+      effect\ldots}. {European Journal of Physics}, 27:L17-L20
     \item
     Sbitneva 2001. \dQuote{Nonassociative geometry of special relativity}.
-    \emph{International Journal of Theoretical Physics, volume 40, number 1,
+    {International Journal of Theoretical Physics, volume 40, number 1,
       pages 359--362}
   \item Wikipedia contributors 2018.  \dQuote{Wigner rotation},
-  \emph{{Wikipedia}, The Free Encyclopedia}.
+  {{Wikipedia}, The Free Encyclopedia}.
   \url{https://en.wikipedia.org/w/index.php?title=Wigner_rotation&oldid=838661305}.  Online; accessed 23 August 2018
 }
 }

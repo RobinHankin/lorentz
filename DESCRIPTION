@@ -19,3 +19,4 @@ Encoding: UTF-8
 VignetteBuilder: knitr
 URL: https://github.com/RobinHankin/lorentz, https://robinhankin.github.io/lorentz/
 BugReports: https://github.com/RobinHankin/lorentz/issues
+RoxygenNote: 7.2.3
