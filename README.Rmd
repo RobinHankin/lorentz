@@ -16,8 +16,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-<img src="man/figures/lorentz.png" width = "150" align="right" />
-
 
 <!-- badges: start -->
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)
@@ -28,6 +26,9 @@ knitr::opts_chunk$set(
 
 # Overview
 
+```{r out.width='20%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/lorentz.png", package = "lorentz"))
+```
 
 The `lorentz` package furnishes some R-centric functionality for
 special relativity.  Lorentz transformations of four-vectors are

@@ -2,9 +2,6 @@ The lorentz package: special relativity in R
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-<img src="man/figures/lorentz.png" width = "150" align="right" />
-
 <!-- badges: start -->
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)
@@ -14,6 +11,8 @@ coverage](https://app.codecov.io/gh/RobinHankin/lorentz/branch/master/graph/badg
 <!-- badges: end -->
 
 # Overview
+
+<img src="../../../../Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/library/lorentz/help/figures/lorentz.png" width="20%" style="float:right; padding:10px" />
 
 The `lorentz` package furnishes some R-centric functionality for special
 relativity. Lorentz transformations of four-vectors are handled and some
