@@ -47,3 +47,10 @@ jobs:
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
+
+      - run: tlmgr --version
+
+      - name: Install additional LaTeX packages
+        run: |
+          tlmgr install titlesec
+          tlmgr list --only-installed
