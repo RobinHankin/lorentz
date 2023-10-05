@@ -107,30 +107,30 @@
 <span class="r-in"><span><span class="co">## Reflect the photons in the mirror:</span></span></span>
 <span class="r-in"><span><span class="fu">reflect</span><span class="op">(</span><span class="va">A</span>,<span class="va">m</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       E       p_x        p_y        p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 1 0.3326432 -0.6667934 -0.6668846</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 1 0.3327696 -0.6671158 -0.6664989</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 1 0.3325264 -0.6663711 -0.6673648</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 1 0.3325032 -0.6668419 -0.6669059</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 1 0.3322953 -0.6672347 -0.6666166</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 1 0.3328095 -0.6666012 -0.6669938</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 1 0.3325679 -0.6671084 -0.6666071</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 1 0.3325498 -0.6663881 -0.6673362</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 1 0.3326946 -0.6671375 -0.6665147</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 1 0.3325902 -0.6668813 -0.6668231</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 1 0.3324396 -0.6667229 -0.6670566</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 1 0.3324968 -0.6668441 -0.6669070</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 1 0.3326509 -0.6664362 -0.6672377</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 1 0.3327900 -0.6671585 -0.6664460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 1 0.3320278 -0.6670499 -0.6669347</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 1 0.3329589 -0.6669462 -0.6665742</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 1 0.3326312 -0.6669164 -0.6667676</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 1 0.3325838 -0.6664528 -0.6672546</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 1 0.3319421 -0.6670061 -0.6670212</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 1 0.3323380 -0.6671789 -0.6666511</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Reflect the photons in a series of mirrors:</span></span></span>
 <span class="r-in"><span><span class="va">A</span> <span class="op">|&gt;</span> <span class="fu">reflect</span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">reflect</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">reflect</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       E        p_x        p_y       p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 1 -0.6466091 -0.7478954 0.1501636</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 1 -0.6462344 -0.7481740 0.1503888</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 1 -0.6470665 -0.7475644 0.1498415</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 1 -0.6466596 -0.7478270 0.1502868</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 1 -0.6464465 -0.7479152 0.1507643</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 1 -0.6466698 -0.7478971 0.1498937</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 1 -0.6463768 -0.7480295 0.1504952</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 1 -0.6470355 -0.7475907 0.1498440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 1 -0.6462654 -0.7481347 0.1504509</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 1 -0.6465658 -0.7479107 0.1502741</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 1 -0.6468092 -0.7477124 0.1502132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 1 -0.6466620 -0.7478238 0.1502924</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 1 -0.6469244 -0.7476894 0.1498313</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 1 -0.6461823 -0.7482134 0.1504166</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 1 -0.6467921 -0.7476202 0.1507448</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 1 -0.6462595 -0.7482049 0.1501268</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 1 -0.6465067 -0.7479599 0.1502833</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 1 -0.6469547 -0.7476526 0.1498842</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 1 -0.6468891 -0.7475347 0.1507527</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 1 -0.6464679 -0.7479118 0.1506891</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## To reflect from a moving mirror we need to transform to a frame in</span></span></span>
@@ -144,47 +144,47 @@
 <span class="r-in"><span><span class="co">## Transform to the mirror's rest frame:</span></span></span>
 <span class="r-in"><span><span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span>    </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               t         x            y            z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 0.5773504 0.5773500 0.0005631480 0.0004719151</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 0.5773504 0.5773500 0.0001142602 0.0007311340</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 0.5773506 0.5773496 0.0011019227 0.0001082355</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 0.5773505 0.5773498 0.0006544768 0.0005905346</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 0.5773507 0.5773495 0.0004692876 0.0010874602</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 0.5773504 0.5773500 0.0005891046 0.0001964988</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 0.5773505 0.5773498 0.0003233667 0.0008246479</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 0.5773506 0.5773496 0.0010615579 0.0001135183</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 0.5773505 0.5773499 0.0001675529 0.0007904045</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 0.5773504 0.5773499 0.0005281752 0.0005863465</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 0.5773505 0.5773497 8.369935e-04 0.0005033178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 0.5773505 0.5773498 6.587805e-04 0.0005958931</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 0.5773505 0.5773498 9.124334e-04 0.0001109666</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 0.5773504 0.5773499 5.119994e-05 0.0007636793</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 0.5773508 0.5773492 9.212553e-04 0.0010364955</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 0.5773503 0.5773501 9.481119e-05 0.0004668376</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 0.5773504 0.5773499 4.521712e-04 0.0006009228</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 0.5773505 0.5773497 9.629749e-04 0.0001611097</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 0.5773509 0.5773490 1.050711e-03 0.0010356067</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 0.5773506 0.5773495 4.824117e-04 0.0010102332</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## NB: in the above, take a transpose because the *rows* of A are 4-vectors.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Then reflect the photons in the mirror:</span></span></span>
 <span class="r-in"><span><span class="fu">reflect</span><span class="op">(</span><span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span>,<span class="va">m</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               E       p_x        p_y        p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 0.5773504 0.1917599 -0.3850269 -0.3851181</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 0.5773504 0.1918864 -0.3853493 -0.3847324</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 0.5773506 0.1916431 -0.3846046 -0.3855982</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 0.5773505 0.1916199 -0.3850754 -0.3851394</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 0.5773507 0.1914120 -0.3854682 -0.3848500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 0.5773504 0.1919263 -0.3848347 -0.3852273</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 0.5773505 0.1916846 -0.3853419 -0.3848406</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 0.5773506 0.1916665 -0.3846216 -0.3855696</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 0.5773505 0.1918113 -0.3853710 -0.3847482</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 0.5773504 0.1917070 -0.3851148 -0.3850566</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 0.5773505 0.1915564 -0.3849564 -0.3852900</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 0.5773505 0.1916135 -0.3850775 -0.3851404</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 0.5773505 0.1917677 -0.3846697 -0.3854712</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 0.5773504 0.1919067 -0.3853920 -0.3846795</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 0.5773508 0.1911446 -0.3852834 -0.3851681</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 0.5773503 0.1920756 -0.3851797 -0.3848077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 0.5773504 0.1917479 -0.3851499 -0.3850011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 0.5773505 0.1917005 -0.3846862 -0.3854881</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 0.5773509 0.1910588 -0.3852395 -0.3852546</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 0.5773506 0.1914548 -0.3854124 -0.3848846</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Now transform back to the original rest frame (NB: active transform):</span></span></span>
 <span class="r-in"><span><span class="va">A</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">tcrossprod</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">reflect</span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">tcrossprod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/solve.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               t         x          y          z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 0.7773795 0.5547587 -0.3850269 -0.3851181</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 0.7774525 0.5549047 -0.3853493 -0.3847324</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 0.7773123 0.5546239 -0.3846046 -0.3855982</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 0.7772987 0.5545971 -0.3850754 -0.3851394</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 0.7771789 0.5543571 -0.3854682 -0.3848500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 0.7774755 0.5549508 -0.3848347 -0.3852273</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 0.7773361 0.5546718 -0.3853419 -0.3848406</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 0.7773257 0.5546509 -0.3846216 -0.3855696</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 0.7774092 0.5548181 -0.3853710 -0.3847482</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 0.7773489 0.5546976 -0.3851148 -0.3850566</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 0.7772621 0.5545237 -0.3849564 -0.3852900</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 0.7772950 0.5545897 -0.3850775 -0.3851404</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 0.7773841 0.5547677 -0.3846697 -0.3854712</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 0.7774643 0.5549282 -0.3853920 -0.3846795</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 0.7770247 0.5540484 -0.3852834 -0.3851681</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 0.7775616 0.5551232 -0.3851797 -0.3848077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 0.7773726 0.5547449 -0.3851499 -0.3850011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 0.7773453 0.5546902 -0.3846862 -0.3854881</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 0.7769752 0.5539494 -0.3852395 -0.3852546</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 0.7772035 0.5544064 -0.3854124 -0.3848846</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
