@@ -8,6 +8,7 @@
 inst/.RData
 ^inst/lorentz_arxiv.Rnw$
 ^inst/lorentz_arxiv.bib$
+^inst/celerity.Rmd$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
