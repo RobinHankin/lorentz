@@ -123,84 +123,84 @@ objects, using the conservation of four-momentum.</p>
 <span class="r-in"><span><span class="co"># convert to four-velocity:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/fourvel.html">as.4vel</a></span><span class="op">(</span><span class="va">v</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A vector of four-velocities (speed of light = 1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             t          x          y           z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 4.765640  3.0943313  3.2039787 -1.36782836</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.418415 -0.7280335  0.6305268  0.29035110</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.036942 -0.1091735  0.2486964 -0.03847413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 1.124257 -0.3257262 -0.3209040  0.23425694</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1.266410  0.2074037 -0.4647046  0.58722135</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             t           x            y           z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.348652 -0.58049308 -0.002990082 -0.69417746</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.897408  1.51440857 -0.088688107  0.54667908</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.031228 -0.04928946  0.242842655 -0.04503998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 3.828004  2.47189042  0.362104920  2.72254533</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1.081955 -0.34612346  0.067472214 -0.21511079</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Now convert 'v' to four-momentum, specifying rest mass:</span></span></span>
 <span class="r-in"><span><span class="fu">vel_to_4mom</span><span class="op">(</span><span class="va">v</span><span class="op">)</span>         <span class="co"># 4mom of five objects with 3vel v, all unit mass</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             E        p_x        p_y         p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 4.765640  3.0943313  3.2039787 -1.36782836</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.418415 -0.7280335  0.6305268  0.29035110</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.036942 -0.1091735  0.2486964 -0.03847413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 1.124257 -0.3257262 -0.3209040  0.23425694</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1.266410  0.2074037 -0.4647046  0.58722135</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             E         p_x          p_y         p_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.348652 -0.58049308 -0.002990082 -0.69417746</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.897408  1.51440857 -0.088688107  0.54667908</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.031228 -0.04928946  0.242842655 -0.04503998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 3.828004  2.47189042  0.362104920  2.72254533</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1.081955 -0.34612346  0.067472214 -0.21511079</span>
 <span class="r-in"><span><span class="fu">vel_to_4mom</span><span class="op">(</span><span class="va">v</span>,   <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>  <span class="co"># 4mom of five objects with 3vel v, masses 1-5</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             E        p_x        p_y        p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 4.765640  3.0943313  3.2039787 -1.3678284</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 2.836830 -1.4560669  1.2610536  0.5807022</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 3.110826 -0.3275204  0.7460892 -0.1154224</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 4.497027 -1.3029046 -1.2836159  0.9370278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 6.332052  1.0370184 -2.3235229  2.9361068</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              E        p_x          p_y        p_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.348652 -0.5804931 -0.002990082 -0.6941775</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  3.794816  3.0288171 -0.177376215  1.0933582</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  3.093683 -0.1478684  0.728527965 -0.1351199</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 15.312016  9.8875617  1.448419679 10.8901813</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  5.409775 -1.7306173  0.337361068 -1.0755539</span>
 <span class="r-in"><span><span class="fu">vel_to_4mom</span><span class="op">(</span><span class="va">v</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>  <span class="co"># 4mom of five objects with same 3vel, masses 1..5</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              E       p_x       p_y       p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  4.765640  3.094331  3.203979 -1.367828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  9.531279  6.188663  6.407957 -2.735657</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 14.296919  9.282994  9.611936 -4.103485</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 19.062558 12.377325 12.815915 -5.471313</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 23.828198 15.471657 16.019894 -6.839142</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             E        p_x          p_y        p_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.348652 -0.5804931 -0.002990082 -0.6941775</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 2.697305 -1.1609862 -0.005980164 -1.3883549</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 4.045957 -1.7414792 -0.008970246 -2.0825324</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 5.394610 -2.3219723 -0.011960328 -2.7767098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 6.743262 -2.9024654 -0.014950410 -3.4708873</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Now convert 'v' to four-momentum, specifying energy E:</span></span></span>
 <span class="r-in"><span><span class="fu">p_to_4mom</span><span class="op">(</span><span class="va">v</span>,E<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      E        p_x        p_y         p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1  0.6493003  0.6723082 -0.28701885</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1 -0.5132726  0.4445292  0.20470112</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1 -0.1052840  0.2398363 -0.03710345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 1 -0.2897258 -0.2854366  0.20836605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1  0.1637729 -0.3669462  0.46368958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      E         p_x          p_y         p_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1 -0.43042451 -0.002217089 -0.51471930</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1  0.79814600 -0.046741718  0.28811890</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1 -0.04779687  0.235488875 -0.04367608</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 1  0.64573871  0.094593661  0.71121798</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1 -0.31990560  0.062361387 -0.19881676</span>
 <span class="r-in"><span><span class="fu">p_to_4mom</span><span class="op">(</span><span class="va">v</span>,E<span class="op">=</span><span class="fl">10</span><span class="op">)</span>   <span class="co"># slower</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       E        p_x        p_y         p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 10  0.6493003  0.6723082 -0.28701885</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 10 -0.5132726  0.4445292  0.20470112</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 10 -0.1052840  0.2398363 -0.03710345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 10 -0.2897258 -0.2854366  0.20836605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 10  0.1637729 -0.3669462  0.46368958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       E         p_x          p_y         p_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 10 -0.43042451 -0.002217089 -0.51471930</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 10  0.79814600 -0.046741718  0.28811890</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 10 -0.04779687  0.235488875 -0.04367608</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 10  0.64573871  0.094593661  0.71121798</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 10 -0.31990560  0.062361387 -0.19881676</span>
 <span class="r-in"><span><span class="fu">p_to_4mom</span><span class="op">(</span><span class="va">v</span>,E<span class="op">=</span><span class="fl">100</span><span class="op">)</span>  <span class="co"># even slower</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        E        p_x        p_y         p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 100  0.6493003  0.6723082 -0.28701885</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 100 -0.5132726  0.4445292  0.20470112</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 100 -0.1052840  0.2398363 -0.03710345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 100 -0.2897258 -0.2854366  0.20836605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 100  0.1637729 -0.3669462  0.46368958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        E         p_x          p_y         p_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 100 -0.43042451 -0.002217089 -0.51471930</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 100  0.79814600 -0.046741718  0.28811890</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 100 -0.04779687  0.235488875 -0.04367608</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 100  0.64573871  0.094593661  0.71121798</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 100 -0.31990560  0.062361387 -0.19881676</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Four-momentum of objects moving closely parallel to the x-axis:</span></span></span>
 <span class="r-in"><span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fu">vel_to_4mom</span><span class="op">(</span><span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="r3vel.html">r3vel</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="reflect.html">reflect</a></span><span class="op">(</span><span class="va">P</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             E       p_x          p_y           p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.668610 -1.335725 -0.008719589  0.0046939408</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.675720 -1.344613  0.007330524 -0.0010064436</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.667632 -1.334503  0.009902083  0.0012332722</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 1.659025 -1.323743 -0.005656600  0.0058688165</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1.668909 -1.336099 -0.009838691 -0.0007664193</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 1.676431 -1.345501 -0.002818588  0.0062729157</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [7,] 1.664745 -1.330893 -0.009788398 -0.0013911939</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             E       p_x          p_y          p_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.674155 -1.342656 -0.003132384  0.007704402</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.670731 -1.338376 -0.008943293  0.003333758</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.667718 -1.334610 -0.006857670  0.007242615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 1.678453 -1.348029  0.002714793  0.003949008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1.662948 -1.328648 -0.003339298  0.008984910</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 1.655794 -1.319705  0.004801079 -0.003072318</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7,] 1.664788 -1.330947  0.006908515 -0.007079324</span>
 <span class="r-in"><span><span class="fu"><a href="reflect.html">reflect</a></span><span class="op">(</span><span class="va">P</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             E       p_x        p_y        p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.668610 0.4425578 -0.8844474 -0.8978609</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.675720 0.4524203 -0.8995229 -0.8911859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.667632 0.4522578 -0.8921470 -0.8834782</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 1.659025 0.4413893 -0.8766975 -0.8882230</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1.668909 0.4382963 -0.8879642 -0.8970364</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 1.676431 0.4508032 -0.8918792 -0.9009707</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [7,] 1.664745 0.4361781 -0.8849269 -0.8933242</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.674155 0.4505999 -0.8889234 -0.8997602</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.670731 0.4423856 -0.8870470 -0.8993241</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.667718 0.4451266 -0.8826256 -0.8967258</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 1.678453 0.4537856 -0.8969584 -0.8981926</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1.662948 0.4466463 -0.8786621 -0.8909863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 1.655794 0.4410541 -0.8834518 -0.8755784</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7,] 1.664788 0.4435352 -0.8943206 -0.8803328</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">P</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             E      p_x        p_y         p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 11.68107 9.351077 0.01958926 -0.01490489</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             E      p_x         p_y         p_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 11.67459 9.342971 0.007848257 -0.02106305</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
