@@ -21,12 +21,6 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/celerity.html">Celerity in the `lorentz` package</a>
-  </div>
-</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -117,31 +111,31 @@
 <span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="r3vel.html">r3vel</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/fourvel.html">as.4vel</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>     <span class="co"># a four-velocity</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A vector of four-velocities (speed of light = 1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              t           x          y          z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 1.835193  0.54737884  1.4213670 -0.2191469</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 2.882725 -0.37783245 -2.2565552  1.4405923</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 1.317326 -0.03505883 -0.7238613 -0.4584146</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 8.108232  7.34535496 -1.9142519 -2.6692378</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 2.073437  1.46782910  0.8206369  0.6864201</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 2.068122 -1.58421012 -0.1182052  0.8680060</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 1.319177  0.69152742  0.1874716  0.4763098</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 1.379229 -0.71447063 -0.2056146 -0.5912087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 2.455942 -0.66201644  2.0170498  0.7244957</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 1.812024 -1.17374717  0.9035597  0.2988785</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               t          x          y           z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  1.275030 -0.5099626 -0.5749842   0.1871710</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 29.180171  8.4073344  7.3839680 -26.9309509</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  1.914032 -1.2149828  0.6409754  -0.8811841</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  1.799667  0.2550865 -1.0908446   0.9918614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  2.349243 -1.7374319 -1.1561807   0.4043751</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,]  1.301302 -0.2549559  0.7256701   0.3190418</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  2.720925 -0.5105012  2.4604943  -0.2979787</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,]  1.390328 -0.6482416 -0.2588212   0.6676875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,]  1.123665  0.2320951  0.3451732  -0.2993507</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,]  1.199714 -0.5956476  0.2460569   0.1548316</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/fourvel.html">as.4vel</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">)</span><span class="op">-</span><span class="va">a</span>   <span class="co"># zero to numerical precision</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A vector of three-velocities (speed of light = 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   x             y             z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  9.347892e-17  0.000000e+00 -2.336973e-17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.000000e+00  0.000000e+00  0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] -4.515524e-18 -9.633118e-17 -7.224839e-17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.000000e+00  0.000000e+00  0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  0.000000e+00  0.000000e+00 -1.193251e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,]  0.000000e+00  0.000000e+00  1.187142e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] -4.830100e-17 -2.415050e-17 -9.660200e-17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,]  1.055974e-16  2.639935e-17  1.319967e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,]  0.000000e+00  0.000000e+00  0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] -1.822670e-16  1.822670e-16  4.556676e-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] -9.024457e-17 -1.804891e-16  2.256114e-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.000000e+00  0.000000e+00  9.453353e-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] -2.033661e-16  1.016831e-16 -1.016831e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] -4.494738e-17  1.797895e-16  0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  0.000000e+00  0.000000e+00  0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] -3.525071e-17  9.400188e-17  3.525071e-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] -1.027433e-16  8.219464e-16  0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,]  1.073037e-16  1.341297e-17 -1.609556e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -4.380605e-18  1.752242e-17  0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,]  1.997448e-17 -1.997448e-17 -1.498086e-17</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">inner4</span><span class="op">(</span><span class="fu"><a href="https://robinhankin.github.io/lorentz/reference/fourvel.html">as.4vel</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">)</span>   <span class="co">#  -1 to numerical precision</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -1 -1 -1 -1 -1 -1 -1 -1 -1 -1</span>
@@ -157,7 +151,7 @@
 <span class="r-in"><span><span class="va">frame1dotprod</span> <span class="op">&lt;-</span> <span class="fu">inner4</span><span class="op">(</span><span class="va">U</span>, <span class="va">V</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">frame2dotprod</span> <span class="op">&lt;-</span> <span class="fu">inner4</span><span class="op">(</span><span class="va">U</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">B</span>, <span class="va">V</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">B</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">frame1dotprod</span><span class="op">-</span><span class="va">frame2dotprod</span><span class="op">)</span><span class="op">)</span>  <span class="co"># zero to numerical precision</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.776357e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.131628e-14</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
