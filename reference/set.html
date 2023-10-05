@@ -172,11 +172,11 @@
 <span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,<span class="va">B1</span><span class="op">)</span>,<span class="va">B2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,<span class="va">B2</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">B1</span><span class="op">)</span>   <span class="co"># note order</span></span></span>
 <span class="r-in"><span><span class="va">LHS</span><span class="op">-</span><span class="va">RHS</span>  <span class="co"># should be small</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              t             x             y            z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t 5.329071e-15  8.881784e-15 -4.263256e-14 2.664535e-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1.776357e-15  3.552714e-15 -9.947598e-14 7.105427e-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y 1.421085e-14  5.684342e-14 -4.547474e-13 0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z 4.440892e-15 -1.776357e-15  4.263256e-14 0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               t             x             y            z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t  0.000000e+00  1.421085e-14  1.421085e-14 0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x  0.000000e+00  0.000000e+00 -6.394885e-14 0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y -1.243450e-14 -7.105427e-15  7.815970e-14 1.847411e-13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z -2.842171e-14  0.000000e+00  8.526513e-14 0.000000e+00</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## remember to re-set c:</span></span></span>
