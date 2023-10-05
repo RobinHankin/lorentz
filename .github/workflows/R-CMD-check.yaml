@@ -48,4 +48,3 @@ jobs:
         with:
           args: "--no-build-vignettes"
 
-      - uses: r-lib/actions/setup-tinytex@master
