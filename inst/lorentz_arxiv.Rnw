@@ -99,6 +99,7 @@ without success.  The package is available on CRAN, at
 
 <<echo=FALSE,print=FALSE>>=
 library("lorentz")
+library("magrittr")
 @ 
 \section{Introduction}
 
