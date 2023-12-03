@@ -39,7 +39,7 @@ For answers to common questions about this code of conduct, see the FAQ at
 
 ## Note
 
-Elisions follow an intent to foster a positive, respectful, and
+Substantive deletions follow an intent to foster a positive, respectful, and
 inclusive community where contributors feel empowered to thrive.  I
 choose to highlight and celebrate positive values and behaviours.  I
 do not wish to dwell on---or even mention---the negative, as per
