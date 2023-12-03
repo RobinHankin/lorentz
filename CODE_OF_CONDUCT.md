@@ -3,7 +3,7 @@
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation
-in our community a harassment-free experience for everyone,
+in our community a pleasant and productive experience for everyone,
 regardless.  We pledge to act and interact in ways that contribute to
 an open, welcoming, diverse, inclusive, and healthy community.
 
