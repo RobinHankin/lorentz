@@ -1053,7 +1053,7 @@ f <- gyrfun(u9,v)
 f(x)
 @ 
 
-Note that the package vectorization is transparent when using syntatic sugar:
+Note that the package vectorization is transparent when using syntactic sugar:
 
 <<u9+x>>=
 u9+x
