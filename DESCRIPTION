@@ -3,7 +3,7 @@ Type: Package
 Title: The Lorentz Transform in Relativistic Physics
 Version: 1.1-1
 Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
-Suggests: knitr,testthat,rmarkdown
+Suggests: knitr,testthat,rmarkdown,covr
 Imports: emulator (>= 1.2-20),tensor,magic,magrittr
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 Description: The Lorentz transform in special relativity; also the
