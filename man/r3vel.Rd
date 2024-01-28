@@ -2,7 +2,7 @@
 \alias{r3vel}
 \alias{r4vel}
 \alias{rboost}
-\title{Random relativstic velocities}
+\title{Random relativistic velocities}
 \description{
 Generates random three-velocities or four-velocities, optionally specifiying a magnitude
 }
