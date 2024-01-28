@@ -146,7 +146,7 @@ entries are three-velocities or four-velocities:
 
 # Three-velocities
 
-Three-velocites behave in interesting and counter-intuitive ways.
+Three-velocities behave in interesting and counter-intuitive ways.
 
 
 ```{r}

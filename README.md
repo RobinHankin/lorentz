@@ -181,7 +181,7 @@ are three-velocities or four-velocities:
 
 # Three-velocities
 
-Three-velocites behave in interesting and counter-intuitive ways.
+Three-velocities behave in interesting and counter-intuitive ways.
 
 ``` r
  u <- as.3vel(c(0.2,0.4,0.1))   # single three-velocity
