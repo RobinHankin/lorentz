@@ -86,16 +86,16 @@
 <span class="r-in"><span><span class="co">## A bunch of photons all approximately parallel to the x-axis:</span></span></span>
 <span class="r-in"><span><span class="fu">as.photon</span><span class="op">(</span><span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">0.9</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       E       p_x          p_y          p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 1 0.9999997 7.722318e-05 0.0007787134</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 1 0.9999995 6.286605e-04 0.0007887760</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 1 0.9999996 2.852761e-05 0.0008955708</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 1 0.9999995 9.815842e-05 0.0010176166</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 1 0.9999994 1.073170e-03 0.0001225190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 1 0.9999995 8.186026e-04 0.0005814064</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 1 0.9999995 9.029002e-04 0.0003963028</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 1 0.9999994 1.075640e-03 0.0003245538</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 1 0.9999993 1.001784e-03 0.0006876100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 1 0.9999994 9.888803e-04 0.0005238015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 1 0.9999996 4.879443e-04 6.919984e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 1 0.9999998 2.026421e-04 6.609101e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 1 0.9999997 8.703138e-05 8.255755e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 1 0.9999998 1.974439e-05 5.825334e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 1 0.9999995 8.090885e-04 5.520278e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 1 0.9999994 1.078716e-03 1.635422e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 1 0.9999993 5.946858e-04 1.064354e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 1 0.9999999 1.849897e-04 5.034324e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 1 0.9999994 6.463957e-05 1.090590e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 1 0.9999997 5.101543e-04 6.052278e-04</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## mirror ball:</span></span></span>
@@ -103,38 +103,38 @@
 <span class="r-in"><span><span class="va">disco</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sweep.html" class="external-link">sweep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">30</span><span class="op">)</span>,<span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span>,<span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">jj</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>,<span class="va">`/`</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">as.photon</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="reflect.html">reflect</a></span><span class="op">(</span><span class="va">p</span>,<span class="va">disco</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   E         p_x         p_y          p_z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.87450752  0.31307066  0.370436708</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1 -0.78763007  0.04641410  0.614397751</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1 -0.88009683 -0.18513778  0.437211137</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.99999627 -0.00219422  0.001627815</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1 -0.80783776  0.57796235 -0.115575413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.68513045  0.68958520 -0.234666821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.71645247 -0.35337905 -0.601514011</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1 -0.09884567 -0.95281387 -0.287010898</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.81712914  0.38221733  0.431520436</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.75966592  0.62608641 -0.175850762</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   E         p_x         p_y         p_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.19344682  0.48433611 -0.85322732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1 -0.02565068  0.09771695  0.99488363</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.22462933 -0.50109245 -0.83573203</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1 -0.15786155 -0.68186678  0.71423905</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1 -0.13514534 -0.16415464 -0.97713305</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.66412284  0.10852636  0.73970459</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.99718547 -0.06151008  0.04286781</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.80930814 -0.08420989 -0.58131664</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.89037130  0.36362498 -0.27389015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1  0.45237354 -0.74684924 -0.48741603</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="reflect.html">reflect</a></span><span class="op">(</span><span class="va">p</span>,<span class="va">disco</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">)</span> <span class="co"># should be TRUE with probability sqrt(0.5)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> FALSE  TRUE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4     6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3     7 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## relativistic  disco; mirror ball moves at 0.5c:</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">tcrossprod</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="reflect.html">reflect</a></span><span class="op">(</span><span class="va">disco</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">tcrossprod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/solve.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           t          x            y             z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.9581692  0.9163383  0.180751428  0.2138717332</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.4041233 -0.1917534  0.026797191  0.3547227070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.3733011 -0.2533979 -0.106889349  0.2524239677</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.9999988  0.9999975 -0.001266834  0.0009398197</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.3973874 -0.2052252  0.333686720 -0.0667274959</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.8950435  0.7900870  0.398132202 -0.1354849523</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.9054842  0.8109683 -0.204023492 -0.3472842760</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.6337181  0.2674362 -0.550107346 -0.1657058191</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.9390430  0.8780861  0.220673277  0.2491384399</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.9198886  0.8397773  0.361471159 -0.1015274847</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           t         x           y           z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.7311489 0.4622979  0.27963158 -0.49261102</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.6581164 0.3162329  0.05641691  0.57439633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.7415431 0.4830862 -0.28930586 -0.48251011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.6140461 0.2280923 -0.39367597  0.41236611</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.6216182 0.2432364 -0.09477472 -0.56414803</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.8880409 0.7760819  0.06265772  0.42706865</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.9990618 0.9981236 -0.03551286  0.02474974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.9364360 0.8728721 -0.04861860 -0.33562332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.9634571 0.9269142  0.20993898 -0.15813055</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 0.8174578 0.6349157 -0.43119361 -0.28140978</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
