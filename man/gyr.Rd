@@ -32,7 +32,7 @@ gyrfun(u, v)
     \item
 Ungar 2006. \dQuote{Thomas precession: a kinematic
   effect of the algebra of Einstein's velocity addition law.  Comments
-  on \sQuote{Deriving relativistic momentum and energy: {I}{I}.
+  on \sQuote{Deriving relativistic momentum and energy: {I}.
     {T}hree-dimensional case}}. {European Journal of Physics},
   27:L17-L20.
 \item
