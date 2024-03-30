@@ -35,7 +35,7 @@ Returns a vector of three- or four- velocities.
   If the speed of light is infinite, these functions require a specified
   argument for \code{r}.
 
-  It is not entirely trivial to sample {uniformly} from the unit ball
+  It is not entirely trivial to sample \emph{uniformly} from the unit ball
   or unit sphere, but it is not hard either.
 }
 \examples{
