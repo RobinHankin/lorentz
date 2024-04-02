@@ -11,9 +11,7 @@ Description: The Lorentz transform in special relativity; also the
     passive transforms and has the ability to use units in which the
     speed of light is not unity.  Includes some experimental
     functionality for celerity and rapidity.  For general relativity,
-    see the 'schwarzschild' package.  To cite the lorentz package in
-    publications please use Hankin (2022)
-    <doi:10.48550/ARXIV.2212.07005>.
+    see the 'schwarzschild' package.
 License: GPL-3
 Encoding: UTF-8
 VignetteBuilder: knitr
