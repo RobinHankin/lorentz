@@ -15,7 +15,7 @@ tags:
 - Four velocity
 affiliations:
 - index: 1
-  name: Auckland University of Technology
+  name: University of Stirling
 ---
 
 # Introduction: the Lorentz transform in special relativity
