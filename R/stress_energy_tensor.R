@@ -10,8 +10,8 @@
 `transform_ud` <-  function(TT,B){ tensor(B,tensor(B,TT,1,2),2,2) }
 `transform_dd` <-  function(TT,B){ tensor(B,tensor(B,TT,1,2),1,2) }
 
-`raise` <- function(TT){flob(emulator::quad.form(TT,eta(downstairs=FALSE)))}
-`lower` <- function(TT){flob(emulator::quad.form(TT,eta(downstairs= TRUE)))}
+`raise` <- function(TT){flob(quad.form(TT,eta(downstairs=FALSE)))}
+`lower` <- function(TT){flob(quad.form(TT,eta(downstairs= TRUE)))}
 
 
 `ptm` <- function(to_natural=TRUE, change_time=TRUE){ # passive transformation matrix

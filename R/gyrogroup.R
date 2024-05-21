@@ -1105,7 +1105,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
 }
 
 `inner4` <- function(U,V=U){
-  quad.3tdiag(eta(),unclass(U),unclass(V))
+  quad3.tdiag(eta(),unclass(U),unclass(V))
 }
 
 `is.consistent.4vel` <- function(U,give=FALSE, TOL=1e-10){
@@ -1416,7 +1416,7 @@ r4vel <- function(...){as.4vel(r3vel(...))}
   out <- rbind(c(g,jj), cbind(jj,diag(3) + g^2*outer(u,u)/(1+g)))
 
   ## convert units back to SI or whatever:
-  out <- quad.3form(out,diag(c(1/sol(),1,1,1)),diag(c(sol(),1,1,1)))
+  out <- quad3.form(out,diag(c(1/sol(),1,1,1)),diag(c(sol(),1,1,1)))
 
   rownames(out) <- coordnames()
   colnames(out) <- coordnames()
@@ -1457,13 +1457,13 @@ r4vel <- function(...){as.4vel(r3vel(...))}
     right <- diag(nrow=4)
   }
     
-  jj <- eigen(crossprod(quad.3form(L,left,right)))
-  flob(quad.3form(quad.tform(sqrt(diag(jj$values)),jj$vectors),right,left))
+  jj <- eigen(crossprod(quad3.form(L,left,right)))
+  flob(quad3.form(quad.tform(sqrt(diag(jj$values)),jj$vectors),right,left))
 }
 
 `orthog` <- function(L){
   if(is.infinite(sol())){return(orthog.galilean(L))}
-  L <- quad.3form(L,ptm(TRUE),ptm(FALSE))  # convert to natural units
+  L <- quad3.form(L,ptm(TRUE),ptm(FALSE))  # convert to natural units
   flob(tcrossprod(L, solve(pureboost(L,FALSE))))
 } 
 

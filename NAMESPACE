@@ -2,7 +2,7 @@ exportPattern("^[[:alpha:]]+")
 exportPattern("4vel")
 
 importFrom("stats", "runif", "rnorm")
-importFrom("emulator","quad.tdiag","quad.tform", "quad.form","quad.3form", "quad.3tdiag")
+importFrom("quadform","quad.tdiag","quad.tform", "quad.form","quad3.form", "quad3.tdiag")
 importFrom("graphics", "arrows", "legend", "plot", "points")
 importFrom("magic","adiag")
 importFrom("magrittr", "%>%")
