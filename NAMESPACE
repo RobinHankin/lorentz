@@ -2,11 +2,7 @@ exportPattern("^[[:alpha:]]+")
 exportPattern("4vel")
 
 importFrom("stats", "runif", "rnorm")
-<<<<<<< HEAD
 importFrom("quadform","quad.tdiag","quad.tform", "quad.form","quad3.form", "quad3.tdiag")
-=======
-importFrom("quadform","quad.tform", "quad.form","quad.3form", "quad.3tdiag")
->>>>>>> refs/remotes/origin/master
 importFrom("graphics", "arrows", "legend", "plot", "points")
 importFrom("magic","adiag")
 importFrom("magrittr", "%>%")
