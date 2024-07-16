@@ -1,93 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/404.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/index.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/Extract.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/Ops.3vec.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/as.matrix.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/boost.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/c.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/celerity.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/comm_fail.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/coordnames.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/cosines.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/fourmom.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/fourvel.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/galileo.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/gam.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/gyr.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/lorentz-package.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/photon.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/print.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/r3vel.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/reflect.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/seq.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/set.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/sol.html</loc>
-  </url>
-  <url>
-    <loc>https://robinhankin.github.io/lorentz/reference/threevel.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://robinhankin.github.io/lorentz/404.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/CONTRIBUTING.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/LICENSE-text.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/authors.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/index.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/Extract.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/Ops.3vec.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/as.matrix.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/boost.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/c.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/celerity.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/comm_fail.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/coordnames.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/cosines.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/fourmom.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/fourvel.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/galileo.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/gam.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/gyr.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/index.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/lorentz-package.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/photon.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/print.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/r3vel.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/reflect.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/seq.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/set.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/sol.html</loc></url>
+<url><loc>https://robinhankin.github.io/lorentz/reference/threevel.html</loc></url>
 </urlset>
+
