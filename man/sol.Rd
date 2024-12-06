@@ -76,6 +76,21 @@ ptm(to_natural=TRUE, change_time=TRUE)
   \code{sol()}.  Similar arguments are presented in the \pkg{clifford}
   package at \code{signature.Rd}.
 
+  Looking again at Martin's observation he seems to be suggesting that
+  something along the lines of
+
+  \preformatted{
+    gam <- function(u, c=1){1/sqrt(1-u^2/c^2)}
+  }
+
+  But this is asking for trouble:
+
+  \preformatted{
+    c(gam(0.4,c=1),gam(0.4,c=10))
+  }
+
+  which is meaningless at best and misleading at worst.
+
   
 }
 \examples{
