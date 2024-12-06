@@ -12,7 +12,7 @@ coverage](https://app.codecov.io/gh/RobinHankin/lorentz/branch/master/graph/badg
 
 # Overview
 
-<img src="../../../../Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/library/lorentz/help/figures/lorentz.png" width="20%" style="float:right; padding:10px" />
+<img src="../../R/x86_64-pc-linux-gnu-library/4.4/lorentz/help/figures/lorentz.png" width="20%" style="float:right; padding:10px" />
 
 The `lorentz` package furnishes some R-centric functionality for special
 relativity. Lorentz transformations of four-vectors are handled and some
@@ -233,11 +233,11 @@ any sense. Commutativity is replaced with gyrocommutatitivity:
 # The other way round:
  (v+u) - gyr(v,u,u+v)
 #> A vector of three-velocities (speed of light = 1)
-#>              x         y         z
-#> [1,]  3.21e-15 -6.42e-16  2.89e-15
-#> [2,] -1.45e-15  1.73e-15  1.08e-16
-#> [3,]  1.47e-14 -4.07e-14 -2.03e-14
-#> [4,]  9.05e-15  6.43e-15  3.24e-14
+#>             x         y         z
+#> [1,] 3.21e-15 -6.42e-16  2.89e-15
+#> [2,] 3.76e-15 -1.73e-15 -2.53e-16
+#> [3,] 1.47e-14 -4.07e-14 -2.03e-14
+#> [4,] 9.05e-15  6.43e-15  3.24e-14
 ```
 
 (that is, zero to numerical accuracy)
@@ -263,11 +263,11 @@ replaced with gyroassociativity:
 ``` r
  (u+(v+w)) - ((u+v)+gyr(u,v,w))
 #> A vector of three-velocities (speed of light = 1)
-#>             x        y         z
-#> [1,]  0.0e+00 8.16e-17 -6.53e-16
-#> [2,] -3.8e-15 2.85e-15  9.49e-16
-#> [3,]  0.0e+00 3.21e-15  1.60e-15
-#> [4,]  0.0e+00 0.00e+00  0.00e+00
+#>      x         y         z
+#> [1,] 0  8.16e-17 -6.53e-16
+#> [2,] 0 -9.49e-16  0.00e+00
+#> [3,] 0  3.21e-15  1.60e-15
+#> [4,] 0  0.00e+00  0.00e+00
  ((u+v)+w) - (u+(v+gyr(v,u,w)))
 #> A vector of three-velocities (speed of light = 1)
 #>              x         y         z
