@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main, master]
 
-name: R-CMD-check-lorentz
+name: R-CMD-check:
 
 permissions: read-all
 
@@ -28,7 +28,23 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
+      - uses: r-lib/actions/setup-tinytex@v2
+
+      - run: tlmgr install scheme-full
+      - run: tlmgr install wrapfig
+      - run: tlmgr install doublestroke
+      - run: tlmgr install bbm
+      - run: tlmgr install bbm-macros
+      - run: tlmgr install wasysym
+      - run: tlmgr install yfonts
+      - run: tlmgr install grfext
+      - run: tlmgr install cm-super
+
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc-citeproc
+
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
-          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
+          build_args: 'c("--compact-vignettes=both")'
