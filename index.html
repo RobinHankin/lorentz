@@ -8,8 +8,8 @@
 <title>The Lorentz Transform in Relativistic Physics • lorentz</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="The Lorentz Transform in Relativistic Physics">
 <meta name="description" content="The Lorentz transform in special relativity; also the gyrogroup structure of three-velocities. Performs active and passive transforms and has the ability to use units in which the speed of light is not unity. Includes some experimental functionality for celerity and rapidity. For general relativity, see the schwarzschild package.">
 <meta property="og:description" content="The Lorentz transform in special relativity; also the gyrogroup structure of three-velocities. Performs active and passive transforms and has the ability to use units in which the speed of light is not unity. Includes some experimental functionality for celerity and rapidity. For general relativity, see the schwarzschild package.">
@@ -55,7 +55,7 @@
 <div class="section level1">
 <h1 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h1>
-<p><img src="../../../../Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/library/lorentz/help/figures/lorentz.png" width="20%" style="float:right; padding:10px"></p>
+<p><img src="../../R/x86_64-pc-linux-gnu-library/4.4/lorentz/help/figures/lorentz.png" width="20%" style="float:right; padding:10px"></p>
 <p>The <code>lorentz</code> package furnishes some R-centric functionality for special relativity. Lorentz transformations of four-vectors are handled and some functionality for the stress energy tensor is given. The package deals with four-momentum and has facilities for dealing with photons and mirrors in relativistic situations. A detailed vignette is provided in the package.</p>
 <p>The original motivation for the package was the investigation of the (nonassociative) gyrogroup structure of relativistic three-velocities under Einsteinian velocity composition. Natural R idiom may be used to manipulate vectors of three-velocities, although one must be careful with brackets.</p>
 </div>
@@ -228,11 +228,11 @@
 <span><span class="co"># The other way round:</span></span>
 <span> <span class="op">(</span><span class="va">v</span><span class="op">+</span><span class="va">u</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="reference/gyr.html">gyr</a></span><span class="op">(</span><span class="va">v</span>,<span class="va">u</span>,<span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A vector of three-velocities (speed of light = 1)</span></span>
-<span><span class="co">#&gt;              x         y         z</span></span>
-<span><span class="co">#&gt; [1,]  3.21e-15 -6.42e-16  2.89e-15</span></span>
-<span><span class="co">#&gt; [2,] -1.45e-15  1.73e-15  1.08e-16</span></span>
-<span><span class="co">#&gt; [3,]  1.47e-14 -4.07e-14 -2.03e-14</span></span>
-<span><span class="co">#&gt; [4,]  9.05e-15  6.43e-15  3.24e-14</span></span></code></pre></div>
+<span><span class="co">#&gt;             x         y         z</span></span>
+<span><span class="co">#&gt; [1,] 3.21e-15 -6.42e-16  2.89e-15</span></span>
+<span><span class="co">#&gt; [2,] 3.76e-15 -1.73e-15 -2.53e-16</span></span>
+<span><span class="co">#&gt; [3,] 1.47e-14 -4.07e-14 -2.03e-14</span></span>
+<span><span class="co">#&gt; [4,] 9.05e-15  6.43e-15  3.24e-14</span></span></code></pre></div>
 <p>(that is, zero to numerical accuracy)</p>
 <div class="section level2">
 <h2 id="nonassociativity-of-three-velocities">Nonassociativity of three-velocities<a class="anchor" aria-label="anchor" href="#nonassociativity-of-three-velocities"></a>
@@ -250,11 +250,11 @@
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="op">(</span><span class="va">v</span><span class="op">+</span><span class="va">w</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="reference/gyr.html">gyr</a></span><span class="op">(</span><span class="va">u</span>,<span class="va">v</span>,<span class="va">w</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A vector of three-velocities (speed of light = 1)</span></span>
-<span><span class="co">#&gt;             x        y         z</span></span>
-<span><span class="co">#&gt; [1,]  0.0e+00 8.16e-17 -6.53e-16</span></span>
-<span><span class="co">#&gt; [2,] -3.8e-15 2.85e-15  9.49e-16</span></span>
-<span><span class="co">#&gt; [3,]  0.0e+00 3.21e-15  1.60e-15</span></span>
-<span><span class="co">#&gt; [4,]  0.0e+00 0.00e+00  0.00e+00</span></span>
+<span><span class="co">#&gt;      x         y         z</span></span>
+<span><span class="co">#&gt; [1,] 0  8.16e-17 -6.53e-16</span></span>
+<span><span class="co">#&gt; [2,] 0 -9.49e-16  0.00e+00</span></span>
+<span><span class="co">#&gt; [3,] 0  3.21e-15  1.60e-15</span></span>
+<span><span class="co">#&gt; [4,] 0  0.00e+00  0.00e+00</span></span>
 <span> <span class="op">(</span><span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="va">v</span><span class="op">)</span><span class="op">+</span><span class="va">w</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="va">u</span><span class="op">+</span><span class="op">(</span><span class="va">v</span><span class="op">+</span><span class="fu"><a href="reference/gyr.html">gyr</a></span><span class="op">(</span><span class="va">v</span>,<span class="va">u</span>,<span class="va">w</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A vector of three-velocities (speed of light = 1)</span></span>
 <span><span class="co">#&gt;              x         y         z</span></span>
@@ -336,7 +336,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
