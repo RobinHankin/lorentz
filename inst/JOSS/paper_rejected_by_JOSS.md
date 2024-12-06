@@ -3,9 +3,11 @@ title: 'Special relativity in R: the ``lorentz`` package '
 authors:
 - affiliation: 1
   name: Robin K. S. Hankin
-  orcid: 0000-0001-5982-0415
+  orcid: "0000-0001-5982-0415"
 date: "September 05, 2019"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 bibliography: ref.bib
 tags:
 - special relativity
