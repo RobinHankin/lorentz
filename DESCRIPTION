@@ -6,6 +6,7 @@ Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cr
 Suggests: knitr,testthat,rmarkdown,covr
 Imports: quadform,tensor,magic,magrittr
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
+Depends: R (>= 4.1.0)
 Description: The Lorentz transform in special relativity; also the
     gyrogroup structure of three-velocities.  Performs active and
     passive transforms and has the ability to use units in which the
