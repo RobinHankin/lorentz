@@ -21,7 +21,7 @@ affiliations:
 # Introduction: the Lorentz transformation in special relativity
 
 In special relativity [@einstein1905], the Lorentz transformations
-[@lorentz1904] supercede their classical equivalent, the Galilean
+[@lorentz1904] supersede their classical equivalent, the Galilean
 transformations.  Lorentz transformations operate on four-vectors such as the
 four-velocity or four-potential and are usually operationalised as
 multiplication by a $4\times 4$ matrix.  A Lorentz transformation takes the

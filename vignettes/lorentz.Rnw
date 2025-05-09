@@ -96,7 +96,7 @@ library("magrittr")
 
 \section{Introduction}
 
-In special relativity, the Lorentz transformations supercede their
+In special relativity, the Lorentz transformations supersede their
 classical equivalent, the Galilean transformations~\citep{goldstein1980}.
 Lorentz transformations operate on four-vectors such as the four-velocity
 or four-potential and are usually operationalised as multiplication by

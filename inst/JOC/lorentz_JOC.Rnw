@@ -137,7 +137,7 @@ three-velocities.
 \newcommand{\gyr}[2]{\operatorname{gyr}\left[{\mathbf #1},{\mathbf #2}\right]}
 
 
-In special relativity, the Lorentz transforms supercede their
+In special relativity, the Lorentz transforms supersede their
 classical equivalent, the Galilean transforms~\citep{goldstein1980}.
 Lorentz transforms operate on four-vectors such as the four-velocity
 or four-potential and are usually operationalised as multiplication by
