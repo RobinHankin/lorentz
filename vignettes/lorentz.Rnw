@@ -258,13 +258,13 @@ coordinate systems.  Now we will consider active transformations: there are
 two physical realities, but one is boosted with respect to another.  
 
 Suppose me and my friend have zero relative velocity, but my friend is
-in a spaceship and I am outside it, in free space, at rest.  He
-constructs a four-vector in his spaceship; for example, he could fire
-bullets out of a gun which is fixed in the spaceship, and then
-calculate their four-velocity as it appears to him in his
-spaceship-centric coordinate system.  We both agree on this
-four-velocity as our reference frames are identical: we have no
-relative velocity.
+in a spaceship and I am outside it, in free space, with both of us at
+rest (with respect to the distant stars, say).  He constructs a
+four-vector in his spaceship; for example, he could fire bullets out
+of a gun which is fixed in the spaceship, and then calculate their
+four-velocity as it appears to him in his spaceship-centric coordinate
+system.  We both agree on this four-velocity as our reference frames
+are identical: we have no relative velocity.
 
 Now his spaceship acquires a constant velocity, leaving me stationary.
 My friend continues to fire bullets out of his gun and sees that their
