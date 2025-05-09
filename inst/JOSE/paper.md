@@ -62,7 +62,7 @@ The package was originally written to facilitate investigation into
 the nonassociative and noncommutative "gyrogroup" structure of
 three-velocities [@ungar1997]; but the pedagogical impact of this is
 to reinforce the primacy of four-vectors in relativity.  One student,
-using the package, succinctly offers the observation that
+using the package, succinctly offered the observation that
 ``three-velocities suck": surely a profound insight.
 
 # Previous related work
