@@ -98,7 +98,7 @@ for the nonassociative and noncommutative gyrogroup structure of
 relativistic three-velocity addition is included.  Some functionality
 for relativistic transformation of tensors of order 2 such as the
 stress-energy tensor is given, with examples.  In the package, the
-speed of light is one by default, but is user-settable and the
+speed of light is 1 by default, but is user-settable and the
 classical limit is recovered by setting $c=\infty$.  Both passive and
 active transformations are implemented.  An extensive heuristic vignette
 detailing package idiom is included.  There does not seem to be a
