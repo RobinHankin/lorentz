@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>The Lorentz Transform in Relativistic Physics • lorentz</title>
+<title>The Lorentz Transformation in Relativistic Physics • lorentz</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="The Lorentz Transform in Relativistic Physics">
-<meta name="description" content="The Lorentz transform in special relativity; also the gyrogroup structure of three-velocities. Performs active and passive transforms and has the ability to use units in which the speed of light is not unity. Includes some experimental functionality for celerity and rapidity. For general relativity, see the schwarzschild package.">
-<meta property="og:description" content="The Lorentz transform in special relativity; also the gyrogroup structure of three-velocities. Performs active and passive transforms and has the ability to use units in which the speed of light is not unity. Includes some experimental functionality for celerity and rapidity. For general relativity, see the schwarzschild package.">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="The Lorentz Transformation in Relativistic Physics">
+<meta name="description" content="The Lorentz transformation in special relativity; also the gyrogroup structure of three-velocities. Performs active and passive transformations and has the ability to use units in which the speed of light is not unity. Includes some experimental functionality for celerity and rapidity. For general relativity, see the schwarzschild package.">
+<meta property="og:description" content="The Lorentz transformation in special relativity; also the gyrogroup structure of three-velocities. Performs active and passive transformations and has the ability to use units in which the speed of light is not unity. Includes some experimental functionality for celerity and rapidity. For general relativity, see the schwarzschild package.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -55,7 +55,7 @@
 <div class="section level1">
 <h1 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h1>
-<p><img src="../../R/x86_64-pc-linux-gnu-library/4.4/lorentz/help/figures/lorentz.png" width="20%" style="float:right; padding:10px"></p>
+<p><img src="../../R/x86_64-pc-linux-gnu-library/4.5/lorentz/help/figures/lorentz.png" width="20%" style="float:right; padding:10px"></p>
 <p>The <code>lorentz</code> package furnishes some R-centric functionality for special relativity. Lorentz transformations of four-vectors are handled and some functionality for the stress energy tensor is given. The package deals with four-momentum and has facilities for dealing with photons and mirrors in relativistic situations. A detailed vignette is provided in the package.</p>
 <p>The original motivation for the package was the investigation of the (nonassociative) gyrogroup structure of relativistic three-velocities under Einsteinian velocity composition. Natural R idiom may be used to manipulate vectors of three-velocities, although one must be careful with brackets.</p>
 </div>
@@ -97,7 +97,7 @@
 <span><span class="co">#&gt; z  0.00  0.00 0 1</span></span></code></pre></div>
 <p>The boost matrix can be used to transform arbitrary four-vectors:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">B</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>  <span class="co"># Lorentz transform of an arbitrary four-vector</span></span>
+<code class="sourceCode R"><span><span class="va">B</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>  <span class="co"># Lorentz transformation of an arbitrary four-vector</span></span>
 <span><span class="co">#&gt;    [,1]</span></span>
 <span><span class="co">#&gt; t -0.25</span></span>
 <span><span class="co">#&gt; x  1.75</span></span>
@@ -314,7 +314,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Robin K. S. Hankin <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-5982-0415" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Robin K. S. Hankin <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-5982-0415" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -336,7 +336,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>

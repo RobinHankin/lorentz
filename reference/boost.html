@@ -57,7 +57,7 @@
     <code>0</code>, this is interpreted as zero three velocity</p></dd>
 
   <dt id="arg-l">L<a class="anchor" aria-label="anchor" href="#arg-l"></a></dt>
-<dd><p>Lorentz transform expressed as a \(4\times 4\) matrix</p></dd>
+<dd><p>Lorentz transformation expressed as a \(4\times 4\) matrix</p></dd>
 
   <dt id="arg-tol">TOL<a class="anchor" aria-label="anchor" href="#arg-tol"></a></dt>
 <dd><p>Numerical tolerance</p></dd>
@@ -97,14 +97,14 @@
 <p>A rotation-free Lorentz transformation is known as a <dfn>boost</dfn>
   (sometimes a <dfn>pure boost</dfn>), here expressed in matrix form.  Pure
   boost matrices are symmetric if \(c=1\).  Function <code>boost(u)</code>
-  returns a \(4\times 4\) matrix giving the Lorentz transform of
+  returns a \(4\times 4\) matrix giving the Lorentz transformation of
   an arbitrary three-velocity <code>u</code>.</p>
 <p>Boosts can be successively applied with regular matrix multiplication.
   However, composing two successive pure boosts does not in general
   return a pure boost matrix: the product is not symmetric in general.
   Also note that boost matrices do not commute.  The resulting matrix
-  product represents a <dfn>Lorentz transform</dfn>.</p>
-<p>It is possible to decompose a Lorentz transform \(L\) into a pure
+  product represents a <dfn>Lorentz transformation</dfn>.</p>
+<p>It is possible to decompose a Lorentz transformation \(L\) into a pure
   boost and a spatial rotation.  Thus \(L=OP\) where \(O\) is an
   orthogonal matrix and \(P\) a pure boost matrix; these are returned by
   functions <code>orthog()</code> and <code>pureboost()</code> respectively.  If the
@@ -249,7 +249,7 @@ but is algebraically equivalent to</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> z  0.000000e+00 -1.054712e-15 -4.440892e-16  1.998401e-15</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Define a random-ish Lorentz transform</span></span></span>
+<span class="r-in"><span><span class="co">## Define a random-ish Lorentz transformation</span></span></span>
 <span class="r-in"><span><span class="va">L</span> <span class="op">&lt;-</span> <span class="fu">boost</span><span class="op">(</span><span class="fu"><a href="r3vel.html">r3vel</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu">boost</span><span class="op">(</span><span class="fu"><a href="r3vel.html">r3vel</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu">boost</span><span class="op">(</span><span class="fu"><a href="r3vel.html">r3vel</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## check it:</span></span></span>
@@ -301,7 +301,7 @@ but is algebraically equivalent to</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer></div>
