@@ -96,7 +96,7 @@ Lorentz transformations.  It deals with formal Lorentz boosts and converts
 between three-velocities and four-velocities.  Computational support
 for the nonassociative and noncommutative gyrogroup structure of
 relativistic three-velocity addition is included.  Some functionality
-for relativistic transformation of tensors of order two such as the
+for relativistic transformation of tensors of order 2 such as the
 stress-energy tensor is given, with examples.  In the package, the
 speed of light is one by default, but is user-settable and the
 classical limit is recovered by setting $c=\infty$.  Both passive and
