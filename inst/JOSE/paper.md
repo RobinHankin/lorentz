@@ -53,7 +53,7 @@ addition incorporates in an efficient and consistent interface to deal
 with many aspects of undergraduate-level relativity including active
 and passive transformations, four-mometum of photons, and in particular the
 difficult and nonintuitive behaviour of units in which $c\neq 1$ [such
-as S. I.].  The classical limit of $c=\infty$ is discussed explicitly
+as S. I.].  The classical limit of $c\longrightarrow\infty$ is discussed explicitly
 and computationally.  The package allows the user to employ efficient
 and natural vectorised R idiom in the context of relativistic
 kinematics.
