@@ -3,9 +3,11 @@ title: 'Special relativity in R: the ``lorentz`` package '
 authors:
 - affiliation: 1
   name: Robin K. S. Hankin
-  orcid: 0000-0001-5982-0415
+  orcid: "0000-0001-5982-0415"
 date: "September 05, 2019"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 bibliography: ref.bib
 tags:
 - special relativity
@@ -78,8 +80,7 @@ contributions would include the ``OpenRelativity`` toolkit
 [@sherin2016] which simulates the effects of special relativity in the
 ``Unity`` game engine.  There are also many excellent github repos
 that provide functionality to create simple visual displays of Lorentz
-transformations of events (eg
-```https://github.com/nick1627/RelativityVisualisation```) although
+transformations of events (@nick2019 is a good example), although
 these are generally restricted to a single spatial dimension.
 
 Educational models (in the sense of @possel2018) for Einstein's
