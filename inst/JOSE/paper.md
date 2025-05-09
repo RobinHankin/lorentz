@@ -61,7 +61,7 @@ and natural vectorised R idiom in the context of relativistic
 kinematics.
 
 The package was originally written to facilitate investigation into
-the nonassociative and noncommutative "gyrogroup" structure of
+the nonassociative and noncommutative structure of
 three-velocities [@ungar1997]; but the pedagogical impact of this is
 to reinforce the primacy of four-vectors in relativity.  One student,
 using the package, succinctly offered the observation that
