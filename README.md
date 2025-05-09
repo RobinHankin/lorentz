@@ -12,7 +12,7 @@ coverage](https://app.codecov.io/gh/RobinHankin/lorentz/branch/master/graph/badg
 
 # Overview
 
-<img src="../../R/x86_64-pc-linux-gnu-library/4.4/lorentz/help/figures/lorentz.png" width="20%" style="float:right; padding:10px" />
+<img src="../../R/x86_64-pc-linux-gnu-library/4.5/lorentz/help/figures/lorentz.png" width="20%" style="float:right; padding:10px" />
 
 The `lorentz` package furnishes some R-centric functionality for special
 relativity. Lorentz transformations of four-vectors are handled and some
@@ -78,7 +78,7 @@ B
 The boost matrix can be used to transform arbitrary four-vectors:
 
 ``` r
-B %*% (1:4)  # Lorentz transform of an arbitrary four-vector
+B %*% (1:4)  # Lorentz transformation of an arbitrary four-vector
 #>    [,1]
 #> t -0.25
 #> x  1.75

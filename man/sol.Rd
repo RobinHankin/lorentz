@@ -19,7 +19,7 @@ ptm(to_natural=TRUE, change_time=TRUE)
       indices, and \code{FALSE} meaning to return the contravariant
       version \eqn{g^{ij}}{g^ij} with two upstairs indices}
     \item{to_natural,change_time}{Boolean, specifying the
-      nature of the passive transform matrix}
+      nature of the passive transformation matrix}
 }
 \details{
 
@@ -28,7 +28,7 @@ ptm(to_natural=TRUE, change_time=TRUE)
   is denoted \dQuote{sol}, for \sQuote{speed of light}.  You can set the
   speed of light with \code{sol(x)}, and query it with \code{sol()}; see
   the examples.  An infinite speed of light is sometimes useful for
-  Galilean transforms.
+  Galilean transformations.
 
   The speed of light is a global variable, governed by
   \code{options("c")}.  If \code{NULL}, define \code{c=1}.  Setting

@@ -37,7 +37,7 @@ to3(U)
 
   Given a four-vector \eqn{V}, function \code{inner4()} returns the
   Lorentz invariant \eqn{V^iV_i=\eta_{ij}V^iV^j}{V^i.V_i}.  This
-  quantity is unchanged under Lorentz transforms.  Note that function
+  quantity is unchanged under Lorentz transformations.  Note that function
   \code{inner4()} works for any four-vector, not just four-velocities.
   It will work for (eg) a four-displacement, a four-momentum vector or a
   four-frequency.  In electromagnetism, we could have a four-current or

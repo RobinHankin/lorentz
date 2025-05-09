@@ -10,8 +10,8 @@
 \alias{Newtonian}
 \title{Classical mechanics; Newtonian approximation; infinite speed of light}
 \description{
-The Lorentz transforms reduce to their classical limit, the Galilean
-transforms, if speeds are low compared with \eqn{c}.  Package idiom for
+The Lorentz transformations reduce to their classical limit, the Galilean
+transformations, if speeds are low compared with \eqn{c}.  Package idiom for
 working in a classical framework is to use an infinite speed of light:
 \code{sol(Inf)}.  Here I show examples of this.
 }

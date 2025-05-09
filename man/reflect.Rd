@@ -66,7 +66,7 @@ A \%*\% t(B)
 reflect(A \%*\% t(B),m)
 
 
-## Now transform back to the original rest frame (NB: active transform):
+## Now transform back to the original rest frame (NB: active transformation):
 A |> tcrossprod(B) |> reflect(m) |> tcrossprod(solve(B))
 
 

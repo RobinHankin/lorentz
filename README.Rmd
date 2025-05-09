@@ -90,7 +90,7 @@ B
 The boost matrix  can be used to transform arbitrary four-vectors:
 
 ```{r}
-B %*% (1:4)  # Lorentz transform of an arbitrary four-vector
+B %*% (1:4)  # Lorentz transformation of an arbitrary four-vector
 ```
 
 But it can also be used to transform four-velocities:

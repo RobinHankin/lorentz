@@ -36,13 +36,13 @@ Maintainer: \packageMaintainer{lorentz}
 u <- as.3vel(c(0.3,0.6,-0.1))  # u is a three-velocity
 gam(u)                         # relativistic gamma term for u
 U <- as.4vel(u)                # U is a four-velocity
-B1 <- boost(u)                 # B1 is the Lorentz transform matrix for u
-B1 \%*\% c(1,0,0,0)              # Lorentz transform of zero 4-velocity (=-u)
+B1 <- boost(u)                 # B1 is the Lorentz transformation matrix for u
+B1 \%*\% c(1,0,0,0)              # Lorentz transformation of zero 4-velocity (=-u)
 
 B2 <- boost(as.3vel(c(-0.1,0.8,0.3)))  
 B3 <- boost(as.3vel(c(-0.1,0.1,0.9)))  # more boosts
 
-Bi <- B1 \%*\% B2  # Bi is the boost for successive Lorentz transforms
+Bi <- B1 \%*\% B2  # Bi is the boost for successive Lorentz transformation
 
 
 pureboost(Bi)      # Decompose Bi into a pure boost...

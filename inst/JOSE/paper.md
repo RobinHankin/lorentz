@@ -9,7 +9,7 @@ output: pdf_document
 bibliography: ref.bib
 tags:
 - special relativity
-- Lorentz transform
+- Lorentz transformation
 - Lorentz boosts
 - Three velocity
 - Four velocity
@@ -18,13 +18,13 @@ affiliations:
   name: University of Stirling
 ---
 
-# Introduction: the Lorentz transform in special relativity
+# Introduction: the Lorentz transformation in special relativity
 
-In special relativity [@einstein1905], the Lorentz transforms
+In special relativity [@einstein1905], the Lorentz transformations
 [@lorentz1904] supercede their classical equivalent, the Galilean
-transforms.  Lorentz transforms operate on four-vectors such as the
+transformations.  Lorentz transformations operate on four-vectors such as the
 four-velocity or four-potential and are usually operationalised as
-multiplication by a $4\times 4$ matrix.  A Lorentz transform takes the
+multiplication by a $4\times 4$ matrix.  A Lorentz transformation takes the
 components of an arbitrary four-vector as observed in one coordinate
 system and returns the components observed in another system which is
 moving at constant velocity with respect to the first.
@@ -51,7 +51,7 @@ familiar to many physics students.  The package allows the user to
 manipulate Lorentz boosts using familiar matrix multiplication, and in
 addition incorporates in an efficient and consistent interface to deal
 with many aspects of undergraduate-level relativity including active
-and passive transforms, four-mometum of photons, and in particular the
+and passive transformations, four-mometum of photons, and in particular the
 difficult and nonintuitive behaviour of units in which $c\neq 1$ [such
 as S. I.].  The classical limit of $c=\infty$ is discussed explicitly
 and computationally.  The package allows the user to employ efficient
@@ -68,7 +68,7 @@ using the package, succinctly offers the observation that
 # Previous related work
 
 There are a few existing software tools for working with Lorentz
-transforms, mostly developed in an educational context.  Early work
+transformations, mostly developed in an educational context.  Early work
 would include that of Horwitz et al. [-@horwitz1992], who describe
 ``relLab``, a system for building a range of *gendanken* experiments
 in an interactive graphical environment.  The author asserts that it
@@ -78,7 +78,7 @@ contributions would include the ``OpenRelativity`` toolkit
 [@sherin2016] which simulates the effects of special relativity in the
 ``Unity`` game engine.  There are also many excellent github repos
 that provide functionality to create simple visual displays of Lorentz
-transforms of events (eg
+transformations of events (eg
 ```https://github.com/nick1627/RelativityVisualisation```) although
 these are generally restricted to a single spatial dimension.
 
@@ -91,7 +91,7 @@ gravitational radiation.
 # The ``lorentz`` package: summary of high-level functionality
 
 The ``lorentz`` package provides ``R``-centric functionality for
-Lorentz transforms.  It deals with formal Lorentz boosts and converts
+Lorentz transformations.  It deals with formal Lorentz boosts and converts
 between three-velocities and four-velocities.  Computational support
 for the nonassociative and noncommutative gyrogroup structure of
 relativistic three-velocity addition is included.  Some functionality
@@ -99,7 +99,7 @@ for relativistic transformation of tensors of order two such as the
 stress-energy tensor is given, with examples.  In the package, the
 speed of light is one by default, but is user-settable and the
 classical limit is recovered by setting $c=\infty$.  Both passive and
-active transforms are implemented.  An extensive heuristic vignette
+active transformations are implemented.  An extensive heuristic vignette
 detailing package idiom is included.  There does not seem to be a
 known relativistic generalization of the classical distributive law
 $r\left({\bf u} + {\bf v}\right)=r{\bf u} + r{\bf v}$ [@ungar1997].

@@ -26,19 +26,19 @@
 %% an abstract and keywords
 \Abstract{ Here I present the \pkg{lorentz} package for working with
   relativistic physics.  The package includes functionality for
-  Lorentz transforms and Einsteinian three-velocity addition, which is
+  Lorentz transformations and Einsteinian three-velocity addition, which is
   noncommutative and nonassociative.  It is available on CRAN at
   \url{https://CRAN.R-project.org/package=lorentz}.  To cite the
   \pkg{lorentz} package, use \citet{hankin2022_lorentz}.
 }
 
-\Keywords{Lorentz transform, Lorentz group, Lorentz law, Lorentz
+\Keywords{Lorentz transformation, Lorentz group, Lorentz law, Lorentz
   velocity addition, special relativity, relativistic physics,
   Einstein velocity addition, Wigner rotation, gyrogroup,
   gyromorphism, gyrocommutative, gyroassociative, four velocity,
   three-velocity, nonassociative, noncommutative}
 
-\Plainkeywords{Lorentz transform, Lorentz group, Lorentz law, Lorentz
+\Plainkeywords{Lorentz transformation, Lorentz group, Lorentz law, Lorentz
   velocity addition, special relativity, relativistic physics,
   Einstein velocity addition, Wigner rotation, gyrogroup,
   gyromorphism, gyrocommutative, gyroassociative, four velocity,
@@ -96,17 +96,17 @@ library("magrittr")
 
 \section{Introduction}
 
-In special relativity, the Lorentz transforms supercede their
-classical equivalent, the Galilean transforms~\citep{goldstein1980}.
-Lorentz transforms operate on four-vectors such as the four-velocity
+In special relativity, the Lorentz transformations supercede their
+classical equivalent, the Galilean transformations~\citep{goldstein1980}.
+Lorentz transformations operate on four-vectors such as the four-velocity
 or four-potential and are usually operationalised as multiplication by
-a $4\times 4$ matrix.  A Lorentz transform takes the components of an
+a $4\times 4$ matrix.  A Lorentz transformation takes the components of an
 arbitrary four-vector as observed in one coordinate system and returns
 the components observed in another system which is moving at constant
 velocity with respect to the first.
 
 There are a few existing software tools for working with Lorentz
-transforms, mostly developed in an educational context.  Early work
+transformations, mostly developed in an educational context.  Early work
 would include that of \citet{horwitz1992} who describe \pkg{relLab}, a
 system for building a range of {\em gendanken} experiments in an
 interactive graphical environment.  The author asserts that it runs on
@@ -117,31 +117,31 @@ toolkit~\citep{sherin2016} which simulates the effects of special
 relativity in the \proglang{Unity} game engine.
 
 The \pkg{lorentz} package provides \proglang{R}-centric functionality
-for Lorentz transforms.  It deals with formal Lorentz boosts,
+for Lorentz transformations.  It deals with formal Lorentz boosts,
 converts between three-velocities and four-velocities, and provides
 computational support for the gyrogroup structure of relativistic
 three-velocity addition.
 
-\section{Lorentz transforms: active and passive}
+\section{Lorentz transformations: active and passive}
 
-Passive transforms are the usual type of transforms taught and used in
-relativity.  However, sometimes active transforms are needed and it is
+Passive transformations are the usual type of transformations taught and used in
+relativity.  However, sometimes active transformations are needed and it is
 easy to confuse the two.  Here I will discuss passive and then active
-transforms, and illustrate both in a computational context.
+transformations, and illustrate both in a computational context.
 
-\subsection*{Passive transforms}
+\subsection*{Passive transformations}
 
 \newcommand{\vvec}[2]{\begin{pmatrix}#1 \\ #2\end{pmatrix}}
 \newcommand{\twomat}[4]{\begin{pmatrix} #1 & #2 \\ #3 & #4\end{pmatrix}}
 
-Consider the following canonical Lorentz transform in which we have
+Consider the following canonical Lorentz transformation in which we have
 motion in the $x$-direction at speed $v>0$; the motion is from left to
 right.  We consider only the first two components of four-vectors, the
 $y$- and $z$- components being trivial.  A typical physical
 interpretation is that I am at rest, and my friend is in his spaceship
 moving at speed $v$ past me; and we are wondering what vectors which I
 measure in my own rest frame look like to him.  The (passive) Lorentz
-transform is:
+transformation is:
 
 \begin{equation*}
 \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}
@@ -171,7 +171,7 @@ as.4vel(u)                # four-velocity is better for calculations
 @ 
 
 (note that element $[1,2]$ of the boost matrix $B$ is negative as we
-have a passive transform).  Then a four-velocity of $(1,0,0,0)^T$
+have a passive transformation).  Then a four-velocity of $(1,0,0,0)^T$
 would appear in the moving frame as
 
 <<flighter>>=
@@ -203,7 +203,7 @@ Specifically, we {\em define} the four-momentum of a photon to be
 
 So if we consider unit energy and keep $c=1$ we get $p=\vvec{1}{1}$
 in our one-dimensional world (for a rightward-moving photon) and the
-Lorentz transform is then
+Lorentz transformation is then
 
 \begin{equation*}
   \twomat{\gamma}{-\gamma v}{-\gamma v}{\gamma}\vvec{1}{1}=\vvec{\gamma-\gamma v}{\gamma-\gamma v}
@@ -232,14 +232,14 @@ B %*% c(1,-1,0,0)
 
 for the left- and right- moving photons respectively. 
 
-The above analysis uses {\em passive} transforms: there is a single
+The above analysis uses {\em passive} transformations: there is a single
 physical reality, and we describe that one physical reality using two
 different coordinate systems.  One of the coordinate systems uses a
 set of axes that are {\em boosted} relative to the axes of the other.
 
 This is why it makes sense to use prime notation as in
 $x\longrightarrow x'$ and $t\longrightarrow t'$ for a passive Lorentz
-transform: the prime denotes measurements made using coordinates
+transformation: the prime denotes measurements made using coordinates
 that are defined with respect to the boosted system, and we see
 notation like
 
@@ -250,11 +250,11 @@ notation like
 These are the first two elements of a displacement four-vector.  It is
 the same four-vector but viewed in two different reference frames.
 
-\subsection*{Active transforms}
+\subsection*{Active transformations}
 
 In the passive view, there is a single physical reality, and we are
 just describing that one physical reality using two different
-coordinate systems.  Now we will consider active transforms: there are
+coordinate systems.  Now we will consider active transformations: there are
 two physical realities, but one is boosted with respect to another.  
 
 Suppose me and my friend have zero relative velocity, but my friend is
@@ -272,7 +272,7 @@ four-velocity, as viewed in his spaceship coordinates, is the same as
 when we were together.
 
 Now he wonders what the four-velocity of the bullets is in my
-reference frame.  This is an {\em active} transform: we have two
+reference frame.  This is an {\em active} transformation: we have two
 distinct physical realities, one in the spaceship when it was at rest
 with respect to me, and one in the spaceship when moving.  And both
 these realities, by construction, look the same to my friend in the
@@ -283,7 +283,7 @@ they have a four-velocity of $\vvec{1}{0}$, and my friend says to
 himself: ``I see bullets with a four velocity of $\vvec{1}{0}$, and I
 know what that means.  The bullets are at rest.  What are the bullets'
 four velocities in Robin's reference frame?".  This is an {\em active}
-transform:
+transformation:
 
 \begin{equation*}
 \twomat{\gamma}{\gamma v}{\gamma v}{\gamma}\vvec{1}{0}=\vvec{\gamma}{\gamma v}
@@ -296,13 +296,13 @@ move from left to right (with the spaceship).  The R idiom would be:
 
 <<>>=
 (B <- boost(as.3vel(c(0.8,0,0))))  # 0.8c left to right
-solve(B) %*% c(1,0,0,0)            # active transform
+solve(B) %*% c(1,0,0,0)            # active transformation
 @ 
 
-\section{Successive Lorentz transforms}
+\section{Successive Lorentz transformation}
 
 Coordinate transformation is effected by standard matrix
- multiplication; thus composition of two Lorentz transforms is also
+ multiplication; thus composition of two Lorentz transformations is also
  ordinary matrix multiplication:
 
 <<>>=
@@ -312,7 +312,7 @@ L <- boost(u) %*% boost(v)
 L
 @ 
 
-But observe that the resulting transform is not a pure boost, as the
+But observe that the resulting transformation is not a pure boost, as the
 spatial components are not symmetrical.  We may decompose the matrix
 product $L$ into a pure translation composed with an orthogonal
 matrix, which represents a coordinate rotation.  The R idiom is
@@ -386,7 +386,7 @@ The boost matrix is not symmetrical, even though it is a pure boost,
 because $c\neq 1$.  
 
 
-Note how the transform is essentially the Galilean
+Note how the transformation is essentially the Galilean
 result, which is discussed below.
 
 \subsection{Changing units}
@@ -472,7 +472,7 @@ boost(u) %*% boost(v)
 
 Above, see how the boost matrix for the composed velocity of $u+v$
 does not have any rotational component, unlike the relativistic case
-[recall that \code{boost()} gives a {\em passive} transform, which is
+[recall that \code{boost()} gives a {\em passive} transformation, which is
 why the sign of the numbers in the first column is changed].  With an
 infinite speed of light, even ``large'' speeds have zero relativistic
 correction:
@@ -481,7 +481,7 @@ correction:
 gamm1(1e100)
 @ 
 
-Function \code{rboost()} returns a random Lorentz transform matrix,
+Function \code{rboost()} returns a random Lorentz transformation matrix,
 which is in general a combination of a pure Lorentz boost and an
 orthogonal rotation.  With an infinite speed of light, it requires a
 speed:
@@ -539,7 +539,7 @@ B %*% as.vector(U)
 @ 
 
 (note that the result is the four-velocity of an object at rest, as
-expected, for we use passive transforms by default).  However, things
+expected, for we use passive transformations by default).  However, things
 are different if we wish to consider many four-vectors in one R
 object.  A vector ${\mathbf V}$ of four-velocities is a matrix: each
 {\em row} of ${\mathbf V}$ is a four-velocity.  In the package we
@@ -588,14 +588,14 @@ which would be preferable (because this idiom does not require one to
 take a transpose) although the speed increase is unlikely to matter
 much because $B$ is only $4\times 4$.
 
-The above transforms were passive: we have some four-vectors measured
+The above transformations were passive: we have some four-vectors measured
 in my rest frame, and we want to see what these are four-vectors as
 measured by my friend, who is moving in the positive x direction at
 60\% of the speed of light (remember that $c=10$).  See how the
 x-component of the transformed four-velocity is negative, because in
 my friend's rest frame, the four velocities are pointing backwards.
 
-To effect an {\em active} transform we need to take the matrix inverse
+To effect an {\em active} transformation we need to take the matrix inverse
 of $B$:
 
 <<>>=
@@ -663,7 +663,7 @@ generalization and combination of the classical concepts of density,
 energy flux, and the classical stress tensor~\citep{schutz1985}.  It
 is a contravariant tensor of rank two, usually represented as a
 symmetric $4\times 4$ matrix.  The \pkg{lorentz} package includes
-functionality for applying Lorentz transforms to the stress energy
+functionality for applying Lorentz transformations to the stress energy
 tensor.
 
 <<>>=
@@ -685,7 +685,7 @@ In this reference frame, the dust is not at rest: the stress-energy
 tensor has components corresponding to nonzero pressure and momentum
 transfer, and the $[t,t]$ component is greater, at 2.78, than its rest
 value of 1.  Note that the $[t,y]$ component is negative as we use
-passive transforms.  If one wants to consider the stress-energy tensor
+passive transformations.  If one wants to consider the stress-energy tensor
 with downstairs indices (here we will use a photon gas), we need to
 use \code{transform_dd()}:
 
@@ -731,9 +731,9 @@ downstairs indices gives the same result:
 lower(pf) %>% transform_dd(lower(B1) %*% lower(B2)) %>% raise()
 @ 
 
-(note that the matrix representation of the Lorentz transforms
+(note that the matrix representation of the Lorentz transformations
 requires that the order of multiplication be reversed for successive
-covariant transforms, so \code{B1} and \code{B2} must be swapped).
+covariant transformations, so \code{B1} and \code{B2} must be swapped).
 
 \subsection{Speed of light and the stress-energy tensor}
 
@@ -796,13 +796,13 @@ tcrossprod(A,boost(as.3vel(c(0.7,0,0))))
 
 Above, see how the photons have lost the majority of their energy due
 to redshifting.  Blue shifting is easy to implement as either a
-passive transform:
+passive transformation:
                                             
 <<>>=
 tcrossprod(A,boost(as.3vel(c(-0.7,0,0))))
 @   
                   
-or an active transform:
+or an active transformation:
 
 <<>>=
 tcrossprod(A,solve(boost(as.3vel(c(0.7,0,0)))))
@@ -829,7 +829,7 @@ B <- boost(as.3vel(c(0.5,0,0)))
 Above, the three-vector $m$ is parallel to the normal vector of the
 mirror and $B$ shows the Lorentz boost needed to bring it to rest.  We
 are going to reflect these photons in this mirror.  The R idiom for
-the reflection is performed using a sequence of transforms.  First,
+the reflection is performed using a sequence of transformations.  First,
 transform the photons' four-momentum to a frame in which the mirror is
 at rest:
 
@@ -849,7 +849,7 @@ names).  Next, reflect the photons in the mirror (which is at rest):
 Above, see how the reflected photons have a reduced the x-component of
 momentum; but have acquired a substantial $y$- and $z$- component.
 Finally, we transform back to the original reference frame.  Observe
-that this requires an {\em active} transform which means that we need
+that this requires an {\em active} transformation which means that we need
 to use the matrix inverse of $B$:
 
 <<>>=

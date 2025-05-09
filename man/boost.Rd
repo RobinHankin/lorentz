@@ -33,7 +33,7 @@ orthog.galilean(L)
   \item{u,v}{Three-velocities, coerced to  class \code{3vel}.  In
     function \code{boost()}, if \code{u} takes the special default value
     \code{0}, this is interpreted as zero three velocity}
-  \item{L}{Lorentz transform expressed as a \eqn{4\times 4}{4x4} matrix}
+  \item{L}{Lorentz transformation expressed as a \eqn{4\times 4}{4x4} matrix}
   \item{TOL}{Numerical tolerance}
   \item{give}{Boolean with \code{TRUE} meaning to return the transformed
     metric tensor (which should be the flat-space \code{eta()}; qv) and
@@ -61,16 +61,16 @@ orthog.galilean(L)
   A rotation-free Lorentz transformation is known as a \dfn{boost}
   (sometimes a \dfn{pure boost}), here expressed in matrix form.  Pure
   boost matrices are symmetric if \eqn{c=1}.  Function \code{boost(u)}
-  returns a \eqn{4\times 4}{4x4} matrix giving the Lorentz transform of
+  returns a \eqn{4\times 4}{4x4} matrix giving the Lorentz transformation of
   an arbitrary three-velocity \code{u}.
 
   Boosts can be successively applied with regular matrix multiplication.
   However, composing two successive pure boosts does not in general
   return a pure boost matrix: the product is not symmetric in general.
   Also note that boost matrices do not commute.  The resulting matrix
-  product represents a \dfn{Lorentz transform}.
+  product represents a \dfn{Lorentz transformation}.
 
-  It is possible to decompose a Lorentz transform \eqn{L} into a pure
+  It is possible to decompose a Lorentz transformation \eqn{L} into a pure
   boost and a spatial rotation.  Thus \eqn{L=OP} where \eqn{O} is an
   orthogonal matrix and \eqn{P} a pure boost matrix; these are returned by
   functions \code{orthog()} and \code{pureboost()} respectively.  If the 
@@ -146,7 +146,7 @@ orthog(boost(u) \%*\% boost(v)) - rot(u,v,FALSE)  # zero to numerical precision
 pureboost(boost(v) \%*\% boost(u)) - boost(u+v)   # ditto
 
 
-## Define a random-ish Lorentz transform
+## Define a random-ish Lorentz transformation
 L <- boost(r3vel(1)) \%*\% boost(r3vel(1)) \%*\% boost(r3vel(1))
 
 ## check it:

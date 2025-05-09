@@ -57,7 +57,7 @@ summary(angle(p1))
 and we see that the angles are reasonably uniformly distributed on the
 interval $[0,\pi)$.  But now suppose these photons are emitted from an
 object moving at say $0.7c$ along the $x$-axis.  This is most easily
-effected by a passive Lorentz transform
+effected by a passive Lorentz transformation:
 
 ```{r}
 B <- boost(c(-0.7,0,0))

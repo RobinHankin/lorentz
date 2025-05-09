@@ -1,5 +1,6 @@
 \name{transform}
 \alias{transform}
+\alias{transformation}
 \alias{transform_dd}
 \alias{transform_ud}
 \alias{transform_uu}
@@ -48,7 +49,7 @@ lower(TT)
   special cases of a perfect fluid.
 
   Functions \code{transform_dd()} et seq transform a second-rank tensor
-  using the Lorentz transform.  The letters \dQuote{u} or \dQuote{d}
+  using the Lorentz transformation.  The letters \dQuote{u} or \dQuote{d}
   denote the indices of the tensor being upstairs (contravariant) or
   downstairs (covariant).  The stress-energy tensor is usually written
   with two upstairs indices, so use \code{transform_uu()} to transform
