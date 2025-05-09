@@ -24,8 +24,6 @@ gyrfun(u, v)
 
   The speed of light (1 by default) is not used directly by these
   functions; set it with \code{sol()}.
-
-  
 }
 \references{
   \itemize{
