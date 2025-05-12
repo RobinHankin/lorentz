@@ -4,7 +4,6 @@ authors:
 - affiliation: 1
   name: Robin K. S. Hankin
   orcid: "0000-0001-5982-0415"
-date: "September 05, 2019"
 output:
   html_document:
     df_print: paged
