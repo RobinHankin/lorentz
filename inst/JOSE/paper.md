@@ -31,6 +31,18 @@ components of an arbitrary four-vector as observed in one coordinate
 system and returns the components observed in another system which is
 moving at constant velocity with respect to the first.
 
+The materials have been made publicly available at:
+<https://github.com/RobinHankin/lorentz> and licensed under the
+[GPL-3](https://www.gnu.org/licenses/gpl-3.0.en.html).  To install the
+package, type 
+
+```
+install.packages("lorentz")
+library("lorentz")
+```
+
+at the `R` [@rcore2022] command line.
+
 # Statement of need
 
 Einstein's theory of special relativity presents specific difficulties
