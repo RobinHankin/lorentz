@@ -102,7 +102,7 @@ speed of light is 1 by default, but is user-settable and the classical
 limit is recovered by setting $c=\infty$.  Both passive and active
 transformations are implemented.  An extensive heuristic vignette
 detailing package idiom is included; to view this, type
-"``vignette("lorentz")`` at the ``R`` command line.  There does not
+"``vignette("lorentz")``" at the ``R`` command line.  There does not
 seem to be a known relativistic generalization of the classical
 distributive law $r\left({\bf u} + {\bf v}\right)=r{\bf u} + r{\bf v}$
 [@ungar1997].  Ungar states that ``It is hoped that one day [such a
