@@ -83,13 +83,13 @@ using the package, succinctly offered the observation that
 There are a few existing software tools for working with Lorentz
 transformations, mostly developed in an educational context.  Early work
 would include that of Horwitz et al. [-@horwitz1992], who describe
-``relLab``, a system for building a range of *gendanken* experiments
+`relLab`, a system for building a range of *gendanken* experiments
 in an interactive graphical environment.  The author asserts that it
 runs on "any Macintosh computer with one megabyte of RAM or more" but
 it is not clear whether the software is still available.  More modern
-contributions would include the ``OpenRelativity`` toolkit
+contributions would include the `OpenRelativity` toolkit
 [@sherin2016] which simulates the effects of special relativity in the
-``Unity`` game engine.  There are also many excellent github repos
+`Unity` game engine.  There are also many excellent github repos
 that provide functionality to create simple visual displays of Lorentz
 transformations of events (@nick2019 is a good example), although
 these are generally restricted to a single spatial dimension.
@@ -102,7 +102,7 @@ gravitational radiation.
 
 # The ``lorentz`` package: summary of high-level functionality
 
-The ``lorentz`` package provides ``R``-centric functionality for
+The `lorentz` package provides `R`-centric functionality for
 Lorentz transformations.  It deals with formal Lorentz boosts and
 converts between three-velocities and four-velocities.  Computational
 support for the nonassociative and noncommutative structure of
@@ -113,13 +113,13 @@ speed of light is 1 by default, but is user-settable and the classical
 limit is recovered by setting $c=\infty$.  Both passive and active
 transformations are implemented.  An extensive heuristic vignette
 detailing package idiom is included; to view this, type
-"``vignette("lorentz")``" at the ``R`` command line.  There does not
+"`vignette("lorentz")`" at the `R` command line.  There does not
 seem to be a known relativistic generalization of the classical
 distributive law $r\left({\bf u} + {\bf v}\right)=r{\bf u} + r{\bf v}$
 [@ungar1997].  Ungar states that ``It is hoped that one day [such a
 generalization] will be discovered.  If exists, it is expected to be
 the standard distributive law relaxed by Thomas gyration in some
-unexpected way''.  The package is used to execute a systematic sweep
+unexpected way".  The package is used to execute a systematic sweep
 through possible distributive laws consistent with Ungar's suggestion,
 unfortunately without success.
 
