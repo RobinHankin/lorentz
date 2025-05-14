@@ -16,7 +16,7 @@ tags:
 - Four velocity
 affiliations:
 - index: 1
-  name: University of Stirling
+  name: Computing Science and Mathematics, University of Stirling
 ---
 
 # Introduction: the Lorentz transformation in special relativity
