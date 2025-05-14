@@ -19,8 +19,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/RobinHankin/lorentz/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/RobinHankin/lorentz/actions/workflows/R-CMD-check.yaml)
-[![Rdoc](https://www.rdocumentation.org/badges/version/lorentz)](https://www.rdocumentation.org/packages/lorentz)
-[![Codecov test coverage](https://app.codecov.io/gh/RobinHankin/lorentz/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/lorentz/branch/master)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lorentz)](https://cran.r-project.org/package=lorentz)
+[![codecov](https://codecov.io/gh/RobinHankin/lorentz/branch/master/graph/badge.svg?token=6k4fmDlqAh)](https://codecov.io/gh/RobinHankin/lorentz)
 <!-- badges: end -->
 
 
