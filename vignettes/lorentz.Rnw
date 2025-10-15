@@ -14,7 +14,7 @@
 
 
 %% just as usual
-\author{Robin K. S. Hankin\\University of Stirling}
+\author{Robin K. S. Hankin}
 \title{Special relativity in R: introducing the \pkg{lorentz} package}
 %\VignetteIndexEntry{The lorentz package}
 
@@ -48,20 +48,20 @@
 %% publication information
 %% NOTE: This needs to filled out ONLY IF THE PAPER WAS ACCEPTED.
 %% If it was not (yet) accepted, leave them commented.
-%% \Volume{13}
-%% \Issue{9}
-%% \Month{September}
-%% \Year{2004}
-%% \Submitdate{2004-09-29}
-%% \Acceptdate{2004-09-29}
-%% \Repository{https://github.com/RobinHankin/lorentz} %% this line for Tragula
+\Volume{0}
+\Issue{0}
+\Year{0}
+\Submitdate{0000-00-00}
+\Acceptdate{0000-00-00}
+\Repository{https://github.com/RobinHankin/lorentz} %% this line for Tragula
 
 %% The address of (at least) one author should be given
 %% in the following format:
 \Address{
-  Robin K. S. Hankin\\%\orcid{https://orcid.org/0000-0001-5982-0415}\\
+  Robin K. S. Hankin\\
   University of Stirling\\
-  E-mail: \email{hankin.robin@gmail.com}
+  Scotland\\
+  email: \email{hankin.robin@gmail.com}
 }
 %% It is also possible to add a telephone and fax number
 %% before the e-mail in the following format:
