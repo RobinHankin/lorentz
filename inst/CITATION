@@ -1,0 +1,13 @@
+bibentry(bibtype = "Article",
+  title        = "Special relativity in R: the lorentz package",
+  author       = person(given = c("Robin", "K.", "S."),
+                        family = "Hankin",
+                        email = "hankin.robin@gmail.com"),
+  journal      = "Journal of Open Source Education",
+  year         = "2025",
+  volume       = "8",
+  number       = "88",
+  doi          = "10.21105/jose.00196",
+  mheader      = "To cite the lorentz package in publications use:",
+)
+
