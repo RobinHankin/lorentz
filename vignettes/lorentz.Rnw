@@ -29,7 +29,7 @@
   Lorentz transformations and Einsteinian three-velocity addition, which is
   noncommutative and nonassociative.  It is available on CRAN at
   \url{https://CRAN.R-project.org/package=lorentz}.  To cite the
-  \pkg{lorentz} package, use \citet{hankin2022_lorentz}.
+  \pkg{lorentz} package, use \citet{hankin2025_lorentz}.
 }
 
 \Keywords{Lorentz transformation, Lorentz group, Lorentz law, Lorentz
@@ -53,7 +53,7 @@
 \Year{0}
 \Submitdate{0000-00-00}
 \Acceptdate{0000-00-00}
-\Repository{https://github.com/RobinHankin/lorentz} %% this line for Tragula
+%%\Repository{https://github.com/RobinHankin/lorentz} %% this line for Tragula
 
 %% The address of (at least) one author should be given
 %% in the following format:
