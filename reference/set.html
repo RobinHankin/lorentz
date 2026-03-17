@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">lorentz</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1-2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1-3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,6 +18,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/RobinHankin/lorentz/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
@@ -163,11 +164,11 @@
 <span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,<span class="va">B1</span><span class="op">)</span>,<span class="va">B2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,<span class="va">B2</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">B1</span><span class="op">)</span>   <span class="co"># note order</span></span></span>
 <span class="r-in"><span><span class="va">LHS</span><span class="op">-</span><span class="va">RHS</span>  <span class="co"># should be small</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               t             x             y             z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> t  1.065814e-14  5.684342e-14  2.842171e-14  0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x  5.684342e-14  3.410605e-13 -2.273737e-13  0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y -2.842171e-14 -2.273737e-13  2.273737e-13 -2.842171e-14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z -1.065814e-14 -8.526513e-14 -8.526513e-14  8.881784e-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              t             x             y            z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t 2.273737e-13  1.818989e-12  4.547474e-13 9.094947e-13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x 1.818989e-12 -1.455192e-11 -7.275958e-12 0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y 1.364242e-12  0.000000e+00  0.000000e+00 0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> z 2.273737e-12  0.000000e+00  0.000000e+00 3.637979e-12</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## remember to re-set c:</span></span></span>
@@ -184,7 +185,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
