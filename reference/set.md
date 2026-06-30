@@ -62,6 +62,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 perfectfluid(10,1)
 #>    t x y z
 #> t 10 0 0 0

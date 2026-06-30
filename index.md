@@ -37,6 +37,7 @@ And then to load the package use
 [`library()`](https://rdrr.io/r/base/library.html):
 
 ``` r
+
 library("lorentz")
 ```
 
@@ -48,6 +49,7 @@ Although natural units in which are used by default, this can be
 changed.
 
 ``` r
+
  u <- as.3vel(c(0.6,0,0))  # define a three-velocity, 0.6c to the right
  u
 #> A vector of three-velocities (speed of light = 1)
@@ -73,6 +75,7 @@ B
 The boost matrix can be used to transform arbitrary four-vectors:
 
 ``` r
+
 B %*% (1:4)  # Lorentz transformation of an arbitrary four-vector
 #>    [,1]
 #> t -0.25
@@ -84,6 +87,7 @@ B %*% (1:4)  # Lorentz transformation of an arbitrary four-vector
 But it can also be used to transform four-velocities:
 
 ``` r
+
 v <- as.4vel(c(0,0.7,-0.2))
 B %*% t(v)
 #>        [,1]
@@ -98,6 +102,7 @@ when relativistic effects are included. To combine and in terms of
 successive boosts we would simply multiply the boost matrices:
 
 ``` r
+
 boost(u) %*% boost(v)
 #>           t     x          y          z
 #> t  1.823312 -0.75 -1.2763187  0.3646625
@@ -109,6 +114,7 @@ boost(u) %*% boost(v)
 and note that the result depends on the order:
 
 ``` r
+
 boost(v) %*% boost(u)
 #>            t          x          y          z
 #> t  1.8233124 -1.0939874 -1.0210549  0.2917300
@@ -123,6 +129,7 @@ The package is fully vectorized and can deal with vectors whose entries
 are three-velocities or four-velocities:
 
 ``` r
+
  set.seed(0)
  options(digits=3)
  # generate 5 random three-velocities:
@@ -177,6 +184,7 @@ are three-velocities or four-velocities:
 Three-velocities behave in interesting and counter-intuitive ways.
 
 ``` r
+
  u <- as.3vel(c(0.2,0.4,0.1))   # single three-velocity
  v <- r3vel(4,0.9)              # 4 random three-velocities with speed 0.9
  w <- as.3vel(c(-0.5,0.1,0.3))  # single three-velocity
@@ -187,6 +195,7 @@ The three-velocity addition law is given by Ungar.
 Then we can see that velocity addition is not commutative:
 
 ``` r
+
  u+v
 #> A vector of three-velocities (speed of light = 1)
 #>           x      y     z
@@ -214,6 +223,7 @@ Observe that the difference between `u+v` and `v+u` is not “small” in
 any sense. Commutativity is replaced with gyrocommutatitivity:
 
 ``` r
+
 # Compare two different ways of calculating the same thing:
  (u+v) - gyr(u,v,v+u)  
 #> A vector of three-velocities (speed of light = 1)
@@ -241,6 +251,7 @@ It would be reasonable to expect that `u+(v+w)==(u+v)+w`. However, this
 is not the case:
 
 ``` r
+
  ((u+v)+w) - (u+(v+w))
 #> A vector of three-velocities (speed of light = 1)
 #>             x       y         z
@@ -254,6 +265,7 @@ is not the case:
 replaced with gyroassociativity:
 
 ``` r
+
  (u+(v+w)) - ((u+v)+gyr(u,v,w))
 #> A vector of three-velocities (speed of light = 1)
 #>      x         y         z

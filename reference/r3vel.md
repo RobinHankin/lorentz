@@ -54,6 +54,7 @@ unit sphere, but it is not hard either.
 ## Examples
 
 ``` r
+
 r3vel()
 #> A vector of three-velocities (speed of light = 1)
 #>                x           y           z

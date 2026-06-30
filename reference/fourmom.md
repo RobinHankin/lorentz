@@ -79,6 +79,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 # Define 5 random three velocities:
 v <- r3vel(5)
 

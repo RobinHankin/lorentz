@@ -30,6 +30,7 @@ Maintainer: Robin K. S. Hankin \<hankin.robin@gmail.com\>
 ## Examples
 
 ``` r
+
 u <- as.3vel(c(0.3,0.6,-0.1))  # u is a three-velocity
 gam(u)                         # relativistic gamma term for u
 #> [1] 1.360828

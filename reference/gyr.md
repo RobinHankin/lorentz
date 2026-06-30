@@ -59,6 +59,7 @@ while function `gyr.a()` uses the slower but more transparent idiom
 
 ``` r
 
+
 u <- r3vel(10)
 v <- r3vel(10)
 w <- r3vel(10)

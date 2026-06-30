@@ -72,6 +72,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 a <- r3vel(10)
 as.4vel(a)     # a four-velocity
 #> A vector of four-velocities (speed of light = 1)

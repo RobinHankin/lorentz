@@ -37,6 +37,7 @@ Use idiom `u[] <- x` to replace entries of `u` elementwise.
 ## Examples
 
 ``` r
+
 u <- r3vel(10)
 u[1:4]
 #> A vector of three-velocities (speed of light = 1)

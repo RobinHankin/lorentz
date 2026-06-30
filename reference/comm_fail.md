@@ -51,6 +51,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 u <- as.3vel(c(0.4,0,0))
 v <- seq(as.3vel(c(0.4,-0.2,0)), as.3vel(c(-0.3,0.9,0)),len=20)
 w <- as.3vel(c(0.8,-0.4,0))

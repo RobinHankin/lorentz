@@ -63,6 +63,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 u <- 0.1  # c=1
 c(u,celerity(u),rapidity(u))
 #> [1] 0.1000000 0.1005038 0.1003353

@@ -36,6 +36,7 @@ If anyone can think of a better name than `flob()` let me know.
 ## Examples
 
 ``` r
+
 coordnames()
 #> [1] "t" "x" "y" "z"
 

@@ -40,6 +40,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 U <- r4vel(7)
 as.4vel(as.3vel(U)) # equal to U, to numerical precision
 #> A vector of four-velocities (speed of light = 1)

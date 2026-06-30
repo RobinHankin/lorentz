@@ -27,6 +27,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 cosines(r3vel(7))
 #>                 x           y         z
 #> [1,] -0.533315119 -0.13346830 0.8353210

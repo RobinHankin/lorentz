@@ -42,6 +42,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 ## A bunch of photons all approximately parallel to the x-axis:
 as.photon(as.3vel(cbind(0.9,runif(10)/1000,runif(10)/1000)))
 #>       E       p_x          p_y          p_z

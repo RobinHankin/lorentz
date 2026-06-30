@@ -82,10 +82,12 @@ code, the *only* place the speed of light option is accessed is via
 Looking again at Martin's observation he seems to be suggesting that
 something along the lines of
 
+
         gam <- function(u, c=1){1/sqrt(1-u^2/c^2)}
       
 
 But this is asking for trouble:
+
 
         c(gam(0.4,c=1),gam(0.4,c=10))
       
@@ -95,6 +97,7 @@ which is meaningless at best and misleading at worst.
 ## Examples
 
 ``` r
+
 sol()                          # returns current speed of light
 #> [1] 1
 sol(299792458)                 # use SI units

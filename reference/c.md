@@ -47,6 +47,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 c(r3vel(3),r3vel(6,0.99))
 #> A vector of three-velocities (speed of light = 1)
 #>                  x           y          z
