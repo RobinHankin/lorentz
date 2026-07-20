@@ -5,6 +5,7 @@
 - [`Extract.3vel`](https://robinhankin.github.io/lorentz/reference/Extract.md)
   [`extract.3vel`](https://robinhankin.github.io/lorentz/reference/Extract.md)
   [`[.vel`](https://robinhankin.github.io/lorentz/reference/Extract.md)
+  [`[.vec`](https://robinhankin.github.io/lorentz/reference/Extract.md)
   [`[<-.vel`](https://robinhankin.github.io/lorentz/reference/Extract.md)
   [`[.3vel`](https://robinhankin.github.io/lorentz/reference/Extract.md)
   [`[<-.3vel`](https://robinhankin.github.io/lorentz/reference/Extract.md)

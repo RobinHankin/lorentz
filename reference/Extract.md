@@ -2,19 +2,38 @@
 
 Extract or replace subsets of three-velocities
 
+## Usage
+
+``` r
+# S3 method for class 'vec'
+x[i, j, drop = TRUE, ...]
+# S3 method for class '3vel'
+x[i, j] <- value
+# S3 method for class '4vel'
+x[i, j] <- value
+```
+
 ## Arguments
 
 - x:
 
   A three-vector
 
-- index:
+- i,j:
 
   elements to extract or replace
 
 - value:
 
   replacement value
+
+- drop:
+
+  Boolean, with default `TRUE` meaning to drop values
+
+- ...:
+
+  Further arguments, currently ignored
 
 ## Details
 
