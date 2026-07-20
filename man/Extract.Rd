@@ -2,6 +2,7 @@
 \alias{Extract.3vel}
 \alias{extract.3vel}
 \alias{[.vel}
+\alias{[.vec}
 \alias{[<-.vel}
 \alias{[.3vel}
 \alias{[<-.3vel}
@@ -11,10 +12,17 @@
 \description{
   Extract or replace subsets of three-velocities
 }
+\usage{
+\method{[}{vec}(x, i, j, drop=TRUE, ...)
+\method{[}{3vel}(x, i, j) <-  value
+\method{[}{4vel}(x, i, j) <-  value
+}
 \arguments{
-  \item{x}{A three-vector}
-  \item{index}{elements to extract or replace}
-  \item{value}{replacement value}
+    \item{x}{A three-vector}
+    \item{i,j}{elements to extract or replace}
+    \item{value}{replacement value}
+    \item{drop}{Boolean, with default \code{TRUE} meaning to drop values}
+    \item{...}{Further arguments, currently ignored}
 }
 \details{
 These methods (should) work as expected: an object of class
