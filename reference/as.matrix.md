@@ -22,6 +22,17 @@ as.matrix(x, ...)
 
   Further arguments (currently ignored)
 
+## Note
+
+Coercing to a matrix simply removes the S3 class `3vel` or `4vel`. To
+convert a three-velocity or a four-velocity to a \\4\times 4\\ matrix,
+use
+[`boost()`](https://robinhankin.github.io/lorentz/reference/boost.md)
+
+## See also
+
+[`boost`](https://robinhankin.github.io/lorentz/reference/boost.md)
+
 ## Author
 
 Robin K. S. Hankin

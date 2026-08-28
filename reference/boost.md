@@ -6,10 +6,10 @@ Lorentz transformations: boosts and rotations
 
 ``` r
 boost(u=0)
-rot(u,v,space=TRUE)
+rot(u, v, space=TRUE)
 is.consistent.boost(L, give=FALSE, TOL=1e-10)
 is.consistent.boost.galilean(L, give=FALSE, TOL=1e-10)
-pureboost(L,include_sol=TRUE)
+pureboost(L, include_sol=TRUE)
 orthog(L)
 pureboost.galilean(L, tidy=TRUE)
 orthog.galilean(L)
@@ -236,7 +236,7 @@ L <- boost(r3vel(1)) %*% boost(r3vel(1)) %*% boost(r3vel(1))
 
 
 if (FALSE)    # needs emulator package
-quad.form(eta(),L)  # should be eta()
+quad.form(eta(), L)  # should be eta()
  # \dontrun{}
 
 ## More concisely:
