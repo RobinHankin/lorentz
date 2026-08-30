@@ -6,9 +6,9 @@ relativity.
 ## Usage
 
 ``` r
-perfectfluid(rho,p,u=0)
-dust(rho,u=0)
-photongas(rho,u=0)
+perfectfluid(rho, p, u=0)
+dust(rho, u=0)
+photongas(rho, u=0)
 transform_dd(TT, B)
 transform_ud(TT, B)
 transform_uu(TT, B)
@@ -63,20 +63,20 @@ Robin K. S. Hankin
 
 ``` r
 
-perfectfluid(10,1)
+perfectfluid(10, 1)
 #>    t x y z
 #> t 10 0 0 0
 #> x  0 1 0 0
 #> y  0 0 1 0
 #> z  0 0 0 1
 
-u <- as.3vel(c(0.4,0.4,0.2))
+u <- as.3vel(c(0.4, 0.4, 0.2))
 
 ## In the following, LHS is stationary dust and RHS is dust moving at
 ## velocity 'u', but transformed to a frame also moving at velocity 'u':
 
 LHS <- dust(1)
-RHS <- transform_uu(dust(1,u),boost(u))
+RHS <- transform_uu(dust(1,u), boost(u))
 max(abs(LHS-RHS))  # should be small
 #> [1] 6.938894e-17
 
@@ -84,8 +84,8 @@ max(abs(LHS-RHS))  # should be small
 ## In the following, negative sign needed because active/passive
 ## difference:
 
-LHS <- dust(1,u)
-RHS <- transform_uu(dust(1),boost(-u))
+LHS <- dust(1, u)
+RHS <- transform_uu(dust(1), boost(-u))
 max(abs(LHS-RHS))  # should be small
 #> [1] 0
 
@@ -94,15 +94,15 @@ max(abs(LHS-RHS))  # should be small
 
 sol(299792458)
 #> [1] 299792458
-perfectfluid(1.225,101325) # air at STP
+perfectfluid(1.225, 101325) # air at STP
 #>       t            x            y            z
 #> t 1.225 0.000000e+00 0.000000e+00 0.000000e+00
 #> x 0.000 1.127393e-12 0.000000e+00 0.000000e+00
 #> y 0.000 0.000000e+00 1.127393e-12 0.000000e+00
 #> z 0.000 0.000000e+00 0.000000e+00 1.127393e-12
 
-LHS <- transform_uu(perfectfluid(1.225,101325),boost(as.3vel(c(1000,0,0))))
-RHS <- perfectfluid(1.225,101325) 
+LHS <- transform_uu(perfectfluid(1.225,101325), boost(as.3vel(c(1000,0,0))))
+RHS <- perfectfluid(1.225, 101325) 
 LHS-RHS  # should be small
 #>               t       x y z
 #> t  1.362999e-11   -1225 0 0
@@ -113,8 +113,8 @@ LHS-RHS  # should be small
 sol(10)
 #> [1] 10
 u <- as.3vel(4:6)
-LHS <- photongas(1,u)
-RHS <- transform_uu(photongas(1),boost(-u))
+LHS <- photongas(1, u)
+RHS <- transform_uu(photongas(1), boost(-u))
 LHS-RHS # should be small
 #>               t             x             y             z
 #> t -8.881784e-16 -3.552714e-15  3.552714e-15  0.000000e+00
@@ -126,7 +126,7 @@ LHS-RHS # should be small
 
 B1 <- boost(r3vel(1)) %*% boost(r3vel(1))
 B2 <- boost(r3vel(1)) %*% boost(r3vel(1))
-LHS <- transform_uu(transform_uu(dust(1),B1),B2)
+LHS <- transform_uu(transform_uu(dust(1), B1), B2)
 RHS <- transform_uu(dust(1),B2 %*% B1)   # note order
 LHS-RHS  # should be small
 #>              t             x             y            z

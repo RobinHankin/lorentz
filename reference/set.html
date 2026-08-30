@@ -42,9 +42,9 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">perfectfluid</span><span class="op">(</span><span class="va">rho</span>,<span class="va">p</span>,u<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
-<span><span class="fu">dust</span><span class="op">(</span><span class="va">rho</span>,u<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
-<span><span class="fu">photongas</span><span class="op">(</span><span class="va">rho</span>,u<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">perfectfluid</span><span class="op">(</span><span class="va">rho</span>, <span class="va">p</span>, u<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu">dust</span><span class="op">(</span><span class="va">rho</span>, u<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu">photongas</span><span class="op">(</span><span class="va">rho</span>, u<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="fu">transform_dd</span><span class="op">(</span><span class="va">TT</span>, <span class="va">B</span><span class="op">)</span></span>
 <span><span class="fu">transform_ud</span><span class="op">(</span><span class="va">TT</span>, <span class="va">B</span><span class="op">)</span></span>
 <span><span class="fu">transform_uu</span><span class="op">(</span><span class="va">TT</span>, <span class="va">B</span><span class="op">)</span></span>
@@ -98,20 +98,20 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">perfectfluid</span><span class="op">(</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">perfectfluid</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    t x y z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> t 10 0 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x  0 1 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> y  0 0 1 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> z  0 0 0 1</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.4</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## In the following, LHS is stationary dust and RHS is dust moving at</span></span></span>
 <span class="r-in"><span><span class="co">## velocity 'u', but transformed to a frame also moving at velocity 'u':</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">dust</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span>,<span class="va">u</span><span class="op">)</span>,<span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span>,<span class="va">u</span><span class="op">)</span>, <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">LHS</span><span class="op">-</span><span class="va">RHS</span><span class="op">)</span><span class="op">)</span>  <span class="co"># should be small</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6.938894e-17</span>
 <span class="r-in"><span></span></span>
@@ -119,8 +119,8 @@
 <span class="r-in"><span><span class="co">## In the following, negative sign needed because active/passive</span></span></span>
 <span class="r-in"><span><span class="co">## difference:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">dust</span><span class="op">(</span><span class="fl">1</span>,<span class="va">u</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,<span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="op">-</span><span class="va">u</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">dust</span><span class="op">(</span><span class="fl">1</span>, <span class="va">u</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="op">-</span><span class="va">u</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">LHS</span><span class="op">-</span><span class="va">RHS</span><span class="op">)</span><span class="op">)</span>  <span class="co"># should be small</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-in"><span></span></span>
@@ -129,15 +129,15 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="sol.html">sol</a></span><span class="op">(</span><span class="fl">299792458</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 299792458</span>
-<span class="r-in"><span><span class="fu">perfectfluid</span><span class="op">(</span><span class="fl">1.225</span>,<span class="fl">101325</span><span class="op">)</span> <span class="co"># air at STP</span></span></span>
+<span class="r-in"><span><span class="fu">perfectfluid</span><span class="op">(</span><span class="fl">1.225</span>, <span class="fl">101325</span><span class="op">)</span> <span class="co"># air at STP</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       t            x            y            z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> t 1.225 0.000000e+00 0.000000e+00 0.000000e+00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x 0.000 1.127393e-12 0.000000e+00 0.000000e+00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> y 0.000 0.000000e+00 1.127393e-12 0.000000e+00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> z 0.000 0.000000e+00 0.000000e+00 1.127393e-12</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">perfectfluid</span><span class="op">(</span><span class="fl">1.225</span>,<span class="fl">101325</span><span class="op">)</span>,<span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">perfectfluid</span><span class="op">(</span><span class="fl">1.225</span>,<span class="fl">101325</span><span class="op">)</span> </span></span>
+<span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">perfectfluid</span><span class="op">(</span><span class="fl">1.225</span>,<span class="fl">101325</span><span class="op">)</span>, <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">perfectfluid</span><span class="op">(</span><span class="fl">1.225</span>, <span class="fl">101325</span><span class="op">)</span> </span></span>
 <span class="r-in"><span><span class="va">LHS</span><span class="op">-</span><span class="va">RHS</span>  <span class="co"># should be small</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               t       x y z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> t  1.362999e-11   -1225 0 0</span>
@@ -148,8 +148,8 @@
 <span class="r-in"><span><span class="fu"><a href="sol.html">sol</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-in"><span><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="threevel.html">as.3vel</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">photongas</span><span class="op">(</span><span class="fl">1</span>,<span class="va">u</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">photongas</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,<span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="op">-</span><span class="va">u</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">photongas</span><span class="op">(</span><span class="fl">1</span>, <span class="va">u</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">photongas</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="op">-</span><span class="va">u</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">LHS</span><span class="op">-</span><span class="va">RHS</span> <span class="co"># should be small</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               t             x             y             z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> t -8.881784e-16 -3.552714e-15  3.552714e-15  0.000000e+00</span>
@@ -161,7 +161,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">B1</span> <span class="op">&lt;-</span> <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="r3vel.html">r3vel</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="r3vel.html">r3vel</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">B2</span> <span class="op">&lt;-</span> <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="r3vel.html">r3vel</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="boost.html">boost</a></span><span class="op">(</span><span class="fu"><a href="r3vel.html">r3vel</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,<span class="va">B1</span><span class="op">)</span>,<span class="va">B2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="va">B1</span><span class="op">)</span>, <span class="va">B2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="fu">transform_uu</span><span class="op">(</span><span class="fu">dust</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,<span class="va">B2</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">B1</span><span class="op">)</span>   <span class="co"># note order</span></span></span>
 <span class="r-in"><span><span class="va">LHS</span><span class="op">-</span><span class="va">RHS</span>  <span class="co"># should be small</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              t             x             y            z</span>
