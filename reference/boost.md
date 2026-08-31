@@ -17,7 +17,7 @@ orthog.galilean(L)
 
 ## Arguments
 
-- u,v:
+- u, v:
 
   Three-velocities, coerced to class `3vel`. In function `boost()`, if
   `u` takes the special default value `0`, this is interpreted as zero
@@ -64,7 +64,7 @@ returns an orthogonal matrix.
 
 ## Details
 
-Arguments `u,v` are coerced to three-velocities.
+Arguments `u, v` are coerced to three-velocities.
 
 A rotation-free Lorentz transformation is known as a boost (sometimes a
 pure boost), here expressed in matrix form. Pure boost matrices are

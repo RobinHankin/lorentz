@@ -5,7 +5,7 @@ Plane mirrors in special relativity
 ## Usage
 
 ``` r
-reflect(P,m,ref=1)
+reflect(P, m, ref=1)
 ```
 
 ## Arguments

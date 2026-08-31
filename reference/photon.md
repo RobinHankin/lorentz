@@ -1,12 +1,12 @@
 # Photons
 
-Various functionality to deal with the 4-momentum of a photon
+Functionality to deal with photons
 
 ## Usage
 
 ``` r
-is.consistent.nullvec(N,TOL=1e-10)
-as.photon(x,E=1)
+is.consistent.nullvec(N, TOL=1e-10)
+as.photon(x, E=1)
 ```
 
 ## Arguments
@@ -29,7 +29,9 @@ as.photon(x,E=1)
 
 ## Details
 
-Returns the four-momentum of a photon.
+Function `as.photon(x,E)` takes a vector `x` of 3-velocities and returns
+the four-momentum of photons travelling in the same directions as `x`,
+with energy `E`.
 
 ## Author
 
