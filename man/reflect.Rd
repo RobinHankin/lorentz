@@ -6,7 +6,7 @@
 \title{Mirrors}
 \description{Plane mirrors in special relativity}
 \usage{
-reflect(P,m,ref=1)
+reflect(P, m, ref=1)
 }
 \arguments{
   \item{P}{Vector of four-momenta}

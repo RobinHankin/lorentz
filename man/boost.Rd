@@ -30,7 +30,7 @@ pureboost.galilean(L, tidy=TRUE)
 orthog.galilean(L)
 }
 \arguments{
-  \item{u,v}{Three-velocities, coerced to  class \code{3vel}.  In
+  \item{u, v}{Three-velocities, coerced to  class \code{3vel}.  In
     function \code{boost()}, if \code{u} takes the special default value
     \code{0}, this is interpreted as zero three velocity}
   \item{L}{Lorentz transformation expressed as a \eqn{4\times 4}{4x4} matrix}
@@ -56,7 +56,7 @@ orthog.galilean(L)
   matrix; function \code{rot()} returns an orthogonal matrix.
 }
 \details{
-  Arguments \code{u,v} are coerced to three-velocities.
+  Arguments \code{u, v} are coerced to three-velocities.
 
   A rotation-free Lorentz transformation is known as a \dfn{boost}
   (sometimes a \dfn{pure boost}), here expressed in matrix form.  Pure
