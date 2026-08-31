@@ -7,10 +7,10 @@
 \alias{null vector}
 \alias{is.consistent.nullvec}
 \title{Photons}
-\description{Various functionality to deal with the 4-momentum of a photon}
+\description{Functionality to deal with photons}
 \usage{
-is.consistent.nullvec(N,TOL=1e-10)
-as.photon(x,E=1)
+is.consistent.nullvec(N, TOL=1e-10)
+as.photon(x, E=1)
 }
 \arguments{
   \item{N}{Four-momentum to be tested for nullness}
@@ -19,7 +19,11 @@ as.photon(x,E=1)
   \item{E}{Energy, a scalar}
 }
 \details{
-  Returns the four-momentum of a photon.
+
+  Function \code{as.photon(x,E)} takes a vector \code{x} of 3-velocities
+  and returns the four-momentum of photons travelling in the same
+  directions as \code{x}, with energy \code{E}.
+
 }
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{4mom}},\code{\link{reflect}}}
