@@ -685,10 +685,15 @@ transform_uu(D,B)
 In this reference frame, the dust is not at rest: the stress-energy
 tensor has components corresponding to nonzero pressure and momentum
 transfer, and the $[t,t]$ component is greater, at 2.78, than its rest
-value of 1.  Note that the $[t,y]$ component is negative as we use
-passive transformations.  If one wants to consider the stress-energy tensor
-with downstairs indices (here we will use a photon gas), we need to
-use \code{transform_dd()}:
+value of 1.  Note the $[y,y]$ component at 1.78: this corresponds to a
+nonzero $y$-momentum flux in the $y$ direction (the product of
+velocity with momentum density); this is a relativistic generalization
+of the ram pressure $\rho v^2$.  Further, observe that the $[t,y]$
+component is negative as we use passive transformations;
+
+If one wants to consider the
+stress-energy tensor with downstairs indices (here we will use a
+photon gas), we need to use \code{transform_dd()}:
 
 <<>>=
 pg <- photongas(3)
