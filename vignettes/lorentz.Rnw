@@ -667,33 +667,49 @@ symmetric $4\times 4$ matrix.  The \pkg{lorentz} package includes
 functionality for applying Lorentz transformations to the stress energy
 tensor.
 
-<<>>=
-sol(1)        # revert to natural units 
-D <- dust(1)  # Dust is the simplest nontrivial SET, with 
-D             # only one nonzero component
-@ 
-
 The stress-energy tensor is usually written with two upstairs
 (contravariant) indices, as in~$T^{\alpha\beta}$; it may be
-transformed using the \code{transform_uu()} function: 
+transformed using the \code{transform_uu()} function.  It is
+instructive to consider the classical case first, and we start with
+``dust'', the simplest nontrivial case, with only one nonzero component.
 
 <<>>=
-B <- boost(as.3vel(c(0.0,0.8,0.0)))
-transform_uu(D,B)
+sol(Inf)        # classical physics
+(D <- dust(1))  
+D |> transform_uu(boost(c(7,0,0)))
 @ 
 
-In this reference frame, the dust is not at rest: the stress-energy
-tensor has components corresponding to nonzero pressure and momentum
-transfer, and the $[t,t]$ component is greater, at 2.78, than its rest
-value of 1.  Note the $[y,y]$ component at 1.78: this corresponds to a
-nonzero $y$-momentum flux in the $y$ direction (the product of
-velocity with momentum density); this is a relativistic generalization
-of the ram pressure $\rho v^2$.  Further, observe that the $[t,y]$
-component is negative as we use passive transformations;
+Above, we see the effect of a (passive) boost of speed 7 in the
+$x$-direction.  In this reference frame, the dust is not at rest: the
+stress-energy tensor has components corresponding to nonzero pressure
+and momentum transfer.  See how the $[t,x]$ component of $-7$
+specifies the $x$-momentum flux [recall we use passive transforms by
+  default].  See also the $[x,x]$ component of 49: this specifies the
+flux of $x$-momentum in the $x$-direction; classically this is $(\rho
+u)u$ [i.e. the product of momentum density with speed], or $\rho u^2$.
+Now we revert to natural units and transform with a nontrivial boost:
 
-If one wants to consider the
-stress-energy tensor with downstairs indices (here we will use a
-photon gas), we need to use \code{transform_dd()}:
+<<>>=
+sol(1)          # revert to natural units 
+(D <- dust(1))  # re-specify D
+B <- boost(as.3vel(c(0.0, 0.8, 0.0)))
+transform_uu(D, B)
+@ 
+
+In this reference frame, the dust is again not at rest as the $[t,y]$
+component is nonzero.  But now we are in the relativistic case,
+observe that $[t,t]$ component is greater, at 2.78, than its rest
+value of 1.  This is because of two physical phenomena: firstly, each
+particle of dust is more massive in this frame due to
+$m\longrightarrow m\gamma$, and also the number density is greater due
+to Lorentz correction; the factor is thus $\gamma^2$.  The $[y,y]$
+component at 1.78 corresponds to a nonzero $y$-momentum flux in the
+$y$ direction (the product of velocity with momentum density); this is
+a relativistic generalization of the ram pressure $\rho v^2$.
+
+If one wants to consider the stress-energy tensor with downstairs
+indices (here we will use a photon gas), we need to use
+\code{transform_dd()}:
 
 <<>>=
 pg <- photongas(3)
